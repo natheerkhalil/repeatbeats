@@ -1,0 +1,271 @@
+<template>
+    <div @click="goHome" style="border-bottom: 1px solid var(--grey-3); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+        class="__b __po __bg-grey-2 _flex _ai-ce _fd-ro _jc-be __padsm">
+        <div class="_flex _cc _fd-ro">
+            <img style="width: 35px;" src="/icon.png" alt="Logo"> &nbsp;
+            &nbsp;
+            <p class="logo-text _sm-hide __tmd __txt-grey-10">RepeatBeats</p> &nbsp;
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="__b _flex _cc _fd-co">
+        <div class="__13 __w _flex _cc _fd-co">
+            <p class="__b __tlg __tle">My Account</p>
+            <br>
+            <hr class="__b __hr __bg-grey-7">
+            <br>
+            <div v-if="!emailVerified && !verificationEmailSent"
+                class="__b __w __mauto _flex __bg-warn-5 _sm-fd-co __bo-warn-8 __bod _ai-ce _jc-be __bdxs __padxs">
+                <p class="__txt-grey-1 __b __tle">Your email is not verified yet. You can only add a maximum
+                    of&nbsp;<strong>10</strong>&nbsp;videos and&nbsp;<strong>1</strong>&nbsp;playlist with an unverified
+                    account.
+                </p>
+                <br class="m_hide _sm-show">
+                <div class="_flex _cc _fd-ro">
+                    <button @click="sendVerificationEmail" style="min-width: max-content;"
+                        class="__padxs __tsx __bg-none __po __bo-grey-1 __bod">Send Verification Email</button>
+                </div>
+            </div>
+            <br>
+            <div class="__b _flex __padxs _fd-co">
+                <p class="__b __tmd __tle">Account Details: </p>
+                <br>
+                <div class="__b __padsm __bod _fd-co _jc-ar _fw-wr _flex __bo-grey-8">
+                    <div class="__b _fd-ro _sm-fd-co _flex _ai-ce _jc-ar">
+                        <p class="__tmd">
+                            <span class="__txt-3">Username:</span> &nbsp; {{ username }}
+                        </p>
+                        <br class="m_hide _sm-show">
+                        <p class="__tmd">
+                            <span class="__txt-3">Email:</span> &nbsp; {{ email }}
+                        </p>
+                    </div>
+                    <br>
+                    <div class="__b _fd-ro _sm-fd-co _flex _ai-ce _jc-ar">
+                        <p class="__tmd">
+                            <span class="__txt-3">Number of Videos:</span> &nbsp; {{ vlength }}
+                        </p>
+                        <br class="m_hide _sm-show">
+                        <p class="__tmd">
+                            <span class="__txt-3">Number of Playlists:</span> &nbsp; {{ plength }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="__b _flex __padxs _fd-co">
+                <p class="__b __tmd __tle">Actions: </p>
+                <br>
+                <div class="__b __padsm __bod _fd-ro _jc-be _fw-wr _flex __bo-grey-8">
+                    <div style="width: max-content; " @click="sendPasswordResetEmail"
+                        class="__padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Password</div>
+                    <div style="width: max-content; " @click="showEmailModal = !showEmailModal"
+                        class="__padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Email</div>
+                    <div style="width: max-content; " @click="deleteAccount"
+                        class="__padxs _flex __bo-err-2 __txt-err-2 __bod __po">Delete Account</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div v-if="showEmailModal"
+        style="max-height: 90vh; overflow-x: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
+        class="__custscroll __w _flex _fd-co _ai-ce __bg-grey-10 __bo-1 __bod __padsm">
+        <div class="__b _flex _fd-ro _jc-be">
+            <p class="__tmd __tle">Change email address for this account</p>
+            <svg @click="showEmailModal = !showEmailModal" width=35 height=35 class="__po" clip-rule="evenodd"
+                fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z" />
+            </svg>
+        </div>
+        <hr class="__hr __b __bg-grey-1">
+        <br>
+        <div class="__b _flex _cc _fd-co">
+            <div class="__b _flex _cc">
+                <input v-model="newEmail" type="text" style="border-bottom: 1px solid var(--grey_6);"
+                    placeholder="New email (a verification email will be sent to this address)"
+                    class="__b __padxs __bg-none __bo-none __txt-grey-1">
+                &nbsp; &nbsp;
+                <svg class="__po" @click="sendEmailChangeEmail" width="24" height="24" clip-rule="evenodd"
+                    fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="m2.009 12.002c0-5.517 4.48-9.997 9.998-9.997s9.998 4.48 9.998 9.997c0 5.518-4.48 9.998-9.998 9.998s-9.998-4.48-9.998-9.998zm1.5 0c0 4.69 3.808 8.498 8.498 8.498s8.498-3.808 8.498-8.498-3.808-8.497-8.498-8.497-8.498 3.807-8.498 8.497zm6.711-4.845c-.141-.108-.3-.157-.456-.157-.389 0-.755.306-.755.749v8.501c0 .445.367.75.755.75.157 0 .316-.05.457-.159 1.554-1.203 4.199-3.252 5.498-4.258.184-.142.29-.36.29-.592 0-.23-.107-.449-.291-.591zm.289 7.564v-5.446l3.523 2.718z"
+                        fill-rule="nonzero" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import { useResponseStore } from '@/stores/response';
+import { useAuthStore } from '@/stores/auth';
+
+import { request } from "@/utils/api";
+
+export default {
+    data() {
+        return {
+            username: useAuthStore().username,
+            email: "...",
+
+            vlength: "...",
+            plength: "...",
+
+            emailVerified: false,
+            verificationEmailSent: false,
+
+            cooldown: {
+                password: new Date().getTime() - 60000,
+                email: new Date().getTime() - 60000,
+            },
+
+            showEmailModal: false,
+
+            newEmail: '',
+        }
+    },
+
+    created() {
+        let cache_all = localStorage.getItem("cache_all");
+
+        if (cache_all) {
+            this.vlength = JSON.parse(cache_all).length;
+        } else {
+            this.vlength = "0";
+        }
+
+        let cache_playlists = localStorage.getItem("cache_playlists");
+
+        if (cache_playlists) {
+            this.plength = JSON.parse(cache_playlists).length;
+        } else {
+            this.plength = "0";
+        }
+
+        this.email = localStorage.getItem("auth_email");
+
+        this.verifyEmail();
+    },
+
+    methods: {
+        useAuthStore: useAuthStore,
+
+        goHome() {
+            this.$router.push('/')
+        },
+
+        deleteAccount() {
+            if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+                if (window.confirm("This will permanently delete your videos, playlists, and account information. Are you sure?")) {
+                    let prompt = window.prompt("Enter your username to confirm deletion (case sensitive):");
+
+                    if (prompt !== this.username && prompt !== null) {
+                        while (prompt !== this.username && prompt !== null) {
+                            prompt = window.prompt("Incorrect username. Please try again");
+                        }
+                    }
+
+                    if (prompt === this.username && prompt !== null) {
+                        request({}, "/account/delete").then(res => {
+                            if (!res.failed) {
+                                localStorage.clear();
+
+                                window.location.reload();
+                            } else {
+                                useResponseStore.updateResponse("Failed to delete account, please try again later.", "err");
+                            }
+                        });
+                    }
+                }
+            }
+        },
+
+        verifyEmail() {
+            let cache = localStorage.getItem("email_verified");
+
+            if (cache) {
+
+                this.emailVerified = JSON.parse(cache);
+
+            } else {
+                request({}, "/account/is-verified").then(res => {
+                    if (!res.failed) {
+                        this.emailVerified = res.data.data;
+
+                        localStorage.setItem("email_verified", JSON.stringify(this.emailVerified));
+                    } else {
+                        console.log(`Failed to fetch email verification status - ${res.data}`, "err");
+
+                        this.emailVerified = true;
+                    }
+                });
+            }
+        },
+
+        sendVerificationEmail() {
+            if (!this.emailVerified) {
+                request({}, "/account/send-verification-email").then(res => {
+                    console.log(res)
+                    if (!res.failed) {
+                        useResponseStore().updateResponse("Verification email sent. Check your inbox", "succ");
+
+                        this.verificationEmailSent = true;
+                    } else {
+                        useResponseStore().updateResponse(`Failed to send verification email - ${res.data.data}`, "err");
+
+                        this.verificationEmailSent = false;
+
+                        console.log(res);
+                    }
+                });
+            }
+        },
+
+        sendPasswordResetEmail() {
+            if (this.cooldown.password < (new Date().getTime() - 60000)) {
+                request({ username: localStorage.getItem("auth_username") }, "/account/send-reset-password-email", false).then(res => {
+                    if (!res.failed) {
+                        useResponseStore().updateResponse("Email sent! Please check your inbox", "succ");
+
+                        this.cooldown.password = new Date().getTime();
+                    } else {
+                        useResponseStore().updateResponse("Failed to send email - " + res.data.data, "err");
+
+                        this.cooldown.password = new Date().getTime();
+                    }
+                });
+            } else {
+                useResponseStore().updateResponse("Wait " + ((this.cooldown.password - (new Date().getTime() - 60000)) / 1000).toFixed(0) + " second(s) before sending another request", "warn");
+            }
+        },
+
+        isValidEmail (email) {return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); },
+
+        sendEmailChangeEmail() {
+            if (!this.isValidEmail(this.newEmail)) {
+                useResponseStore().updateResponse("Invalid email address format", "warn");
+                return false;
+            }
+
+            if (this.cooldown.email < (new Date().getTime() - 60000)) {
+                request({ email: this.newEmail }, "/account/send-email-change-email").then(res => {
+                    if (!res.failed) {
+                        useResponseStore().updateResponse("Email sent! Please check your inbox", "succ");
+                    } else {
+                        useResponseStore().updateResponse("Failed to send email - " + res.data, "err");
+                    }
+                });
+            } else {
+                useResponseStore().updateResponse("Wait " + ((this.cooldown.email - (new Date().getTime() - 60000)) / 1000).toFixed(0) + " second(s) before sending another request", "warn");
+            }
+        }
+    },
+}
+</script>

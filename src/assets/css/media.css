@@ -1,0 +1,3419 @@
+/* XS Size */
+@media only screen and (max-width: 320px) {
+    /* Basic Properties */
+    body ._xs-show { display: flex !important; }
+    body ._xs-hide { display: none !important; }
+  
+    /* Info Background Classes */
+    body ._xs-bg-info-1 {background-color: var(--info_1);}
+    body ._xs-bg-info-2 {background-color: var(--info_2);}
+    body ._xs-bg-info-3 {background-color: var(--info_3);}
+    body ._xs-bg-info-4 {background-color: var(--info_4);}
+    body ._xs-bg-info-5 {background-color: var(--info_5);}
+    body ._xs-bg-info-6 {background-color: var(--info_6);}
+    body ._xs-bg-info-7 {background-color: var(--info_7);}
+    body ._xs-bg-info-8 {background-color: var(--info_8);}
+    body ._xs-bg-info-9 {background-color: var(--info_9);}
+    body ._xs-bg-info-10 {background-color: var(--info_10);}
+
+    /* Error Background Classes */
+    body ._xs-bg-err-1 {background-color: var(--err_1);}
+    body ._xs-bg-err-2 {background-color: var(--err_2);}
+    body ._xs-bg-err-3 {background-color: var(--err_3);}
+    body ._xs-bg-err-4 {background-color: var(--err_4);}
+    body ._xs-bg-err-5 {background-color: var(--err_5);}
+    body ._xs-bg-err-6 {background-color: var(--err_6);}
+    body ._xs-bg-err-7 {background-color: var(--err_7);}
+    body ._xs-bg-err-8 {background-color: var(--err_8);}
+    body ._xs-bg-err-9 {background-color: var(--err_9);}
+    body ._xs-bg-err-10 {background-color: var(--err_10);}
+
+    /* Warning Background Classes */
+    body ._xs-bg-warn-1 {background-color: var(--warn_1);}
+    body ._xs-bg-warn-2 {background-color: var(--warn_2);}
+    body ._xs-bg-warn-3 {background-color: var(--warn_3);}
+    body ._xs-bg-warn-4 {background-color: var(--warn_4);}
+    body ._xs-bg-warn-5 {background-color: var(--warn_5);}
+    body ._xs-bg-warn-6 {background-color: var(--warn_6);}
+    body ._xs-bg-warn-7 {background-color: var(--warn_7);}
+    body ._xs-bg-warn-8 {background-color: var(--warn_8);}
+    body ._xs-bg-warn-9 {background-color: var(--warn_9);}
+    body ._xs-bg-warn-10 {background-color: var(--warn_10);}
+
+    /* Grey Background Classes */
+    body ._xs-bg-grey-1 {background-color: var(--grey_1);}
+    body ._xs-bg-grey-2 {background-color: var(--grey_2);}
+    body ._xs-bg-grey-3 {background-color: var(--grey_3);}
+    body ._xs-bg-grey-4 {background-color: var(--grey_4);}
+    body ._xs-bg-grey-5 {background-color: var(--grey_5);}
+    body ._xs-bg-grey-6 {background-color: var(--grey_6);}
+    body ._xs-bg-grey-7 {background-color: var(--grey_7);}
+    body ._xs-bg-grey-8 {background-color: var(--grey_8);}
+    body ._xs-bg-grey-9 {background-color: var(--grey_9);}
+    body ._xs-bg-grey-10 {background-color: var(--grey_10);}
+
+    /* Success Background Classes */
+    body ._xs-bg-succ-1 {background-color: var(--succ_1);}
+    body ._xs-bg-succ-2 {background-color: var(--succ_2);}
+    body ._xs-bg-succ-3 {background-color: var(--succ_3);}
+    body ._xs-bg-succ-4 {background-color: var(--succ_4);}
+    body ._xs-bg-succ-5 {background-color: var(--succ_5);}
+    body ._xs-bg-succ-6 {background-color: var(--succ_6);}
+    body ._xs-bg-succ-7 {background-color: var(--succ_7);}
+    body ._xs-bg-succ-8 {background-color: var(--succ_8);}
+    body ._xs-bg-succ-9 {background-color: var(--succ_9);}
+    body ._xs-bg-succ-10 {background-color: var(--succ_10);}
+
+    body ._xs-bg-none {background-color: rgba(0,0,0,0);}
+
+
+    /* Info Text Color Classes */
+    body ._xs-txt-info-1 {color: var(--info_1) !important}
+    body ._xs-txt-info-2 {color: var(--info_2);}
+    body ._xs-txt-info-3 {color: var(--info_3);}
+    body ._xs-txt-info-4 {color: var(--info_4);}
+    body ._xs-txt-info-5 {color: var(--info_5);}
+    body ._xs-txt-info-6 {color: var(--info_6);}
+    body ._xs-txt-info-7 {color: var(--info_7);}
+    body ._xs-txt-info-8 {color: var(--info_8);}
+    body ._xs-txt-info-9 {color: var(--info_9);}
+    body ._xs-txt-info-10 {color: var(--info_10);}
+
+    /* Error Text Color Classes */
+    body ._xs-txt-err-1 {color: var(--err_1);}
+    body ._xs-txt-err-2 {color: var(--err_2);}
+    body ._xs-txt-err-3 {color: var(--err_3);}
+    body ._xs-txt-err-4 {color: var(--err_4);}
+    body ._xs-txt-err-5 {color: var(--err_5);}
+    body ._xs-txt-err-6 {color: var(--err_6);}
+    body ._xs-txt-err-7 {color: var(--err_7);}
+    body ._xs-txt-err-8 {color: var(--err_8);}
+    body ._xs-txt-err-9 {color: var(--err_9);}
+    body ._xs-txt-err-10 {color: var(--err_10);}
+
+    /* Warning Text Color Classes */
+    body ._xs-txt-warn-1 {color: var(--warn_1);}
+    body ._xs-txt-warn-2 {color: var(--warn_2);}
+    body ._xs-txt-warn-3 {color: var(--warn_3);}
+    body ._xs-txt-warn-4 {color: var(--warn_4);}
+    body ._xs-txt-warn-5 {color: var(--warn_5);}
+    body ._xs-txt-warn-6 {color: var(--warn_6);}
+    body ._xs-txt-warn-7 {color: var(--warn_7);}
+    body ._xs-txt-warn-8 {color: var(--warn_8);}
+    body ._xs-txt-warn-9 {color: var(--warn_9);}
+    body ._xs-txt-warn-10 {color: var(--warn_10);}
+
+    /* Grey Text Color Classes */
+    body ._xs-txt-grey-1 {color: var(--grey_1);}
+    body ._xs-txt-grey-2 {color: var(--grey_2);}
+    body ._xs-txt-grey-3 {color: var(--grey_3);}
+    body ._xs-txt-grey-4 {color: var(--grey_4);}
+    body ._xs-txt-grey-5 {color: var(--grey_5);}
+    body ._xs-txt-grey-6 {color: var(--grey_6);}
+    body ._xs-txt-grey-7 {color: var(--grey_7);}
+    body ._xs-txt-grey-8 {color: var(--grey_8);}
+    body ._xs-txt-grey-9 {color: var(--grey_9);}
+    body ._xs-txt-grey-10 {color: var(--grey_10);}
+
+    /* Success Text Color Classes */
+    body ._xs-txt-succ-1 {color: var(--succ_1);}
+    body ._xs-txt-succ-2 {color: var(--succ_2);}
+    body ._xs-txt-succ-3 {color: var(--succ_3);}
+    body ._xs-txt-succ-4 {color: var(--succ_4);}
+    body ._xs-txt-succ-5 {color: var(--succ_5);}
+    body ._xs-txt-succ-6 {color: var(--succ_6);}
+    body ._xs-txt-succ-7 {color: var(--succ_7);}
+    body ._xs-txt-succ-8 {color: var(--succ_8);}
+    body ._xs-txt-succ-9 {color: var(--succ_9);}
+    body ._xs-txt-succ-10 {color: var(--succ_10);}
+
+
+
+    /* Info Border Classes */
+    body ._xs-bo-info-1 {border-color: var(--info_1);}
+    body ._xs-bo-info-2 {border-color: var(--info_2);}
+    body ._xs-bo-info-3 {border-color: var(--info_3);}
+    body ._xs-bo-info-4 {border-color: var(--info_4);}
+    body ._xs-bo-info-5 {border-color: var(--info_5);}
+    body ._xs-bo-info-6 {border-color: var(--info_6);}
+    body ._xs-bo-info-7 {border-color: var(--info_7);}
+    body ._xs-bo-info-8 {border-color: var(--info_8);}
+    body ._xs-bo-info-9 {border-color: var(--info_9);}
+    body ._xs-bo-info-10 {border-color: var(--info_10);}
+
+    /* Error Border Classes */
+    body ._xs-bo-err-1 {border-color: var(--err_1);}
+    body ._xs-bo-err-2 {border-color: var(--err_2);}
+    body ._xs-bo-err-3 {border-color: var(--err_3);}
+    body ._xs-bo-err-4 {border-color: var(--err_4);}
+    body ._xs-bo-err-5 {border-color: var(--err_5);}
+    body ._xs-bo-err-6 {border-color: var(--err_6);}
+    body ._xs-bo-err-7 {border-color: var(--err_7);}
+    body ._xs-bo-err-8 {border-color: var(--err_8);}
+    body ._xs-bo-err-9 {border-color: var(--err_9);}
+    body ._xs-bo-err-10 {border-color: var(--err_10);}
+
+    /* Warning Border Classes */
+    body ._xs-bo-warn-1 {border-color: var(--warn_1);}
+    body ._xs-bo-warn-2 {border-color: var(--warn_2);}
+    body ._xs-bo-warn-3 {border-color: var(--warn_3);}
+    body ._xs-bo-warn-4 {border-color: var(--warn_4);}
+    body ._xs-bo-warn-5 {border-color: var(--warn_5);}
+    body ._xs-bo-warn-6 {border-color: var(--warn_6);}
+    body ._xs-bo-warn-7 {border-color: var(--warn_7);}
+    body ._xs-bo-warn-8 {border-color: var(--warn_8);}
+    body ._xs-bo-warn-9 {border-color: var(--warn_9);}
+    body ._xs-bo-warn-10 {border-color: var(--warn_10);}
+
+    /* Grey Border Classes */
+    body ._xs-bo-grey-1 {border-color: var(--grey_1);}
+    body ._xs-bo-grey-2 {border-color: var(--grey_2);}
+    body ._xs-bo-grey-3 {border-color: var(--grey_3);}
+    body ._xs-bo-grey-4 {border-color: var(--grey_4);}
+    body ._xs-bo-grey-5 {border-color: var(--grey_5);}
+    body ._xs-bo-grey-6 {border-color: var(--grey_6);}
+    body ._xs-bo-grey-7 {border-color: var(--grey_7);}
+    body ._xs-bo-grey-8 {border-color: var(--grey_8);}
+    body ._xs-bo-grey-9 {border-color: var(--grey_9);}
+    body ._xs-bo-grey-10 {border-color: var(--grey_10);}
+
+    /* Success Border Classes */
+    body ._xs-bo-succ-1 {border-color: var(--succ_1);}
+    body ._xs-bo-succ-2 {border-color: var(--succ_2);}
+    body ._xs-bo-succ-3 {border-color: var(--succ_3);}
+    body ._xs-bo-succ-4 {border-color: var(--succ_4);}
+    body ._xs-bo-succ-5 {border-color: var(--succ_5);}
+    body ._xs-bo-succ-6 {border-color: var(--succ_6);}
+    body ._xs-bo-succ-7 {border-color: var(--succ_7);}
+    body ._xs-bo-succ-8 {border-color: var(--succ_8);}
+    body ._xs-bo-succ-9 {border-color: var(--succ_9);}
+    body ._xs-bo-succ-10 {border-color: var(--succ_10);}
+
+    body ._xs-bo-none {border: none;}
+
+    body ._xs-bo-1 {border-width: 1px; border-style: solid; }
+    body ._xs-bo-2 {border-width: 2px; border-style: solid; }
+    body ._xs-bo-3 {border-width: 3px; border-style: solid; }
+    body ._xs-bo-4 {border-width: 4px; border-style: solid; }
+    body ._xs-bo-5 {border-width: 5px; border-style: solid; }
+
+
+
+    /* Border Widths */
+    body ._xs-bod {border-width: 1px;}
+    body ._xs-bo-2 {border-width: 2px;}
+    body ._xs-bo-3 {border-width: 3px;}
+    body ._xs-bo-4 {border-width: 4px;}
+    body ._xs-bo-5 {border-width: 5px;}
+    body ._xs-bo-none {border: none;}
+
+
+    /* Info Hover Background Classes */
+    body ._xs-hv-info-1:hover {background-color: var(--info_1);}
+    body ._xs-hv-info-2:hover {background-color: var(--info_2);}
+    body ._xs-hv-info-3:hover {background-color: var(--info_3);}
+    body ._xs-hv-info-4:hover {background-color: var(--info_4);}
+    body ._xs-hv-info-5:hover {background-color: var(--info_5);}
+    body ._xs-hv-info-6:hover {background-color: var(--info_6);}
+    body ._xs-hv-info-7:hover {background-color: var(--info_7);}
+    body ._xs-hv-info-8:hover {background-color: var(--info_8);}
+    body ._xs-hv-info-9:hover {background-color: var(--info_9);}
+    body ._xs-hv-info-10:hover {background-color: var(--info_10);}
+
+    /* Error Hover Background Classes */
+    body ._xs-hv-err-1:hover {background-color: var(--err_1);}
+    body ._xs-hv-err-2:hover {background-color: var(--err_2);}
+    body ._xs-hv-err-3:hover {background-color: var(--err_3);}
+    body ._xs-hv-err-4:hover {background-color: var(--err_4);}
+    body ._xs-hv-err-5:hover {background-color: var(--err_5);}
+    body ._xs-hv-err-6:hover {background-color: var(--err_6);}
+    body ._xs-hv-err-7:hover {background-color: var(--err_7);}
+    body ._xs-hv-err-8:hover {background-color: var(--err_8);}
+    body ._xs-hv-err-9:hover {background-color: var(--err_9);}
+    body ._xs-hv-err-10:hover {background-color: var(--err_10);}
+
+    /* Warning Hover Background Classes */
+    body ._xs-hv-warn-1:hover {background-color: var(--warn_1);}
+    body ._xs-hv-warn-2:hover {background-color: var(--warn_2);}
+    body ._xs-hv-warn-3:hover {background-color: var(--warn_3);}
+    body ._xs-hv-warn-4:hover {background-color: var(--warn_4);}
+    body ._xs-hv-warn-5:hover {background-color: var(--warn_5);}
+    body ._xs-hv-warn-6:hover {background-color: var(--warn_6);}
+    body ._xs-hv-warn-7:hover {background-color: var(--warn_7);}
+    body ._xs-hv-warn-8:hover {background-color: var(--warn_8);}
+    body ._xs-hv-warn-9:hover {background-color: var(--warn_9);}
+    body ._xs-hv-warn-10:hover {background-color: var(--warn_10);}
+
+    /* Grey Hover Background Classes */
+    body ._xs-hv-grey-1:hover {background-color: var(--grey_1);}
+    body ._xs-hv-grey-2:hover {background-color: var(--grey_2);}
+    body ._xs-hv-grey-3:hover {background-color: var(--grey_3);}
+    body ._xs-hv-grey-4:hover {background-color: var(--grey_4);}
+    body ._xs-hv-grey-5:hover {background-color: var(--grey_5);}
+    body ._xs-hv-grey-6:hover {background-color: var(--grey_6);}
+    body ._xs-hv-grey-7:hover {background-color: var(--grey_7);}
+    body ._xs-hv-grey-8:hover {background-color: var(--grey_8);}
+    body ._xs-hv-grey-9:hover {background-color: var(--grey_9);}
+    body ._xs-hv-grey-10:hover {background-color: var(--grey_10);}
+
+    /* Success Hover Background Classes */
+    body ._xs-hv-succ-1:hover {background-color: var(--succ_1);}
+    body ._xs-hv-succ-2:hover {background-color: var(--succ_2);}
+    body ._xs-hv-succ-3:hover {background-color: var(--succ_3);}
+    body ._xs-hv-succ-4:hover {background-color: var(--succ_4);}
+    body ._xs-hv-succ-5:hover {background-color: var(--succ_5);}
+    body ._xs-hv-succ-6:hover {background-color: var(--succ_6);}
+    body ._xs-hv-succ-7:hover {background-color: var(--succ_7);}
+    body ._xs-hv-succ-8:hover {background-color: var(--succ_8);}
+    body ._xs-hv-succ-9:hover {background-color: var(--succ_9);}
+    body ._xs-hv-succ-10:hover {background-color: var(--succ_10);}
+
+    /* Info Hover Text Color Classes */
+    body ._xs-ht-info-1:hover {color: var(--info_1);}
+    body ._xs-ht-info-2:hover {color: var(--info_2);}
+    body ._xs-ht-info-3:hover {color: var(--info_3);}
+    body ._xs-ht-info-4:hover {color: var(--info_4);}
+    body ._xs-ht-info-5:hover {color: var(--info_5);}
+    body ._xs-ht-info-6:hover {color: var(--info_6);}
+    body ._xs-ht-info-7:hover {color: var(--info_7);}
+    body ._xs-ht-info-8:hover {color: var(--info_8);}
+    body ._xs-ht-info-9:hover {color: var(--info_9);}
+    body ._xs-ht-info-10:hover {color: var(--info_10);}
+
+    /* Error Hover Text Color Classes */
+    body ._xs-ht-err-1:hover {color: var(--err_1);}
+    body ._xs-ht-err-2:hover {color: var(--err_2);}
+    body ._xs-ht-err-3:hover {color: var(--err_3);}
+    body ._xs-ht-err-4:hover {color: var(--err_4);}
+    body ._xs-ht-err-5:hover {color: var(--err_5);}
+    body ._xs-ht-err-6:hover {color: var(--err_6);}
+    body ._xs-ht-err-7:hover {color: var(--err_7);}
+    body ._xs-ht-err-8:hover {color: var(--err_8);}
+    body ._xs-ht-err-9:hover {color: var(--err_9);}
+    body ._xs-ht-err-10:hover {color: var(--err_10);}
+
+    /* Warning Hover Text Color Classes */
+    body ._xs-ht-warn-1:hover {color: var(--warn_1);}
+    body ._xs-ht-warn-2:hover {color: var(--warn_2);}
+    body ._xs-ht-warn-3:hover {color: var(--warn_3);}
+    body ._xs-ht-warn-4:hover {color: var(--warn_4);}
+    body ._xs-ht-warn-5:hover {color: var(--warn_5);}
+    body ._xs-ht-warn-6:hover {color: var(--warn_6);}
+    body ._xs-ht-warn-7:hover {color: var(--warn_7);}
+    body ._xs-ht-warn-8:hover {color: var(--warn_8);}
+    body ._xs-ht-warn-9:hover {color: var(--warn_9);}
+    body ._xs-ht-warn-10:hover {color: var(--warn_10);}
+
+    /* Grey Hover Text Color Classes */
+    body ._xs-ht-grey-1:hover {color: var(--grey_1);}
+    body ._xs-ht-grey-2:hover {color: var(--grey_2);}
+    body ._xs-ht-grey-3:hover {color: var(--grey_3);}
+    body ._xs-ht-grey-4:hover {color: var(--grey_4);}
+    body ._xs-ht-grey-5:hover {color: var(--grey_5);}
+    body ._xs-ht-grey-6:hover {color: var(--grey_6);}
+    body ._xs-ht-grey-7:hover {color: var(--grey_7);}
+    body ._xs-ht-grey-8:hover {color: var(--grey_8);}
+    body ._xs-ht-grey-9:hover {color: var(--grey_9);}
+    body ._xs-ht-grey-10:hover {color: var(--grey_10);}
+
+    /* Success Hover Text Color Classes */
+    body ._xs-ht-succ-1:hover {color: var(--succ_1);}
+    body ._xs-ht-succ-2:hover {color: var(--succ_2);}
+    body ._xs-ht-succ-3:hover {color: var(--succ_3);}
+    body ._xs-ht-succ-4:hover {color: var(--succ_4);}
+    body ._xs-ht-succ-5:hover {color: var(--succ_5);}
+    body ._xs-ht-succ-6:hover {color: var(--succ_6);}
+    body ._xs-ht-succ-7:hover {color: var(--succ_7);}
+    body ._xs-ht-succ-8:hover {color: var(--succ_8);}
+    body ._xs-ht-succ-9:hover {color: var(--succ_9);}
+    body ._xs-ht-succ-10:hover {color: var(--succ_10);}
+
+    body ._xs-ht-un:hover {text-decoration: underline;}
+    body ._xs-hv-op:hover {opacity: 0.7;}
+    body ._xs-hv {transition: 0.25s;}
+
+
+
+    /* Info Fill Classes */
+    body ._xs-fi-info-1 {fill: var(--info_1);}
+    body ._xs-fi-info-2 {fill: var(--info_2);}
+    body ._xs-fi-info-3 {fill: var(--info_3);}
+    body ._xs-fi-info-4 {fill: var(--info_4);}
+    body ._xs-fi-info-5 {fill: var(--info_5);}
+    body ._xs-fi-info-6 {fill: var(--info_6);}
+    body ._xs-fi-info-7 {fill: var(--info_7);}
+    body ._xs-fi-info-8 {fill: var(--info_8);}
+    body ._xs-fi-info-9 {fill: var(--info_9);}
+    body ._xs-fi-info-10 {fill: var(--info_10);}
+
+    /* Error Fill Classes */
+    body ._xs-fi-err-1 {fill: var(--err_1);}
+    body ._xs-fi-err-2 {fill: var(--err_2);}
+    body ._xs-fi-err-3 {fill: var(--err_3);}
+    body ._xs-fi-err-4 {fill: var(--err_4);}
+    body ._xs-fi-err-5 {fill: var(--err_5);}
+    body ._xs-fi-err-6 {fill: var(--err_6);}
+    body ._xs-fi-err-7 {fill: var(--err_7);}
+    body ._xs-fi-err-8 {fill: var(--err_8);}
+    body ._xs-fi-err-9 {fill: var(--err_9);}
+    body ._xs-fi-err-10 {fill: var(--err_10);}
+
+    /* Warning Fill Classes */
+    body ._xs-fi-warn-1 {fill: var(--warn_1);}
+    body ._xs-fi-warn-2 {fill: var(--warn_2);}
+    body ._xs-fi-warn-3 {fill: var(--warn_3);}
+    body ._xs-fi-warn-4 {fill: var(--warn_4);}
+    body ._xs-fi-warn-5 {fill: var(--warn_5);}
+    body ._xs-fi-warn-6 {fill: var(--warn_6);}
+    body ._xs-fi-warn-7 {fill: var(--warn_7);}
+    body ._xs-fi-warn-8 {fill: var(--warn_8);}
+    body ._xs-fi-warn-9 {fill: var(--warn_9);}
+    body ._xs-fi-warn-10 {fill: var(--warn_10);}
+
+    /* Grey Fill Classes */
+    body ._xs-fi-grey-1 {fill: var(--grey_1);}
+    body ._xs-fi-grey-2 {fill: var(--grey_2);}
+    body ._xs-fi-grey-3 {fill: var(--grey_3);}
+    body ._xs-fi-grey-4 {fill: var(--grey_4);}
+    body ._xs-fi-grey-5 {fill: var(--grey_5);}
+    body ._xs-fi-grey-6 {fill: var(--grey_6);}
+    body ._xs-fi-grey-7 {fill: var(--grey_7);}
+    body ._xs-fi-grey-8 {fill: var(--grey_8);}
+    body ._xs-fi-grey-9 {fill: var(--grey_9);}
+    body ._xs-fi-grey-10 {fill: var(--grey_10);}
+
+    /* Success Fill Classes */
+    body ._xs-fi-succ-1 {fill: var(--succ_1);}
+    body ._xs-fi-succ-2 {fill: var(--succ_2);}
+    body ._xs-fi-succ-3 {fill: var(--succ_3);}
+    body ._xs-fi-succ-4 {fill: var(--succ_4);}
+    body ._xs-fi-succ-5 {fill: var(--succ_5);}
+    body ._xs-fi-succ-6 {fill: var(--succ_6);}
+    body ._xs-fi-succ-7 {fill: var(--succ_7);}
+    body ._xs-fi-succ-8 {fill: var(--succ_8);}
+    body ._xs-fi-succ-9 {fill: var(--succ_9);}
+    body ._xs-fi-succ-10 {fill: var(--succ_10);}
+
+
+
+    /* Info Fill Classes Hover */
+    body ._xs-hfi-info-1:hover {fill: var(--info_1);}
+    body ._xs-hfi-info-2:hover {fill: var(--info_2);}
+    body ._xs-hfi-info-3:hover {fill: var(--info_3);}
+    body ._xs-hfi-info-4:hover {fill: var(--info_4);}
+    body ._xs-hfi-info-5:hover {fill: var(--info_5);}
+    body ._xs-hfi-info-6:hover {fill: var(--info_6);}
+    body ._xs-hfi-info-7:hover {fill: var(--info_7);}
+    body ._xs-hfi-info-8:hover {fill: var(--info_8);}
+    body ._xs-hfi-info-9:hover {fill: var(--info_9);}
+    body ._xs-hfi-info-10:hover {fill: var(--info_10);}
+
+    /* Error Fill Classes Hover */
+    body ._xs-hfi-err-1:hover {fill: var(--err_1);}
+    body ._xs-hfi-err-2:hover {fill: var(--err_2);}
+    body ._xs-hfi-err-3:hover {fill: var(--err_3);}
+    body ._xs-hfi-err-4:hover {fill: var(--err_4);}
+    body ._xs-hfi-err-5:hover {fill: var(--err_5);}
+    body ._xs-hfi-err-6:hover {fill: var(--err_6);}
+    body ._xs-hfi-err-7:hover {fill: var(--err_7);}
+    body ._xs-hfi-err-8:hover {fill: var(--err_8);}
+    body ._xs-hfi-err-9:hover {fill: var(--err_9);}
+    body ._xs-hfi-err-10:hover {fill: var(--err_10);}
+
+    /* Warning Fill Classes Hover */
+    body ._xs-hfi-warn-1:hover {fill: var(--warn_1);}
+    body ._xs-hfi-warn-2:hover {fill: var(--warn_2);}
+    body ._xs-hfi-warn-3:hover {fill: var(--warn_3);}
+    body ._xs-hfi-warn-4:hover {fill: var(--warn_4);}
+    body ._xs-hfi-warn-5:hover {fill: var(--warn_5);}
+    body ._xs-hfi-warn-6:hover {fill: var(--warn_6);}
+    body ._xs-hfi-warn-7:hover {fill: var(--warn_7);}
+    body ._xs-hfi-warn-8:hover {fill: var(--warn_8);}
+    body ._xs-hfi-warn-9:hover {fill: var(--warn_9);}
+    body ._xs-hfi-warn-10:hover {fill: var(--warn_10);}
+
+    /* Grey Fill Classes Hover */
+    body ._xs-hfi-grey-1:hover {fill: var(--grey_1);}
+    body ._xs-hfi-grey-2:hover {fill: var(--grey_2);}
+    body ._xs-hfi-grey-3:hover {fill: var(--grey_3);}
+    body ._xs-hfi-grey-4:hover {fill: var(--grey_4);}
+    body ._xs-hfi-grey-5:hover {fill: var(--grey_5);}
+    body ._xs-hfi-grey-6:hover {fill: var(--grey_6);}
+    body ._xs-hfi-grey-7:hover {fill: var(--grey_7);}
+    body ._xs-hfi-grey-8:hover {fill: var(--grey_8);}
+    body ._xs-hfi-grey-9:hover {fill: var(--grey_9);}
+    body ._xs-hfi-grey-10:hover {fill: var(--grey_10);}
+
+    /* Success Fill Classes Hover */
+    body ._xs-hfi-succ-1:hover {fill: var(--succ_1);}
+    body ._xs-hfi-succ-2:hover {fill: var(--succ_2);}
+    body ._xs-hfi-succ-3:hover {fill: var(--succ_3);}
+    body ._xs-hfi-succ-4:hover {fill: var(--succ_4);}
+    body ._xs-hfi-succ-5:hover {fill: var(--succ_5);}
+    body ._xs-hfi-succ-6:hover {fill: var(--succ_6);}
+    body ._xs-hfi-succ-7:hover {fill: var(--succ_7);}
+    body ._xs-hfi-succ-8:hover {fill: var(--succ_8);}
+    body ._xs-hfi-succ-9:hover {fill: var(--succ_9);}
+    body ._xs-hfi-succ-10:hover {fill: var(--succ_10);}
+
+
+
+    /* Opacity */
+    body ._xs-op1 {opacity: 0.1; }
+    body ._xs-op2 {opacity: 0.2; }
+    body ._xs-op3 {opacity: 0.3; }
+    body ._xs-op4 {opacity: 0.4; }
+    body ._xs-op5 {opacity: 0.5; }
+    body ._xs-op6 {opacity: 0.6; }
+    body ._xs-op7 {opacity: 0.7; }
+    body ._xs-op8 {opacity: 0.8; }
+    body ._xs-op9 {opacity: 0.9; }
+
+
+
+    /* Breaks */
+    body ._xs-br {
+        display: block;
+        content: "";
+        width: 100%;
+    }
+    body ._xs-brxs {margin-top: 10px; }
+    body ._xs-brsm {margin-top: 20px; }
+    body ._xs-brmd {margin-top: 25px; }
+    body ._xs-brlg {margin-top: 40px; }
+    body ._xs-brxl {margin-top: 50px; }
+    body ._xs-brgl {margin-top: 70px; }
+
+
+
+    /* widths */
+    body .__w {max-width: 90vw; }
+    body .__13 {width: 1300px; }
+    body .__12 {width: 1200px; }
+    body .__11 {width: 1100px; }
+    body .__10 {width: 1000px; }
+
+
+
+    /* Box Shadows */
+    body .__shd-xs {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), ;
+    }
+    body .__shd-sm {
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    body .__shd-md {
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    body .__shd-me {
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    }
+    body .__shd {
+        box-shadow: 3px 2px 3px 1px rgba(127, 126, 126, 0.1),2px 2px 4px  rgba(92, 90, 90, 0.1)
+    }
+
+
+    /* Font Size */
+    body ._xs-txs {font-size: 10px; }
+    body ._xs-tsm {font-size: 20px; }
+    body ._xs-tmd {font-size: 25px; }
+    body ._xs-tlg {font-size: 40px; }
+    body ._xs-txl {font-size: 50px; }
+    body ._xs-tgl {font-size: 70px; }
+
+
+
+
+    /* Text Align */
+    body ._xs-tal {text-align: center; }
+    body ._xs-tle {text-align: left; }
+    body ._xs-tri {text-align: right; }
+
+
+
+    /* Margins */
+    body ._xs-mauto {margin: auto; }
+    body ._xs-mlauto {margin-left: auto; }
+    body ._xs-mrauto {margin-right: auto; }
+
+
+
+    /* Border Radius */
+    body ._xs-bdxs {border-radius: 10px; }
+    body ._xs-bdsm {border-radius: 20px; }
+    body ._xs-bdmd {border-radius: 25px; }
+    body ._xs-bdlg {border-radius: 40px; }
+    body ._xs-bdxl {border-radius: 50px; }
+    body ._xs-bdgl {border-radius: 70px; }
+    body ._xs-brro {border-radius: 50%; }
+
+
+
+    /* Padding */
+    body ._xs-padxs {padding: 10px; }
+    body ._xs-padsm {padding: 20px; }
+    body ._xs-padmd {padding: 25px; }
+    body ._xs-padlg {padding: 40px; }
+    body ._xs-padxl {padding: 50px; }
+    body ._xs-padgl {padding: 70px; }
+
+
+
+    /* Text Styles */
+    body ._xs-un {text-decoration: underline; }
+    body ._xs-nun {text-decoration: none; }
+    body ._xs-em {font-style: italic; }
+    body ._xs-bo {font-weight: bold; }
+}
+
+/* SM Size */
+@media only screen and (max-width: 576px) {
+    /* Basic Properties */
+    body ._sm-show { display: flex !important; }
+    body ._sm-hide { display: none !important; }
+
+    /* Flex Direction */
+    body ._sm-fd-ro { flex-direction: row; }
+    body ._sm-fd-co { flex-direction: column; }
+
+    /* Centre */
+    body ._sm-cc { justify-content: center; align-items: center; }
+  
+    /* Info Background Classes */
+    body ._sm-bg-info-1 {background-color: var(--info_1);}
+    body ._sm-bg-info-2 {background-color: var(--info_2);}
+    body ._sm-bg-info-3 {background-color: var(--info_3);}
+    body ._sm-bg-info-4 {background-color: var(--info_4);}
+    body ._sm-bg-info-5 {background-color: var(--info_5);}
+    body ._sm-bg-info-6 {background-color: var(--info_6);}
+    body ._sm-bg-info-7 {background-color: var(--info_7);}
+    body ._sm-bg-info-8 {background-color: var(--info_8);}
+    body ._sm-bg-info-9 {background-color: var(--info_9);}
+    body ._sm-bg-info-10 {background-color: var(--info_10);}
+
+    /* Error Background Classes */
+    body ._sm-bg-err-1 {background-color: var(--err_1);}
+    body ._sm-bg-err-2 {background-color: var(--err_2);}
+    body ._sm-bg-err-3 {background-color: var(--err_3);}
+    body ._sm-bg-err-4 {background-color: var(--err_4);}
+    body ._sm-bg-err-5 {background-color: var(--err_5);}
+    body ._sm-bg-err-6 {background-color: var(--err_6);}
+    body ._sm-bg-err-7 {background-color: var(--err_7);}
+    body ._sm-bg-err-8 {background-color: var(--err_8);}
+    body ._sm-bg-err-9 {background-color: var(--err_9);}
+    body ._sm-bg-err-10 {background-color: var(--err_10);}
+
+    /* Warning Background Classes */
+    body ._sm-bg-warn-1 {background-color: var(--warn_1);}
+    body ._sm-bg-warn-2 {background-color: var(--warn_2);}
+    body ._sm-bg-warn-3 {background-color: var(--warn_3);}
+    body ._sm-bg-warn-4 {background-color: var(--warn_4);}
+    body ._sm-bg-warn-5 {background-color: var(--warn_5);}
+    body ._sm-bg-warn-6 {background-color: var(--warn_6);}
+    body ._sm-bg-warn-7 {background-color: var(--warn_7);}
+    body ._sm-bg-warn-8 {background-color: var(--warn_8);}
+    body ._sm-bg-warn-9 {background-color: var(--warn_9);}
+    body ._sm-bg-warn-10 {background-color: var(--warn_10);}
+
+    /* Grey Background Classes */
+    body ._sm-bg-grey-1 {background-color: var(--grey_1);}
+    body ._sm-bg-grey-2 {background-color: var(--grey_2);}
+    body ._sm-bg-grey-3 {background-color: var(--grey_3);}
+    body ._sm-bg-grey-4 {background-color: var(--grey_4);}
+    body ._sm-bg-grey-5 {background-color: var(--grey_5);}
+    body ._sm-bg-grey-6 {background-color: var(--grey_6);}
+    body ._sm-bg-grey-7 {background-color: var(--grey_7);}
+    body ._sm-bg-grey-8 {background-color: var(--grey_8);}
+    body ._sm-bg-grey-9 {background-color: var(--grey_9);}
+    body ._sm-bg-grey-10 {background-color: var(--grey_10);}
+
+    /* Success Background Classes */
+    body ._sm-bg-succ-1 {background-color: var(--succ_1);}
+    body ._sm-bg-succ-2 {background-color: var(--succ_2);}
+    body ._sm-bg-succ-3 {background-color: var(--succ_3);}
+    body ._sm-bg-succ-4 {background-color: var(--succ_4);}
+    body ._sm-bg-succ-5 {background-color: var(--succ_5);}
+    body ._sm-bg-succ-6 {background-color: var(--succ_6);}
+    body ._sm-bg-succ-7 {background-color: var(--succ_7);}
+    body ._sm-bg-succ-8 {background-color: var(--succ_8);}
+    body ._sm-bg-succ-9 {background-color: var(--succ_9);}
+    body ._sm-bg-succ-10 {background-color: var(--succ_10);}
+
+    body ._sm-bg-none {background-color: rgba(0,0,0,0);}
+
+
+    /* Info Text Color Classes */
+    body ._sm-txt-info-1 {color: var(--info_1) !important}
+    body ._sm-txt-info-2 {color: var(--info_2);}
+    body ._sm-txt-info-3 {color: var(--info_3);}
+    body ._sm-txt-info-4 {color: var(--info_4);}
+    body ._sm-txt-info-5 {color: var(--info_5);}
+    body ._sm-txt-info-6 {color: var(--info_6);}
+    body ._sm-txt-info-7 {color: var(--info_7);}
+    body ._sm-txt-info-8 {color: var(--info_8);}
+    body ._sm-txt-info-9 {color: var(--info_9);}
+    body ._sm-txt-info-10 {color: var(--info_10);}
+
+    /* Error Text Color Classes */
+    body ._sm-txt-err-1 {color: var(--err_1);}
+    body ._sm-txt-err-2 {color: var(--err_2);}
+    body ._sm-txt-err-3 {color: var(--err_3);}
+    body ._sm-txt-err-4 {color: var(--err_4);}
+    body ._sm-txt-err-5 {color: var(--err_5);}
+    body ._sm-txt-err-6 {color: var(--err_6);}
+    body ._sm-txt-err-7 {color: var(--err_7);}
+    body ._sm-txt-err-8 {color: var(--err_8);}
+    body ._sm-txt-err-9 {color: var(--err_9);}
+    body ._sm-txt-err-10 {color: var(--err_10);}
+
+    /* Warning Text Color Classes */
+    body ._sm-txt-warn-1 {color: var(--warn_1);}
+    body ._sm-txt-warn-2 {color: var(--warn_2);}
+    body ._sm-txt-warn-3 {color: var(--warn_3);}
+    body ._sm-txt-warn-4 {color: var(--warn_4);}
+    body ._sm-txt-warn-5 {color: var(--warn_5);}
+    body ._sm-txt-warn-6 {color: var(--warn_6);}
+    body ._sm-txt-warn-7 {color: var(--warn_7);}
+    body ._sm-txt-warn-8 {color: var(--warn_8);}
+    body ._sm-txt-warn-9 {color: var(--warn_9);}
+    body ._sm-txt-warn-10 {color: var(--warn_10);}
+
+    /* Grey Text Color Classes */
+    body ._sm-txt-grey-1 {color: var(--grey_1);}
+    body ._sm-txt-grey-2 {color: var(--grey_2);}
+    body ._sm-txt-grey-3 {color: var(--grey_3);}
+    body ._sm-txt-grey-4 {color: var(--grey_4);}
+    body ._sm-txt-grey-5 {color: var(--grey_5);}
+    body ._sm-txt-grey-6 {color: var(--grey_6);}
+    body ._sm-txt-grey-7 {color: var(--grey_7);}
+    body ._sm-txt-grey-8 {color: var(--grey_8);}
+    body ._sm-txt-grey-9 {color: var(--grey_9);}
+    body ._sm-txt-grey-10 {color: var(--grey_10);}
+
+    /* Success Text Color Classes */
+    body ._sm-txt-succ-1 {color: var(--succ_1);}
+    body ._sm-txt-succ-2 {color: var(--succ_2);}
+    body ._sm-txt-succ-3 {color: var(--succ_3);}
+    body ._sm-txt-succ-4 {color: var(--succ_4);}
+    body ._sm-txt-succ-5 {color: var(--succ_5);}
+    body ._sm-txt-succ-6 {color: var(--succ_6);}
+    body ._sm-txt-succ-7 {color: var(--succ_7);}
+    body ._sm-txt-succ-8 {color: var(--succ_8);}
+    body ._sm-txt-succ-9 {color: var(--succ_9);}
+    body ._sm-txt-succ-10 {color: var(--succ_10);}
+
+
+
+    /* Info Border Classes */
+    body ._sm-bo-info-1 {border-color: var(--info_1);}
+    body ._sm-bo-info-2 {border-color: var(--info_2);}
+    body ._sm-bo-info-3 {border-color: var(--info_3);}
+    body ._sm-bo-info-4 {border-color: var(--info_4);}
+    body ._sm-bo-info-5 {border-color: var(--info_5);}
+    body ._sm-bo-info-6 {border-color: var(--info_6);}
+    body ._sm-bo-info-7 {border-color: var(--info_7);}
+    body ._sm-bo-info-8 {border-color: var(--info_8);}
+    body ._sm-bo-info-9 {border-color: var(--info_9);}
+    body ._sm-bo-info-10 {border-color: var(--info_10);}
+
+    /* Error Border Classes */
+    body ._sm-bo-err-1 {border-color: var(--err_1);}
+    body ._sm-bo-err-2 {border-color: var(--err_2);}
+    body ._sm-bo-err-3 {border-color: var(--err_3);}
+    body ._sm-bo-err-4 {border-color: var(--err_4);}
+    body ._sm-bo-err-5 {border-color: var(--err_5);}
+    body ._sm-bo-err-6 {border-color: var(--err_6);}
+    body ._sm-bo-err-7 {border-color: var(--err_7);}
+    body ._sm-bo-err-8 {border-color: var(--err_8);}
+    body ._sm-bo-err-9 {border-color: var(--err_9);}
+    body ._sm-bo-err-10 {border-color: var(--err_10);}
+
+    /* Warning Border Classes */
+    body ._sm-bo-warn-1 {border-color: var(--warn_1);}
+    body ._sm-bo-warn-2 {border-color: var(--warn_2);}
+    body ._sm-bo-warn-3 {border-color: var(--warn_3);}
+    body ._sm-bo-warn-4 {border-color: var(--warn_4);}
+    body ._sm-bo-warn-5 {border-color: var(--warn_5);}
+    body ._sm-bo-warn-6 {border-color: var(--warn_6);}
+    body ._sm-bo-warn-7 {border-color: var(--warn_7);}
+    body ._sm-bo-warn-8 {border-color: var(--warn_8);}
+    body ._sm-bo-warn-9 {border-color: var(--warn_9);}
+    body ._sm-bo-warn-10 {border-color: var(--warn_10);}
+
+    /* Grey Border Classes */
+    body ._sm-bo-grey-1 {border-color: var(--grey_1);}
+    body ._sm-bo-grey-2 {border-color: var(--grey_2);}
+    body ._sm-bo-grey-3 {border-color: var(--grey_3);}
+    body ._sm-bo-grey-4 {border-color: var(--grey_4);}
+    body ._sm-bo-grey-5 {border-color: var(--grey_5);}
+    body ._sm-bo-grey-6 {border-color: var(--grey_6);}
+    body ._sm-bo-grey-7 {border-color: var(--grey_7);}
+    body ._sm-bo-grey-8 {border-color: var(--grey_8);}
+    body ._sm-bo-grey-9 {border-color: var(--grey_9);}
+    body ._sm-bo-grey-10 {border-color: var(--grey_10);}
+
+    /* Success Border Classes */
+    body ._sm-bo-succ-1 {border-color: var(--succ_1);}
+    body ._sm-bo-succ-2 {border-color: var(--succ_2);}
+    body ._sm-bo-succ-3 {border-color: var(--succ_3);}
+    body ._sm-bo-succ-4 {border-color: var(--succ_4);}
+    body ._sm-bo-succ-5 {border-color: var(--succ_5);}
+    body ._sm-bo-succ-6 {border-color: var(--succ_6);}
+    body ._sm-bo-succ-7 {border-color: var(--succ_7);}
+    body ._sm-bo-succ-8 {border-color: var(--succ_8);}
+    body ._sm-bo-succ-9 {border-color: var(--succ_9);}
+    body ._sm-bo-succ-10 {border-color: var(--succ_10);}
+
+    body ._sm-bo-none {border: none;}
+
+    body ._sm-bo-1 {border-width: 1px; border-style: solid; }
+    body ._sm-bo-2 {border-width: 2px; border-style: solid; }
+    body ._sm-bo-3 {border-width: 3px; border-style: solid; }
+    body ._sm-bo-4 {border-width: 4px; border-style: solid; }
+    body ._sm-bo-5 {border-width: 5px; border-style: solid; }
+
+
+
+    /* Border Widths */
+    body ._sm-bod {border-width: 1px;}
+    body ._sm-bo-2 {border-width: 2px;}
+    body ._sm-bo-3 {border-width: 3px;}
+    body ._sm-bo-4 {border-width: 4px;}
+    body ._sm-bo-5 {border-width: 5px;}
+    body ._sm-bo-none {border: none;}
+
+
+    /* Info Hover Background Classes */
+    body ._sm-hv-info-1:hover {background-color: var(--info_1);}
+    body ._sm-hv-info-2:hover {background-color: var(--info_2);}
+    body ._sm-hv-info-3:hover {background-color: var(--info_3);}
+    body ._sm-hv-info-4:hover {background-color: var(--info_4);}
+    body ._sm-hv-info-5:hover {background-color: var(--info_5);}
+    body ._sm-hv-info-6:hover {background-color: var(--info_6);}
+    body ._sm-hv-info-7:hover {background-color: var(--info_7);}
+    body ._sm-hv-info-8:hover {background-color: var(--info_8);}
+    body ._sm-hv-info-9:hover {background-color: var(--info_9);}
+    body ._sm-hv-info-10:hover {background-color: var(--info_10);}
+
+    /* Error Hover Background Classes */
+    body ._sm-hv-err-1:hover {background-color: var(--err_1);}
+    body ._sm-hv-err-2:hover {background-color: var(--err_2);}
+    body ._sm-hv-err-3:hover {background-color: var(--err_3);}
+    body ._sm-hv-err-4:hover {background-color: var(--err_4);}
+    body ._sm-hv-err-5:hover {background-color: var(--err_5);}
+    body ._sm-hv-err-6:hover {background-color: var(--err_6);}
+    body ._sm-hv-err-7:hover {background-color: var(--err_7);}
+    body ._sm-hv-err-8:hover {background-color: var(--err_8);}
+    body ._sm-hv-err-9:hover {background-color: var(--err_9);}
+    body ._sm-hv-err-10:hover {background-color: var(--err_10);}
+
+    /* Warning Hover Background Classes */
+    body ._sm-hv-warn-1:hover {background-color: var(--warn_1);}
+    body ._sm-hv-warn-2:hover {background-color: var(--warn_2);}
+    body ._sm-hv-warn-3:hover {background-color: var(--warn_3);}
+    body ._sm-hv-warn-4:hover {background-color: var(--warn_4);}
+    body ._sm-hv-warn-5:hover {background-color: var(--warn_5);}
+    body ._sm-hv-warn-6:hover {background-color: var(--warn_6);}
+    body ._sm-hv-warn-7:hover {background-color: var(--warn_7);}
+    body ._sm-hv-warn-8:hover {background-color: var(--warn_8);}
+    body ._sm-hv-warn-9:hover {background-color: var(--warn_9);}
+    body ._sm-hv-warn-10:hover {background-color: var(--warn_10);}
+
+    /* Grey Hover Background Classes */
+    body ._sm-hv-grey-1:hover {background-color: var(--grey_1);}
+    body ._sm-hv-grey-2:hover {background-color: var(--grey_2);}
+    body ._sm-hv-grey-3:hover {background-color: var(--grey_3);}
+    body ._sm-hv-grey-4:hover {background-color: var(--grey_4);}
+    body ._sm-hv-grey-5:hover {background-color: var(--grey_5);}
+    body ._sm-hv-grey-6:hover {background-color: var(--grey_6);}
+    body ._sm-hv-grey-7:hover {background-color: var(--grey_7);}
+    body ._sm-hv-grey-8:hover {background-color: var(--grey_8);}
+    body ._sm-hv-grey-9:hover {background-color: var(--grey_9);}
+    body ._sm-hv-grey-10:hover {background-color: var(--grey_10);}
+
+    /* Success Hover Background Classes */
+    body ._sm-hv-succ-1:hover {background-color: var(--succ_1);}
+    body ._sm-hv-succ-2:hover {background-color: var(--succ_2);}
+    body ._sm-hv-succ-3:hover {background-color: var(--succ_3);}
+    body ._sm-hv-succ-4:hover {background-color: var(--succ_4);}
+    body ._sm-hv-succ-5:hover {background-color: var(--succ_5);}
+    body ._sm-hv-succ-6:hover {background-color: var(--succ_6);}
+    body ._sm-hv-succ-7:hover {background-color: var(--succ_7);}
+    body ._sm-hv-succ-8:hover {background-color: var(--succ_8);}
+    body ._sm-hv-succ-9:hover {background-color: var(--succ_9);}
+    body ._sm-hv-succ-10:hover {background-color: var(--succ_10);}
+
+    /* Info Hover Text Color Classes */
+    body ._sm-ht-info-1:hover {color: var(--info_1);}
+    body ._sm-ht-info-2:hover {color: var(--info_2);}
+    body ._sm-ht-info-3:hover {color: var(--info_3);}
+    body ._sm-ht-info-4:hover {color: var(--info_4);}
+    body ._sm-ht-info-5:hover {color: var(--info_5);}
+    body ._sm-ht-info-6:hover {color: var(--info_6);}
+    body ._sm-ht-info-7:hover {color: var(--info_7);}
+    body ._sm-ht-info-8:hover {color: var(--info_8);}
+    body ._sm-ht-info-9:hover {color: var(--info_9);}
+    body ._sm-ht-info-10:hover {color: var(--info_10);}
+
+    /* Error Hover Text Color Classes */
+    body ._sm-ht-err-1:hover {color: var(--err_1);}
+    body ._sm-ht-err-2:hover {color: var(--err_2);}
+    body ._sm-ht-err-3:hover {color: var(--err_3);}
+    body ._sm-ht-err-4:hover {color: var(--err_4);}
+    body ._sm-ht-err-5:hover {color: var(--err_5);}
+    body ._sm-ht-err-6:hover {color: var(--err_6);}
+    body ._sm-ht-err-7:hover {color: var(--err_7);}
+    body ._sm-ht-err-8:hover {color: var(--err_8);}
+    body ._sm-ht-err-9:hover {color: var(--err_9);}
+    body ._sm-ht-err-10:hover {color: var(--err_10);}
+
+    /* Warning Hover Text Color Classes */
+    body ._sm-ht-warn-1:hover {color: var(--warn_1);}
+    body ._sm-ht-warn-2:hover {color: var(--warn_2);}
+    body ._sm-ht-warn-3:hover {color: var(--warn_3);}
+    body ._sm-ht-warn-4:hover {color: var(--warn_4);}
+    body ._sm-ht-warn-5:hover {color: var(--warn_5);}
+    body ._sm-ht-warn-6:hover {color: var(--warn_6);}
+    body ._sm-ht-warn-7:hover {color: var(--warn_7);}
+    body ._sm-ht-warn-8:hover {color: var(--warn_8);}
+    body ._sm-ht-warn-9:hover {color: var(--warn_9);}
+    body ._sm-ht-warn-10:hover {color: var(--warn_10);}
+
+    /* Grey Hover Text Color Classes */
+    body ._sm-ht-grey-1:hover {color: var(--grey_1);}
+    body ._sm-ht-grey-2:hover {color: var(--grey_2);}
+    body ._sm-ht-grey-3:hover {color: var(--grey_3);}
+    body ._sm-ht-grey-4:hover {color: var(--grey_4);}
+    body ._sm-ht-grey-5:hover {color: var(--grey_5);}
+    body ._sm-ht-grey-6:hover {color: var(--grey_6);}
+    body ._sm-ht-grey-7:hover {color: var(--grey_7);}
+    body ._sm-ht-grey-8:hover {color: var(--grey_8);}
+    body ._sm-ht-grey-9:hover {color: var(--grey_9);}
+    body ._sm-ht-grey-10:hover {color: var(--grey_10);}
+
+    /* Success Hover Text Color Classes */
+    body ._sm-ht-succ-1:hover {color: var(--succ_1);}
+    body ._sm-ht-succ-2:hover {color: var(--succ_2);}
+    body ._sm-ht-succ-3:hover {color: var(--succ_3);}
+    body ._sm-ht-succ-4:hover {color: var(--succ_4);}
+    body ._sm-ht-succ-5:hover {color: var(--succ_5);}
+    body ._sm-ht-succ-6:hover {color: var(--succ_6);}
+    body ._sm-ht-succ-7:hover {color: var(--succ_7);}
+    body ._sm-ht-succ-8:hover {color: var(--succ_8);}
+    body ._sm-ht-succ-9:hover {color: var(--succ_9);}
+    body ._sm-ht-succ-10:hover {color: var(--succ_10);}
+
+    body ._sm-ht-un:hover {text-decoration: underline;}
+    body ._sm-hv-op:hover {opacity: 0.7;}
+    body ._sm-hv {transition: 0.25s;}
+
+
+
+    /* Info Fill Classes */
+    body ._sm-fi-info-1 {fill: var(--info_1);}
+    body ._sm-fi-info-2 {fill: var(--info_2);}
+    body ._sm-fi-info-3 {fill: var(--info_3);}
+    body ._sm-fi-info-4 {fill: var(--info_4);}
+    body ._sm-fi-info-5 {fill: var(--info_5);}
+    body ._sm-fi-info-6 {fill: var(--info_6);}
+    body ._sm-fi-info-7 {fill: var(--info_7);}
+    body ._sm-fi-info-8 {fill: var(--info_8);}
+    body ._sm-fi-info-9 {fill: var(--info_9);}
+    body ._sm-fi-info-10 {fill: var(--info_10);}
+
+    /* Error Fill Classes */
+    body ._sm-fi-err-1 {fill: var(--err_1);}
+    body ._sm-fi-err-2 {fill: var(--err_2);}
+    body ._sm-fi-err-3 {fill: var(--err_3);}
+    body ._sm-fi-err-4 {fill: var(--err_4);}
+    body ._sm-fi-err-5 {fill: var(--err_5);}
+    body ._sm-fi-err-6 {fill: var(--err_6);}
+    body ._sm-fi-err-7 {fill: var(--err_7);}
+    body ._sm-fi-err-8 {fill: var(--err_8);}
+    body ._sm-fi-err-9 {fill: var(--err_9);}
+    body ._sm-fi-err-10 {fill: var(--err_10);}
+
+    /* Warning Fill Classes */
+    body ._sm-fi-warn-1 {fill: var(--warn_1);}
+    body ._sm-fi-warn-2 {fill: var(--warn_2);}
+    body ._sm-fi-warn-3 {fill: var(--warn_3);}
+    body ._sm-fi-warn-4 {fill: var(--warn_4);}
+    body ._sm-fi-warn-5 {fill: var(--warn_5);}
+    body ._sm-fi-warn-6 {fill: var(--warn_6);}
+    body ._sm-fi-warn-7 {fill: var(--warn_7);}
+    body ._sm-fi-warn-8 {fill: var(--warn_8);}
+    body ._sm-fi-warn-9 {fill: var(--warn_9);}
+    body ._sm-fi-warn-10 {fill: var(--warn_10);}
+
+    /* Grey Fill Classes */
+    body ._sm-fi-grey-1 {fill: var(--grey_1);}
+    body ._sm-fi-grey-2 {fill: var(--grey_2);}
+    body ._sm-fi-grey-3 {fill: var(--grey_3);}
+    body ._sm-fi-grey-4 {fill: var(--grey_4);}
+    body ._sm-fi-grey-5 {fill: var(--grey_5);}
+    body ._sm-fi-grey-6 {fill: var(--grey_6);}
+    body ._sm-fi-grey-7 {fill: var(--grey_7);}
+    body ._sm-fi-grey-8 {fill: var(--grey_8);}
+    body ._sm-fi-grey-9 {fill: var(--grey_9);}
+    body ._sm-fi-grey-10 {fill: var(--grey_10);}
+
+    /* Success Fill Classes */
+    body ._sm-fi-succ-1 {fill: var(--succ_1);}
+    body ._sm-fi-succ-2 {fill: var(--succ_2);}
+    body ._sm-fi-succ-3 {fill: var(--succ_3);}
+    body ._sm-fi-succ-4 {fill: var(--succ_4);}
+    body ._sm-fi-succ-5 {fill: var(--succ_5);}
+    body ._sm-fi-succ-6 {fill: var(--succ_6);}
+    body ._sm-fi-succ-7 {fill: var(--succ_7);}
+    body ._sm-fi-succ-8 {fill: var(--succ_8);}
+    body ._sm-fi-succ-9 {fill: var(--succ_9);}
+    body ._sm-fi-succ-10 {fill: var(--succ_10);}
+
+
+
+    /* Info Fill Classes Hover */
+    body ._sm-hfi-info-1:hover {fill: var(--info_1);}
+    body ._sm-hfi-info-2:hover {fill: var(--info_2);}
+    body ._sm-hfi-info-3:hover {fill: var(--info_3);}
+    body ._sm-hfi-info-4:hover {fill: var(--info_4);}
+    body ._sm-hfi-info-5:hover {fill: var(--info_5);}
+    body ._sm-hfi-info-6:hover {fill: var(--info_6);}
+    body ._sm-hfi-info-7:hover {fill: var(--info_7);}
+    body ._sm-hfi-info-8:hover {fill: var(--info_8);}
+    body ._sm-hfi-info-9:hover {fill: var(--info_9);}
+    body ._sm-hfi-info-10:hover {fill: var(--info_10);}
+
+    /* Error Fill Classes Hover */
+    body ._sm-hfi-err-1:hover {fill: var(--err_1);}
+    body ._sm-hfi-err-2:hover {fill: var(--err_2);}
+    body ._sm-hfi-err-3:hover {fill: var(--err_3);}
+    body ._sm-hfi-err-4:hover {fill: var(--err_4);}
+    body ._sm-hfi-err-5:hover {fill: var(--err_5);}
+    body ._sm-hfi-err-6:hover {fill: var(--err_6);}
+    body ._sm-hfi-err-7:hover {fill: var(--err_7);}
+    body ._sm-hfi-err-8:hover {fill: var(--err_8);}
+    body ._sm-hfi-err-9:hover {fill: var(--err_9);}
+    body ._sm-hfi-err-10:hover {fill: var(--err_10);}
+
+    /* Warning Fill Classes Hover */
+    body ._sm-hfi-warn-1:hover {fill: var(--warn_1);}
+    body ._sm-hfi-warn-2:hover {fill: var(--warn_2);}
+    body ._sm-hfi-warn-3:hover {fill: var(--warn_3);}
+    body ._sm-hfi-warn-4:hover {fill: var(--warn_4);}
+    body ._sm-hfi-warn-5:hover {fill: var(--warn_5);}
+    body ._sm-hfi-warn-6:hover {fill: var(--warn_6);}
+    body ._sm-hfi-warn-7:hover {fill: var(--warn_7);}
+    body ._sm-hfi-warn-8:hover {fill: var(--warn_8);}
+    body ._sm-hfi-warn-9:hover {fill: var(--warn_9);}
+    body ._sm-hfi-warn-10:hover {fill: var(--warn_10);}
+
+    /* Grey Fill Classes Hover */
+    body ._sm-hfi-grey-1:hover {fill: var(--grey_1);}
+    body ._sm-hfi-grey-2:hover {fill: var(--grey_2);}
+    body ._sm-hfi-grey-3:hover {fill: var(--grey_3);}
+    body ._sm-hfi-grey-4:hover {fill: var(--grey_4);}
+    body ._sm-hfi-grey-5:hover {fill: var(--grey_5);}
+    body ._sm-hfi-grey-6:hover {fill: var(--grey_6);}
+    body ._sm-hfi-grey-7:hover {fill: var(--grey_7);}
+    body ._sm-hfi-grey-8:hover {fill: var(--grey_8);}
+    body ._sm-hfi-grey-9:hover {fill: var(--grey_9);}
+    body ._sm-hfi-grey-10:hover {fill: var(--grey_10);}
+
+    /* Success Fill Classes Hover */
+    body ._sm-hfi-succ-1:hover {fill: var(--succ_1);}
+    body ._sm-hfi-succ-2:hover {fill: var(--succ_2);}
+    body ._sm-hfi-succ-3:hover {fill: var(--succ_3);}
+    body ._sm-hfi-succ-4:hover {fill: var(--succ_4);}
+    body ._sm-hfi-succ-5:hover {fill: var(--succ_5);}
+    body ._sm-hfi-succ-6:hover {fill: var(--succ_6);}
+    body ._sm-hfi-succ-7:hover {fill: var(--succ_7);}
+    body ._sm-hfi-succ-8:hover {fill: var(--succ_8);}
+    body ._sm-hfi-succ-9:hover {fill: var(--succ_9);}
+    body ._sm-hfi-succ-10:hover {fill: var(--succ_10);}
+
+
+
+    /* Opacity */
+    body ._sm-op1 {opacity: 0.1; }
+    body ._sm-op2 {opacity: 0.2; }
+    body ._sm-op3 {opacity: 0.3; }
+    body ._sm-op4 {opacity: 0.4; }
+    body ._sm-op5 {opacity: 0.5; }
+    body ._sm-op6 {opacity: 0.6; }
+    body ._sm-op7 {opacity: 0.7; }
+    body ._sm-op8 {opacity: 0.8; }
+    body ._sm-op9 {opacity: 0.9; }
+
+
+
+    /* Breaks */
+    body ._sm-br {
+        display: block;
+        content: "";
+        width: 100%;
+    }
+    body ._sm-brxs {margin-top: 10px; }
+    body ._sm-brsm {margin-top: 20px; }
+    body ._sm-brmd {margin-top: 25px; }
+    body ._sm-brlg {margin-top: 40px; }
+    body ._sm-brxl {margin-top: 50px; }
+    body ._sm-brgl {margin-top: 70px; }
+
+
+
+    /* widths */
+    body .__w {max-width: 90vw; }
+    body .__13 {width: 1300px; }
+    body .__12 {width: 1200px; }
+    body .__11 {width: 1100px; }
+    body .__10 {width: 1000px; }
+
+
+
+    /* Box Shadows */
+    body .__shd-xs {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), ;
+    }
+    body .__shd-sm {
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    body .__shd-md {
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    body .__shd-me {
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    }
+    body .__shd {
+        box-shadow: 3px 2px 3px 1px rgba(127, 126, 126, 0.1),2px 2px 4px  rgba(92, 90, 90, 0.1)
+    }
+
+
+    /* Font Size */
+    body ._sm-txs {font-size: 10px; }
+    body ._sm-tsm {font-size: 20px; }
+    body ._sm-tmd {font-size: 25px; }
+    body ._sm-tlg {font-size: 40px; }
+    body ._sm-txl {font-size: 50px; }
+    body ._sm-tgl {font-size: 70px; }
+
+
+
+
+    /* Text Align */
+    body ._sm-tal {text-align: center; }
+    body ._sm-tle {text-align: left; }
+    body ._sm-tri {text-align: right; }
+
+
+
+    /* Margins */
+    body ._sm-mauto {margin: auto; }
+    body ._sm-mlauto {margin-left: auto; }
+    body ._sm-mrauto {margin-right: auto; }
+
+
+
+    /* Border Radius */
+    body ._sm-bdxs {border-radius: 10px; }
+    body ._sm-bdsm {border-radius: 20px; }
+    body ._sm-bdmd {border-radius: 25px; }
+    body ._sm-bdlg {border-radius: 40px; }
+    body ._sm-bdxl {border-radius: 50px; }
+    body ._sm-bdgl {border-radius: 70px; }
+    body ._sm-brro {border-radius: 50%; }
+
+
+
+    /* Padding */
+    body ._sm-padxs {padding: 10px; }
+    body ._sm-padsm {padding: 20px; }
+    body ._sm-padmd {padding: 25px; }
+    body ._sm-padlg {padding: 40px; }
+    body ._sm-padxl {padding: 50px; }
+    body ._sm-padgl {padding: 70px; }
+
+
+
+    /* Text Styles */
+    body ._sm-un {text-decoration: underline; }
+    body ._sm-nun {text-decoration: none; }
+    body ._sm-em {font-style: italic; }
+    body ._sm-bo {font-weight: bold; }
+  }
+  
+/* MD Size */
+@media only screen and (max-width: 768px) {
+    /* Basic Properties */
+    body ._md-show { display: flex !important; }
+    body ._md-hide { display: none !important; }
+
+    body ._md-fd-co { flex-direction: column; }
+  
+    /* Info Background Classes */
+    body ._md-bg-info-1 {background-color: var(--info_1);}
+    body ._md-bg-info-2 {background-color: var(--info_2);}
+    body ._md-bg-info-3 {background-color: var(--info_3);}
+    body ._md-bg-info-4 {background-color: var(--info_4);}
+    body ._md-bg-info-5 {background-color: var(--info_5);}
+    body ._md-bg-info-6 {background-color: var(--info_6);}
+    body ._md-bg-info-7 {background-color: var(--info_7);}
+    body ._md-bg-info-8 {background-color: var(--info_8);}
+    body ._md-bg-info-9 {background-color: var(--info_9);}
+    body ._md-bg-info-10 {background-color: var(--info_10);}
+
+    /* Error Background Classes */
+    body ._md-bg-err-1 {background-color: var(--err_1);}
+    body ._md-bg-err-2 {background-color: var(--err_2);}
+    body ._md-bg-err-3 {background-color: var(--err_3);}
+    body ._md-bg-err-4 {background-color: var(--err_4);}
+    body ._md-bg-err-5 {background-color: var(--err_5);}
+    body ._md-bg-err-6 {background-color: var(--err_6);}
+    body ._md-bg-err-7 {background-color: var(--err_7);}
+    body ._md-bg-err-8 {background-color: var(--err_8);}
+    body ._md-bg-err-9 {background-color: var(--err_9);}
+    body ._md-bg-err-10 {background-color: var(--err_10);}
+
+    /* Warning Background Classes */
+    body ._md-bg-warn-1 {background-color: var(--warn_1);}
+    body ._md-bg-warn-2 {background-color: var(--warn_2);}
+    body ._md-bg-warn-3 {background-color: var(--warn_3);}
+    body ._md-bg-warn-4 {background-color: var(--warn_4);}
+    body ._md-bg-warn-5 {background-color: var(--warn_5);}
+    body ._md-bg-warn-6 {background-color: var(--warn_6);}
+    body ._md-bg-warn-7 {background-color: var(--warn_7);}
+    body ._md-bg-warn-8 {background-color: var(--warn_8);}
+    body ._md-bg-warn-9 {background-color: var(--warn_9);}
+    body ._md-bg-warn-10 {background-color: var(--warn_10);}
+
+    /* Grey Background Classes */
+    body ._md-bg-grey-1 {background-color: var(--grey_1);}
+    body ._md-bg-grey-2 {background-color: var(--grey_2);}
+    body ._md-bg-grey-3 {background-color: var(--grey_3);}
+    body ._md-bg-grey-4 {background-color: var(--grey_4);}
+    body ._md-bg-grey-5 {background-color: var(--grey_5);}
+    body ._md-bg-grey-6 {background-color: var(--grey_6);}
+    body ._md-bg-grey-7 {background-color: var(--grey_7);}
+    body ._md-bg-grey-8 {background-color: var(--grey_8);}
+    body ._md-bg-grey-9 {background-color: var(--grey_9);}
+    body ._md-bg-grey-10 {background-color: var(--grey_10);}
+
+    /* Success Background Classes */
+    body ._md-bg-succ-1 {background-color: var(--succ_1);}
+    body ._md-bg-succ-2 {background-color: var(--succ_2);}
+    body ._md-bg-succ-3 {background-color: var(--succ_3);}
+    body ._md-bg-succ-4 {background-color: var(--succ_4);}
+    body ._md-bg-succ-5 {background-color: var(--succ_5);}
+    body ._md-bg-succ-6 {background-color: var(--succ_6);}
+    body ._md-bg-succ-7 {background-color: var(--succ_7);}
+    body ._md-bg-succ-8 {background-color: var(--succ_8);}
+    body ._md-bg-succ-9 {background-color: var(--succ_9);}
+    body ._md-bg-succ-10 {background-color: var(--succ_10);}
+
+    body ._md-bg-none {background-color: rgba(0,0,0,0);}
+
+
+    /* Info Text Color Classes */
+    body ._md-txt-info-1 {color: var(--info_1);}
+    body ._md-txt-info-2 {color: var(--info_2);}
+    body ._md-txt-info-3 {color: var(--info_3);}
+    body ._md-txt-info-4 {color: var(--info_4);}
+    body ._md-txt-info-5 {color: var(--info_5);}
+    body ._md-txt-info-6 {color: var(--info_6);}
+    body ._md-txt-info-7 {color: var(--info_7);}
+    body ._md-txt-info-8 {color: var(--info_8);}
+    body ._md-txt-info-9 {color: var(--info_9);}
+    body ._md-txt-info-10 {color: var(--info_10);}
+
+    /* Error Text Color Classes */
+    body ._md-txt-err-1 {color: var(--err_1);}
+    body ._md-txt-err-2 {color: var(--err_2);}
+    body ._md-txt-err-3 {color: var(--err_3);}
+    body ._md-txt-err-4 {color: var(--err_4);}
+    body ._md-txt-err-5 {color: var(--err_5);}
+    body ._md-txt-err-6 {color: var(--err_6);}
+    body ._md-txt-err-7 {color: var(--err_7);}
+    body ._md-txt-err-8 {color: var(--err_8);}
+    body ._md-txt-err-9 {color: var(--err_9);}
+    body ._md-txt-err-10 {color: var(--err_10);}
+
+    /* Warning Text Color Classes */
+    body ._md-txt-warn-1 {color: var(--warn_1);}
+    body ._md-txt-warn-2 {color: var(--warn_2);}
+    body ._md-txt-warn-3 {color: var(--warn_3);}
+    body ._md-txt-warn-4 {color: var(--warn_4);}
+    body ._md-txt-warn-5 {color: var(--warn_5);}
+    body ._md-txt-warn-6 {color: var(--warn_6);}
+    body ._md-txt-warn-7 {color: var(--warn_7);}
+    body ._md-txt-warn-8 {color: var(--warn_8);}
+    body ._md-txt-warn-9 {color: var(--warn_9);}
+    body ._md-txt-warn-10 {color: var(--warn_10);}
+
+    /* Grey Text Color Classes */
+    body ._md-txt-grey-1 {color: var(--grey_1);}
+    body ._md-txt-grey-2 {color: var(--grey_2);}
+    body ._md-txt-grey-3 {color: var(--grey_3);}
+    body ._md-txt-grey-4 {color: var(--grey_4);}
+    body ._md-txt-grey-5 {color: var(--grey_5);}
+    body ._md-txt-grey-6 {color: var(--grey_6);}
+    body ._md-txt-grey-7 {color: var(--grey_7);}
+    body ._md-txt-grey-8 {color: var(--grey_8);}
+    body ._md-txt-grey-9 {color: var(--grey_9);}
+    body ._md-txt-grey-10 {color: var(--grey_10);}
+
+    /* Success Text Color Classes */
+    body ._md-txt-succ-1 {color: var(--succ_1);}
+    body ._md-txt-succ-2 {color: var(--succ_2);}
+    body ._md-txt-succ-3 {color: var(--succ_3);}
+    body ._md-txt-succ-4 {color: var(--succ_4);}
+    body ._md-txt-succ-5 {color: var(--succ_5);}
+    body ._md-txt-succ-6 {color: var(--succ_6);}
+    body ._md-txt-succ-7 {color: var(--succ_7);}
+    body ._md-txt-succ-8 {color: var(--succ_8);}
+    body ._md-txt-succ-9 {color: var(--succ_9);}
+    body ._md-txt-succ-10 {color: var(--succ_10);}
+
+
+
+    /* Info Border Classes */
+    body ._md-bo-info-1 {border-color: var(--info_1);}
+    body ._md-bo-info-2 {border-color: var(--info_2);}
+    body ._md-bo-info-3 {border-color: var(--info_3);}
+    body ._md-bo-info-4 {border-color: var(--info_4);}
+    body ._md-bo-info-5 {border-color: var(--info_5);}
+    body ._md-bo-info-6 {border-color: var(--info_6);}
+    body ._md-bo-info-7 {border-color: var(--info_7);}
+    body ._md-bo-info-8 {border-color: var(--info_8);}
+    body ._md-bo-info-9 {border-color: var(--info_9);}
+    body ._md-bo-info-10 {border-color: var(--info_10);}
+
+    /* Error Border Classes */
+    body ._md-bo-err-1 {border-color: var(--err_1);}
+    body ._md-bo-err-2 {border-color: var(--err_2);}
+    body ._md-bo-err-3 {border-color: var(--err_3);}
+    body ._md-bo-err-4 {border-color: var(--err_4);}
+    body ._md-bo-err-5 {border-color: var(--err_5);}
+    body ._md-bo-err-6 {border-color: var(--err_6);}
+    body ._md-bo-err-7 {border-color: var(--err_7);}
+    body ._md-bo-err-8 {border-color: var(--err_8);}
+    body ._md-bo-err-9 {border-color: var(--err_9);}
+    body ._md-bo-err-10 {border-color: var(--err_10);}
+
+    /* Warning Border Classes */
+    body ._md-bo-warn-1 {border-color: var(--warn_1);}
+    body ._md-bo-warn-2 {border-color: var(--warn_2);}
+    body ._md-bo-warn-3 {border-color: var(--warn_3);}
+    body ._md-bo-warn-4 {border-color: var(--warn_4);}
+    body ._md-bo-warn-5 {border-color: var(--warn_5);}
+    body ._md-bo-warn-6 {border-color: var(--warn_6);}
+    body ._md-bo-warn-7 {border-color: var(--warn_7);}
+    body ._md-bo-warn-8 {border-color: var(--warn_8);}
+    body ._md-bo-warn-9 {border-color: var(--warn_9);}
+    body ._md-bo-warn-10 {border-color: var(--warn_10);}
+
+    /* Grey Border Classes */
+    body ._md-bo-grey-1 {border-color: var(--grey_1);}
+    body ._md-bo-grey-2 {border-color: var(--grey_2);}
+    body ._md-bo-grey-3 {border-color: var(--grey_3);}
+    body ._md-bo-grey-4 {border-color: var(--grey_4);}
+    body ._md-bo-grey-5 {border-color: var(--grey_5);}
+    body ._md-bo-grey-6 {border-color: var(--grey_6);}
+    body ._md-bo-grey-7 {border-color: var(--grey_7);}
+    body ._md-bo-grey-8 {border-color: var(--grey_8);}
+    body ._md-bo-grey-9 {border-color: var(--grey_9);}
+    body ._md-bo-grey-10 {border-color: var(--grey_10);}
+
+    /* Success Border Classes */
+    body ._md-bo-succ-1 {border-color: var(--succ_1);}
+    body ._md-bo-succ-2 {border-color: var(--succ_2);}
+    body ._md-bo-succ-3 {border-color: var(--succ_3);}
+    body ._md-bo-succ-4 {border-color: var(--succ_4);}
+    body ._md-bo-succ-5 {border-color: var(--succ_5);}
+    body ._md-bo-succ-6 {border-color: var(--succ_6);}
+    body ._md-bo-succ-7 {border-color: var(--succ_7);}
+    body ._md-bo-succ-8 {border-color: var(--succ_8);}
+    body ._md-bo-succ-9 {border-color: var(--succ_9);}
+    body ._md-bo-succ-10 {border-color: var(--succ_10);}
+
+    body ._md-bo-none {border: none;}
+
+    body ._md-bo-1 {border-width: 1px; border-style: solid; }
+    body ._md-bo-2 {border-width: 2px; border-style: solid; }
+    body ._md-bo-3 {border-width: 3px; border-style: solid; }
+    body ._md-bo-4 {border-width: 4px; border-style: solid; }
+    body ._md-bo-5 {border-width: 5px; border-style: solid; }
+
+
+
+    /* Border Widths */
+    body ._md-bod {border-width: 1px;}
+    body ._md-bo-2 {border-width: 2px;}
+    body ._md-bo-3 {border-width: 3px;}
+    body ._md-bo-4 {border-width: 4px;}
+    body ._md-bo-5 {border-width: 5px;}
+    body ._md-bo-none {border: none;}
+
+
+    /* Info Hover Background Classes */
+    body ._md-hv-info-1:hover {background-color: var(--info_1);}
+    body ._md-hv-info-2:hover {background-color: var(--info_2);}
+    body ._md-hv-info-3:hover {background-color: var(--info_3);}
+    body ._md-hv-info-4:hover {background-color: var(--info_4);}
+    body ._md-hv-info-5:hover {background-color: var(--info_5);}
+    body ._md-hv-info-6:hover {background-color: var(--info_6);}
+    body ._md-hv-info-7:hover {background-color: var(--info_7);}
+    body ._md-hv-info-8:hover {background-color: var(--info_8);}
+    body ._md-hv-info-9:hover {background-color: var(--info_9);}
+    body ._md-hv-info-10:hover {background-color: var(--info_10);}
+
+    /* Error Hover Background Classes */
+    body ._md-hv-err-1:hover {background-color: var(--err_1);}
+    body ._md-hv-err-2:hover {background-color: var(--err_2);}
+    body ._md-hv-err-3:hover {background-color: var(--err_3);}
+    body ._md-hv-err-4:hover {background-color: var(--err_4);}
+    body ._md-hv-err-5:hover {background-color: var(--err_5);}
+    body ._md-hv-err-6:hover {background-color: var(--err_6);}
+    body ._md-hv-err-7:hover {background-color: var(--err_7);}
+    body ._md-hv-err-8:hover {background-color: var(--err_8);}
+    body ._md-hv-err-9:hover {background-color: var(--err_9);}
+    body ._md-hv-err-10:hover {background-color: var(--err_10);}
+
+    /* Warning Hover Background Classes */
+    body ._md-hv-warn-1:hover {background-color: var(--warn_1);}
+    body ._md-hv-warn-2:hover {background-color: var(--warn_2);}
+    body ._md-hv-warn-3:hover {background-color: var(--warn_3);}
+    body ._md-hv-warn-4:hover {background-color: var(--warn_4);}
+    body ._md-hv-warn-5:hover {background-color: var(--warn_5);}
+    body ._md-hv-warn-6:hover {background-color: var(--warn_6);}
+    body ._md-hv-warn-7:hover {background-color: var(--warn_7);}
+    body ._md-hv-warn-8:hover {background-color: var(--warn_8);}
+    body ._md-hv-warn-9:hover {background-color: var(--warn_9);}
+    body ._md-hv-warn-10:hover {background-color: var(--warn_10);}
+
+    /* Grey Hover Background Classes */
+    body ._md-hv-grey-1:hover {background-color: var(--grey_1);}
+    body ._md-hv-grey-2:hover {background-color: var(--grey_2);}
+    body ._md-hv-grey-3:hover {background-color: var(--grey_3);}
+    body ._md-hv-grey-4:hover {background-color: var(--grey_4);}
+    body ._md-hv-grey-5:hover {background-color: var(--grey_5);}
+    body ._md-hv-grey-6:hover {background-color: var(--grey_6);}
+    body ._md-hv-grey-7:hover {background-color: var(--grey_7);}
+    body ._md-hv-grey-8:hover {background-color: var(--grey_8);}
+    body ._md-hv-grey-9:hover {background-color: var(--grey_9);}
+    body ._md-hv-grey-10:hover {background-color: var(--grey_10);}
+
+    /* Success Hover Background Classes */
+    body ._md-hv-succ-1:hover {background-color: var(--succ_1);}
+    body ._md-hv-succ-2:hover {background-color: var(--succ_2);}
+    body ._md-hv-succ-3:hover {background-color: var(--succ_3);}
+    body ._md-hv-succ-4:hover {background-color: var(--succ_4);}
+    body ._md-hv-succ-5:hover {background-color: var(--succ_5);}
+    body ._md-hv-succ-6:hover {background-color: var(--succ_6);}
+    body ._md-hv-succ-7:hover {background-color: var(--succ_7);}
+    body ._md-hv-succ-8:hover {background-color: var(--succ_8);}
+    body ._md-hv-succ-9:hover {background-color: var(--succ_9);}
+    body ._md-hv-succ-10:hover {background-color: var(--succ_10);}
+
+    /* Info Hover Text Color Classes */
+    body ._md-ht-info-1:hover {color: var(--info_1);}
+    body ._md-ht-info-2:hover {color: var(--info_2);}
+    body ._md-ht-info-3:hover {color: var(--info_3);}
+    body ._md-ht-info-4:hover {color: var(--info_4);}
+    body ._md-ht-info-5:hover {color: var(--info_5);}
+    body ._md-ht-info-6:hover {color: var(--info_6);}
+    body ._md-ht-info-7:hover {color: var(--info_7);}
+    body ._md-ht-info-8:hover {color: var(--info_8);}
+    body ._md-ht-info-9:hover {color: var(--info_9);}
+    body ._md-ht-info-10:hover {color: var(--info_10);}
+
+    /* Error Hover Text Color Classes */
+    body ._md-ht-err-1:hover {color: var(--err_1);}
+    body ._md-ht-err-2:hover {color: var(--err_2);}
+    body ._md-ht-err-3:hover {color: var(--err_3);}
+    body ._md-ht-err-4:hover {color: var(--err_4);}
+    body ._md-ht-err-5:hover {color: var(--err_5);}
+    body ._md-ht-err-6:hover {color: var(--err_6);}
+    body ._md-ht-err-7:hover {color: var(--err_7);}
+    body ._md-ht-err-8:hover {color: var(--err_8);}
+    body ._md-ht-err-9:hover {color: var(--err_9);}
+    body ._md-ht-err-10:hover {color: var(--err_10);}
+
+    /* Warning Hover Text Color Classes */
+    body ._md-ht-warn-1:hover {color: var(--warn_1);}
+    body ._md-ht-warn-2:hover {color: var(--warn_2);}
+    body ._md-ht-warn-3:hover {color: var(--warn_3);}
+    body ._md-ht-warn-4:hover {color: var(--warn_4);}
+    body ._md-ht-warn-5:hover {color: var(--warn_5);}
+    body ._md-ht-warn-6:hover {color: var(--warn_6);}
+    body ._md-ht-warn-7:hover {color: var(--warn_7);}
+    body ._md-ht-warn-8:hover {color: var(--warn_8);}
+    body ._md-ht-warn-9:hover {color: var(--warn_9);}
+    body ._md-ht-warn-10:hover {color: var(--warn_10);}
+
+    /* Grey Hover Text Color Classes */
+    body ._md-ht-grey-1:hover {color: var(--grey_1);}
+    body ._md-ht-grey-2:hover {color: var(--grey_2);}
+    body ._md-ht-grey-3:hover {color: var(--grey_3);}
+    body ._md-ht-grey-4:hover {color: var(--grey_4);}
+    body ._md-ht-grey-5:hover {color: var(--grey_5);}
+    body ._md-ht-grey-6:hover {color: var(--grey_6);}
+    body ._md-ht-grey-7:hover {color: var(--grey_7);}
+    body ._md-ht-grey-8:hover {color: var(--grey_8);}
+    body ._md-ht-grey-9:hover {color: var(--grey_9);}
+    body ._md-ht-grey-10:hover {color: var(--grey_10);}
+
+    /* Success Hover Text Color Classes */
+    body ._md-ht-succ-1:hover {color: var(--succ_1);}
+    body ._md-ht-succ-2:hover {color: var(--succ_2);}
+    body ._md-ht-succ-3:hover {color: var(--succ_3);}
+    body ._md-ht-succ-4:hover {color: var(--succ_4);}
+    body ._md-ht-succ-5:hover {color: var(--succ_5);}
+    body ._md-ht-succ-6:hover {color: var(--succ_6);}
+    body ._md-ht-succ-7:hover {color: var(--succ_7);}
+    body ._md-ht-succ-8:hover {color: var(--succ_8);}
+    body ._md-ht-succ-9:hover {color: var(--succ_9);}
+    body ._md-ht-succ-10:hover {color: var(--succ_10);}
+
+    body ._md-ht-un:hover {text-decoration: underline;}
+    body ._md-hv-op:hover {opacity: 0.7;}
+    body ._md-hv {transition: 0.25s;}
+
+
+
+    /* Info Fill Classes */
+    body ._md-fi-info-1 {fill: var(--info_1);}
+    body ._md-fi-info-2 {fill: var(--info_2);}
+    body ._md-fi-info-3 {fill: var(--info_3);}
+    body ._md-fi-info-4 {fill: var(--info_4);}
+    body ._md-fi-info-5 {fill: var(--info_5);}
+    body ._md-fi-info-6 {fill: var(--info_6);}
+    body ._md-fi-info-7 {fill: var(--info_7);}
+    body ._md-fi-info-8 {fill: var(--info_8);}
+    body ._md-fi-info-9 {fill: var(--info_9);}
+    body ._md-fi-info-10 {fill: var(--info_10);}
+
+    /* Error Fill Classes */
+    body ._md-fi-err-1 {fill: var(--err_1);}
+    body ._md-fi-err-2 {fill: var(--err_2);}
+    body ._md-fi-err-3 {fill: var(--err_3);}
+    body ._md-fi-err-4 {fill: var(--err_4);}
+    body ._md-fi-err-5 {fill: var(--err_5);}
+    body ._md-fi-err-6 {fill: var(--err_6);}
+    body ._md-fi-err-7 {fill: var(--err_7);}
+    body ._md-fi-err-8 {fill: var(--err_8);}
+    body ._md-fi-err-9 {fill: var(--err_9);}
+    body ._md-fi-err-10 {fill: var(--err_10);}
+
+    /* Warning Fill Classes */
+    body ._md-fi-warn-1 {fill: var(--warn_1);}
+    body ._md-fi-warn-2 {fill: var(--warn_2);}
+    body ._md-fi-warn-3 {fill: var(--warn_3);}
+    body ._md-fi-warn-4 {fill: var(--warn_4);}
+    body ._md-fi-warn-5 {fill: var(--warn_5);}
+    body ._md-fi-warn-6 {fill: var(--warn_6);}
+    body ._md-fi-warn-7 {fill: var(--warn_7);}
+    body ._md-fi-warn-8 {fill: var(--warn_8);}
+    body ._md-fi-warn-9 {fill: var(--warn_9);}
+    body ._md-fi-warn-10 {fill: var(--warn_10);}
+
+    /* Grey Fill Classes */
+    body ._md-fi-grey-1 {fill: var(--grey_1);}
+    body ._md-fi-grey-2 {fill: var(--grey_2);}
+    body ._md-fi-grey-3 {fill: var(--grey_3);}
+    body ._md-fi-grey-4 {fill: var(--grey_4);}
+    body ._md-fi-grey-5 {fill: var(--grey_5);}
+    body ._md-fi-grey-6 {fill: var(--grey_6);}
+    body ._md-fi-grey-7 {fill: var(--grey_7);}
+    body ._md-fi-grey-8 {fill: var(--grey_8);}
+    body ._md-fi-grey-9 {fill: var(--grey_9);}
+    body ._md-fi-grey-10 {fill: var(--grey_10);}
+
+    /* Success Fill Classes */
+    body ._md-fi-succ-1 {fill: var(--succ_1);}
+    body ._md-fi-succ-2 {fill: var(--succ_2);}
+    body ._md-fi-succ-3 {fill: var(--succ_3);}
+    body ._md-fi-succ-4 {fill: var(--succ_4);}
+    body ._md-fi-succ-5 {fill: var(--succ_5);}
+    body ._md-fi-succ-6 {fill: var(--succ_6);}
+    body ._md-fi-succ-7 {fill: var(--succ_7);}
+    body ._md-fi-succ-8 {fill: var(--succ_8);}
+    body ._md-fi-succ-9 {fill: var(--succ_9);}
+    body ._md-fi-succ-10 {fill: var(--succ_10);}
+
+
+
+    /* Info Fill Classes Hover */
+    body ._md-hfi-info-1:hover {fill: var(--info_1);}
+    body ._md-hfi-info-2:hover {fill: var(--info_2);}
+    body ._md-hfi-info-3:hover {fill: var(--info_3);}
+    body ._md-hfi-info-4:hover {fill: var(--info_4);}
+    body ._md-hfi-info-5:hover {fill: var(--info_5);}
+    body ._md-hfi-info-6:hover {fill: var(--info_6);}
+    body ._md-hfi-info-7:hover {fill: var(--info_7);}
+    body ._md-hfi-info-8:hover {fill: var(--info_8);}
+    body ._md-hfi-info-9:hover {fill: var(--info_9);}
+    body ._md-hfi-info-10:hover {fill: var(--info_10);}
+
+    /* Error Fill Classes Hover */
+    body ._md-hfi-err-1:hover {fill: var(--err_1);}
+    body ._md-hfi-err-2:hover {fill: var(--err_2);}
+    body ._md-hfi-err-3:hover {fill: var(--err_3);}
+    body ._md-hfi-err-4:hover {fill: var(--err_4);}
+    body ._md-hfi-err-5:hover {fill: var(--err_5);}
+    body ._md-hfi-err-6:hover {fill: var(--err_6);}
+    body ._md-hfi-err-7:hover {fill: var(--err_7);}
+    body ._md-hfi-err-8:hover {fill: var(--err_8);}
+    body ._md-hfi-err-9:hover {fill: var(--err_9);}
+    body ._md-hfi-err-10:hover {fill: var(--err_10);}
+
+    /* Warning Fill Classes Hover */
+    body ._md-hfi-warn-1:hover {fill: var(--warn_1);}
+    body ._md-hfi-warn-2:hover {fill: var(--warn_2);}
+    body ._md-hfi-warn-3:hover {fill: var(--warn_3);}
+    body ._md-hfi-warn-4:hover {fill: var(--warn_4);}
+    body ._md-hfi-warn-5:hover {fill: var(--warn_5);}
+    body ._md-hfi-warn-6:hover {fill: var(--warn_6);}
+    body ._md-hfi-warn-7:hover {fill: var(--warn_7);}
+    body ._md-hfi-warn-8:hover {fill: var(--warn_8);}
+    body ._md-hfi-warn-9:hover {fill: var(--warn_9);}
+    body ._md-hfi-warn-10:hover {fill: var(--warn_10);}
+
+    /* Grey Fill Classes Hover */
+    body ._md-hfi-grey-1:hover {fill: var(--grey_1);}
+    body ._md-hfi-grey-2:hover {fill: var(--grey_2);}
+    body ._md-hfi-grey-3:hover {fill: var(--grey_3);}
+    body ._md-hfi-grey-4:hover {fill: var(--grey_4);}
+    body ._md-hfi-grey-5:hover {fill: var(--grey_5);}
+    body ._md-hfi-grey-6:hover {fill: var(--grey_6);}
+    body ._md-hfi-grey-7:hover {fill: var(--grey_7);}
+    body ._md-hfi-grey-8:hover {fill: var(--grey_8);}
+    body ._md-hfi-grey-9:hover {fill: var(--grey_9);}
+    body ._md-hfi-grey-10:hover {fill: var(--grey_10);}
+
+    /* Success Fill Classes Hover */
+    body ._md-hfi-succ-1:hover {fill: var(--succ_1);}
+    body ._md-hfi-succ-2:hover {fill: var(--succ_2);}
+    body ._md-hfi-succ-3:hover {fill: var(--succ_3);}
+    body ._md-hfi-succ-4:hover {fill: var(--succ_4);}
+    body ._md-hfi-succ-5:hover {fill: var(--succ_5);}
+    body ._md-hfi-succ-6:hover {fill: var(--succ_6);}
+    body ._md-hfi-succ-7:hover {fill: var(--succ_7);}
+    body ._md-hfi-succ-8:hover {fill: var(--succ_8);}
+    body ._md-hfi-succ-9:hover {fill: var(--succ_9);}
+    body ._md-hfi-succ-10:hover {fill: var(--succ_10);}
+
+
+
+    /* Opacity */
+    body ._md-op1 {opacity: 0.1; }
+    body ._md-op2 {opacity: 0.2; }
+    body ._md-op3 {opacity: 0.3; }
+    body ._md-op4 {opacity: 0.4; }
+    body ._md-op5 {opacity: 0.5; }
+    body ._md-op6 {opacity: 0.6; }
+    body ._md-op7 {opacity: 0.7; }
+    body ._md-op8 {opacity: 0.8; }
+    body ._md-op9 {opacity: 0.9; }
+
+
+
+    /* Breaks */
+    body ._md-br {
+        display: block;
+        content: "";
+        width: 100%;
+    }
+    body ._md-brxs {margin-top: 10px; }
+    body ._md-brsm {margin-top: 20px; }
+    body ._md-brmd {margin-top: 25px; }
+    body ._md-brlg {margin-top: 40px; }
+    body ._md-brxl {margin-top: 50px; }
+    body ._md-brgl {margin-top: 70px; }
+
+
+
+    /* widths */
+    body .__w {max-width: 90vw; }
+    body .__13 {width: 1300px; }
+    body .__12 {width: 1200px; }
+    body .__11 {width: 1100px; }
+    body .__10 {width: 1000px; }
+
+
+
+    /* Box Shadows */
+    body .__shd-xs {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), ;
+    }
+    body .__shd-sm {
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    body .__shd-md {
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    body .__shd-me {
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    }
+    body .__shd {
+        box-shadow: 3px 2px 3px 1px rgba(127, 126, 126, 0.1),2px 2px 4px  rgba(92, 90, 90, 0.1)
+    }
+
+
+    /* Font Size */
+    body ._md-txs {font-size: 10px; }
+    body ._md-tsm {font-size: 20px; }
+    body ._md-tmd {font-size: 25px; }
+    body ._md-tlg {font-size: 40px; }
+    body ._md-txl {font-size: 50px; }
+    body ._md-tgl {font-size: 70px; }
+
+
+
+
+    /* Text Align */
+    body ._md-tal {text-align: center; }
+    body ._md-tle {text-align: left; }
+    body ._md-tri {text-align: right; }
+
+
+
+    /* Margins */
+    body ._md-mauto {margin: auto; }
+    body ._md-mlauto {margin-left: auto; }
+    body ._md-mrauto {margin-right: auto; }
+
+
+
+    /* Border Radius */
+    body ._md-bdxs {border-radius: 10px; }
+    body ._md-bdsm {border-radius: 20px; }
+    body ._md-bdmd {border-radius: 25px; }
+    body ._md-bdlg {border-radius: 40px; }
+    body ._md-bdxl {border-radius: 50px; }
+    body ._md-bdgl {border-radius: 70px; }
+    body ._md-brro {border-radius: 50%; }
+
+
+
+    /* Padding */
+    body ._md-padxs {padding: 10px; }
+    body ._md-padsm {padding: 20px; }
+    body ._md-padmd {padding: 25px; }
+    body ._md-padlg {padding: 40px; }
+    body ._md-padxl {padding: 50px; }
+    body ._md-padgl {padding: 70px; }
+
+
+
+    /* Text Styles */
+    body ._md-un {text-decoration: underline; }
+    body ._md-nun {text-decoration: none; }
+    body ._md-em {font-style: italic; }
+    body ._md-bo {font-weight: bold; }
+}
+  
+  /* LG Size */
+  @media only screen and (max-width: 992px) {
+    /* Basic Properties */
+    body ._lg-show { display: flex !important; }
+    body ._lg-hide { display: none !important; }
+  
+    /* Info Background Classes */
+    body ._lg-bg-info-1 {background-color: var(--info_1);}
+    body ._lg-bg-info-2 {background-color: var(--info_2);}
+    body ._lg-bg-info-3 {background-color: var(--info_3);}
+    body ._lg-bg-info-4 {background-color: var(--info_4);}
+    body ._lg-bg-info-5 {background-color: var(--info_5);}
+    body ._lg-bg-info-6 {background-color: var(--info_6);}
+    body ._lg-bg-info-7 {background-color: var(--info_7);}
+    body ._lg-bg-info-8 {background-color: var(--info_8);}
+    body ._lg-bg-info-9 {background-color: var(--info_9);}
+    body ._lg-bg-info-10 {background-color: var(--info_10);}
+
+    /* Error Background Classes */
+    body ._lg-bg-err-1 {background-color: var(--err_1);}
+    body ._lg-bg-err-2 {background-color: var(--err_2);}
+    body ._lg-bg-err-3 {background-color: var(--err_3);}
+    body ._lg-bg-err-4 {background-color: var(--err_4);}
+    body ._lg-bg-err-5 {background-color: var(--err_5);}
+    body ._lg-bg-err-6 {background-color: var(--err_6);}
+    body ._lg-bg-err-7 {background-color: var(--err_7);}
+    body ._lg-bg-err-8 {background-color: var(--err_8);}
+    body ._lg-bg-err-9 {background-color: var(--err_9);}
+    body ._lg-bg-err-10 {background-color: var(--err_10);}
+
+    /* Warning Background Classes */
+    body ._lg-bg-warn-1 {background-color: var(--warn_1);}
+    body ._lg-bg-warn-2 {background-color: var(--warn_2);}
+    body ._lg-bg-warn-3 {background-color: var(--warn_3);}
+    body ._lg-bg-warn-4 {background-color: var(--warn_4);}
+    body ._lg-bg-warn-5 {background-color: var(--warn_5);}
+    body ._lg-bg-warn-6 {background-color: var(--warn_6);}
+    body ._lg-bg-warn-7 {background-color: var(--warn_7);}
+    body ._lg-bg-warn-8 {background-color: var(--warn_8);}
+    body ._lg-bg-warn-9 {background-color: var(--warn_9);}
+    body ._lg-bg-warn-10 {background-color: var(--warn_10);}
+
+    /* Grey Background Classes */
+    body ._lg-bg-grey-1 {background-color: var(--grey_1);}
+    body ._lg-bg-grey-2 {background-color: var(--grey_2);}
+    body ._lg-bg-grey-3 {background-color: var(--grey_3);}
+    body ._lg-bg-grey-4 {background-color: var(--grey_4);}
+    body ._lg-bg-grey-5 {background-color: var(--grey_5);}
+    body ._lg-bg-grey-6 {background-color: var(--grey_6);}
+    body ._lg-bg-grey-7 {background-color: var(--grey_7);}
+    body ._lg-bg-grey-8 {background-color: var(--grey_8);}
+    body ._lg-bg-grey-9 {background-color: var(--grey_9);}
+    body ._lg-bg-grey-10 {background-color: var(--grey_10);}
+
+    /* Success Background Classes */
+    body ._lg-bg-succ-1 {background-color: var(--succ_1);}
+    body ._lg-bg-succ-2 {background-color: var(--succ_2);}
+    body ._lg-bg-succ-3 {background-color: var(--succ_3);}
+    body ._lg-bg-succ-4 {background-color: var(--succ_4);}
+    body ._lg-bg-succ-5 {background-color: var(--succ_5);}
+    body ._lg-bg-succ-6 {background-color: var(--succ_6);}
+    body ._lg-bg-succ-7 {background-color: var(--succ_7);}
+    body ._lg-bg-succ-8 {background-color: var(--succ_8);}
+    body ._lg-bg-succ-9 {background-color: var(--succ_9);}
+    body ._lg-bg-succ-10 {background-color: var(--succ_10);}
+
+    body ._lg-bg-none {background-color: rgba(0,0,0,0);}
+
+
+    /* Info Text Color Classes */
+    body ._lg-txt-info-1 {color: var(--info_1);}
+    body ._lg-txt-info-2 {color: var(--info_2);}
+    body ._lg-txt-info-3 {color: var(--info_3);}
+    body ._lg-txt-info-4 {color: var(--info_4);}
+    body ._lg-txt-info-5 {color: var(--info_5);}
+    body ._lg-txt-info-6 {color: var(--info_6);}
+    body ._lg-txt-info-7 {color: var(--info_7);}
+    body ._lg-txt-info-8 {color: var(--info_8);}
+    body ._lg-txt-info-9 {color: var(--info_9);}
+    body ._lg-txt-info-10 {color: var(--info_10);}
+
+    /* Error Text Color Classes */
+    body ._lg-txt-err-1 {color: var(--err_1);}
+    body ._lg-txt-err-2 {color: var(--err_2);}
+    body ._lg-txt-err-3 {color: var(--err_3);}
+    body ._lg-txt-err-4 {color: var(--err_4);}
+    body ._lg-txt-err-5 {color: var(--err_5);}
+    body ._lg-txt-err-6 {color: var(--err_6);}
+    body ._lg-txt-err-7 {color: var(--err_7);}
+    body ._lg-txt-err-8 {color: var(--err_8);}
+    body ._lg-txt-err-9 {color: var(--err_9);}
+    body ._lg-txt-err-10 {color: var(--err_10);}
+
+    /* Warning Text Color Classes */
+    body ._lg-txt-warn-1 {color: var(--warn_1);}
+    body ._lg-txt-warn-2 {color: var(--warn_2);}
+    body ._lg-txt-warn-3 {color: var(--warn_3);}
+    body ._lg-txt-warn-4 {color: var(--warn_4);}
+    body ._lg-txt-warn-5 {color: var(--warn_5);}
+    body ._lg-txt-warn-6 {color: var(--warn_6);}
+    body ._lg-txt-warn-7 {color: var(--warn_7);}
+    body ._lg-txt-warn-8 {color: var(--warn_8);}
+    body ._lg-txt-warn-9 {color: var(--warn_9);}
+    body ._lg-txt-warn-10 {color: var(--warn_10);}
+
+    /* Grey Text Color Classes */
+    body ._lg-txt-grey-1 {color: var(--grey_1);}
+    body ._lg-txt-grey-2 {color: var(--grey_2);}
+    body ._lg-txt-grey-3 {color: var(--grey_3);}
+    body ._lg-txt-grey-4 {color: var(--grey_4);}
+    body ._lg-txt-grey-5 {color: var(--grey_5);}
+    body ._lg-txt-grey-6 {color: var(--grey_6);}
+    body ._lg-txt-grey-7 {color: var(--grey_7);}
+    body ._lg-txt-grey-8 {color: var(--grey_8);}
+    body ._lg-txt-grey-9 {color: var(--grey_9);}
+    body ._lg-txt-grey-10 {color: var(--grey_10);}
+
+    /* Success Text Color Classes */
+    body ._lg-txt-succ-1 {color: var(--succ_1);}
+    body ._lg-txt-succ-2 {color: var(--succ_2);}
+    body ._lg-txt-succ-3 {color: var(--succ_3);}
+    body ._lg-txt-succ-4 {color: var(--succ_4);}
+    body ._lg-txt-succ-5 {color: var(--succ_5);}
+    body ._lg-txt-succ-6 {color: var(--succ_6);}
+    body ._lg-txt-succ-7 {color: var(--succ_7);}
+    body ._lg-txt-succ-8 {color: var(--succ_8);}
+    body ._lg-txt-succ-9 {color: var(--succ_9);}
+    body ._lg-txt-succ-10 {color: var(--succ_10);}
+
+
+
+    /* Info Border Classes */
+    body ._lg-bo-info-1 {border-color: var(--info_1);}
+    body ._lg-bo-info-2 {border-color: var(--info_2);}
+    body ._lg-bo-info-3 {border-color: var(--info_3);}
+    body ._lg-bo-info-4 {border-color: var(--info_4);}
+    body ._lg-bo-info-5 {border-color: var(--info_5);}
+    body ._lg-bo-info-6 {border-color: var(--info_6);}
+    body ._lg-bo-info-7 {border-color: var(--info_7);}
+    body ._lg-bo-info-8 {border-color: var(--info_8);}
+    body ._lg-bo-info-9 {border-color: var(--info_9);}
+    body ._lg-bo-info-10 {border-color: var(--info_10);}
+
+    /* Error Border Classes */
+    body ._lg-bo-err-1 {border-color: var(--err_1);}
+    body ._lg-bo-err-2 {border-color: var(--err_2);}
+    body ._lg-bo-err-3 {border-color: var(--err_3);}
+    body ._lg-bo-err-4 {border-color: var(--err_4);}
+    body ._lg-bo-err-5 {border-color: var(--err_5);}
+    body ._lg-bo-err-6 {border-color: var(--err_6);}
+    body ._lg-bo-err-7 {border-color: var(--err_7);}
+    body ._lg-bo-err-8 {border-color: var(--err_8);}
+    body ._lg-bo-err-9 {border-color: var(--err_9);}
+    body ._lg-bo-err-10 {border-color: var(--err_10);}
+
+    /* Warning Border Classes */
+    body ._lg-bo-warn-1 {border-color: var(--warn_1);}
+    body ._lg-bo-warn-2 {border-color: var(--warn_2);}
+    body ._lg-bo-warn-3 {border-color: var(--warn_3);}
+    body ._lg-bo-warn-4 {border-color: var(--warn_4);}
+    body ._lg-bo-warn-5 {border-color: var(--warn_5);}
+    body ._lg-bo-warn-6 {border-color: var(--warn_6);}
+    body ._lg-bo-warn-7 {border-color: var(--warn_7);}
+    body ._lg-bo-warn-8 {border-color: var(--warn_8);}
+    body ._lg-bo-warn-9 {border-color: var(--warn_9);}
+    body ._lg-bo-warn-10 {border-color: var(--warn_10);}
+
+    /* Grey Border Classes */
+    body ._lg-bo-grey-1 {border-color: var(--grey_1);}
+    body ._lg-bo-grey-2 {border-color: var(--grey_2);}
+    body ._lg-bo-grey-3 {border-color: var(--grey_3);}
+    body ._lg-bo-grey-4 {border-color: var(--grey_4);}
+    body ._lg-bo-grey-5 {border-color: var(--grey_5);}
+    body ._lg-bo-grey-6 {border-color: var(--grey_6);}
+    body ._lg-bo-grey-7 {border-color: var(--grey_7);}
+    body ._lg-bo-grey-8 {border-color: var(--grey_8);}
+    body ._lg-bo-grey-9 {border-color: var(--grey_9);}
+    body ._lg-bo-grey-10 {border-color: var(--grey_10);}
+
+    /* Success Border Classes */
+    body ._lg-bo-succ-1 {border-color: var(--succ_1);}
+    body ._lg-bo-succ-2 {border-color: var(--succ_2);}
+    body ._lg-bo-succ-3 {border-color: var(--succ_3);}
+    body ._lg-bo-succ-4 {border-color: var(--succ_4);}
+    body ._lg-bo-succ-5 {border-color: var(--succ_5);}
+    body ._lg-bo-succ-6 {border-color: var(--succ_6);}
+    body ._lg-bo-succ-7 {border-color: var(--succ_7);}
+    body ._lg-bo-succ-8 {border-color: var(--succ_8);}
+    body ._lg-bo-succ-9 {border-color: var(--succ_9);}
+    body ._lg-bo-succ-10 {border-color: var(--succ_10);}
+
+    body ._lg-bo-none {border: none;}
+
+    body ._lg-bo-1 {border-width: 1px; border-style: solid; }
+    body ._lg-bo-2 {border-width: 2px; border-style: solid; }
+    body ._lg-bo-3 {border-width: 3px; border-style: solid; }
+    body ._lg-bo-4 {border-width: 4px; border-style: solid; }
+    body ._lg-bo-5 {border-width: 5px; border-style: solid; }
+
+
+
+    /* Border Widths */
+    body ._lg-bod {border-width: 1px;}
+    body ._lg-bo-2 {border-width: 2px;}
+    body ._lg-bo-3 {border-width: 3px;}
+    body ._lg-bo-4 {border-width: 4px;}
+    body ._lg-bo-5 {border-width: 5px;}
+    body ._lg-bo-none {border: none;}
+
+
+    /* Info Hover Background Classes */
+    body ._lg-hv-info-1:hover {background-color: var(--info_1);}
+    body ._lg-hv-info-2:hover {background-color: var(--info_2);}
+    body ._lg-hv-info-3:hover {background-color: var(--info_3);}
+    body ._lg-hv-info-4:hover {background-color: var(--info_4);}
+    body ._lg-hv-info-5:hover {background-color: var(--info_5);}
+    body ._lg-hv-info-6:hover {background-color: var(--info_6);}
+    body ._lg-hv-info-7:hover {background-color: var(--info_7);}
+    body ._lg-hv-info-8:hover {background-color: var(--info_8);}
+    body ._lg-hv-info-9:hover {background-color: var(--info_9);}
+    body ._lg-hv-info-10:hover {background-color: var(--info_10);}
+
+    /* Error Hover Background Classes */
+    body ._lg-hv-err-1:hover {background-color: var(--err_1);}
+    body ._lg-hv-err-2:hover {background-color: var(--err_2);}
+    body ._lg-hv-err-3:hover {background-color: var(--err_3);}
+    body ._lg-hv-err-4:hover {background-color: var(--err_4);}
+    body ._lg-hv-err-5:hover {background-color: var(--err_5);}
+    body ._lg-hv-err-6:hover {background-color: var(--err_6);}
+    body ._lg-hv-err-7:hover {background-color: var(--err_7);}
+    body ._lg-hv-err-8:hover {background-color: var(--err_8);}
+    body ._lg-hv-err-9:hover {background-color: var(--err_9);}
+    body ._lg-hv-err-10:hover {background-color: var(--err_10);}
+
+    /* Warning Hover Background Classes */
+    body ._lg-hv-warn-1:hover {background-color: var(--warn_1);}
+    body ._lg-hv-warn-2:hover {background-color: var(--warn_2);}
+    body ._lg-hv-warn-3:hover {background-color: var(--warn_3);}
+    body ._lg-hv-warn-4:hover {background-color: var(--warn_4);}
+    body ._lg-hv-warn-5:hover {background-color: var(--warn_5);}
+    body ._lg-hv-warn-6:hover {background-color: var(--warn_6);}
+    body ._lg-hv-warn-7:hover {background-color: var(--warn_7);}
+    body ._lg-hv-warn-8:hover {background-color: var(--warn_8);}
+    body ._lg-hv-warn-9:hover {background-color: var(--warn_9);}
+    body ._lg-hv-warn-10:hover {background-color: var(--warn_10);}
+
+    /* Grey Hover Background Classes */
+    body ._lg-hv-grey-1:hover {background-color: var(--grey_1);}
+    body ._lg-hv-grey-2:hover {background-color: var(--grey_2);}
+    body ._lg-hv-grey-3:hover {background-color: var(--grey_3);}
+    body ._lg-hv-grey-4:hover {background-color: var(--grey_4);}
+    body ._lg-hv-grey-5:hover {background-color: var(--grey_5);}
+    body ._lg-hv-grey-6:hover {background-color: var(--grey_6);}
+    body ._lg-hv-grey-7:hover {background-color: var(--grey_7);}
+    body ._lg-hv-grey-8:hover {background-color: var(--grey_8);}
+    body ._lg-hv-grey-9:hover {background-color: var(--grey_9);}
+    body ._lg-hv-grey-10:hover {background-color: var(--grey_10);}
+
+    /* Success Hover Background Classes */
+    body ._lg-hv-succ-1:hover {background-color: var(--succ_1);}
+    body ._lg-hv-succ-2:hover {background-color: var(--succ_2);}
+    body ._lg-hv-succ-3:hover {background-color: var(--succ_3);}
+    body ._lg-hv-succ-4:hover {background-color: var(--succ_4);}
+    body ._lg-hv-succ-5:hover {background-color: var(--succ_5);}
+    body ._lg-hv-succ-6:hover {background-color: var(--succ_6);}
+    body ._lg-hv-succ-7:hover {background-color: var(--succ_7);}
+    body ._lg-hv-succ-8:hover {background-color: var(--succ_8);}
+    body ._lg-hv-succ-9:hover {background-color: var(--succ_9);}
+    body ._lg-hv-succ-10:hover {background-color: var(--succ_10);}
+
+    /* Info Hover Text Color Classes */
+    body ._lg-ht-info-1:hover {color: var(--info_1);}
+    body ._lg-ht-info-2:hover {color: var(--info_2);}
+    body ._lg-ht-info-3:hover {color: var(--info_3);}
+    body ._lg-ht-info-4:hover {color: var(--info_4);}
+    body ._lg-ht-info-5:hover {color: var(--info_5);}
+    body ._lg-ht-info-6:hover {color: var(--info_6);}
+    body ._lg-ht-info-7:hover {color: var(--info_7);}
+    body ._lg-ht-info-8:hover {color: var(--info_8);}
+    body ._lg-ht-info-9:hover {color: var(--info_9);}
+    body ._lg-ht-info-10:hover {color: var(--info_10);}
+
+    /* Error Hover Text Color Classes */
+    body ._lg-ht-err-1:hover {color: var(--err_1);}
+    body ._lg-ht-err-2:hover {color: var(--err_2);}
+    body ._lg-ht-err-3:hover {color: var(--err_3);}
+    body ._lg-ht-err-4:hover {color: var(--err_4);}
+    body ._lg-ht-err-5:hover {color: var(--err_5);}
+    body ._lg-ht-err-6:hover {color: var(--err_6);}
+    body ._lg-ht-err-7:hover {color: var(--err_7);}
+    body ._lg-ht-err-8:hover {color: var(--err_8);}
+    body ._lg-ht-err-9:hover {color: var(--err_9);}
+    body ._lg-ht-err-10:hover {color: var(--err_10);}
+
+    /* Warning Hover Text Color Classes */
+    body ._lg-ht-warn-1:hover {color: var(--warn_1);}
+    body ._lg-ht-warn-2:hover {color: var(--warn_2);}
+    body ._lg-ht-warn-3:hover {color: var(--warn_3);}
+    body ._lg-ht-warn-4:hover {color: var(--warn_4);}
+    body ._lg-ht-warn-5:hover {color: var(--warn_5);}
+    body ._lg-ht-warn-6:hover {color: var(--warn_6);}
+    body ._lg-ht-warn-7:hover {color: var(--warn_7);}
+    body ._lg-ht-warn-8:hover {color: var(--warn_8);}
+    body ._lg-ht-warn-9:hover {color: var(--warn_9);}
+    body ._lg-ht-warn-10:hover {color: var(--warn_10);}
+
+    /* Grey Hover Text Color Classes */
+    body ._lg-ht-grey-1:hover {color: var(--grey_1);}
+    body ._lg-ht-grey-2:hover {color: var(--grey_2);}
+    body ._lg-ht-grey-3:hover {color: var(--grey_3);}
+    body ._lg-ht-grey-4:hover {color: var(--grey_4);}
+    body ._lg-ht-grey-5:hover {color: var(--grey_5);}
+    body ._lg-ht-grey-6:hover {color: var(--grey_6);}
+    body ._lg-ht-grey-7:hover {color: var(--grey_7);}
+    body ._lg-ht-grey-8:hover {color: var(--grey_8);}
+    body ._lg-ht-grey-9:hover {color: var(--grey_9);}
+    body ._lg-ht-grey-10:hover {color: var(--grey_10);}
+
+    /* Success Hover Text Color Classes */
+    body ._lg-ht-succ-1:hover {color: var(--succ_1);}
+    body ._lg-ht-succ-2:hover {color: var(--succ_2);}
+    body ._lg-ht-succ-3:hover {color: var(--succ_3);}
+    body ._lg-ht-succ-4:hover {color: var(--succ_4);}
+    body ._lg-ht-succ-5:hover {color: var(--succ_5);}
+    body ._lg-ht-succ-6:hover {color: var(--succ_6);}
+    body ._lg-ht-succ-7:hover {color: var(--succ_7);}
+    body ._lg-ht-succ-8:hover {color: var(--succ_8);}
+    body ._lg-ht-succ-9:hover {color: var(--succ_9);}
+    body ._lg-ht-succ-10:hover {color: var(--succ_10);}
+
+    body ._lg-ht-un:hover {text-decoration: underline;}
+    body ._lg-hv-op:hover {opacity: 0.7;}
+    body ._lg-hv {transition: 0.25s;}
+
+
+
+    /* Info Fill Classes */
+    body ._lg-fi-info-1 {fill: var(--info_1);}
+    body ._lg-fi-info-2 {fill: var(--info_2);}
+    body ._lg-fi-info-3 {fill: var(--info_3);}
+    body ._lg-fi-info-4 {fill: var(--info_4);}
+    body ._lg-fi-info-5 {fill: var(--info_5);}
+    body ._lg-fi-info-6 {fill: var(--info_6);}
+    body ._lg-fi-info-7 {fill: var(--info_7);}
+    body ._lg-fi-info-8 {fill: var(--info_8);}
+    body ._lg-fi-info-9 {fill: var(--info_9);}
+    body ._lg-fi-info-10 {fill: var(--info_10);}
+
+    /* Error Fill Classes */
+    body ._lg-fi-err-1 {fill: var(--err_1);}
+    body ._lg-fi-err-2 {fill: var(--err_2);}
+    body ._lg-fi-err-3 {fill: var(--err_3);}
+    body ._lg-fi-err-4 {fill: var(--err_4);}
+    body ._lg-fi-err-5 {fill: var(--err_5);}
+    body ._lg-fi-err-6 {fill: var(--err_6);}
+    body ._lg-fi-err-7 {fill: var(--err_7);}
+    body ._lg-fi-err-8 {fill: var(--err_8);}
+    body ._lg-fi-err-9 {fill: var(--err_9);}
+    body ._lg-fi-err-10 {fill: var(--err_10);}
+
+    /* Warning Fill Classes */
+    body ._lg-fi-warn-1 {fill: var(--warn_1);}
+    body ._lg-fi-warn-2 {fill: var(--warn_2);}
+    body ._lg-fi-warn-3 {fill: var(--warn_3);}
+    body ._lg-fi-warn-4 {fill: var(--warn_4);}
+    body ._lg-fi-warn-5 {fill: var(--warn_5);}
+    body ._lg-fi-warn-6 {fill: var(--warn_6);}
+    body ._lg-fi-warn-7 {fill: var(--warn_7);}
+    body ._lg-fi-warn-8 {fill: var(--warn_8);}
+    body ._lg-fi-warn-9 {fill: var(--warn_9);}
+    body ._lg-fi-warn-10 {fill: var(--warn_10);}
+
+    /* Grey Fill Classes */
+    body ._lg-fi-grey-1 {fill: var(--grey_1);}
+    body ._lg-fi-grey-2 {fill: var(--grey_2);}
+    body ._lg-fi-grey-3 {fill: var(--grey_3);}
+    body ._lg-fi-grey-4 {fill: var(--grey_4);}
+    body ._lg-fi-grey-5 {fill: var(--grey_5);}
+    body ._lg-fi-grey-6 {fill: var(--grey_6);}
+    body ._lg-fi-grey-7 {fill: var(--grey_7);}
+    body ._lg-fi-grey-8 {fill: var(--grey_8);}
+    body ._lg-fi-grey-9 {fill: var(--grey_9);}
+    body ._lg-fi-grey-10 {fill: var(--grey_10);}
+
+    /* Success Fill Classes */
+    body ._lg-fi-succ-1 {fill: var(--succ_1);}
+    body ._lg-fi-succ-2 {fill: var(--succ_2);}
+    body ._lg-fi-succ-3 {fill: var(--succ_3);}
+    body ._lg-fi-succ-4 {fill: var(--succ_4);}
+    body ._lg-fi-succ-5 {fill: var(--succ_5);}
+    body ._lg-fi-succ-6 {fill: var(--succ_6);}
+    body ._lg-fi-succ-7 {fill: var(--succ_7);}
+    body ._lg-fi-succ-8 {fill: var(--succ_8);}
+    body ._lg-fi-succ-9 {fill: var(--succ_9);}
+    body ._lg-fi-succ-10 {fill: var(--succ_10);}
+
+
+
+    /* Info Fill Classes Hover */
+    body ._lg-hfi-info-1:hover {fill: var(--info_1);}
+    body ._lg-hfi-info-2:hover {fill: var(--info_2);}
+    body ._lg-hfi-info-3:hover {fill: var(--info_3);}
+    body ._lg-hfi-info-4:hover {fill: var(--info_4);}
+    body ._lg-hfi-info-5:hover {fill: var(--info_5);}
+    body ._lg-hfi-info-6:hover {fill: var(--info_6);}
+    body ._lg-hfi-info-7:hover {fill: var(--info_7);}
+    body ._lg-hfi-info-8:hover {fill: var(--info_8);}
+    body ._lg-hfi-info-9:hover {fill: var(--info_9);}
+    body ._lg-hfi-info-10:hover {fill: var(--info_10);}
+
+    /* Error Fill Classes Hover */
+    body ._lg-hfi-err-1:hover {fill: var(--err_1);}
+    body ._lg-hfi-err-2:hover {fill: var(--err_2);}
+    body ._lg-hfi-err-3:hover {fill: var(--err_3);}
+    body ._lg-hfi-err-4:hover {fill: var(--err_4);}
+    body ._lg-hfi-err-5:hover {fill: var(--err_5);}
+    body ._lg-hfi-err-6:hover {fill: var(--err_6);}
+    body ._lg-hfi-err-7:hover {fill: var(--err_7);}
+    body ._lg-hfi-err-8:hover {fill: var(--err_8);}
+    body ._lg-hfi-err-9:hover {fill: var(--err_9);}
+    body ._lg-hfi-err-10:hover {fill: var(--err_10);}
+
+    /* Warning Fill Classes Hover */
+    body ._lg-hfi-warn-1:hover {fill: var(--warn_1);}
+    body ._lg-hfi-warn-2:hover {fill: var(--warn_2);}
+    body ._lg-hfi-warn-3:hover {fill: var(--warn_3);}
+    body ._lg-hfi-warn-4:hover {fill: var(--warn_4);}
+    body ._lg-hfi-warn-5:hover {fill: var(--warn_5);}
+    body ._lg-hfi-warn-6:hover {fill: var(--warn_6);}
+    body ._lg-hfi-warn-7:hover {fill: var(--warn_7);}
+    body ._lg-hfi-warn-8:hover {fill: var(--warn_8);}
+    body ._lg-hfi-warn-9:hover {fill: var(--warn_9);}
+    body ._lg-hfi-warn-10:hover {fill: var(--warn_10);}
+
+    /* Grey Fill Classes Hover */
+    body ._lg-hfi-grey-1:hover {fill: var(--grey_1);}
+    body ._lg-hfi-grey-2:hover {fill: var(--grey_2);}
+    body ._lg-hfi-grey-3:hover {fill: var(--grey_3);}
+    body ._lg-hfi-grey-4:hover {fill: var(--grey_4);}
+    body ._lg-hfi-grey-5:hover {fill: var(--grey_5);}
+    body ._lg-hfi-grey-6:hover {fill: var(--grey_6);}
+    body ._lg-hfi-grey-7:hover {fill: var(--grey_7);}
+    body ._lg-hfi-grey-8:hover {fill: var(--grey_8);}
+    body ._lg-hfi-grey-9:hover {fill: var(--grey_9);}
+    body ._lg-hfi-grey-10:hover {fill: var(--grey_10);}
+
+    /* Success Fill Classes Hover */
+    body ._lg-hfi-succ-1:hover {fill: var(--succ_1);}
+    body ._lg-hfi-succ-2:hover {fill: var(--succ_2);}
+    body ._lg-hfi-succ-3:hover {fill: var(--succ_3);}
+    body ._lg-hfi-succ-4:hover {fill: var(--succ_4);}
+    body ._lg-hfi-succ-5:hover {fill: var(--succ_5);}
+    body ._lg-hfi-succ-6:hover {fill: var(--succ_6);}
+    body ._lg-hfi-succ-7:hover {fill: var(--succ_7);}
+    body ._lg-hfi-succ-8:hover {fill: var(--succ_8);}
+    body ._lg-hfi-succ-9:hover {fill: var(--succ_9);}
+    body ._lg-hfi-succ-10:hover {fill: var(--succ_10);}
+
+
+
+    /* Opacity */
+    body ._lg-op1 {opacity: 0.1; }
+    body ._lg-op2 {opacity: 0.2; }
+    body ._lg-op3 {opacity: 0.3; }
+    body ._lg-op4 {opacity: 0.4; }
+    body ._lg-op5 {opacity: 0.5; }
+    body ._lg-op6 {opacity: 0.6; }
+    body ._lg-op7 {opacity: 0.7; }
+    body ._lg-op8 {opacity: 0.8; }
+    body ._lg-op9 {opacity: 0.9; }
+
+
+
+    /* Breaks */
+    body ._lg-br {
+        display: block;
+        content: "";
+        width: 100%;
+    }
+    body ._lg-brxs {margin-top: 10px; }
+    body ._lg-brsm {margin-top: 20px; }
+    body ._lg-brmd {margin-top: 25px; }
+    body ._lg-brlg {margin-top: 40px; }
+    body ._lg-brxl {margin-top: 50px; }
+    body ._lg-brgl {margin-top: 70px; }
+
+
+
+    /* widths */
+    body .__w {max-width: 90vw; }
+    body .__13 {width: 1300px; }
+    body .__12 {width: 1200px; }
+    body .__11 {width: 1100px; }
+    body .__10 {width: 1000px; }
+
+
+
+    /* Box Shadows */
+    body .__shd-xs {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), ;
+    }
+    body .__shd-sm {
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    body .__shd-md {
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    body .__shd-me {
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    }
+    body .__shd {
+        box-shadow: 3px 2px 3px 1px rgba(127, 126, 126, 0.1),2px 2px 4px  rgba(92, 90, 90, 0.1)
+    }
+
+
+    /* Font Size */
+    body ._lg-txs {font-size: 10px; }
+    body ._lg-tsm {font-size: 20px; }
+    body ._lg-tmd {font-size: 25px; }
+    body ._lg-tlg {font-size: 40px; }
+    body ._lg-txl {font-size: 50px; }
+    body ._lg-tgl {font-size: 70px; }
+
+
+
+
+    /* Text Align */
+    body ._lg-tal {text-align: center; }
+    body ._lg-tle {text-align: left; }
+    body ._lg-tri {text-align: right; }
+
+
+
+    /* Margins */
+    body ._lg-mauto {margin: auto; }
+    body ._lg-mlauto {margin-left: auto; }
+    body ._lg-mrauto {margin-right: auto; }
+
+
+
+    /* Border Radius */
+    body ._lg-bdxs {border-radius: 10px; }
+    body ._lg-bdsm {border-radius: 20px; }
+    body ._lg-bdmd {border-radius: 25px; }
+    body ._lg-bdlg {border-radius: 40px; }
+    body ._lg-bdxl {border-radius: 50px; }
+    body ._lg-bdgl {border-radius: 70px; }
+    body ._lg-brro {border-radius: 50%; }
+
+
+
+    /* Padding */
+    body ._lg-padxs {padding: 10px; }
+    body ._lg-padsm {padding: 20px; }
+    body ._lg-padmd {padding: 25px; }
+    body ._lg-padlg {padding: 40px; }
+    body ._lg-padxl {padding: 50px; }
+    body ._lg-padgl {padding: 70px; }
+
+
+
+    /* Text Styles */
+    body ._lg-un {text-decoration: underline; }
+    body ._lg-nun {text-decoration: none; }
+    body ._lg-em {font-style: italic; }
+    body ._lg-bo {font-weight: bold; }
+}
+  
+  /* XL Size */
+  @media only screen and (max-width: 1200px) {
+    /* Basic Properties */
+    body ._xl-show { display: flex !important; }
+    body ._xl-hide { display: none !important; }
+  
+    /* Info Background Classes */
+    body ._xl-bg-info-1 {background-color: var(--info_1);}
+    body ._xl-bg-info-2 {background-color: var(--info_2);}
+    body ._xl-bg-info-3 {background-color: var(--info_3);}
+    body ._xl-bg-info-4 {background-color: var(--info_4);}
+    body ._xl-bg-info-5 {background-color: var(--info_5);}
+    body ._xl-bg-info-6 {background-color: var(--info_6);}
+    body ._xl-bg-info-7 {background-color: var(--info_7);}
+    body ._xl-bg-info-8 {background-color: var(--info_8);}
+    body ._xl-bg-info-9 {background-color: var(--info_9);}
+    body ._xl-bg-info-10 {background-color: var(--info_10);}
+
+    /* Error Background Classes */
+    body ._xl-bg-err-1 {background-color: var(--err_1);}
+    body ._xl-bg-err-2 {background-color: var(--err_2);}
+    body ._xl-bg-err-3 {background-color: var(--err_3);}
+    body ._xl-bg-err-4 {background-color: var(--err_4);}
+    body ._xl-bg-err-5 {background-color: var(--err_5);}
+    body ._xl-bg-err-6 {background-color: var(--err_6);}
+    body ._xl-bg-err-7 {background-color: var(--err_7);}
+    body ._xl-bg-err-8 {background-color: var(--err_8);}
+    body ._xl-bg-err-9 {background-color: var(--err_9);}
+    body ._xl-bg-err-10 {background-color: var(--err_10);}
+
+    /* Warning Background Classes */
+    body ._xl-bg-warn-1 {background-color: var(--warn_1);}
+    body ._xl-bg-warn-2 {background-color: var(--warn_2);}
+    body ._xl-bg-warn-3 {background-color: var(--warn_3);}
+    body ._xl-bg-warn-4 {background-color: var(--warn_4);}
+    body ._xl-bg-warn-5 {background-color: var(--warn_5);}
+    body ._xl-bg-warn-6 {background-color: var(--warn_6);}
+    body ._xl-bg-warn-7 {background-color: var(--warn_7);}
+    body ._xl-bg-warn-8 {background-color: var(--warn_8);}
+    body ._xl-bg-warn-9 {background-color: var(--warn_9);}
+    body ._xl-bg-warn-10 {background-color: var(--warn_10);}
+
+    /* Grey Background Classes */
+    body ._xl-bg-grey-1 {background-color: var(--grey_1);}
+    body ._xl-bg-grey-2 {background-color: var(--grey_2);}
+    body ._xl-bg-grey-3 {background-color: var(--grey_3);}
+    body ._xl-bg-grey-4 {background-color: var(--grey_4);}
+    body ._xl-bg-grey-5 {background-color: var(--grey_5);}
+    body ._xl-bg-grey-6 {background-color: var(--grey_6);}
+    body ._xl-bg-grey-7 {background-color: var(--grey_7);}
+    body ._xl-bg-grey-8 {background-color: var(--grey_8);}
+    body ._xl-bg-grey-9 {background-color: var(--grey_9);}
+    body ._xl-bg-grey-10 {background-color: var(--grey_10);}
+
+    /* Success Background Classes */
+    body ._xl-bg-succ-1 {background-color: var(--succ_1);}
+    body ._xl-bg-succ-2 {background-color: var(--succ_2);}
+    body ._xl-bg-succ-3 {background-color: var(--succ_3);}
+    body ._xl-bg-succ-4 {background-color: var(--succ_4);}
+    body ._xl-bg-succ-5 {background-color: var(--succ_5);}
+    body ._xl-bg-succ-6 {background-color: var(--succ_6);}
+    body ._xl-bg-succ-7 {background-color: var(--succ_7);}
+    body ._xl-bg-succ-8 {background-color: var(--succ_8);}
+    body ._xl-bg-succ-9 {background-color: var(--succ_9);}
+    body ._xl-bg-succ-10 {background-color: var(--succ_10);}
+
+    body ._xl-bg-none {background-color: rgba(0,0,0,0);}
+
+
+    /* Info Text Color Classes */
+    body ._xl-txt-info-1 {color: var(--info_1);}
+    body ._xl-txt-info-2 {color: var(--info_2);}
+    body ._xl-txt-info-3 {color: var(--info_3);}
+    body ._xl-txt-info-4 {color: var(--info_4);}
+    body ._xl-txt-info-5 {color: var(--info_5);}
+    body ._xl-txt-info-6 {color: var(--info_6);}
+    body ._xl-txt-info-7 {color: var(--info_7);}
+    body ._xl-txt-info-8 {color: var(--info_8);}
+    body ._xl-txt-info-9 {color: var(--info_9);}
+    body ._xl-txt-info-10 {color: var(--info_10);}
+
+    /* Error Text Color Classes */
+    body ._xl-txt-err-1 {color: var(--err_1);}
+    body ._xl-txt-err-2 {color: var(--err_2);}
+    body ._xl-txt-err-3 {color: var(--err_3);}
+    body ._xl-txt-err-4 {color: var(--err_4);}
+    body ._xl-txt-err-5 {color: var(--err_5);}
+    body ._xl-txt-err-6 {color: var(--err_6);}
+    body ._xl-txt-err-7 {color: var(--err_7);}
+    body ._xl-txt-err-8 {color: var(--err_8);}
+    body ._xl-txt-err-9 {color: var(--err_9);}
+    body ._xl-txt-err-10 {color: var(--err_10);}
+
+    /* Warning Text Color Classes */
+    body ._xl-txt-warn-1 {color: var(--warn_1);}
+    body ._xl-txt-warn-2 {color: var(--warn_2);}
+    body ._xl-txt-warn-3 {color: var(--warn_3);}
+    body ._xl-txt-warn-4 {color: var(--warn_4);}
+    body ._xl-txt-warn-5 {color: var(--warn_5);}
+    body ._xl-txt-warn-6 {color: var(--warn_6);}
+    body ._xl-txt-warn-7 {color: var(--warn_7);}
+    body ._xl-txt-warn-8 {color: var(--warn_8);}
+    body ._xl-txt-warn-9 {color: var(--warn_9);}
+    body ._xl-txt-warn-10 {color: var(--warn_10);}
+
+    /* Grey Text Color Classes */
+    body ._xl-txt-grey-1 {color: var(--grey_1);}
+    body ._xl-txt-grey-2 {color: var(--grey_2);}
+    body ._xl-txt-grey-3 {color: var(--grey_3);}
+    body ._xl-txt-grey-4 {color: var(--grey_4);}
+    body ._xl-txt-grey-5 {color: var(--grey_5);}
+    body ._xl-txt-grey-6 {color: var(--grey_6);}
+    body ._xl-txt-grey-7 {color: var(--grey_7);}
+    body ._xl-txt-grey-8 {color: var(--grey_8);}
+    body ._xl-txt-grey-9 {color: var(--grey_9);}
+    body ._xl-txt-grey-10 {color: var(--grey_10);}
+
+    /* Success Text Color Classes */
+    body ._xl-txt-succ-1 {color: var(--succ_1);}
+    body ._xl-txt-succ-2 {color: var(--succ_2);}
+    body ._xl-txt-succ-3 {color: var(--succ_3);}
+    body ._xl-txt-succ-4 {color: var(--succ_4);}
+    body ._xl-txt-succ-5 {color: var(--succ_5);}
+    body ._xl-txt-succ-6 {color: var(--succ_6);}
+    body ._xl-txt-succ-7 {color: var(--succ_7);}
+    body ._xl-txt-succ-8 {color: var(--succ_8);}
+    body ._xl-txt-succ-9 {color: var(--succ_9);}
+    body ._xl-txt-succ-10 {color: var(--succ_10);}
+
+
+
+    /* Info Border Classes */
+    body ._xl-bo-info-1 {border-color: var(--info_1);}
+    body ._xl-bo-info-2 {border-color: var(--info_2);}
+    body ._xl-bo-info-3 {border-color: var(--info_3);}
+    body ._xl-bo-info-4 {border-color: var(--info_4);}
+    body ._xl-bo-info-5 {border-color: var(--info_5);}
+    body ._xl-bo-info-6 {border-color: var(--info_6);}
+    body ._xl-bo-info-7 {border-color: var(--info_7);}
+    body ._xl-bo-info-8 {border-color: var(--info_8);}
+    body ._xl-bo-info-9 {border-color: var(--info_9);}
+    body ._xl-bo-info-10 {border-color: var(--info_10);}
+
+    /* Error Border Classes */
+    body ._xl-bo-err-1 {border-color: var(--err_1);}
+    body ._xl-bo-err-2 {border-color: var(--err_2);}
+    body ._xl-bo-err-3 {border-color: var(--err_3);}
+    body ._xl-bo-err-4 {border-color: var(--err_4);}
+    body ._xl-bo-err-5 {border-color: var(--err_5);}
+    body ._xl-bo-err-6 {border-color: var(--err_6);}
+    body ._xl-bo-err-7 {border-color: var(--err_7);}
+    body ._xl-bo-err-8 {border-color: var(--err_8);}
+    body ._xl-bo-err-9 {border-color: var(--err_9);}
+    body ._xl-bo-err-10 {border-color: var(--err_10);}
+
+    /* Warning Border Classes */
+    body ._xl-bo-warn-1 {border-color: var(--warn_1);}
+    body ._xl-bo-warn-2 {border-color: var(--warn_2);}
+    body ._xl-bo-warn-3 {border-color: var(--warn_3);}
+    body ._xl-bo-warn-4 {border-color: var(--warn_4);}
+    body ._xl-bo-warn-5 {border-color: var(--warn_5);}
+    body ._xl-bo-warn-6 {border-color: var(--warn_6);}
+    body ._xl-bo-warn-7 {border-color: var(--warn_7);}
+    body ._xl-bo-warn-8 {border-color: var(--warn_8);}
+    body ._xl-bo-warn-9 {border-color: var(--warn_9);}
+    body ._xl-bo-warn-10 {border-color: var(--warn_10);}
+
+    /* Grey Border Classes */
+    body ._xl-bo-grey-1 {border-color: var(--grey_1);}
+    body ._xl-bo-grey-2 {border-color: var(--grey_2);}
+    body ._xl-bo-grey-3 {border-color: var(--grey_3);}
+    body ._xl-bo-grey-4 {border-color: var(--grey_4);}
+    body ._xl-bo-grey-5 {border-color: var(--grey_5);}
+    body ._xl-bo-grey-6 {border-color: var(--grey_6);}
+    body ._xl-bo-grey-7 {border-color: var(--grey_7);}
+    body ._xl-bo-grey-8 {border-color: var(--grey_8);}
+    body ._xl-bo-grey-9 {border-color: var(--grey_9);}
+    body ._xl-bo-grey-10 {border-color: var(--grey_10);}
+
+    /* Success Border Classes */
+    body ._xl-bo-succ-1 {border-color: var(--succ_1);}
+    body ._xl-bo-succ-2 {border-color: var(--succ_2);}
+    body ._xl-bo-succ-3 {border-color: var(--succ_3);}
+    body ._xl-bo-succ-4 {border-color: var(--succ_4);}
+    body ._xl-bo-succ-5 {border-color: var(--succ_5);}
+    body ._xl-bo-succ-6 {border-color: var(--succ_6);}
+    body ._xl-bo-succ-7 {border-color: var(--succ_7);}
+    body ._xl-bo-succ-8 {border-color: var(--succ_8);}
+    body ._xl-bo-succ-9 {border-color: var(--succ_9);}
+    body ._xl-bo-succ-10 {border-color: var(--succ_10);}
+
+    body ._xl-bo-none {border: none;}
+
+    body ._xl-bo-1 {border-width: 1px; border-style: solid; }
+    body ._xl-bo-2 {border-width: 2px; border-style: solid; }
+    body ._xl-bo-3 {border-width: 3px; border-style: solid; }
+    body ._xl-bo-4 {border-width: 4px; border-style: solid; }
+    body ._xl-bo-5 {border-width: 5px; border-style: solid; }
+
+
+
+    /* Border Widths */
+    body ._xl-bod {border-width: 1px;}
+    body ._xl-bo-2 {border-width: 2px;}
+    body ._xl-bo-3 {border-width: 3px;}
+    body ._xl-bo-4 {border-width: 4px;}
+    body ._xl-bo-5 {border-width: 5px;}
+    body ._xl-bo-none {border: none;}
+
+
+    /* Info Hover Background Classes */
+    body ._xl-hv-info-1:hover {background-color: var(--info_1);}
+    body ._xl-hv-info-2:hover {background-color: var(--info_2);}
+    body ._xl-hv-info-3:hover {background-color: var(--info_3);}
+    body ._xl-hv-info-4:hover {background-color: var(--info_4);}
+    body ._xl-hv-info-5:hover {background-color: var(--info_5);}
+    body ._xl-hv-info-6:hover {background-color: var(--info_6);}
+    body ._xl-hv-info-7:hover {background-color: var(--info_7);}
+    body ._xl-hv-info-8:hover {background-color: var(--info_8);}
+    body ._xl-hv-info-9:hover {background-color: var(--info_9);}
+    body ._xl-hv-info-10:hover {background-color: var(--info_10);}
+
+    /* Error Hover Background Classes */
+    body ._xl-hv-err-1:hover {background-color: var(--err_1);}
+    body ._xl-hv-err-2:hover {background-color: var(--err_2);}
+    body ._xl-hv-err-3:hover {background-color: var(--err_3);}
+    body ._xl-hv-err-4:hover {background-color: var(--err_4);}
+    body ._xl-hv-err-5:hover {background-color: var(--err_5);}
+    body ._xl-hv-err-6:hover {background-color: var(--err_6);}
+    body ._xl-hv-err-7:hover {background-color: var(--err_7);}
+    body ._xl-hv-err-8:hover {background-color: var(--err_8);}
+    body ._xl-hv-err-9:hover {background-color: var(--err_9);}
+    body ._xl-hv-err-10:hover {background-color: var(--err_10);}
+
+    /* Warning Hover Background Classes */
+    body ._xl-hv-warn-1:hover {background-color: var(--warn_1);}
+    body ._xl-hv-warn-2:hover {background-color: var(--warn_2);}
+    body ._xl-hv-warn-3:hover {background-color: var(--warn_3);}
+    body ._xl-hv-warn-4:hover {background-color: var(--warn_4);}
+    body ._xl-hv-warn-5:hover {background-color: var(--warn_5);}
+    body ._xl-hv-warn-6:hover {background-color: var(--warn_6);}
+    body ._xl-hv-warn-7:hover {background-color: var(--warn_7);}
+    body ._xl-hv-warn-8:hover {background-color: var(--warn_8);}
+    body ._xl-hv-warn-9:hover {background-color: var(--warn_9);}
+    body ._xl-hv-warn-10:hover {background-color: var(--warn_10);}
+
+    /* Grey Hover Background Classes */
+    body ._xl-hv-grey-1:hover {background-color: var(--grey_1);}
+    body ._xl-hv-grey-2:hover {background-color: var(--grey_2);}
+    body ._xl-hv-grey-3:hover {background-color: var(--grey_3);}
+    body ._xl-hv-grey-4:hover {background-color: var(--grey_4);}
+    body ._xl-hv-grey-5:hover {background-color: var(--grey_5);}
+    body ._xl-hv-grey-6:hover {background-color: var(--grey_6);}
+    body ._xl-hv-grey-7:hover {background-color: var(--grey_7);}
+    body ._xl-hv-grey-8:hover {background-color: var(--grey_8);}
+    body ._xl-hv-grey-9:hover {background-color: var(--grey_9);}
+    body ._xl-hv-grey-10:hover {background-color: var(--grey_10);}
+
+    /* Success Hover Background Classes */
+    body ._xl-hv-succ-1:hover {background-color: var(--succ_1);}
+    body ._xl-hv-succ-2:hover {background-color: var(--succ_2);}
+    body ._xl-hv-succ-3:hover {background-color: var(--succ_3);}
+    body ._xl-hv-succ-4:hover {background-color: var(--succ_4);}
+    body ._xl-hv-succ-5:hover {background-color: var(--succ_5);}
+    body ._xl-hv-succ-6:hover {background-color: var(--succ_6);}
+    body ._xl-hv-succ-7:hover {background-color: var(--succ_7);}
+    body ._xl-hv-succ-8:hover {background-color: var(--succ_8);}
+    body ._xl-hv-succ-9:hover {background-color: var(--succ_9);}
+    body ._xl-hv-succ-10:hover {background-color: var(--succ_10);}
+
+    /* Info Hover Text Color Classes */
+    body ._xl-ht-info-1:hover {color: var(--info_1);}
+    body ._xl-ht-info-2:hover {color: var(--info_2);}
+    body ._xl-ht-info-3:hover {color: var(--info_3);}
+    body ._xl-ht-info-4:hover {color: var(--info_4);}
+    body ._xl-ht-info-5:hover {color: var(--info_5);}
+    body ._xl-ht-info-6:hover {color: var(--info_6);}
+    body ._xl-ht-info-7:hover {color: var(--info_7);}
+    body ._xl-ht-info-8:hover {color: var(--info_8);}
+    body ._xl-ht-info-9:hover {color: var(--info_9);}
+    body ._xl-ht-info-10:hover {color: var(--info_10);}
+
+    /* Error Hover Text Color Classes */
+    body ._xl-ht-err-1:hover {color: var(--err_1);}
+    body ._xl-ht-err-2:hover {color: var(--err_2);}
+    body ._xl-ht-err-3:hover {color: var(--err_3);}
+    body ._xl-ht-err-4:hover {color: var(--err_4);}
+    body ._xl-ht-err-5:hover {color: var(--err_5);}
+    body ._xl-ht-err-6:hover {color: var(--err_6);}
+    body ._xl-ht-err-7:hover {color: var(--err_7);}
+    body ._xl-ht-err-8:hover {color: var(--err_8);}
+    body ._xl-ht-err-9:hover {color: var(--err_9);}
+    body ._xl-ht-err-10:hover {color: var(--err_10);}
+
+    /* Warning Hover Text Color Classes */
+    body ._xl-ht-warn-1:hover {color: var(--warn_1);}
+    body ._xl-ht-warn-2:hover {color: var(--warn_2);}
+    body ._xl-ht-warn-3:hover {color: var(--warn_3);}
+    body ._xl-ht-warn-4:hover {color: var(--warn_4);}
+    body ._xl-ht-warn-5:hover {color: var(--warn_5);}
+    body ._xl-ht-warn-6:hover {color: var(--warn_6);}
+    body ._xl-ht-warn-7:hover {color: var(--warn_7);}
+    body ._xl-ht-warn-8:hover {color: var(--warn_8);}
+    body ._xl-ht-warn-9:hover {color: var(--warn_9);}
+    body ._xl-ht-warn-10:hover {color: var(--warn_10);}
+
+    /* Grey Hover Text Color Classes */
+    body ._xl-ht-grey-1:hover {color: var(--grey_1);}
+    body ._xl-ht-grey-2:hover {color: var(--grey_2);}
+    body ._xl-ht-grey-3:hover {color: var(--grey_3);}
+    body ._xl-ht-grey-4:hover {color: var(--grey_4);}
+    body ._xl-ht-grey-5:hover {color: var(--grey_5);}
+    body ._xl-ht-grey-6:hover {color: var(--grey_6);}
+    body ._xl-ht-grey-7:hover {color: var(--grey_7);}
+    body ._xl-ht-grey-8:hover {color: var(--grey_8);}
+    body ._xl-ht-grey-9:hover {color: var(--grey_9);}
+    body ._xl-ht-grey-10:hover {color: var(--grey_10);}
+
+    /* Success Hover Text Color Classes */
+    body ._xl-ht-succ-1:hover {color: var(--succ_1);}
+    body ._xl-ht-succ-2:hover {color: var(--succ_2);}
+    body ._xl-ht-succ-3:hover {color: var(--succ_3);}
+    body ._xl-ht-succ-4:hover {color: var(--succ_4);}
+    body ._xl-ht-succ-5:hover {color: var(--succ_5);}
+    body ._xl-ht-succ-6:hover {color: var(--succ_6);}
+    body ._xl-ht-succ-7:hover {color: var(--succ_7);}
+    body ._xl-ht-succ-8:hover {color: var(--succ_8);}
+    body ._xl-ht-succ-9:hover {color: var(--succ_9);}
+    body ._xl-ht-succ-10:hover {color: var(--succ_10);}
+
+    body ._xl-ht-un:hover {text-decoration: underline;}
+    body ._xl-hv-op:hover {opacity: 0.7;}
+    body ._xl-hv {transition: 0.25s;}
+
+
+
+    /* Info Fill Classes */
+    body ._xl-fi-info-1 {fill: var(--info_1);}
+    body ._xl-fi-info-2 {fill: var(--info_2);}
+    body ._xl-fi-info-3 {fill: var(--info_3);}
+    body ._xl-fi-info-4 {fill: var(--info_4);}
+    body ._xl-fi-info-5 {fill: var(--info_5);}
+    body ._xl-fi-info-6 {fill: var(--info_6);}
+    body ._xl-fi-info-7 {fill: var(--info_7);}
+    body ._xl-fi-info-8 {fill: var(--info_8);}
+    body ._xl-fi-info-9 {fill: var(--info_9);}
+    body ._xl-fi-info-10 {fill: var(--info_10);}
+
+    /* Error Fill Classes */
+    body ._xl-fi-err-1 {fill: var(--err_1);}
+    body ._xl-fi-err-2 {fill: var(--err_2);}
+    body ._xl-fi-err-3 {fill: var(--err_3);}
+    body ._xl-fi-err-4 {fill: var(--err_4);}
+    body ._xl-fi-err-5 {fill: var(--err_5);}
+    body ._xl-fi-err-6 {fill: var(--err_6);}
+    body ._xl-fi-err-7 {fill: var(--err_7);}
+    body ._xl-fi-err-8 {fill: var(--err_8);}
+    body ._xl-fi-err-9 {fill: var(--err_9);}
+    body ._xl-fi-err-10 {fill: var(--err_10);}
+
+    /* Warning Fill Classes */
+    body ._xl-fi-warn-1 {fill: var(--warn_1);}
+    body ._xl-fi-warn-2 {fill: var(--warn_2);}
+    body ._xl-fi-warn-3 {fill: var(--warn_3);}
+    body ._xl-fi-warn-4 {fill: var(--warn_4);}
+    body ._xl-fi-warn-5 {fill: var(--warn_5);}
+    body ._xl-fi-warn-6 {fill: var(--warn_6);}
+    body ._xl-fi-warn-7 {fill: var(--warn_7);}
+    body ._xl-fi-warn-8 {fill: var(--warn_8);}
+    body ._xl-fi-warn-9 {fill: var(--warn_9);}
+    body ._xl-fi-warn-10 {fill: var(--warn_10);}
+
+    /* Grey Fill Classes */
+    body ._xl-fi-grey-1 {fill: var(--grey_1);}
+    body ._xl-fi-grey-2 {fill: var(--grey_2);}
+    body ._xl-fi-grey-3 {fill: var(--grey_3);}
+    body ._xl-fi-grey-4 {fill: var(--grey_4);}
+    body ._xl-fi-grey-5 {fill: var(--grey_5);}
+    body ._xl-fi-grey-6 {fill: var(--grey_6);}
+    body ._xl-fi-grey-7 {fill: var(--grey_7);}
+    body ._xl-fi-grey-8 {fill: var(--grey_8);}
+    body ._xl-fi-grey-9 {fill: var(--grey_9);}
+    body ._xl-fi-grey-10 {fill: var(--grey_10);}
+
+    /* Success Fill Classes */
+    body ._xl-fi-succ-1 {fill: var(--succ_1);}
+    body ._xl-fi-succ-2 {fill: var(--succ_2);}
+    body ._xl-fi-succ-3 {fill: var(--succ_3);}
+    body ._xl-fi-succ-4 {fill: var(--succ_4);}
+    body ._xl-fi-succ-5 {fill: var(--succ_5);}
+    body ._xl-fi-succ-6 {fill: var(--succ_6);}
+    body ._xl-fi-succ-7 {fill: var(--succ_7);}
+    body ._xl-fi-succ-8 {fill: var(--succ_8);}
+    body ._xl-fi-succ-9 {fill: var(--succ_9);}
+    body ._xl-fi-succ-10 {fill: var(--succ_10);}
+
+
+
+    /* Info Fill Classes Hover */
+    body ._xl-hfi-info-1:hover {fill: var(--info_1);}
+    body ._xl-hfi-info-2:hover {fill: var(--info_2);}
+    body ._xl-hfi-info-3:hover {fill: var(--info_3);}
+    body ._xl-hfi-info-4:hover {fill: var(--info_4);}
+    body ._xl-hfi-info-5:hover {fill: var(--info_5);}
+    body ._xl-hfi-info-6:hover {fill: var(--info_6);}
+    body ._xl-hfi-info-7:hover {fill: var(--info_7);}
+    body ._xl-hfi-info-8:hover {fill: var(--info_8);}
+    body ._xl-hfi-info-9:hover {fill: var(--info_9);}
+    body ._xl-hfi-info-10:hover {fill: var(--info_10);}
+
+    /* Error Fill Classes Hover */
+    body ._xl-hfi-err-1:hover {fill: var(--err_1);}
+    body ._xl-hfi-err-2:hover {fill: var(--err_2);}
+    body ._xl-hfi-err-3:hover {fill: var(--err_3);}
+    body ._xl-hfi-err-4:hover {fill: var(--err_4);}
+    body ._xl-hfi-err-5:hover {fill: var(--err_5);}
+    body ._xl-hfi-err-6:hover {fill: var(--err_6);}
+    body ._xl-hfi-err-7:hover {fill: var(--err_7);}
+    body ._xl-hfi-err-8:hover {fill: var(--err_8);}
+    body ._xl-hfi-err-9:hover {fill: var(--err_9);}
+    body ._xl-hfi-err-10:hover {fill: var(--err_10);}
+
+    /* Warning Fill Classes Hover */
+    body ._xl-hfi-warn-1:hover {fill: var(--warn_1);}
+    body ._xl-hfi-warn-2:hover {fill: var(--warn_2);}
+    body ._xl-hfi-warn-3:hover {fill: var(--warn_3);}
+    body ._xl-hfi-warn-4:hover {fill: var(--warn_4);}
+    body ._xl-hfi-warn-5:hover {fill: var(--warn_5);}
+    body ._xl-hfi-warn-6:hover {fill: var(--warn_6);}
+    body ._xl-hfi-warn-7:hover {fill: var(--warn_7);}
+    body ._xl-hfi-warn-8:hover {fill: var(--warn_8);}
+    body ._xl-hfi-warn-9:hover {fill: var(--warn_9);}
+    body ._xl-hfi-warn-10:hover {fill: var(--warn_10);}
+
+    /* Grey Fill Classes Hover */
+    body ._xl-hfi-grey-1:hover {fill: var(--grey_1);}
+    body ._xl-hfi-grey-2:hover {fill: var(--grey_2);}
+    body ._xl-hfi-grey-3:hover {fill: var(--grey_3);}
+    body ._xl-hfi-grey-4:hover {fill: var(--grey_4);}
+    body ._xl-hfi-grey-5:hover {fill: var(--grey_5);}
+    body ._xl-hfi-grey-6:hover {fill: var(--grey_6);}
+    body ._xl-hfi-grey-7:hover {fill: var(--grey_7);}
+    body ._xl-hfi-grey-8:hover {fill: var(--grey_8);}
+    body ._xl-hfi-grey-9:hover {fill: var(--grey_9);}
+    body ._xl-hfi-grey-10:hover {fill: var(--grey_10);}
+
+    /* Success Fill Classes Hover */
+    body ._xl-hfi-succ-1:hover {fill: var(--succ_1);}
+    body ._xl-hfi-succ-2:hover {fill: var(--succ_2);}
+    body ._xl-hfi-succ-3:hover {fill: var(--succ_3);}
+    body ._xl-hfi-succ-4:hover {fill: var(--succ_4);}
+    body ._xl-hfi-succ-5:hover {fill: var(--succ_5);}
+    body ._xl-hfi-succ-6:hover {fill: var(--succ_6);}
+    body ._xl-hfi-succ-7:hover {fill: var(--succ_7);}
+    body ._xl-hfi-succ-8:hover {fill: var(--succ_8);}
+    body ._xl-hfi-succ-9:hover {fill: var(--succ_9);}
+    body ._xl-hfi-succ-10:hover {fill: var(--succ_10);}
+
+
+
+    /* Opacity */
+    body ._xl-op1 {opacity: 0.1; }
+    body ._xl-op2 {opacity: 0.2; }
+    body ._xl-op3 {opacity: 0.3; }
+    body ._xl-op4 {opacity: 0.4; }
+    body ._xl-op5 {opacity: 0.5; }
+    body ._xl-op6 {opacity: 0.6; }
+    body ._xl-op7 {opacity: 0.7; }
+    body ._xl-op8 {opacity: 0.8; }
+    body ._xl-op9 {opacity: 0.9; }
+
+
+
+    /* Breaks */
+    body ._xl-br {
+        display: block;
+        content: "";
+        width: 100%;
+    }
+    body ._xl-brxs {margin-top: 10px; }
+    body ._xl-brsm {margin-top: 20px; }
+    body ._xl-brmd {margin-top: 25px; }
+    body ._xl-brlg {margin-top: 40px; }
+    body ._xl-brxl {margin-top: 50px; }
+    body ._xl-brgl {margin-top: 70px; }
+
+
+
+    /* widths */
+    body .__w {max-width: 90vw; }
+    body .__13 {width: 1300px; }
+    body .__12 {width: 1200px; }
+    body .__11 {width: 1100px; }
+    body .__10 {width: 1000px; }
+
+
+
+    /* Box Shadows */
+    body .__shd-xs {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), ;
+    }
+    body .__shd-sm {
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    body .__shd-md {
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    body .__shd-me {
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    }
+    body .__shd {
+        box-shadow: 3px 2px 3px 1px rgba(127, 126, 126, 0.1),2px 2px 4px  rgba(92, 90, 90, 0.1)
+    }
+
+
+    /* Font Size */
+    body ._xl-txs {font-size: 10px; }
+    body ._xl-tsm {font-size: 20px; }
+    body ._xl-tmd {font-size: 25px; }
+    body ._xl-tlg {font-size: 40px; }
+    body ._xl-txl {font-size: 50px; }
+    body ._xl-tgl {font-size: 70px; }
+
+
+
+
+    /* Text Align */
+    body ._xl-tal {text-align: center; }
+    body ._xl-tle {text-align: left; }
+    body ._xl-tri {text-align: right; }
+
+
+
+    /* Margins */
+    body ._xl-mauto {margin: auto; }
+    body ._xl-mlauto {margin-left: auto; }
+    body ._xl-mrauto {margin-right: auto; }
+
+
+
+    /* Border Radius */
+    body ._xl-bdxs {border-radius: 10px; }
+    body ._xl-bdsm {border-radius: 20px; }
+    body ._xl-bdmd {border-radius: 25px; }
+    body ._xl-bdlg {border-radius: 40px; }
+    body ._xl-bdxl {border-radius: 50px; }
+    body ._xl-bdgl {border-radius: 70px; }
+    body ._xl-brro {border-radius: 50%; }
+
+
+
+    /* Padding */
+    body ._xl-padxs {padding: 10px; }
+    body ._xl-padsm {padding: 20px; }
+    body ._xl-padmd {padding: 25px; }
+    body ._xl-padlg {padding: 40px; }
+    body ._xl-padxl {padding: 50px; }
+    body ._xl-padgl {padding: 70px; }
+
+
+
+    /* Text Styles */
+    body ._xl-un {text-decoration: underline; }
+    body ._xl-nun {text-decoration: none; }
+    body ._xl-em {font-style: italic; }
+    body ._xl-bo {font-weight: bold; }
+}
+
+  
+/* GL Size */
+@media only screen and (max-width: 1400px) {
+    /* Basic Properties */
+    body ._gl-show { display: flex !important; }
+    body ._gl-hide { display: none !important; }
+  
+    /* Info Background Classes */
+    body ._gl-bg-info-1 {background-color: var(--info_1);}
+    body ._gl-bg-info-2 {background-color: var(--info_2);}
+    body ._gl-bg-info-3 {background-color: var(--info_3);}
+    body ._gl-bg-info-4 {background-color: var(--info_4);}
+    body ._gl-bg-info-5 {background-color: var(--info_5);}
+    body ._gl-bg-info-6 {background-color: var(--info_6);}
+    body ._gl-bg-info-7 {background-color: var(--info_7);}
+    body ._gl-bg-info-8 {background-color: var(--info_8);}
+    body ._gl-bg-info-9 {background-color: var(--info_9);}
+    body ._gl-bg-info-10 {background-color: var(--info_10);}
+
+    /* Error Background Classes */
+    body ._gl-bg-err-1 {background-color: var(--err_1);}
+    body ._gl-bg-err-2 {background-color: var(--err_2);}
+    body ._gl-bg-err-3 {background-color: var(--err_3);}
+    body ._gl-bg-err-4 {background-color: var(--err_4);}
+    body ._gl-bg-err-5 {background-color: var(--err_5);}
+    body ._gl-bg-err-6 {background-color: var(--err_6);}
+    body ._gl-bg-err-7 {background-color: var(--err_7);}
+    body ._gl-bg-err-8 {background-color: var(--err_8);}
+    body ._gl-bg-err-9 {background-color: var(--err_9);}
+    body ._gl-bg-err-10 {background-color: var(--err_10);}
+
+    /* Warning Background Classes */
+    body ._gl-bg-warn-1 {background-color: var(--warn_1);}
+    body ._gl-bg-warn-2 {background-color: var(--warn_2);}
+    body ._gl-bg-warn-3 {background-color: var(--warn_3);}
+    body ._gl-bg-warn-4 {background-color: var(--warn_4);}
+    body ._gl-bg-warn-5 {background-color: var(--warn_5);}
+    body ._gl-bg-warn-6 {background-color: var(--warn_6);}
+    body ._gl-bg-warn-7 {background-color: var(--warn_7);}
+    body ._gl-bg-warn-8 {background-color: var(--warn_8);}
+    body ._gl-bg-warn-9 {background-color: var(--warn_9);}
+    body ._gl-bg-warn-10 {background-color: var(--warn_10);}
+
+    /* Grey Background Classes */
+    body ._gl-bg-grey-1 {background-color: var(--grey_1);}
+    body ._gl-bg-grey-2 {background-color: var(--grey_2);}
+    body ._gl-bg-grey-3 {background-color: var(--grey_3);}
+    body ._gl-bg-grey-4 {background-color: var(--grey_4);}
+    body ._gl-bg-grey-5 {background-color: var(--grey_5);}
+    body ._gl-bg-grey-6 {background-color: var(--grey_6);}
+    body ._gl-bg-grey-7 {background-color: var(--grey_7);}
+    body ._gl-bg-grey-8 {background-color: var(--grey_8);}
+    body ._gl-bg-grey-9 {background-color: var(--grey_9);}
+    body ._gl-bg-grey-10 {background-color: var(--grey_10);}
+
+    /* Success Background Classes */
+    body ._gl-bg-succ-1 {background-color: var(--succ_1);}
+    body ._gl-bg-succ-2 {background-color: var(--succ_2);}
+    body ._gl-bg-succ-3 {background-color: var(--succ_3);}
+    body ._gl-bg-succ-4 {background-color: var(--succ_4);}
+    body ._gl-bg-succ-5 {background-color: var(--succ_5);}
+    body ._gl-bg-succ-6 {background-color: var(--succ_6);}
+    body ._gl-bg-succ-7 {background-color: var(--succ_7);}
+    body ._gl-bg-succ-8 {background-color: var(--succ_8);}
+    body ._gl-bg-succ-9 {background-color: var(--succ_9);}
+    body ._gl-bg-succ-10 {background-color: var(--succ_10);}
+
+    body ._gl-bg-none {background-color: rgba(0,0,0,0);}
+
+
+    /* Info Text Color Classes */
+    body ._gl-txt-info-1 {color: var(--info_1);}
+    body ._gl-txt-info-2 {color: var(--info_2);}
+    body ._gl-txt-info-3 {color: var(--info_3);}
+    body ._gl-txt-info-4 {color: var(--info_4);}
+    body ._gl-txt-info-5 {color: var(--info_5);}
+    body ._gl-txt-info-6 {color: var(--info_6);}
+    body ._gl-txt-info-7 {color: var(--info_7);}
+    body ._gl-txt-info-8 {color: var(--info_8);}
+    body ._gl-txt-info-9 {color: var(--info_9);}
+    body ._gl-txt-info-10 {color: var(--info_10);}
+
+    /* Error Text Color Classes */
+    body ._gl-txt-err-1 {color: var(--err_1);}
+    body ._gl-txt-err-2 {color: var(--err_2);}
+    body ._gl-txt-err-3 {color: var(--err_3);}
+    body ._gl-txt-err-4 {color: var(--err_4);}
+    body ._gl-txt-err-5 {color: var(--err_5);}
+    body ._gl-txt-err-6 {color: var(--err_6);}
+    body ._gl-txt-err-7 {color: var(--err_7);}
+    body ._gl-txt-err-8 {color: var(--err_8);}
+    body ._gl-txt-err-9 {color: var(--err_9);}
+    body ._gl-txt-err-10 {color: var(--err_10);}
+
+    /* Warning Text Color Classes */
+    body ._gl-txt-warn-1 {color: var(--warn_1);}
+    body ._gl-txt-warn-2 {color: var(--warn_2);}
+    body ._gl-txt-warn-3 {color: var(--warn_3);}
+    body ._gl-txt-warn-4 {color: var(--warn_4);}
+    body ._gl-txt-warn-5 {color: var(--warn_5);}
+    body ._gl-txt-warn-6 {color: var(--warn_6);}
+    body ._gl-txt-warn-7 {color: var(--warn_7);}
+    body ._gl-txt-warn-8 {color: var(--warn_8);}
+    body ._gl-txt-warn-9 {color: var(--warn_9);}
+    body ._gl-txt-warn-10 {color: var(--warn_10);}
+
+    /* Grey Text Color Classes */
+    body ._gl-txt-grey-1 {color: var(--grey_1);}
+    body ._gl-txt-grey-2 {color: var(--grey_2);}
+    body ._gl-txt-grey-3 {color: var(--grey_3);}
+    body ._gl-txt-grey-4 {color: var(--grey_4);}
+    body ._gl-txt-grey-5 {color: var(--grey_5);}
+    body ._gl-txt-grey-6 {color: var(--grey_6);}
+    body ._gl-txt-grey-7 {color: var(--grey_7);}
+    body ._gl-txt-grey-8 {color: var(--grey_8);}
+    body ._gl-txt-grey-9 {color: var(--grey_9);}
+    body ._gl-txt-grey-10 {color: var(--grey_10);}
+
+    /* Success Text Color Classes */
+    body ._gl-txt-succ-1 {color: var(--succ_1);}
+    body ._gl-txt-succ-2 {color: var(--succ_2);}
+    body ._gl-txt-succ-3 {color: var(--succ_3);}
+    body ._gl-txt-succ-4 {color: var(--succ_4);}
+    body ._gl-txt-succ-5 {color: var(--succ_5);}
+    body ._gl-txt-succ-6 {color: var(--succ_6);}
+    body ._gl-txt-succ-7 {color: var(--succ_7);}
+    body ._gl-txt-succ-8 {color: var(--succ_8);}
+    body ._gl-txt-succ-9 {color: var(--succ_9);}
+    body ._gl-txt-succ-10 {color: var(--succ_10);}
+
+
+
+    /* Info Border Classes */
+    body ._gl-bo-info-1 {border-color: var(--info_1);}
+    body ._gl-bo-info-2 {border-color: var(--info_2);}
+    body ._gl-bo-info-3 {border-color: var(--info_3);}
+    body ._gl-bo-info-4 {border-color: var(--info_4);}
+    body ._gl-bo-info-5 {border-color: var(--info_5);}
+    body ._gl-bo-info-6 {border-color: var(--info_6);}
+    body ._gl-bo-info-7 {border-color: var(--info_7);}
+    body ._gl-bo-info-8 {border-color: var(--info_8);}
+    body ._gl-bo-info-9 {border-color: var(--info_9);}
+    body ._gl-bo-info-10 {border-color: var(--info_10);}
+
+    /* Error Border Classes */
+    body ._gl-bo-err-1 {border-color: var(--err_1);}
+    body ._gl-bo-err-2 {border-color: var(--err_2);}
+    body ._gl-bo-err-3 {border-color: var(--err_3);}
+    body ._gl-bo-err-4 {border-color: var(--err_4);}
+    body ._gl-bo-err-5 {border-color: var(--err_5);}
+    body ._gl-bo-err-6 {border-color: var(--err_6);}
+    body ._gl-bo-err-7 {border-color: var(--err_7);}
+    body ._gl-bo-err-8 {border-color: var(--err_8);}
+    body ._gl-bo-err-9 {border-color: var(--err_9);}
+    body ._gl-bo-err-10 {border-color: var(--err_10);}
+
+    /* Warning Border Classes */
+    body ._gl-bo-warn-1 {border-color: var(--warn_1);}
+    body ._gl-bo-warn-2 {border-color: var(--warn_2);}
+    body ._gl-bo-warn-3 {border-color: var(--warn_3);}
+    body ._gl-bo-warn-4 {border-color: var(--warn_4);}
+    body ._gl-bo-warn-5 {border-color: var(--warn_5);}
+    body ._gl-bo-warn-6 {border-color: var(--warn_6);}
+    body ._gl-bo-warn-7 {border-color: var(--warn_7);}
+    body ._gl-bo-warn-8 {border-color: var(--warn_8);}
+    body ._gl-bo-warn-9 {border-color: var(--warn_9);}
+    body ._gl-bo-warn-10 {border-color: var(--warn_10);}
+
+    /* Grey Border Classes */
+    body ._gl-bo-grey-1 {border-color: var(--grey_1);}
+    body ._gl-bo-grey-2 {border-color: var(--grey_2);}
+    body ._gl-bo-grey-3 {border-color: var(--grey_3);}
+    body ._gl-bo-grey-4 {border-color: var(--grey_4);}
+    body ._gl-bo-grey-5 {border-color: var(--grey_5);}
+    body ._gl-bo-grey-6 {border-color: var(--grey_6);}
+    body ._gl-bo-grey-7 {border-color: var(--grey_7);}
+    body ._gl-bo-grey-8 {border-color: var(--grey_8);}
+    body ._gl-bo-grey-9 {border-color: var(--grey_9);}
+    body ._gl-bo-grey-10 {border-color: var(--grey_10);}
+
+    /* Success Border Classes */
+    body ._gl-bo-succ-1 {border-color: var(--succ_1);}
+    body ._gl-bo-succ-2 {border-color: var(--succ_2);}
+    body ._gl-bo-succ-3 {border-color: var(--succ_3);}
+    body ._gl-bo-succ-4 {border-color: var(--succ_4);}
+    body ._gl-bo-succ-5 {border-color: var(--succ_5);}
+    body ._gl-bo-succ-6 {border-color: var(--succ_6);}
+    body ._gl-bo-succ-7 {border-color: var(--succ_7);}
+    body ._gl-bo-succ-8 {border-color: var(--succ_8);}
+    body ._gl-bo-succ-9 {border-color: var(--succ_9);}
+    body ._gl-bo-succ-10 {border-color: var(--succ_10);}
+
+    body ._gl-bo-none {border: none;}
+
+    body ._gl-bo-1 {border-width: 1px; border-style: solid; }
+    body ._gl-bo-2 {border-width: 2px; border-style: solid; }
+    body ._gl-bo-3 {border-width: 3px; border-style: solid; }
+    body ._gl-bo-4 {border-width: 4px; border-style: solid; }
+    body ._gl-bo-5 {border-width: 5px; border-style: solid; }
+
+
+
+    /* Border Widths */
+    body ._gl-bod {border-width: 1px;}
+    body ._gl-bo-2 {border-width: 2px;}
+    body ._gl-bo-3 {border-width: 3px;}
+    body ._gl-bo-4 {border-width: 4px;}
+    body ._gl-bo-5 {border-width: 5px;}
+    body ._gl-bo-none {border: none;}
+
+
+    /* Info Hover Background Classes */
+    body ._gl-hv-info-1:hover {background-color: var(--info_1);}
+    body ._gl-hv-info-2:hover {background-color: var(--info_2);}
+    body ._gl-hv-info-3:hover {background-color: var(--info_3);}
+    body ._gl-hv-info-4:hover {background-color: var(--info_4);}
+    body ._gl-hv-info-5:hover {background-color: var(--info_5);}
+    body ._gl-hv-info-6:hover {background-color: var(--info_6);}
+    body ._gl-hv-info-7:hover {background-color: var(--info_7);}
+    body ._gl-hv-info-8:hover {background-color: var(--info_8);}
+    body ._gl-hv-info-9:hover {background-color: var(--info_9);}
+    body ._gl-hv-info-10:hover {background-color: var(--info_10);}
+
+    /* Error Hover Background Classes */
+    body ._gl-hv-err-1:hover {background-color: var(--err_1);}
+    body ._gl-hv-err-2:hover {background-color: var(--err_2);}
+    body ._gl-hv-err-3:hover {background-color: var(--err_3);}
+    body ._gl-hv-err-4:hover {background-color: var(--err_4);}
+    body ._gl-hv-err-5:hover {background-color: var(--err_5);}
+    body ._gl-hv-err-6:hover {background-color: var(--err_6);}
+    body ._gl-hv-err-7:hover {background-color: var(--err_7);}
+    body ._gl-hv-err-8:hover {background-color: var(--err_8);}
+    body ._gl-hv-err-9:hover {background-color: var(--err_9);}
+    body ._gl-hv-err-10:hover {background-color: var(--err_10);}
+
+    /* Warning Hover Background Classes */
+    body ._gl-hv-warn-1:hover {background-color: var(--warn_1);}
+    body ._gl-hv-warn-2:hover {background-color: var(--warn_2);}
+    body ._gl-hv-warn-3:hover {background-color: var(--warn_3);}
+    body ._gl-hv-warn-4:hover {background-color: var(--warn_4);}
+    body ._gl-hv-warn-5:hover {background-color: var(--warn_5);}
+    body ._gl-hv-warn-6:hover {background-color: var(--warn_6);}
+    body ._gl-hv-warn-7:hover {background-color: var(--warn_7);}
+    body ._gl-hv-warn-8:hover {background-color: var(--warn_8);}
+    body ._gl-hv-warn-9:hover {background-color: var(--warn_9);}
+    body ._gl-hv-warn-10:hover {background-color: var(--warn_10);}
+
+    /* Grey Hover Background Classes */
+    body ._gl-hv-grey-1:hover {background-color: var(--grey_1);}
+    body ._gl-hv-grey-2:hover {background-color: var(--grey_2);}
+    body ._gl-hv-grey-3:hover {background-color: var(--grey_3);}
+    body ._gl-hv-grey-4:hover {background-color: var(--grey_4);}
+    body ._gl-hv-grey-5:hover {background-color: var(--grey_5);}
+    body ._gl-hv-grey-6:hover {background-color: var(--grey_6);}
+    body ._gl-hv-grey-7:hover {background-color: var(--grey_7);}
+    body ._gl-hv-grey-8:hover {background-color: var(--grey_8);}
+    body ._gl-hv-grey-9:hover {background-color: var(--grey_9);}
+    body ._gl-hv-grey-10:hover {background-color: var(--grey_10);}
+
+    /* Success Hover Background Classes */
+    body ._gl-hv-succ-1:hover {background-color: var(--succ_1);}
+    body ._gl-hv-succ-2:hover {background-color: var(--succ_2);}
+    body ._gl-hv-succ-3:hover {background-color: var(--succ_3);}
+    body ._gl-hv-succ-4:hover {background-color: var(--succ_4);}
+    body ._gl-hv-succ-5:hover {background-color: var(--succ_5);}
+    body ._gl-hv-succ-6:hover {background-color: var(--succ_6);}
+    body ._gl-hv-succ-7:hover {background-color: var(--succ_7);}
+    body ._gl-hv-succ-8:hover {background-color: var(--succ_8);}
+    body ._gl-hv-succ-9:hover {background-color: var(--succ_9);}
+    body ._gl-hv-succ-10:hover {background-color: var(--succ_10);}
+
+    /* Info Hover Text Color Classes */
+    body ._gl-ht-info-1:hover {color: var(--info_1);}
+    body ._gl-ht-info-2:hover {color: var(--info_2);}
+    body ._gl-ht-info-3:hover {color: var(--info_3);}
+    body ._gl-ht-info-4:hover {color: var(--info_4);}
+    body ._gl-ht-info-5:hover {color: var(--info_5);}
+    body ._gl-ht-info-6:hover {color: var(--info_6);}
+    body ._gl-ht-info-7:hover {color: var(--info_7);}
+    body ._gl-ht-info-8:hover {color: var(--info_8);}
+    body ._gl-ht-info-9:hover {color: var(--info_9);}
+    body ._gl-ht-info-10:hover {color: var(--info_10);}
+
+    /* Error Hover Text Color Classes */
+    body ._gl-ht-err-1:hover {color: var(--err_1);}
+    body ._gl-ht-err-2:hover {color: var(--err_2);}
+    body ._gl-ht-err-3:hover {color: var(--err_3);}
+    body ._gl-ht-err-4:hover {color: var(--err_4);}
+    body ._gl-ht-err-5:hover {color: var(--err_5);}
+    body ._gl-ht-err-6:hover {color: var(--err_6);}
+    body ._gl-ht-err-7:hover {color: var(--err_7);}
+    body ._gl-ht-err-8:hover {color: var(--err_8);}
+    body ._gl-ht-err-9:hover {color: var(--err_9);}
+    body ._gl-ht-err-10:hover {color: var(--err_10);}
+
+    /* Warning Hover Text Color Classes */
+    body ._gl-ht-warn-1:hover {color: var(--warn_1);}
+    body ._gl-ht-warn-2:hover {color: var(--warn_2);}
+    body ._gl-ht-warn-3:hover {color: var(--warn_3);}
+    body ._gl-ht-warn-4:hover {color: var(--warn_4);}
+    body ._gl-ht-warn-5:hover {color: var(--warn_5);}
+    body ._gl-ht-warn-6:hover {color: var(--warn_6);}
+    body ._gl-ht-warn-7:hover {color: var(--warn_7);}
+    body ._gl-ht-warn-8:hover {color: var(--warn_8);}
+    body ._gl-ht-warn-9:hover {color: var(--warn_9);}
+    body ._gl-ht-warn-10:hover {color: var(--warn_10);}
+
+    /* Grey Hover Text Color Classes */
+    body ._gl-ht-grey-1:hover {color: var(--grey_1);}
+    body ._gl-ht-grey-2:hover {color: var(--grey_2);}
+    body ._gl-ht-grey-3:hover {color: var(--grey_3);}
+    body ._gl-ht-grey-4:hover {color: var(--grey_4);}
+    body ._gl-ht-grey-5:hover {color: var(--grey_5);}
+    body ._gl-ht-grey-6:hover {color: var(--grey_6);}
+    body ._gl-ht-grey-7:hover {color: var(--grey_7);}
+    body ._gl-ht-grey-8:hover {color: var(--grey_8);}
+    body ._gl-ht-grey-9:hover {color: var(--grey_9);}
+    body ._gl-ht-grey-10:hover {color: var(--grey_10);}
+
+    /* Success Hover Text Color Classes */
+    body ._gl-ht-succ-1:hover {color: var(--succ_1);}
+    body ._gl-ht-succ-2:hover {color: var(--succ_2);}
+    body ._gl-ht-succ-3:hover {color: var(--succ_3);}
+    body ._gl-ht-succ-4:hover {color: var(--succ_4);}
+    body ._gl-ht-succ-5:hover {color: var(--succ_5);}
+    body ._gl-ht-succ-6:hover {color: var(--succ_6);}
+    body ._gl-ht-succ-7:hover {color: var(--succ_7);}
+    body ._gl-ht-succ-8:hover {color: var(--succ_8);}
+    body ._gl-ht-succ-9:hover {color: var(--succ_9);}
+    body ._gl-ht-succ-10:hover {color: var(--succ_10);}
+
+    body ._gl-ht-un:hover {text-decoration: underline;}
+    body ._gl-hv-op:hover {opacity: 0.7;}
+    body ._gl-hv {transition: 0.25s;}
+
+
+
+    /* Info Fill Classes */
+    body ._gl-fi-info-1 {fill: var(--info_1);}
+    body ._gl-fi-info-2 {fill: var(--info_2);}
+    body ._gl-fi-info-3 {fill: var(--info_3);}
+    body ._gl-fi-info-4 {fill: var(--info_4);}
+    body ._gl-fi-info-5 {fill: var(--info_5);}
+    body ._gl-fi-info-6 {fill: var(--info_6);}
+    body ._gl-fi-info-7 {fill: var(--info_7);}
+    body ._gl-fi-info-8 {fill: var(--info_8);}
+    body ._gl-fi-info-9 {fill: var(--info_9);}
+    body ._gl-fi-info-10 {fill: var(--info_10);}
+
+    /* Error Fill Classes */
+    body ._gl-fi-err-1 {fill: var(--err_1);}
+    body ._gl-fi-err-2 {fill: var(--err_2);}
+    body ._gl-fi-err-3 {fill: var(--err_3);}
+    body ._gl-fi-err-4 {fill: var(--err_4);}
+    body ._gl-fi-err-5 {fill: var(--err_5);}
+    body ._gl-fi-err-6 {fill: var(--err_6);}
+    body ._gl-fi-err-7 {fill: var(--err_7);}
+    body ._gl-fi-err-8 {fill: var(--err_8);}
+    body ._gl-fi-err-9 {fill: var(--err_9);}
+    body ._gl-fi-err-10 {fill: var(--err_10);}
+
+    /* Warning Fill Classes */
+    body ._gl-fi-warn-1 {fill: var(--warn_1);}
+    body ._gl-fi-warn-2 {fill: var(--warn_2);}
+    body ._gl-fi-warn-3 {fill: var(--warn_3);}
+    body ._gl-fi-warn-4 {fill: var(--warn_4);}
+    body ._gl-fi-warn-5 {fill: var(--warn_5);}
+    body ._gl-fi-warn-6 {fill: var(--warn_6);}
+    body ._gl-fi-warn-7 {fill: var(--warn_7);}
+    body ._gl-fi-warn-8 {fill: var(--warn_8);}
+    body ._gl-fi-warn-9 {fill: var(--warn_9);}
+    body ._gl-fi-warn-10 {fill: var(--warn_10);}
+
+    /* Grey Fill Classes */
+    body ._gl-fi-grey-1 {fill: var(--grey_1);}
+    body ._gl-fi-grey-2 {fill: var(--grey_2);}
+    body ._gl-fi-grey-3 {fill: var(--grey_3);}
+    body ._gl-fi-grey-4 {fill: var(--grey_4);}
+    body ._gl-fi-grey-5 {fill: var(--grey_5);}
+    body ._gl-fi-grey-6 {fill: var(--grey_6);}
+    body ._gl-fi-grey-7 {fill: var(--grey_7);}
+    body ._gl-fi-grey-8 {fill: var(--grey_8);}
+    body ._gl-fi-grey-9 {fill: var(--grey_9);}
+    body ._gl-fi-grey-10 {fill: var(--grey_10);}
+
+    /* Success Fill Classes */
+    body ._gl-fi-succ-1 {fill: var(--succ_1);}
+    body ._gl-fi-succ-2 {fill: var(--succ_2);}
+    body ._gl-fi-succ-3 {fill: var(--succ_3);}
+    body ._gl-fi-succ-4 {fill: var(--succ_4);}
+    body ._gl-fi-succ-5 {fill: var(--succ_5);}
+    body ._gl-fi-succ-6 {fill: var(--succ_6);}
+    body ._gl-fi-succ-7 {fill: var(--succ_7);}
+    body ._gl-fi-succ-8 {fill: var(--succ_8);}
+    body ._gl-fi-succ-9 {fill: var(--succ_9);}
+    body ._gl-fi-succ-10 {fill: var(--succ_10);}
+
+
+
+    /* Info Fill Classes Hover */
+    body ._gl-hfi-info-1:hover {fill: var(--info_1);}
+    body ._gl-hfi-info-2:hover {fill: var(--info_2);}
+    body ._gl-hfi-info-3:hover {fill: var(--info_3);}
+    body ._gl-hfi-info-4:hover {fill: var(--info_4);}
+    body ._gl-hfi-info-5:hover {fill: var(--info_5);}
+    body ._gl-hfi-info-6:hover {fill: var(--info_6);}
+    body ._gl-hfi-info-7:hover {fill: var(--info_7);}
+    body ._gl-hfi-info-8:hover {fill: var(--info_8);}
+    body ._gl-hfi-info-9:hover {fill: var(--info_9);}
+    body ._gl-hfi-info-10:hover {fill: var(--info_10);}
+
+    /* Error Fill Classes Hover */
+    body ._gl-hfi-err-1:hover {fill: var(--err_1);}
+    body ._gl-hfi-err-2:hover {fill: var(--err_2);}
+    body ._gl-hfi-err-3:hover {fill: var(--err_3);}
+    body ._gl-hfi-err-4:hover {fill: var(--err_4);}
+    body ._gl-hfi-err-5:hover {fill: var(--err_5);}
+    body ._gl-hfi-err-6:hover {fill: var(--err_6);}
+    body ._gl-hfi-err-7:hover {fill: var(--err_7);}
+    body ._gl-hfi-err-8:hover {fill: var(--err_8);}
+    body ._gl-hfi-err-9:hover {fill: var(--err_9);}
+    body ._gl-hfi-err-10:hover {fill: var(--err_10);}
+
+    /* Warning Fill Classes Hover */
+    body ._gl-hfi-warn-1:hover {fill: var(--warn_1);}
+    body ._gl-hfi-warn-2:hover {fill: var(--warn_2);}
+    body ._gl-hfi-warn-3:hover {fill: var(--warn_3);}
+    body ._gl-hfi-warn-4:hover {fill: var(--warn_4);}
+    body ._gl-hfi-warn-5:hover {fill: var(--warn_5);}
+    body ._gl-hfi-warn-6:hover {fill: var(--warn_6);}
+    body ._gl-hfi-warn-7:hover {fill: var(--warn_7);}
+    body ._gl-hfi-warn-8:hover {fill: var(--warn_8);}
+    body ._gl-hfi-warn-9:hover {fill: var(--warn_9);}
+    body ._gl-hfi-warn-10:hover {fill: var(--warn_10);}
+
+    /* Grey Fill Classes Hover */
+    body ._gl-hfi-grey-1:hover {fill: var(--grey_1);}
+    body ._gl-hfi-grey-2:hover {fill: var(--grey_2);}
+    body ._gl-hfi-grey-3:hover {fill: var(--grey_3);}
+    body ._gl-hfi-grey-4:hover {fill: var(--grey_4);}
+    body ._gl-hfi-grey-5:hover {fill: var(--grey_5);}
+    body ._gl-hfi-grey-6:hover {fill: var(--grey_6);}
+    body ._gl-hfi-grey-7:hover {fill: var(--grey_7);}
+    body ._gl-hfi-grey-8:hover {fill: var(--grey_8);}
+    body ._gl-hfi-grey-9:hover {fill: var(--grey_9);}
+    body ._gl-hfi-grey-10:hover {fill: var(--grey_10);}
+
+    /* Success Fill Classes Hover */
+    body ._gl-hfi-succ-1:hover {fill: var(--succ_1);}
+    body ._gl-hfi-succ-2:hover {fill: var(--succ_2);}
+    body ._gl-hfi-succ-3:hover {fill: var(--succ_3);}
+    body ._gl-hfi-succ-4:hover {fill: var(--succ_4);}
+    body ._gl-hfi-succ-5:hover {fill: var(--succ_5);}
+    body ._gl-hfi-succ-6:hover {fill: var(--succ_6);}
+    body ._gl-hfi-succ-7:hover {fill: var(--succ_7);}
+    body ._gl-hfi-succ-8:hover {fill: var(--succ_8);}
+    body ._gl-hfi-succ-9:hover {fill: var(--succ_9);}
+    body ._gl-hfi-succ-10:hover {fill: var(--succ_10);}
+
+
+
+    /* Opacity */
+    body ._gl-op1 {opacity: 0.1; }
+    body ._gl-op2 {opacity: 0.2; }
+    body ._gl-op3 {opacity: 0.3; }
+    body ._gl-op4 {opacity: 0.4; }
+    body ._gl-op5 {opacity: 0.5; }
+    body ._gl-op6 {opacity: 0.6; }
+    body ._gl-op7 {opacity: 0.7; }
+    body ._gl-op8 {opacity: 0.8; }
+    body ._gl-op9 {opacity: 0.9; }
+
+
+
+    /* Breaks */
+    body ._gl-br {
+        display: block;
+        content: "";
+        width: 100%;
+    }
+    body ._gl-brxs {margin-top: 10px; }
+    body ._gl-brsm {margin-top: 20px; }
+    body ._gl-brmd {margin-top: 25px; }
+    body ._gl-brlg {margin-top: 40px; }
+    body ._gl-brxl {margin-top: 50px; }
+    body ._gl-brgl {margin-top: 70px; }
+
+
+
+    /* widths */
+    body .__w {max-width: 90vw; }
+    body .__13 {width: 1300px; }
+    body .__12 {width: 1200px; }
+    body .__11 {width: 1100px; }
+    body .__10 {width: 1000px; }
+
+
+
+    /* Box Shadows */
+    body .__shd-xs {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), ;
+    }
+    body .__shd-sm {
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    body .__shd-md {
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    body .__shd-me {
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    }
+    body .__shd {
+        box-shadow: 3px 2px 3px 1px rgba(127, 126, 126, 0.1),2px 2px 4px  rgba(92, 90, 90, 0.1)
+    }
+
+
+    /* Font Size */
+    body ._gl-txs {font-size: 10px; }
+    body ._gl-tsm {font-size: 20px; }
+    body ._gl-tmd {font-size: 25px; }
+    body ._gl-tlg {font-size: 40px; }
+    body ._gl-txl {font-size: 50px; }
+    body ._gl-tgl {font-size: 70px; }
+
+
+
+
+    /* Text Align */
+    body ._gl-tal {text-align: center; }
+    body ._gl-tle {text-align: left; }
+    body ._gl-tri {text-align: right; }
+
+
+
+    /* Margins */
+    body ._gl-mauto {margin: auto; }
+    body ._gl-mlauto {margin-left: auto; }
+    body ._gl-mrauto {margin-right: auto; }
+
+
+
+    /* Border Radius */
+    body ._gl-bdxs {border-radius: 10px; }
+    body ._gl-bdsm {border-radius: 20px; }
+    body ._gl-bdmd {border-radius: 25px; }
+    body ._gl-bdlg {border-radius: 40px; }
+    body ._gl-bdxl {border-radius: 50px; }
+    body ._gl-bdgl {border-radius: 70px; }
+    body ._gl-brro {border-radius: 50%; }
+
+
+
+    /* Padding */
+    body ._gl-padxs {padding: 10px; }
+    body ._gl-padsm {padding: 20px; }
+    body ._gl-padmd {padding: 25px; }
+    body ._gl-padlg {padding: 40px; }
+    body ._gl-padxl {padding: 50px; }
+    body ._gl-padgl {padding: 70px; }
+
+
+
+    /* Text Styles */
+    body ._gl-un {text-decoration: underline; }
+    body ._gl-nun {text-decoration: none; }
+    body ._gl-em {font-style: italic; }
+    body ._gl-bo {font-weight: bold; }
+}
+
+._hide {display: none; }
