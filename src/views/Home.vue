@@ -3286,6 +3286,9 @@ export default {
 
           this.videoData.speed = 1;
 
+          // update lyrics
+          this.lyricData.title = this.videoData.title;
+
           // updating video player
           this.ytplayer.loadVideoById(id);
           this.ytplayer.setPlaybackRate(1);
