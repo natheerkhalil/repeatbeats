@@ -2476,6 +2476,9 @@ export default {
 
               this.cooldown = 0;
 
+              this.tempVideoData.start = this.videoData.start;
+              this.tempVideoData.end = this.videoData.end;
+
               this.cacheAll();
               this.cacheVideo();
             } else {
