@@ -1,3 +1,5 @@
+<!-- THIS COMPONENT IS NOT IN USE 
+
 <template>
     <div style="border-bottom: 1px solid var(--grey-3); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);" class="__b _flex _ai-ce _fd-ro _jc-be __padsm">
         <div @click="goHome()" class="__po _flex _cc _fd-ro">
@@ -37,4 +39,4 @@ export default {
         }
     }
 }
-</script>
+</script>-->

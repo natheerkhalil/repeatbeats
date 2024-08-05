@@ -1,3 +1,5 @@
+<!-- THIS COMPONENT IS NOT IN USE
+
 <template>
     <div id="sidebar" class="sidebar _flex _fd-co">
         <div id="sidebar-inner" class="__b _flex _fd-co">
@@ -188,4 +190,4 @@ export default {
 .sidebar-transition {
     transition: right 0.5s;
 }
-</style>
+</style> -->
