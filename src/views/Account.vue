@@ -1,7 +1,7 @@
 <template>
-    <div @click="goHome" style="border-bottom: 1px solid var(--grey-3); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+    <div style="border-bottom: 1px solid var(--grey-3); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
         class="__b __po __bg-grey-2 _flex _ai-ce _fd-ro _jc-be __padsm">
-        <div class="_flex _cc _fd-ro">
+        <div @click="goHome" class="_flex _cc _fd-ro">
             <img style="width: 35px;" src="/icon.png" alt="Logo"> &nbsp;
             &nbsp;
             <p class="logo-text _sm-hide __tmd __txt-grey-10">RepeatBeats</p> &nbsp;
