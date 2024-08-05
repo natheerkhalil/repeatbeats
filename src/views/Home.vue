@@ -2855,6 +2855,7 @@ export default {
       this.allVideos.forEach(v => {
         localStorage.removeItem(`cache_vid_${v.url}`);
       })
+      localStorage.removeItem("cache_received_shares");
 
       window.location.reload();
     },
