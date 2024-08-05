@@ -1784,7 +1784,7 @@ export default {
           if (!res.failed) {
             this.receivedShares = res.data.data;
 
-            localStorage.setItem('cache_received_shares', JSON.stringify(this.receivedShares));
+            this.cacheReceivedShares();
           } else {
             useResponseStore().updateResponse('Failed to load received shares. Please try again later', 'err');
           }
@@ -1815,6 +1815,7 @@ export default {
           this.cacheAll();
           this.cacheFavs();
           this.cachePlaylists();
+          this.cacheReceivedShares();
         } else {
           useResponseStore().updateResponse('Failed to accept share', 'err');
         }
@@ -1833,6 +1834,8 @@ export default {
             if (this.receivedShares.length === 0) {
               this.showSharesModal = false;
             }
+
+            this.cacheReceivedShares();
           }
         })
       }
@@ -2853,6 +2856,9 @@ export default {
       localStorage.setItem(`cache_vid_${this.videoData.url}`, JSON.stringify(this.videoData));
     },
     cacheVideoPlaylist() {
+    },
+    cacheReceivedShares() {
+      localStorage.setItem('cache_received_shares', JSON.stringify(this.receivedShares)); 
     },
     syncCache() {
       localStorage.removeItem("cache_all");
