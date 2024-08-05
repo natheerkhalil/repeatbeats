@@ -1204,6 +1204,8 @@ import axios from 'axios';
 
 import draggable from 'vuedraggable/src/vuedraggable'
 
+import { YT_API_KEY } from "../../config";
+
 export default {
 
   components: {
@@ -1260,7 +1262,7 @@ export default {
       videoInitialised: false,
 
       // KEY
-      apiKey: "AIzaSyDV9INVJodSVheJQohxNRdj-1PJezpTFc8",
+      apiKey: YT_API_KEY,
 
       // IMPORT PLAYLIST URL
       importPlaylistUrl: '',
