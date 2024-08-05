@@ -50,7 +50,7 @@ export async function request(data, url, authenticated = true) {
     }
     
     try {
-        await axios.post(API_URL + "/api" + url, data, headers).then(response => {
+        await axios.post(API_URL + url, data, headers).then(response => {
             res = response;
         })
 
