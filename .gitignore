@@ -31,3 +31,6 @@ coverage
 
 # Unused public assets
 public/unused/
+
+# Environment
+.env
