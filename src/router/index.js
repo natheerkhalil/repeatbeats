@@ -25,7 +25,7 @@ if (isAuthenticated) {
     component: function () {
       return import("@/views/Landing.vue");
     },
-    meta: { requiresGuest: true }
+    meta: { requiresGuest: true, bg: "dark" }
   };
 }
 
@@ -65,7 +65,7 @@ const routes = [
     component: function () {
       return import("@/views/Login.vue");
     },
-    meta: { requiresGuest: true }
+    meta: { requiresGuest: true, bg: "img" }
   },
   {
     path: '/register',
@@ -73,7 +73,7 @@ const routes = [
     component: function () {
       return import("@/views/Register.vue");
     },
-    meta: { requiresGuest: true }
+    meta: { requiresGuest: true, bg: "img" }
   },
 
   {
@@ -142,6 +142,24 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to, from) => {
   const msg = to.query.msg;
   const type = to.query.type;
+
+  // Update background
+  let bg = to.meta.bg;
+  const bgel = document.getElementById("app");
+
+  switch (bg) {
+    case "dark":
+      bgel.style.background = "var(--grey_1)";
+      break;
+    case "img":
+      bgel.style.backgroundImage = "url('/bg.webp')";
+      bgel.style.backgroundRepeat = "no-repeat";
+      bgel.style.backgroundSize = "cover";
+      break;
+    default:
+      bgel.style.background = "white";
+      break;
+  }
 
   if (msg && type) {
     const responseStore = useResponseStore();
