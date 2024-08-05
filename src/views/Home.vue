@@ -1784,7 +1784,7 @@ export default {
           if (!res.failed) {
             this.receivedShares = res.data.data;
 
-            localStorage.setItem('cache_received_shares', JSON.stringify(this.receivedShares));
+            this.cacheReceivedShares();
           } else {
             useResponseStore().updateResponse('Failed to load received shares. Please try again later', 'err');
           }
@@ -1807,11 +1807,15 @@ export default {
           // remove share from received shares
           this.receivedShares = this.receivedShares.filter(r => r.id !== id);
 
-          this.showSharesModal = false;
+          // if received shares are empty, hide modal
+          if (this.receivedShares.length === 0) {
+            this.showSharesModal = false;
+          }
 
           this.cacheAll();
           this.cacheFavs();
           this.cachePlaylists();
+          this.cacheReceivedShares();
         } else {
           useResponseStore().updateResponse('Failed to accept share', 'err');
         }
@@ -1826,7 +1830,12 @@ export default {
             // remove share from received shares
             this.receivedShares = this.receivedShares.filter(r => r.id !== id);
 
-            this.showSharesModal = false;
+            // if received shares are empty, hide modal
+            if (this.receivedShares.length === 0) {
+              this.showSharesModal = false;
+            }
+
+            this.cacheReceivedShares();
           }
         })
       }
@@ -2848,6 +2857,9 @@ export default {
     },
     cacheVideoPlaylist() {
     },
+    cacheReceivedShares() {
+      localStorage.setItem('cache_received_shares', JSON.stringify(this.receivedShares)); 
+    },
     syncCache() {
       localStorage.removeItem("cache_all");
       localStorage.removeItem("cache_favs");
@@ -2855,6 +2867,7 @@ export default {
       this.allVideos.forEach(v => {
         localStorage.removeItem(`cache_vid_${v.url}`);
       })
+      localStorage.removeItem("cache_received_shares");
 
       window.location.reload();
     },
