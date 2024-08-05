@@ -132,6 +132,11 @@ export default {
         }
     },
 
+    mounted() {
+        // CHECK IF USER IS AUTHENTICATED
+        this.checkAuthToken();
+    },
+
     created() {
         let cache_all = localStorage.getItem("cache_all");
 
@@ -160,6 +165,16 @@ export default {
         goHome() {
             this.$router.push('/')
         },
+
+        // CHECK AUTHENTICATION STATE OF USER
+        checkAuthToken() {
+            setInterval(() => {
+                if (!localStorage.getItem("auth_token")) {
+                    window.location.href = "/login?msg=You have been logged out&type=info";
+                }
+            }, 1000);
+        },
+
 
         deleteAccount() {
             if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
@@ -246,7 +261,7 @@ export default {
             }
         },
 
-        isValidEmail (email) {return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); },
+        isValidEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); },
 
         sendEmailChangeEmail() {
             if (!this.isValidEmail(this.newEmail)) {

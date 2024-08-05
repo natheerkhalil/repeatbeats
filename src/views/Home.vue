@@ -1385,6 +1385,11 @@ export default {
     }
   },
 
+  mounted() {
+    // REDIRECT IF USER IS UNAUTHENTICATED
+    this.checkAuthToken();
+  },
+
   created() {
     setInterval(() => {
       if (!uauth.isAuthenticated()) {
@@ -1410,6 +1415,15 @@ export default {
   },
 
   methods: {
+    // CHECK AUTHENTICATION STATE OF USER
+    checkAuthToken() {
+      setInterval(() => {
+        if (!localStorage.getItem("auth_token")) {
+          window.location.href = "/login?msg=You have been logged out&type=info";
+        }
+      }, 1000);
+    },
+
     // VERIFY USER'S EMAIL
     verifyEmail() {
       let cache = localStorage.getItem("email_verified");
@@ -2860,7 +2874,7 @@ export default {
     cacheVideoPlaylist() {
     },
     cacheReceivedShares() {
-      localStorage.setItem('cache_received_shares', JSON.stringify(this.receivedShares)); 
+      localStorage.setItem('cache_received_shares', JSON.stringify(this.receivedShares));
     },
     syncCache() {
       localStorage.removeItem("cache_all");
