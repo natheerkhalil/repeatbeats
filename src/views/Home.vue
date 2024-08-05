@@ -1807,7 +1807,10 @@ export default {
           // remove share from received shares
           this.receivedShares = this.receivedShares.filter(r => r.id !== id);
 
-          this.showSharesModal = false;
+          // if received shares are empty, hide modal
+          if (this.receivedShares.length === 0) {
+            this.showSharesModal = false;
+          }
 
           this.cacheAll();
           this.cacheFavs();
@@ -1826,7 +1829,10 @@ export default {
             // remove share from received shares
             this.receivedShares = this.receivedShares.filter(r => r.id !== id);
 
-            this.showSharesModal = false;
+            // if received shares are empty, hide modal
+            if (this.receivedShares.length === 0) {
+              this.showSharesModal = false;
+            }
           }
         })
       }
