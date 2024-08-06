@@ -1262,9 +1262,6 @@ export default {
       showPlaylistCreate: false,
       showVidData: true,
 
-      // INITIALISED (UNUSED)
-      playerInitialised: false,
-
       // KEY
       apiKey: YT_API_KEY,
 
@@ -2996,8 +2993,6 @@ export default {
           'onStateChange': (event) => this.onPlayerStateChange(event)
         }
       });
-
-      this.playerInitialised = true;
     },
     onPlayerReady(event) {
       event.target.seekTo(this.videoData.start);
