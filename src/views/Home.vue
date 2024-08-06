@@ -1264,7 +1264,6 @@ export default {
 
       // INITIALISED (UNUSED)
       playerInitialised: false,
-      videoInitialised: false,
 
       // KEY
       apiKey: YT_API_KEY,
@@ -1695,9 +1694,7 @@ export default {
         vid = list[index];
       }
 
-      if (!this.videoInitialised) {
-        this.pressPlay(vid.url);
-      }
+      this.pressPlay(vid.url);
     },
     previousVideo() {
       let list;
@@ -1730,9 +1727,7 @@ export default {
         vid = list[index];
       }
 
-      if (!this.videoInitialised) {
-        this.pressPlay(vid.url);
-      }
+      this.pressPlay(vid.url);
     },
 
 
@@ -3088,9 +3083,7 @@ export default {
               vid = list[index];
             }
 
-            if (!this.videoInitialised) {
-              this.pressPlay(vid.url);
-            }
+            this.pressPlay(vid.url);
           }
         }
       }
@@ -3141,8 +3134,6 @@ export default {
     reloadVideo(url) {
       this.ytplayer.loadVideoById(url);
       this.ytplayer.setPlaybackRate(parseFloat(this.videoData.speed));
-
-      this.videoInitialised = false;
     },
     parseUrl(url) {
       try {
@@ -3202,8 +3193,6 @@ export default {
       if (new Date().getTime() - this.cooldown > 750) {
 
         this.cooldown = new Date().getTime();
-
-        this.videoInitialised = true;
 
         if (url == this.videoData.url) {
           //useResponseStore().updateResponse('This video is already playing', 'warn');
@@ -3340,8 +3329,6 @@ export default {
           // updating video player
           this.ytplayer.loadVideoById(id);
           this.ytplayer.setPlaybackRate(1);
-
-          this.videoInitialised = false;
         } catch (error) {
           useResponseStore().updateResponse('Failed to get video.', 'err');
           console.error('Error fetching video info:', error);
