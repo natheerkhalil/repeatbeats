@@ -1383,8 +1383,17 @@ export default {
       showUnverifiedEmailAlert: false,
 
       // IS PLAYER LOADED
-      playerLoaded: false
+      playerLoaded: false,
+
+      // INTERVALS
+      tabInterval: null,
+      loopInterval: null,
     }
+  },
+
+  beforeUnmount() {
+    clearInterval(this.tabInterval);
+    clearInterval(this.loopInterval);
   },
 
   mounted() {
@@ -3008,7 +3017,7 @@ export default {
       event.target.setVolume(100);
 
       this.loopInterval = setInterval(() => this.loopVideo(), 1);
-      this.tabProgress = setInterval(() => this.playingTabProgress(), 1);
+      this.tabInterval = setInterval(() => this.playingTabProgress(), 1);
     },
     onPlayerStateChange(event) {
     },
