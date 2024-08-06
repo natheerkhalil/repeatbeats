@@ -107,6 +107,21 @@ const routes = [
   },
 
   {
+    path: "/terms",
+    name: "terms",
+    component: function () {
+      return import("@/views/Terms.vue");
+    },
+  },
+  {
+    path: "/privacy",
+    name: "privacy",
+    component: function () {
+      return import("@/views/Privacy.vue");
+    },
+  },
+
+  {
     path: '/:pathMatch(.*)*', // This will catch all undefined routes
     name: '404',
     component: function () {
