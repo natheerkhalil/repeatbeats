@@ -372,11 +372,16 @@
 
               <!-- save -->
               <div class="_flex tooltip">
-                <svg @click="save()" class="opt-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                  viewBox="0 0 24 24">
+                <svg v-if="!this.loading.save" @click="save()" class="opt-svg" xmlns="http://www.w3.org/2000/svg"
+                  width="24" height="24" viewBox="0 0 24 24">
                   <path
                     d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z" />
                 </svg>
+
+                <div
+                  style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+                  class="__loader-og" v-if="loading.save"></div>
+
                 <p class="tooltiptext">Save</p>
               </div>
 
@@ -1328,7 +1333,8 @@ export default {
       },
 
       loading: {
-        importPlaylist: false
+        importPlaylist: false,
+        save: false
       },
 
       // INITIALISED
@@ -2394,6 +2400,8 @@ export default {
 
     // SAVE VIDEO DATA
     save() {
+      this.loading.save = true;
+
       this.cooldown = new Date().getTime() + 1000 * 60 * 5;
 
       let valid = true;
@@ -2406,6 +2414,7 @@ export default {
         useResponseStore().updateResponse('Please fill in all required fields.', 'err');
 
         this.cooldown = 0;
+        this.loading.save = false;
 
         valid = false;
         return;
@@ -2416,6 +2425,7 @@ export default {
         useResponseStore().updateResponse('End time must be greater than start time.', 'err');
 
         this.cooldown = 0;
+        this.loading.save = false;
 
         valid = false;
         return;
@@ -2442,6 +2452,7 @@ export default {
             useResponseStore().updateResponse('Invalid skip time(s).', 'err');
 
             this.cooldown = 0;
+            this.loading.save = false;
 
             valid = false;
             return;
@@ -2451,6 +2462,7 @@ export default {
             useResponseStore().updateResponse('Invalid skip time(s).', 'err');
 
             this.cooldown = 0;
+            this.loading.save = false;
 
             valid = false;
             return;
@@ -2475,6 +2487,7 @@ export default {
               }
 
               this.cooldown = 0;
+              this.loading.save = false;
 
               this.tempVideoData.start = this.videoData.start;
               this.tempVideoData.end = this.videoData.end;
@@ -2493,6 +2506,7 @@ export default {
         } catch (err) {
 
           this.cooldown = 0;
+          this.loading.save = false;
 
           useResponseStore().updateResponse(`Failed to save video - ${err}`, 'err');
         }
