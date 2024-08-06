@@ -2481,19 +2481,50 @@ export default {
               this.ignoreLimit = false;
               this.ignoreSkip = false;
 
-              // if video isn't in allVideos, add it there
-              if (!this.allVideos.find(video => video.url === this.videoData.url)) {
-                this.allVideos.unshift(this.videoData);
-              }
-
               this.cooldown = 0;
               this.loading.save = false;
 
               this.tempVideoData.start = this.videoData.start;
               this.tempVideoData.end = this.videoData.end;
 
+              // if video isn't in allVideos, add it there
+              if (!this.allVideos.find(video => video.url === this.videoData.url)) {
+                this.allVideos.unshift(this.videoData);
+              }
+
+              // update the video in allVideos
+              this.allVideos = this.allVideos.map(video => {
+                if (video.url === this.videoData.url) {
+                  return this.videoData;
+                } else {
+                  return video;
+                }
+              });
+
+              // update the video in playlists
+              this.playlists.forEach(p => {
+                p.videos = p.videos.map(video => {
+                  if (video.url === this.videoData.url) {
+                    return this.videoData;
+                  } else {
+                    return video;
+                  }
+                });
+              });
+
+              // update the video in favs
+              this.favs = this.favs.map(fav => {
+                if (fav.url === this.videoData.url) {
+                  return this.videoData;
+                } else {
+                  return fav;
+                }
+              });
+
               this.cacheAll();
               this.cacheVideo();
+              this.cacheFavs();
+              this.cachePlaylists();
             } else {
               useResponseStore().updateResponse(`Failed to save video - ${res.data}`, 'err');
 
