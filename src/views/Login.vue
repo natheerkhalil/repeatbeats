@@ -139,7 +139,13 @@ export default {
                             window.location.href = "/";
                         }, 2000);
                     } else {
-                        useResponseStore().updateResponse("Invalid credentials", "err");
+                        let status = res.msg.response.status;
+
+                        if (status === 401) {
+                            useResponseStore().updateResponse("Invalid credentials", "err");
+                        } else {
+                            useResponseStore().updateResponse("An error occurred", "err");
+                        }
 
                         this.loading = false;
                     }
