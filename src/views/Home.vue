@@ -1079,6 +1079,18 @@
       </div>
     </div>
 
+    <!-- OPEN FEEDBACK MODAL -->
+    <div class="__po tooltip" @click="this.showFeedbackModal = !this.showFeedbackModal"
+      style="width: 30px; height: 30px; position: fixed; top: 90%; right: 15px;"><svg clip-rule="evenodd"
+        fill="var(--grey_5)" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m11.239 15.533c-1.045 3.004-1.238 3.451-1.238 3.84 0 .441.385.627.627.627.272 0 1.108-.301 3.829-1.249zm.888-.888 3.22 3.22 6.408-6.401c.163-.163.245-.376.245-.591 0-.213-.082-.427-.245-.591-.58-.579-1.458-1.457-2.039-2.036-.163-.163-.377-.245-.591-.245-.213 0-.428.082-.592.245zm-3.127-.895c0-.402-.356-.75-.75-.75-2.561 0-2.939 0-5.5 0-.394 0-.75.348-.75.75s.356.75.75.75h5.5c.394 0 .75-.348.75-.75zm5-3c0-.402-.356-.75-.75-.75-2.561 0-7.939 0-10.5 0-.394 0-.75.348-.75.75s.356.75.75.75h10.5c.394 0 .75-.348.75-.75zm0-3c0-.402-.356-.75-.75-.75-2.561 0-7.939 0-10.5 0-.394 0-.75.348-.75.75s.356.75.75.75h10.5c.394 0 .75-.348.75-.75zm0-3c0-.402-.356-.75-.75-.75-2.561 0-7.939 0-10.5 0-.394 0-.75.348-.75.75s.356.75.75.75h10.5c.394 0 .75-.348.75-.75z"
+          fill-rule="nonzero" />
+      </svg>
+      <p class="tooltiptext">Feedback</p>
+    </div>
+
     <!-- UPGRADE MODAL -->
     <div v-if="showUpgradeModal"
       style="max-height: 90vh; overflow-x: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
@@ -1114,6 +1126,51 @@
         <br>
         <div class="__b _flex _cc">
           <p style="max-width: max-content" class="__po __tmd __hovun">Upgrade</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEEDBACK MODAL -->
+    <div v-if="showFeedbackModal"
+      style="max-height: 90vh; overflow-x: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
+      class="__custscroll __w _flex _fd-co _ai-ce __bg-grey-10 __bo-1 __bod __padsm">
+
+      <div class="__b _flex _fd-ro _jc-be">
+        <p class="__tle">Feedback</p>
+        <div class="_flex _fd-ro _ai-ce">
+          <svg @click="showFeedbackModal = !showFeedbackModal" width=35 height=35 class="__po" clip-rule="evenodd"
+            fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z" />
+          </svg>
+        </div>
+      </div>
+      <hr class="__hr __b __bg-grey-1">
+      <br>
+
+      <div class="__b _flex _cc">
+        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 24 24">
+          <path
+            d="m11.239 15.533c-1.045 3.004-1.238 3.451-1.238 3.84 0 .441.385.627.627.627.272 0 1.108-.301 3.829-1.249zm.888-.888 3.22 3.22 6.408-6.401c.163-.163.245-.376.245-.591 0-.213-.082-.427-.245-.591-.58-.579-1.458-1.457-2.039-2.036-.163-.163-.377-.245-.591-.245-.213 0-.428.082-.592.245zm-3.127-.895c0-.402-.356-.75-.75-.75-2.561 0-2.939 0-5.5 0-.394 0-.75.348-.75.75s.356.75.75.75h5.5c.394 0 .75-.348.75-.75zm5-3c0-.402-.356-.75-.75-.75-2.561 0-7.939 0-10.5 0-.394 0-.75.348-.75.75s.356.75.75.75h10.5c.394 0 .75-.348.75-.75zm0-3c0-.402-.356-.75-.75-.75-2.561 0-7.939 0-10.5 0-.394 0-.75.348-.75.75s.356.75.75.75h10.5c.394 0 .75-.348.75-.75zm0-3c0-.402-.356-.75-.75-.75-2.561 0-7.939 0-10.5 0-.394 0-.75.348-.75.75s.356.75.75.75h10.5c.394 0 .75-.348.75-.75z"
+            fill-rule="nonzero" />
+        </svg>
+      </div>
+
+      <br>
+
+      <div class="__b _flex _c">
+        <p class="__b __tal __tmd">Have any comments about the website? Feel free to write them here</p>
+        <br>
+        <textarea v-model="feedback" placeholder="Write your feedback here..." style="resize: vertical; outline: none;"
+          class="__w __b __bg-grey-10 __txt-grey-1 __br __padsm"></textarea>
+        <br>
+        <button v-if="!this.loading.feedback" @click="submitFeedback"
+          class="__padxs __b __bg-grey-1 __txt-grey-10 __hv __hv-grey-10 __po __bo-grey-1 __bod __ht-grey-1">Submit</button>
+        <div class="__b _flex _cc">
+          <div
+            style="min-width: 50px; min-height: 50px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+            class="__loader-og" v-if="this.loading.feedback"></div>
         </div>
       </div>
     </div>
@@ -1203,7 +1260,7 @@ import { request } from "@/utils/api";
 
 import { useResponseStore } from "@/stores/response";
 
-import { toRaw } from 'vue';
+import { reactive, toRaw } from 'vue';
 
 import axios from 'axios';
 
@@ -1240,6 +1297,9 @@ export default {
 
   data() {
     return {
+      // FEEDBACK
+      feedback: '',
+
       // DRAG
       drag: false,
       favOrder: [],
@@ -1261,6 +1321,7 @@ export default {
       showSharesModal: false,
       showPlaylistCreate: false,
       showVidData: true,
+      showFeedbackModal: true,
 
       // KEY
       apiKey: YT_API_KEY,
@@ -1484,6 +1545,30 @@ export default {
       this.showUnverifiedEmailAlert = false;
 
       localStorage.setItem("showUnverifiedEmailAlert", JSON.stringify(false));
+    },
+
+
+    // FEEDBACK
+    submitFeedback() {
+      let fb = this.feedback;
+
+      if (fb.trim() !== '') {
+
+        this.loading.feedback = true;
+
+        request({ data: fb }, "/feedback").then(res => {
+          if (!res.failed) {
+            this.feedback = '';
+
+            useResponseStore().updateResponse("Thanks for the feedback!", "succ");
+
+            this.showFeedbackModal = false;
+            this.loading.feedback = false;
+          } else {
+            useResponseStore().updateResponse(`Something went wrong`, "err");
+          }
+        });
+      }
     },
 
 
