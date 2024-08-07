@@ -2378,9 +2378,11 @@ export default {
             // remove video from playlist array
             pl.videos = pl_videos.filter(obj => obj.url !== this.videoData.url);
 
-            // change thumbnail if playlist has no videos
+            // change thumbnail of playlist
             if (pl.videos.length == 0) {
               pl.thumbnail = 'https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg';
+            } else {
+              pl.thumbnail = pl_videos[0].thumbnail;
             }
 
             // if current video playlist is the one being removed, clear loop & shuffle
