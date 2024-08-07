@@ -1307,6 +1307,9 @@ export default {
       // MUSIC MODE
       musicMode: false,
 
+      // VISUAL TAB PROGRESS
+      playTime: 0,
+
       // AUTHENTICATION
       isAuthenticated: uauth.isAuthenticated(),
       uauth: uauth,
@@ -3104,6 +3107,7 @@ export default {
 
       this.loopInterval = setInterval(() => this.loopVideo(), 1);
       this.tabInterval = setInterval(() => this.playingTabProgress(), 1);
+      this.incrementPlayTime = setInterval(() => {this.playTime = this.ytplayer.getCurrentTime()}, 1);
     },
     onPlayerStateChange(event) {
     },
@@ -3202,23 +3206,16 @@ export default {
     },
     playingTabProgress() {
       // add percentage border to video tab - visual effect
-
-      var ct = this.ytplayer.playerInfo.currentTime;
-      ct = parseFloat(ct).toFixed(1);
-
       let videos = document.getElementsByClassName(this.videoData.url);
 
       let vstart = this.tempVideoData.start;
       let vend = this.tempVideoData.end;
 
-      let duration = parseFloat(vend) - parseFloat(vstart);
-
-      let percentage = ((ct - vstart) / duration) * 100;
-
-      //percentage = percentage.toFixed(1);
+      let pt = this.playTime;
+      let other_percentage = (pt / (vend - vstart)) * 100;
 
       for (let i = 0; i < videos.length; i++) {
-        videos[i].style.borderImage = `linear-gradient(to bottom right, green ${percentage}%, transparent ${percentage}%) 1`;
+        videos[i].style.borderImage = `linear-gradient(to bottom right, green ${other_percentage}%, transparent ${other_percentage}%) 1`;
       }
     },
     reloadVideo(url) {
