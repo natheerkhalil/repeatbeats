@@ -59,13 +59,13 @@
             <div class="__b _flex __padxs _fd-co">
                 <p class="__b __tmd __tle">Actions: </p>
                 <br>
-                <div class="__b __padsm __bod _fd-ro _jc-be _fw-wr _flex __bo-grey-8">
-                    <div style="width: max-content; " @click="sendPasswordResetEmail"
-                        class="__padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Password</div>
-                    <div style="width: max-content; " @click="showEmailModal = !showEmailModal"
-                        class="__padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Email</div>
-                    <div style="width: max-content; " @click="deleteAccount"
-                        class="__padxs _flex __bo-err-2 __txt-err-2 __bod __po">Delete Account</div>
+                <div class="_sm-fd-co _sm-cc __b __padsm __bod _fd-ro _jc-be _fw-wr _flex __bo-grey-8">
+                    <div style="margin-top: 15px; width: max-content; " @click="sendPasswordResetEmail"
+                        class="_sm-b _sm-tal _cc __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Password</div>
+                    <div style="margin-top: 15px; width: max-content; " @click="showEmailModal = !showEmailModal"
+                        class="_sm-b _sm-tal _cc __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Email</div>
+                    <div style="margin-top: 15px; width: max-content; " @click="deleteAccount"
+                        class="_sm-b _sm-tal _cc __padxs _flex __bo-err-2 __txt-err-2 __bod __po">Delete Account</div>
                 </div>
             </div>
         </div>
