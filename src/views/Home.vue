@@ -1321,7 +1321,7 @@ export default {
       showSharesModal: false,
       showPlaylistCreate: false,
       showVidData: true,
-      showFeedbackModal: true,
+      showFeedbackModal: false,
 
       // KEY
       apiKey: YT_API_KEY,
