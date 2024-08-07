@@ -576,6 +576,8 @@
     body ._sm-fd-ro { flex-direction: row; }
     body ._sm-fd-co { flex-direction: column; }
 
+    body ._sm-b {width: 100% !important; }
+
     /* Centre */
     body ._sm-cc { justify-content: center; align-items: center; }
   
