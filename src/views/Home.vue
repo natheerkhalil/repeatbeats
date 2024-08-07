@@ -1073,7 +1073,7 @@
           class="__loader-og" v-if="this.lyricData.loading == 1"></div>
       </div>
       <br v-if="showLyricsData">
-      <div style="max-height: 700px; overflow-y: auto; " class="__custscroll __b _flex _fd-co">
+      <div class="__custscroll __b _flex _fd-co">
         <textarea spellcheck="false" v-model="videoData.lyrics" class="__custscroll __b __bd-1 __bod __padxs __bg-none"
           style="outline: none; resize: vertical; min-height: 700px;"></textarea>
       </div>
