@@ -3259,10 +3259,11 @@ export default {
       let vend = this.tempVideoData.end;
 
       let pt = this.playTime;
-      let other_percentage = (pt / (vend - vstart)) * 100;
+      let duration = parseFloat(vend) - parseFloat(vstart);
+      let percentage = ((pt - vstart) / duration) * 100;
 
       for (let i = 0; i < videos.length; i++) {
-        videos[i].style.borderImage = `linear-gradient(to bottom right, green ${other_percentage}%, transparent ${other_percentage}%) 1`;
+        videos[i].style.borderImage = `linear-gradient(to bottom right, green ${percentage}%, transparent ${percentage}%) 1`;
       }
     },
     reloadVideo(url) {
