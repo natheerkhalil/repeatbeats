@@ -351,12 +351,17 @@
             <div class="__b _flex _fd-ro _jc-ar _ai-ce">
               <!-- delete -->
               <div v-if="allVideos.length > 1" class="_flex tooltip">
-                <svg @click="destroy()" class="opt-svg" width="24" height="24" clip-rule="evenodd" fill-rule="evenodd"
-                  stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg v-if="!loading.delete" @click="destroy()" class="opt-svg" width="24" height="24"
+                  clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
+                  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
                     fill-rule="nonzero" />
                 </svg>
+
+                <div
+                  style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+                  class="__loader-og" v-if="loading.delete"></div>
                 <p class="tooltiptext">Delete</p>
               </div>
 
@@ -974,7 +979,12 @@
       <br>
       <div class="__b _flex _fd-ro _fw-wr _ai-ce _jc-ar">
 
-        <div :id="`pl_${v.id}`" @click="addToPlaylist(v.id)" v-for="v in playlists" class="image-container">
+        <div
+          style="min-width: 75px; min-height: 75px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+          class="__loader-og" v-if="loading.add"></div>
+
+        <div v-if="!loading.add" :id="`pl_${v.id}`" @click="addToPlaylist(v.id)" v-for="v in playlists"
+          class="image-container">
           <img :src="v.thumbnail" alt="Image" class="image">
           <div class="overlay">
 
@@ -1195,12 +1205,17 @@
           placeholder="Username of person you'd like to share this song with"
           class="__b __padxs __bg-none __bo-none __txt-grey-1">
         &nbsp; &nbsp;
-        <svg class="__po" @click="share()" width="24" height="24" clip-rule="evenodd" fill-rule="evenodd"
-          stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg v-if="!loading.share" class="__po" @click="share()" width="24" height="24" clip-rule="evenodd"
+          fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
           <path
             d="m2.009 12.002c0-5.517 4.48-9.997 9.998-9.997s9.998 4.48 9.998 9.997c0 5.518-4.48 9.998-9.998 9.998s-9.998-4.48-9.998-9.998zm1.5 0c0 4.69 3.808 8.498 8.498 8.498s8.498-3.808 8.498-8.498-3.808-8.497-8.498-8.497-8.498 3.807-8.498 8.497zm6.711-4.845c-.141-.108-.3-.157-.456-.157-.389 0-.755.306-.755.749v8.501c0 .445.367.75.755.75.157 0 .316-.05.457-.159 1.554-1.203 4.199-3.252 5.498-4.258.184-.142.29-.36.29-.592 0-.23-.107-.449-.291-.591zm.289 7.564v-5.446l3.523 2.718z"
             fill-rule="nonzero" />
         </svg>
+
+        <div
+          style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+          class="__loader-og" v-if="loading.share"></div>
       </div>
     </div>
 
@@ -1394,7 +1409,11 @@ export default {
 
       loading: {
         importPlaylist: false,
-        save: false
+
+        save: false,
+        delete: false,
+        share: false,
+        add: false
       },
 
       // INITIALISED
@@ -2320,6 +2339,8 @@ export default {
       let pl = this.playlists.find(pl => pl.id === pl_id);
       let pl_videos = pl.videos;
 
+      this.loading.add = true;
+
       // check if video is already in playlist videos
       if (!pl_videos.some(obj => obj.url === this.videoData.url)) {
         request({ plid: pl_id, url: this.videoData.url }, '/playlist/add').then(res => {
@@ -2339,12 +2360,19 @@ export default {
             useResponseStore().updateResponse('Video added to playlist', 'succ');
 
             this.cachePlaylists();
+
+            this.loading.add = false;
           } else {
             useResponseStore().updateResponse('Failed to add video to playlist', 'err');
+
+            this.loading.add = false;
+
             console.log(res);
           }
         })
       } else if (window.confirm("Remove video from playlist?")) {
+        this.loading.add = true;
+
         request({ plid: pl_id, url: this.videoData.url }, '/playlist/remove').then(res => {
           if (!res.failed) {
             // remove video from playlist array
@@ -2366,8 +2394,13 @@ export default {
             useResponseStore().updateResponse('Video removed from playlist', 'succ');
 
             this.cachePlaylists();
+
+            this.loading.add = false;
           } else {
             useResponseStore().updateResponse('Failed to remove video from playlist', 'err');
+
+            this.loading.add = false;
+
             console.log(res);
           }
         });
@@ -2639,6 +2672,8 @@ export default {
     destroy() {
       if (window.confirm("Delete this video?")) {
 
+        this.loading.delete = true;
+
         request({ url: this.videoData.url }, '/video/delete').then(res => {
           if (!res.failed) {
             useResponseStore().updateResponse('Video deleted successfully', 'succ');
@@ -2683,8 +2718,12 @@ export default {
             this.cacheFavs();
             this.cachePlaylists();
             this.cacheVideoPlaylist();
+
+            this.loading.delete = false;
           } else {
             useResponseStore().updateResponse('Failed to delete video', 'err');
+
+            this.loading.delete = false;
             console.log(err);
           }
         });
@@ -2978,17 +3017,27 @@ export default {
 
     // SHARE VIDEO
     share() {
-      request({ url: this.videoData.url, username: this.shareUser }, '/share/create').then(res => {
-        if (!res.failed) {
-          this.showShareModal = !this.showShareModal;
-          this.shareUser = '';
 
-          useResponseStore().updateResponse('Video shared successfully', 'succ');
-        } else {
-          useResponseStore().updateResponse('Failed to share video - ' + res.data, 'err');
-          console.log(res);
-        }
-      });
+      if (this.shareUser.trim() != '') {
+        this.loading.share = true;
+
+        request({ url: this.videoData.url, username: this.shareUser }, '/share/create').then(res => {
+          if (!res.failed) {
+            this.showShareModal = !this.showShareModal;
+            this.shareUser = '';
+
+            useResponseStore().updateResponse('Video shared successfully', 'succ');
+
+            this.loading.share = false;
+          } else {
+            useResponseStore().updateResponse('Failed to share video - ' + res.data, 'err');
+
+            this.loading.share = false;
+
+            console.log(res);
+          }
+        });
+      }
     },
 
     // UPDATE CACHE
@@ -3103,7 +3152,7 @@ export default {
 
       this.loopInterval = setInterval(() => this.loopVideo(), 1);
       this.tabInterval = setInterval(() => this.playingTabProgress(), 1);
-      this.incrementPlayTime = setInterval(() => {this.playTime = this.ytplayer.getCurrentTime()}, 1);
+      this.incrementPlayTime = setInterval(() => { this.playTime = this.ytplayer.getCurrentTime() }, 1);
     },
     onPlayerStateChange(event) {
     },
