@@ -3096,9 +3096,9 @@ export default {
 
       this.videoData.thumbnail = `https://img.youtube.com/vi/${this.ytplayer.playerInfo.videoData.video_id}/hqdefault.jpg`;
 
-      setTimeout(() => {
-        this.ytplayer.setPlaybackRate(this.videoData.speed);
-      }, 1000)
+      setInterval(() => {
+        this.ytplayer.setPlaybackRate(parseFloat(this.videoData.speed));
+      }, 500)
 
       event.target.setVolume(100);
 
