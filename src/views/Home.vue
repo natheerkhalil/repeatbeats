@@ -3099,10 +3099,6 @@ export default {
 
       this.videoData.thumbnail = `https://img.youtube.com/vi/${this.ytplayer.playerInfo.videoData.video_id}/hqdefault.jpg`;
 
-      setInterval(() => {
-        this.ytplayer.setPlaybackRate(parseFloat(this.videoData.speed));
-      }, 500)
-
       event.target.setVolume(100);
 
       this.loopInterval = setInterval(() => this.loopVideo(), 1);
