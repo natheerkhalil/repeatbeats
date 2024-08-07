@@ -31,39 +31,18 @@ export default {
         setInterval(() => {
             this.msgs.forEach(m => {
                 if ((m.dt - Math.floor(Date.now() / 1000)) < 0) {
-                    // drop msg
                     this.msgs.splice(this.msgs.indexOf(m), 1);
                 }
             });
-        }, 1000);
+        }, 1);
     },
 
     data() {
         return {
             msgs: useResponseStore().msgs
-            /*
-            txtCol: this.responseStore.type === "warn" ? "__txt-grey-1" : "__txt-grey-10",
-
-            authStatus: this.authStore.isAuthenticated? "AUTHENTICATED" : "NOT AUTHENTICATED"*/
         }
     },
 
-    computed: {/*
-        rmsg() {
-            if (this.responseStore.preset == true) {
-                //return messages[this.responseStore.msg];
-                return this.responseStore.msg;
-            } else {
-                return this.responseStore.msg;
-            }
-        },
-        rtype() {
-            return this.responseStore.type;
-        },
-        rauth() {
-            return this.authStore.isAuthenticated? "AUTHENTICATED" : "NOT AUTHENTICATED";
-        }*/
-    },
     methods: {
         destroyMsg(msg) {
             this.msgs.splice(this.msgs.indexOf(msg), 1);
