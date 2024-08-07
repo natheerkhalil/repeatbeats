@@ -2530,6 +2530,7 @@ export default {
               useResponseStore().updateResponse(`Failed to save video - ${res.data}`, 'err');
 
               this.cooldown = 0;
+              this.loading.save = false;
 
               console.log(err);
             }
