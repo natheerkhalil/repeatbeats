@@ -90,6 +90,7 @@ const routes = [
     component: function () {
       return import("@/views/ForgotPassword.vue");
     },
+    meta: { bg: "img"}
   }, 
   {
     path: "/change-password",
@@ -97,6 +98,7 @@ const routes = [
     component: function () {
       return import("@/views/ChangePassword.vue");
     },
+    meta: { bg: "img"}
   },
   {
     path: "/change-email",
