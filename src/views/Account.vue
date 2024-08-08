@@ -25,8 +25,10 @@
                 </p>
                 <br class="m_hide _sm-show">
                 <div class="_flex _cc _fd-ro">
-                    <button @click="sendVerificationEmail" style="min-width: max-content;"
+                    <button v-if="!loading.verify" @click="sendVerificationEmail" style="min-width: max-content;"
                         class="__padxs __tsx __bg-none __po __bo-grey-1 __bod">Send Verification Email</button>
+                        <div v-if="loading.verify" style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+                        class="__loader-og"></div>
                 </div>
             </div>
             <br>
@@ -146,6 +148,7 @@ export default {
             loading: {
                 password: false,
                 email: false,
+                verify: false,
                 deleteAccount: false,
             },
         }
@@ -245,16 +248,22 @@ export default {
 
         sendVerificationEmail() {
             if (!this.emailVerified) {
+                this.loading.verify = true;
+
                 request({}, "/account/send-verification-email").then(res => {
                     console.log(res)
                     if (!res.failed) {
                         useResponseStore().updateResponse("Verification email sent. Check your inbox", "succ");
 
                         this.verificationEmailSent = true;
+
+                        this.loading.verify = false;
                     } else {
-                        useResponseStore().updateResponse(`Failed to send verification email - ${res.data.data}`, "err");
+                        useResponseStore().updateResponse(`Failed to send verification email`, "err");
 
                         this.verificationEmailSent = false;
+
+                        this.loading.verify = false;
 
                         console.log(res);
                     }
