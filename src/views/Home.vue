@@ -798,14 +798,18 @@
         <br>
 
         <!-- CREATE PLAYLIST -->
-        <form @submit.prevent="createPlaylist()" v-if="showPlaylistCreate" class="__b _flex _cc _fd-co">
+        <form @submit.prevent="createPlaylist" v-if="showPlaylistCreate" class="__b _flex _cc _fd-co">
           <input required maxlength="18" v-model="playlistData.name" type="text"
             class="__txt-grey-10 __bg-none __bo-none __tmd __txt-grey-1"
             style="width: 250px; max-width: 100%; margin-right: auto; border-bottom: 1px solid black !important;"
             placeholder="Playlist Name">
           <br>
-          <input style="width: 250px; max-width: 100%; margin-right: auto" type="submit"
+          <input v-if="!loading.createPlaylist" style="width: 250px; max-width: 100%; margin-right: auto" type="submit"
             class="__bo-info-1 __bod __hv __hv-info-1 __po __padxs __bg-none __txt-grey-10" value="Create">
+
+          <div v-if="loading.createPlaylist"
+            style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+            class="__loader-og"></div>
         </form>
         <!-- END CREATE PLAYLIST -->
 
@@ -1409,6 +1413,8 @@ export default {
 
       loading: {
         importPlaylist: false,
+        createPlaylist: false,
+        deletePlaylist: false,
 
         save: false,
         delete: false,
@@ -2235,6 +2241,8 @@ export default {
       }
     },
     createPlaylist() {
+      this.loading.createPlaylist = true;
+
       request(this.playlistData, '/playlist/create').then(res => {
         if (!res.failed) {
           useResponseStore().updateResponse('Playlist created successfully!', 'succ');
@@ -2253,9 +2261,13 @@ export default {
 
           this.cachePlaylists();
           this.cacheVideoPlaylist();
+
+          this.loading.createPlaylist = false;
         } else {
           useResponseStore().updateResponse('Failed to create playlist', 'err');
           console.log(res);
+
+          this.loading.createPlaylist = false;
         }
       });
     },
