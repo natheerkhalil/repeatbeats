@@ -27,7 +27,8 @@
                 <div class="_flex _cc _fd-ro">
                     <button v-if="!loading.verify" @click="sendVerificationEmail" style="min-width: max-content;"
                         class="__padxs __tsx __bg-none __po __bo-grey-1 __bod">Send Verification Email</button>
-                        <div v-if="loading.verify" style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+                    <div v-if="loading.verify"
+                        style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
                         class="__loader-og"></div>
                 </div>
             </div>
@@ -63,18 +64,16 @@
                 <br>
                 <div class="_sm-fd-co _sm-cc __b __padsm __bod _fd-ro _jc-be _fw-wr _flex __bo-grey-8">
 
-                        <div v-if="!loading.password"
-                            style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
-                            @click="sendPasswordResetEmail"
-                            class="_sm-b _sm-tal _cc __b __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Password
-                        </div>
-                        
-                        <div v-if="loading.password"
-                            style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
-                            class="_sm-b _sm-tal _cc __padxs _flex __txt-grey-10">Change
+                    <div v-if="!loading.password" style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
+                        @click="sendPasswordResetEmail"
+                        class="_sm-b _sm-tal _cc __b __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Password
+                    </div>
+
+                    <div v-if="loading.password" style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
+                        class="_sm-b _sm-tal _cc __padxs _flex __txt-grey-10">Change
                         <div style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
                             class="__loader-og"></div>Password
-                        </div>
+                    </div>
 
                     <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
                         @click="showEmailModal = !showEmailModal"
@@ -106,13 +105,17 @@
                     placeholder="New email (a verification email will be sent to this address)"
                     class="__b __padxs __bg-none __bo-none __txt-grey-1">
                 &nbsp; &nbsp;
-                <svg class="__po" @click="sendEmailChangeEmail" width="24" height="24" clip-rule="evenodd"
+
+                <svg v-if="!loading.email" class="__po" @click="sendEmailChangeEmail" width="24" height="24" clip-rule="evenodd"
                     fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="m2.009 12.002c0-5.517 4.48-9.997 9.998-9.997s9.998 4.48 9.998 9.997c0 5.518-4.48 9.998-9.998 9.998s-9.998-4.48-9.998-9.998zm1.5 0c0 4.69 3.808 8.498 8.498 8.498s8.498-3.808 8.498-8.498-3.808-8.497-8.498-8.497-8.498 3.807-8.498 8.497zm6.711-4.845c-.141-.108-.3-.157-.456-.157-.389 0-.755.306-.755.749v8.501c0 .445.367.75.755.75.157 0 .316-.05.457-.159 1.554-1.203 4.199-3.252 5.498-4.258.184-.142.29-.36.29-.592 0-.23-.107-.449-.291-.591zm.289 7.564v-5.446l3.523 2.718z"
                         fill-rule="nonzero" />
                 </svg>
+
+                <div style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+                    class="__loader-og" v-if="loading.email"></div>
             </div>
         </div>
     </div>
@@ -304,16 +307,24 @@ export default {
                 return false;
             }
 
+            this.loading.email = true;
+
             if (this.cooldown.email < (new Date().getTime() - 60000)) {
                 request({ email: this.newEmail }, "/account/send-email-change-email").then(res => {
                     if (!res.failed) {
                         useResponseStore().updateResponse("Email sent! Please check your inbox", "succ");
+
+                        this.loading.email = false;
                     } else {
                         useResponseStore().updateResponse("Failed to send email - " + res.data, "err");
+
+                        this.loading.email = false;
                     }
                 });
             } else {
                 useResponseStore().updateResponse("Wait " + ((this.cooldown.email - (new Date().getTime() - 60000)) / 1000).toFixed(0) + " second(s) before sending another request", "warn");
+
+                this.loading.email = false;
             }
         }
     },
