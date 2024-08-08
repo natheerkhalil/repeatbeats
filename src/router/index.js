@@ -124,6 +124,13 @@ const routes = [
   },
 
   {
+    path: '/maintenance',
+    name: 'maintenance',
+    component: function () {
+      return import("@/views/Maintenance.vue");
+    },
+  },
+  {
     path: '/:pathMatch(.*)*', // This will catch all undefined routes
     name: '404',
     component: function () {
