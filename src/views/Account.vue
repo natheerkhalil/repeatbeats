@@ -60,9 +60,22 @@
                 <p class="__b __tmd __tle">Actions: </p>
                 <br>
                 <div class="_sm-fd-co _sm-cc __b __padsm __bod _fd-ro _jc-be _fw-wr _flex __bo-grey-8">
-                    <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; " @click="sendPasswordResetEmail"
-                        class="_sm-b _sm-tal _cc __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Password</div>
-                    <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; " @click="showEmailModal = !showEmailModal"
+
+                        <div v-if="!loading.password"
+                            style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
+                            @click="sendPasswordResetEmail"
+                            class="_sm-b _sm-tal _cc __b __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Password
+                        </div>
+                        
+                        <div v-if="loading.password"
+                            style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
+                            class="_sm-b _sm-tal _cc __padxs _flex __txt-grey-10">Change
+                        <div style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+                            class="__loader-og"></div>Password
+                        </div>
+
+                    <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
+                        @click="showEmailModal = !showEmailModal"
                         class="_sm-b _sm-tal _cc __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Email</div>
                     <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; " @click="deleteAccount"
                         class="_sm-b _sm-tal _cc __padxs _flex __bo-err-2 __txt-err-2 __bod __po">Delete Account</div>
@@ -129,6 +142,12 @@ export default {
             showEmailModal: false,
 
             newEmail: '',
+
+            loading: {
+                password: false,
+                email: false,
+                deleteAccount: false,
+            },
         }
     },
 
@@ -244,20 +263,27 @@ export default {
         },
 
         sendPasswordResetEmail() {
+            this.loading.password = true;
             if (this.cooldown.password < (new Date().getTime() - 60000)) {
                 request({ username: localStorage.getItem("auth_username") }, "/account/send-reset-password-email", false).then(res => {
                     if (!res.failed) {
                         useResponseStore().updateResponse("Email sent! Please check your inbox", "succ");
 
                         this.cooldown.password = new Date().getTime();
-                    } else {
-                        useResponseStore().updateResponse("Failed to send email - " + res.data.data, "err");
 
-                        this.cooldown.password = new Date().getTime();
+                        this.loading.password = false;
+                    } else {
+                        useResponseStore().updateResponse("Failed to send email", "err");
+
+                        this.cooldown.password = (new Date().getTime()) - 60000;
+
+                        this.loading.password = false;
                     }
                 });
             } else {
                 useResponseStore().updateResponse("Wait " + ((this.cooldown.password - (new Date().getTime() - 60000)) / 1000).toFixed(0) + " second(s) before sending another request", "warn");
+
+                this.loading.password = false;
             }
         },
 
