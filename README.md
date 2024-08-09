@@ -11,15 +11,15 @@ RepeatBeats uses the YouTube iFrame api to load & play the videos - none of them
 
 ## Icons
 
-![alt text](https://github.com/natheerkhalil/repeatbeats/blob/icons.jpg?raw=true
-The trash icon - delete video
-Lightbulb - play random video
-Check - save video
-Hourglass - get current time
-Add - add to playlist
-Star - add video to favourite
-Music notes - lyrics (can also be used for notes)
-Share - share video
+![icons](https://github.com/user-attachments/assets/c3ff624f-e608-4e76-8160-87d9e75904f6)
+The trash icon - delete video  
+Lightbulb - play random video  
+Check - save video  
+Hourglass - get current time  
+Add - add to playlist  
+Star - add video to favourite  
+Music notes - lyrics (can also be used for notes)  
+Share - share video  
 
 ## Structure
 
@@ -46,4 +46,4 @@ Contributions are welcome! If you've been using the app and feel it could be imp
 
 ## Support
 
-This is a web project made & hosted solely by a solo web dev, and as such all the costs for keeping it online are coming out of my pocket. If you feel that this project has benefited you in some way, feel free to help out by donating (you don't have to, but it helps!): [https://ko-fi.com/natheer]. You can also star this repository.
+This is a web project made & hosted solely by a solo web dev, and as such all the costs for keeping it online are coming out of my pocket. If you feel that this project has benefited you in some way, feel free to help out by donating (you don't have to, but it helps!): https://ko-fi.com/natheer. You can also star this repository.
