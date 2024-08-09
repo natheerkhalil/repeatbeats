@@ -7,7 +7,7 @@ Welcome to RepeatBeats! This is a project that allows users to add any video fro
 
 ## How it works
 
-RepeatBeats uses the YouTube iFrame api to load & play the videos - none of them are actually stored. It then checks every millisecond whether the video's current time is greater than the desired end of the video or less than the start, in which it case it either rewinds to the beginning or (if loop is enabled) moves on to the next video in the playlist (a random video in the playlist, if shuffle is enabled). Note that all data is stored in cache upon loading as this greatly improves performance. If you've made changes on another device, e.g. you updated a video, and want to see it reflected on the devie you're using, just press the "sync data" button (looks like a cloud).
+RepeatBeats uses the YouTube iFrame api to load & play the videos - none of them are actually stored. It then checks every millisecond whether the video's current time is greater than the desired end of the video or less than the start, in which it case it either rewinds to the beginning or (if loop is enabled) moves on to the next video in the playlist (a random video in the playlist, if shuffle is enabled). Note that all data is stored in cache upon loading as this greatly improves performance. If you've made changes on another device, e.g. you updated a video, and want to see it reflected on the device you're using, just press the "sync data" button (looks like a cloud).
 
 ## Icons
 
