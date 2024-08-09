@@ -34,3 +34,5 @@ public/unused/
 
 # Environment
 .env
+# Local Netlify folder
+.netlify

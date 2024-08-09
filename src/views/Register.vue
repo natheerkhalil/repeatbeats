@@ -15,8 +15,8 @@
             </div>
 
             <div class="_hide _sm-show _flex">
-                <svg fill="var(--grey_10)" @click="this.$router.push('/login')" class="__po" xmlns="http://www.w3.org/2000/svg" width="35"
-                    height="35" viewBox="0 0 24 24">
+                <svg fill="var(--grey_10)" @click="this.$router.push('/login')" class="__po"
+                    xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24">
                     <path
                         d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-3.123 0-5.914-1.441-7.749-3.69.259-.588.783-.995 1.867-1.246 2.244-.518 4.459-.981 3.393-2.945-3.155-5.82-.899-9.119 2.489-9.119 3.322 0 5.634 3.177 2.489 9.119-1.035 1.952 1.1 2.416 3.393 2.945 1.082.25 1.61.655 1.871 1.241-1.836 2.253-4.628 3.695-7.753 3.695z">
                     </path>
@@ -35,7 +35,8 @@
                 <br>
                 <hr class="__hr __b __bg-grey-8">
                 <br>
-                <div v-if="errors.length > 0" v-html="errors" class="__b _flex __padxs _cc __bg-err-7 __bod __bdxs __bo-err-2 __txt-err-2"></div>
+                <div v-if="errors.length > 0" v-html="errors"
+                    class="__b _flex __padxs _cc __bg-err-7 __bod __bdxs __bo-err-2 __txt-err-2"></div>
                 <br v-if="errors.length > 0">
                 <form class="__b _flex __padsm _fd-co _cc" @submit.prevent="register">
                     <input @input="validateFormData" type="text" v-model="formData.username" placeholder="Username">
@@ -47,8 +48,11 @@
                     <router-link class="__b __tal __tsx __tri __po" to="/login">Already have an account? Log
                         in</router-link>
                     <br>
-                    <input v-if="!loading" :disabled="!ready" :style="!ready ? 'cursor: default; opacity: 0.7' : 'cursor: pointer; opacity: 1'" type="submit" value="Register">
-                    <div v-if="loading" style="min-width: 50px; min-height: 50px; border-color: white; border-top-color: var(--succ_6); border-width: 5px;"
+                    <input v-if="!loading" :disabled="!ready"
+                        :style="!ready ? 'cursor: default; opacity: 0.7' : 'cursor: pointer; opacity: 1'" type="submit"
+                        value="Register">
+                    <div v-if="loading"
+                        style="min-width: 50px; min-height: 50px; border-color: white; border-top-color: var(--succ_6); border-width: 5px;"
                         class="__loader-og"></div>
                 </form>
             </div>
@@ -148,52 +152,81 @@ export default {
                         window.location.href = "/";
                     }, 2000);
                 } else {
+                    // get status code
+                    let code = res.msg.response.status;
+                    
+                    if (code === 409) {
+                        useResponseStore().updateResponse("Username or email already exists", "err");
+
+                        this.loading = false;
+
+                        return false;
+                    }
+
                     useResponseStore().updateResponse("Failed to register account. Please try again", "err");
 
                     this.loading = false;
                 }
             });
         },
+        
+        validateFormData(data) {
+            data = this.formData;
 
-        validateFormData() {
-            axios.post("/validation/register", this.formData, {}).then(res => {
-                console.log(res);
+            const errors = [];
 
-                console.log(res.data.data);
+            // Validate username
+            if (!data.username) {
+                errors.push('Username is required.');
+            } else if (typeof data.username !== 'string') {
+                errors.push('Username must be a string.');
+            } else if (data.username.length < 3) {
+                errors.push('Username must be at least 3 characters long.');
+            } else if (data.username.length > 18) {
+                errors.push('Username must not exceed 18 characters.');
+            }
 
-                console.log(this.ready)
-                if (res.failed) {
-                    console.log("Failed to reach server");
-                    console.log(res);
-                } else {
-                    let errors = res.data.data;
-
-                    if (errors.length == 0) {
-                        this.errors = "";
-
-                        this.ready = true;
-                    } else {
-                        this.ready = false;
-
-                        let errorMessages = Object.values(errors).flat();
-
-                        let str = "";
-
-                        errorMessages.forEach(e => {
-                            str += `${e} <br>`;
-                        });
-
-                        this.errors = str;
-                    }
+            // Validate email
+            if (!data.email) {
+                errors.push('Email is required.');
+            } else if (typeof data.email !== 'string') {
+                errors.push('Email must be a string.');
+            } else {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(data.email)) {
+                    errors.push('Email must be a valid email address.');
+                } else if (data.email.length > 255) {
+                    errors.push('Email must not exceed 255 characters.');
                 }
-            })
-        },
-    },
+            }
 
-    watch: {
-        formData(val) {
-            validateFormData();
+            // Validate password
+            if (!data.password) {
+                errors.push('Password is required.');
+            } else if (typeof data.password !== 'string') {
+                errors.push('Password must be a string.');
+            } else if (data.password.length < 8) {
+                errors.push('Password must be at least 8 characters long.');
+            }
+
+            if (errors.length == 0) {
+                this.errors = "";
+
+                this.ready = true;
+            } else {
+                this.ready = false;
+
+                let errorMessages = Object.values(errors).flat();
+
+                let str = "";
+
+                errorMessages.forEach(e => {
+                    str += `${e} <br>`;
+                });
+
+                this.errors = str;
+            }
         }
-    }
+    },
 }
 </script>
