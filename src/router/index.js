@@ -146,7 +146,7 @@ if (MAINTENANCE_MODE !== "true" && MAINTENANCE_MODE !== "1") {
 } else {
   routes = [
     {
-      path: '/maintenance',
+      path: '/',
       name: 'maintenance',
       component: function () {
         return import("@/views/Maintenance.vue");
