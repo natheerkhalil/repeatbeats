@@ -158,6 +158,8 @@ export default {
                     if (code === 409) {
                         useResponseStore().updateResponse("Username or email already exists", "err");
 
+                        this.loading = false;
+
                         return false;
                     }
 
