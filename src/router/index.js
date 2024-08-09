@@ -11,6 +11,8 @@ var isAuthenticated;
 if (!localStorage.getItem('auth_token')) isAuthenticated = false;
 else isAuthenticated = true;
 
+import { MAINTENANCE_MODE } from '../../config';
+
 if (isAuthenticated) {
   HomeRoute = {
     path: '/',
@@ -29,108 +31,150 @@ if (isAuthenticated) {
   };
 }
 
-const routes = [
+var routes;
 
-  HomeRoute,
+if (MAINTENANCE_MODE !== "true" && MAINTENANCE_MODE !== "1") {
+  routes = [
 
-  {
-    path: '/new',
-    name: 'new',
-    component: function () {
-      return import("@/views/New.vue");
+    HomeRoute,
+
+    {
+      path: '/new',
+      name: 'new',
+      component: function () {
+        return import("@/views/New.vue");
+      }
+    },
+
+    {
+      path: '/account',
+      name: 'account',
+      component: function () {
+        return import("@/views/Account.vue");
+      },
+      meta: { requiresAuth: true }
+    },
+
+    {
+      path: "/upgrade",
+      name: 'upgrade',
+      component: function () {
+        return import("@/views/Upgrade.vue");
+      },
+      meta: { requiresAuth: true }
+    },
+
+    {
+      path: '/login',
+      name: 'login',
+      component: function () {
+        return import("@/views/Login.vue");
+      },
+      meta: { requiresGuest: true, bg: "img" }
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: function () {
+        return import("@/views/Register.vue");
+      },
+      meta: { requiresGuest: true, bg: "img" }
+    },
+
+    {
+      path: "/verify-email",
+      name: "verify-email",
+      component: function () {
+        return import("@/views/VerifyEmail.vue");
+      },
+    },
+
+    {
+      path: "/forgot-password",
+      name: "forgot-password",
+      component: function () {
+        return import("@/views/ForgotPassword.vue");
+      },
+      meta: { bg: "img" }
+    },
+    {
+      path: "/change-password",
+      name: "change-password",
+      component: function () {
+        return import("@/views/ChangePassword.vue");
+      },
+      meta: { bg: "img" }
+    },
+    {
+      path: "/change-email",
+      name: "change-email",
+      component: function () {
+        return import("@/views/ChangeEmail.vue");
+      },
+    },
+
+    {
+      path: "/terms",
+      name: "terms",
+      component: function () {
+        return import("@/views/Terms.vue");
+      },
+    },
+    {
+      path: "/privacy",
+      name: "privacy",
+      component: function () {
+        return import("@/views/Privacy.vue");
+      },
+    },
+
+    {
+      path: '/maintenance',
+      name: 'maintenance',
+      component: function () {
+        return import("@/views/Maintenance.vue");
+      },
+    },
+    {
+      path: '/:pathMatch(.*)*', // This will catch all undefined routes
+      name: '404',
+      component: function () {
+        return import("@/views/404.vue");
+      },
     }
-  },
-
-  {
-    path: '/account',
-    name: 'account',
-    component: function () {
-      return import("@/views/Account.vue");
+  ];
+} else {
+  routes = [
+    {
+      path: '/',
+      name: 'maintenance',
+      component: function () {
+        return import("@/views/Maintenance.vue");
+      },
     },
-    meta: { requiresAuth: true }
-  },
-
-  {
-    path: "/upgrade",
-    name: 'upgrade',
-    component: function () {
-      return import("@/views/Upgrade.vue");
+    {
+      path: '/:pathMatch(.*)*', // This will catch all undefined routes
+      name: 'maintenance',
+      component: function () {
+        return import("@/views/Maintenance.vue");
+      },
     },
-    meta: { requiresAuth: true }
-  },
-
-  {
-    path: '/login',
-    name: 'login',
-    component: function () {
-      return import("@/views/Login.vue");
+    {
+      path: "/terms",
+      name: "terms",
+      component: function () {
+        return import("@/views/Terms.vue");
+      },
     },
-    meta: { requiresGuest: true, bg: "img" }
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: function () {
-      return import("@/views/Register.vue");
+    {
+      path: "/privacy",
+      name: "privacy",
+      component: function () {
+        return import("@/views/Privacy.vue");
+      },
     },
-    meta: { requiresGuest: true, bg: "img" }
-  },
-
-  {
-    path: "/verify-email",
-    name: "verify-email",
-    component: function () {
-      return import("@/views/VerifyEmail.vue");
-    },
-  },
-
-  {
-    path: "/forgot-password",
-    name: "forgot-password",
-    component: function () {
-      return import("@/views/ForgotPassword.vue");
-    },
-    meta: { bg: "img"}
-  }, 
-  {
-    path: "/change-password",
-    name: "change-password",
-    component: function () {
-      return import("@/views/ChangePassword.vue");
-    },
-    meta: { bg: "img"}
-  },
-  {
-    path: "/change-email",
-    name: "change-email",
-    component: function () {
-      return import("@/views/ChangeEmail.vue");
-    },
-  },
-
-  {
-    path: "/terms",
-    name: "terms",
-    component: function () {
-      return import("@/views/Terms.vue");
-    },
-  },
-  {
-    path: "/privacy",
-    name: "privacy",
-    component: function () {
-      return import("@/views/Privacy.vue");
-    },
-  },
-
-  {
-    path: '/:pathMatch(.*)*', // This will catch all undefined routes
-    name: '404',
-    component: function () {
-      return import("@/views/404.vue");
-    },
-  }
-];
+  ];
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

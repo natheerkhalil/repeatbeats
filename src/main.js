@@ -23,6 +23,7 @@ import axios from 'axios';
 
 // axios config
 import { API_URL } from '../config'
+import { MAINTENANCE_MODE } from '../config'
 
 axios.defaults.timeout = 15000; // 5 seconds
 axios.defaults.baseURL = API_URL;
@@ -38,6 +39,18 @@ app.use(createPinia());
 app.use(router);
 
 app.mount('#app');
+
+const exemptedRoutes = ["privacy", "terms"];
+function checkMaintenanceMode() {
+    const currentRouteName = router.currentRoute.value.name;
+
+    if (MAINTENANCE_MODE === "true" || MAINTENANCE_MODE === "1" && !exemptedRoutes.includes(currentRouteName)) {
+        router.push({ name: 'maintenance' });
+    }
+}
+
+// Check maintenance mode every second
+setInterval(checkMaintenanceMode, 1000);
 
 export {
     request
