@@ -794,14 +794,6 @@
             <p class="tooltiptext">Account</p>
           </div>
           <div class="_flex tooltip cc">
-            <svg class="__po" @click="showUpgradeModal = !showUpgradeModal" xmlns="http://www.w3.org/2000/svg"
-              width="27" height="27" viewBox="0 0 24 24">
-              <path
-                d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-6 9c0-.552.448-1 1-1 .75 0 1.331.843.799 1.597-.268.38-.203.608-.022.875.382.563.936 1.028 1.723 1.028 1.261 0 1.927-1.042 2.065-1.924.048-.307.075-.537-.218-.822-.201-.195-.347-.452-.347-.754 0-.552.448-1 1-1s1 .448 1 1c0 .302-.146.559-.348.754-.293.285-.266.515-.218.822.139.882.805 1.924 2.065 1.924.787 0 1.341-.465 1.724-1.029.181-.266.245-.495-.022-.875-.532-.753.049-1.596.799-1.596.552 0 1 .448 1 1 0 .398-.232.747-.572.904-.412.19-.428.658-.428 1.085v3.011h-10v-3.011c0-.427-.016-.896-.428-1.085-.34-.157-.572-.506-.572-.904zm1 6v2h10v-2h-10z" />
-            </svg>
-            <p class="tooltiptext">Upgrade</p>
-          </div>
-          <div class="_flex tooltip cc">
             <svg class="__po" @click="logout" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
               fill-rule="evenodd" clip-rule="evenodd">
               <path d="M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z" />
@@ -1120,45 +1112,6 @@
       <p class="tooltiptext">Feedback</p>
     </div>
 
-    <!-- UPGRADE MODAL -->
-    <div v-if="showUpgradeModal"
-      style="max-height: 90vh; overflow-x: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
-      class="__custscroll __w _flex _fd-co _ai-ce __bg-grey-10 __bo-1 __bod __padsm">
-
-      <div class="__b _flex _fd-ro _jc-be">
-        <p class="__tle">Upgrade</p>
-        <div class="_flex _fd-ro _ai-ce">
-          <svg @click="showUpgradeModal = !showUpgradeModal" width=35 height=35 class="__po" clip-rule="evenodd"
-            fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z" />
-          </svg>
-        </div>
-      </div>
-      <hr class="__hr __b __bg-grey-1">
-      <br>
-
-      <div class="__b _flex _cc">
-        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 24 24">
-          <path
-            d="M5 19h14v3h-14v-3zm17-12c-1.326 0-2.294 1.272-1.924 2.54.611 2.091-6.357 4.068-7.386-1.604-.262-1.444.021-1.823.728-2.532.359-.36.582-.855.582-1.404 0-1.104-.896-2-2-2s-2 .896-2 2c0 .549.223 1.045.582 1.403.706.71.989 1.089.728 2.532-1.029 5.675-7.996 3.694-7.386 1.604.37-1.267-.598-2.539-1.924-2.539-1.104 0-2 .896-2 2 0 1.22 1.082 2.149 2.273 1.98 1.635-.23 2.727 4.372 2.727 6.02h14c0-1.65 1.092-6.25 2.727-6.019 1.191.168 2.273-.761 2.273-1.981 0-1.104-.896-2-2-2z" />
-        </svg>
-      </div>
-
-      <br>
-
-      <div class="__b _flex _c">
-        <p class="__b __tal __tmd">No ads. Unlimited videos. Unlimited playlists</p>
-        <br class="__brme __br">
-        <p class="__b __tal __tsx __txt-grey-3">For only a one-time payment of £2.99</p>
-        <br>
-        <div class="__b _flex _cc">
-          <p style="max-width: max-content" class="__po __tmd __hovun">Upgrade</p>
-        </div>
-      </div>
-    </div>
-
     <!-- FEEDBACK MODAL -->
     <div v-if="showFeedbackModal"
       style="max-height: 90vh; overflow-x: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
@@ -1350,7 +1303,6 @@ export default {
 
       // SHOW / HIDE
       showLyricsModal: false,
-      showUpgradeModal: false,
       showLyricsData: false,
       showShareModal: false,
       showAddModal: false,
