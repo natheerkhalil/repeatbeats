@@ -6,10 +6,15 @@ import { useResponseStore } from "@/stores/response";
 import { useAuthStore } from "@/stores/auth";
 
 var HomeRoute;
+
 var isAuthenticated;
+var userIsMember;
 
 if (!localStorage.getItem('auth_token')) isAuthenticated = false;
 else isAuthenticated = true;
+
+if (!localStorage.getItem('user_is_member')) userIsMember = false;
+else userIsMember = true;
 
 import { MAINTENANCE_MODE } from '../../config';
 
@@ -184,17 +189,22 @@ const router = createRouter({
 // Add the router guard
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresGuest) && isAuthenticated) {
-    // If the route requires guest and the user is authenticated, redirect to home
-
-    // useResponseStore().updateResponse("You're already logged in", "warn", false);
+    useResponseStore().updateResponse("You're already logged in", "warn", false);
     next({ name: 'home' });
   } else if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated) {
-    // If the route requires auth and the user is not authenticated, redirect to login
-
-    // useResponseStore().updateResponse("You need to be logged in", "warn", false);
+    useResponseStore().updateResponse("You need to be logged in", "warn", false);
     next({ name: 'login' });
   } else {
-    // Otherwise, proceed as normal
+    next();
+  }
+});
+
+// Check if user is a member attempting to visit upgrade page
+router.beforeEach((to, from, next) => {
+  if (to.name == "upgrade" && userIsMember) {
+    useResponseStore().updateResponse("You've already upgraded", "warn", false);
+    next({ name: 'home' });
+  } else {
     next();
   }
 });
