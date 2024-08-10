@@ -152,6 +152,7 @@ export default {
 
 
         async handleSubmit() {
+            try {
             this.loading = true;
             this.error = '';
 
@@ -192,6 +193,11 @@ export default {
                     this.error = error.message;
                 }
             }
+        } catch (error) {
+            useResponseStore().updateResponse("Failed to upgrade account. Please try again later.", "err");
+
+            this.loading = false;
+        }
         },
 
     },
