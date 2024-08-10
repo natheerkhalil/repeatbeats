@@ -31,7 +31,7 @@ export const uauth = {
         const authStore = useAuthStore();
         authStore.updateAuthenticatedState();
         authStore.updateUsername();
-        
+
         try {
             const response = await axios.post(API_URL + '/logout', {});
         } catch (err) {
@@ -52,10 +52,14 @@ export const uauth = {
             var username = response.data.username;
             var email = response.data.email;
             var token = response.data.token;
+            var user_is_member = response.data.user_is_member;
 
             localStorage.setItem('auth_token', token);
             localStorage.setItem('auth_username', username);
             localStorage.setItem('auth_email', email);
+            if (user_is_member) {
+                localStorage.setItem("user_is_member", 1);
+            }
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -82,10 +86,14 @@ export const uauth = {
             var username = response.data.username;
             var email = response.data.email;
             var token = response.data.token;
+            var user_is_member = response.data.user_is_member;
 
             localStorage.setItem('auth_token', token);
             localStorage.setItem('auth_username', username);
             localStorage.setItem('auth_email', email);
+            if (user_is_member) {
+                localStorage.setItem("user_is_member", user_is_member);
+            }
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -96,7 +104,7 @@ export const uauth = {
             return response;
         } catch (error) {
             console.log(error);
-            
+
             return {
                 failed: 1,
                 msg: error
