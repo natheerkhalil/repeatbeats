@@ -1366,7 +1366,7 @@ export default {
       // IMPORT PLAYLIST URL
       importPlaylistUrl: '',
 
-      // USER MEMERSHIP STATUS
+      // USER MEMBERSHIP STATUS
       userIsMember: false,
 
       // URL IN URL BAR
@@ -1506,6 +1506,9 @@ export default {
   mounted() {
     // REDIRECT IF USER IS UNAUTHENTICATED
     this.checkAuthToken();
+
+    // UPDATE USER MEMBERSHIP STATUS
+    this.userIsMember = localStorage.getItem("user_is_member")
   },
 
   created() {
