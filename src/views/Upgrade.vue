@@ -31,8 +31,13 @@
 
             <br>
 
-            <p class="__tal" style="font-size: 21.5px;">Support this website & get to enjoy more of your music and videos at the same time. Only a one-time payment of £4.99 - we don't like monthly memberships either. Memberships like yours help keep this website free :)
-            </p>
+            <div class="__b _flex _cc">
+                <p class="__tal" style="font-size: 21.5px; max-width: 600px; ">Support this website & get to enjoy more
+                    of your music and videos at the same time. <br> <br> <span style="font-size: 18px;"
+                        class="__txt-info-1">Only a one-time payment of £4.99 - we don't like monthly memberships
+                        either. Memberships like yours help keep this website free :) </span>
+                </p>
+            </div>
 
             <br><br>
 
@@ -44,7 +49,7 @@
 
                     <button v-if="!loading"
                         class="__bo-none __bg-grey-9 __hv __hv-grey-4 __ht-grey-10 __padxs __bdxs __txt-grey-1 __po"
-                        type="submit" :disabled="loading">Pay</button>
+                        type="submit" :disabled="loading">Upgrade 🎶</button>
 
 
                     <div v-if="loading" class="__b _flex _cc">
@@ -54,10 +59,10 @@
                 </form>
             </div>
 
-            <br>
+            <br><br><br>
 
             <div class="_flex __mauto" style="min-width: 500px">
-                <p class="__b __w __tri __txt-grey-5" style="font-size: 13px">By paying, you agree to the <router-link
+                <p class="__b __w __tri __txt-grey-5" style="font-size: 12px">By paying, you agree to the <router-link
                         to="/privacy">Privacy Policy</router-link> and <router-link to="/terms">Terms and
                         Conditions</router-link>. <br> This payment is a one-time fee of £4.99 and cannot be
                     refunded. <br> We do not store your credit card data. </p>
@@ -137,7 +142,7 @@ export default {
         async createPaymentIntent() {
             try {
                 request({}, '/create-payment-instance', true).then(res => {
-                    if (!res.failed) { 
+                    if (!res.failed) {
                         this.clientSecret = res.data.clientSecret;
                     } else {
                         useResponseStore().updateResponse("Failed to initiate payment. Have you already upgraded?", "err");
@@ -153,51 +158,51 @@ export default {
 
         async handleSubmit() {
             try {
-            this.loading = true;
-            this.error = '';
+                this.loading = true;
+                this.error = '';
 
-            const { error, paymentIntent } = await this.stripe.confirmCardPayment(this.clientSecret, {
-                payment_method: {
-                    card: this.cardElement,
-                },
-            });
+                const { error, paymentIntent } = await this.stripe.confirmCardPayment(this.clientSecret, {
+                    payment_method: {
+                        card: this.cardElement,
+                    },
+                });
 
-            if (error) {
-                this.error = error.message;
-                this.loading = false;
-
-            } else if (paymentIntent.status === 'succeeded') {
-                try {
-                    request({ payment_intent_id: paymentIntent.id }, '/upgrade', true).then(res => {
-                        if (!res.failed) {
-                            localStorage.setItem("user_is_member", true);
-                            useResponseStore().updateResponse("Payment successful! Your account has been upgraded :)", "succ");
-                            useResponseStore().updateResponse("Redirecting in a few seconds...", "info");
-
-                            setTimeout(() => {
-                                this.$router.push('/');
-                            }, 3000);
-
-                            this.loading = false;
-                        } else {
-                            useResponseStore.updateResponse("Failed to upgrade account. Please try again later.", "err");
-
-                            this.loading = false;
-                        }
-                    });
-                } catch (error) {
-                    useResponseStore().updateResponse("Failed to upgrade account. Please try again later.", "err");
-
+                if (error) {
+                    this.error = error.message;
                     this.loading = false;
 
-                    this.error = error.message;
-                }
-            }
-        } catch (error) {
-            useResponseStore().updateResponse("Failed to upgrade account. Please try again later.", "err");
+                } else if (paymentIntent.status === 'succeeded') {
+                    try {
+                        request({ payment_intent_id: paymentIntent.id }, '/upgrade', true).then(res => {
+                            if (!res.failed) {
+                                localStorage.setItem("user_is_member", true);
+                                useResponseStore().updateResponse("Payment successful! Your account has been upgraded :)", "succ");
+                                useResponseStore().updateResponse("Redirecting in a few seconds...", "info");
 
-            this.loading = false;
-        }
+                                setTimeout(() => {
+                                    this.$router.push('/');
+                                }, 3000);
+
+                                this.loading = false;
+                            } else {
+                                useResponseStore.updateResponse("Failed to upgrade account. Please try again later.", "err");
+
+                                this.loading = false;
+                            }
+                        });
+                    } catch (error) {
+                        useResponseStore().updateResponse("Failed to upgrade account. Please try again later.", "err");
+
+                        this.loading = false;
+
+                        this.error = error.message;
+                    }
+                }
+            } catch (error) {
+                useResponseStore().updateResponse("Failed to upgrade account. Please try again later.", "err");
+
+                this.loading = false;
+            }
         },
 
     },
