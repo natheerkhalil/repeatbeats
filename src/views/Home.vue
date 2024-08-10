@@ -11,8 +11,8 @@
         <p class="logo-text _sm-hide __tmd __txt-grey-10">RepeatBeats</p> &nbsp;
       </div>
       <div class="_flex _cc">
-        <div class="tooltip">
-          <svg @click='goToUpgrade' v-if="!userIsMember" class="__po" xmlns="http://www.w3.org/2000/svg" width="45"
+        <div v-if="!userIsMember" class="tooltip">
+          <svg @click='goToUpgrade' class="__po" xmlns="http://www.w3.org/2000/svg" width="45"
             height="45" viewBox="0 0 24 24">
             <defs>
               <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
