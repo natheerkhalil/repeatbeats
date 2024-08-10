@@ -11,7 +11,22 @@
         <p class="logo-text _sm-hide __tmd __txt-grey-10">RepeatBeats</p> &nbsp;
       </div>
       <div class="_flex _cc">
-        <svg fill="var(--grey_10)" id="sidebarOpen" @click="toggleSidebar()" class="__po" clip-rule="evenodd"
+        <div v-if="!userIsMember" class="tooltip">
+          <svg @click='goToUpgrade' class="__po" xmlns="http://www.w3.org/2000/svg" width="45"
+            height="45" viewBox="0 0 24 24">
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#b4b059;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#af4261;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#768a86;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <path fill="url(#grad1)"
+              d="M1 6.417c0-1.013.822-1.833 1.834-1.833 1.215 0 2.104 1.167 1.763 2.329-.559 1.915 5.827 3.731 6.771-1.471.239-1.323-.021-1.67-.668-2.321-.329-.329-.534-.783-.534-1.287 0-1.013.822-1.834 1.834-1.834 1.014 0 1.833.821 1.833 1.833 0 .504-.204.958-.533 1.287-.646.65-.905.998-.666 2.321.941 5.2 7.33 3.387 6.77 1.471-.339-1.162.548-2.329 1.764-2.329 1.012 0 1.832.821 1.832 1.834 0 1.118-.992 1.97-2.084 1.816-1.32-.187-3.03 4.554-3.417 6.716-1.765-.615-3.618-.942-5.493-.949-1.875.006-3.74.334-5.504.949-.388-2.162-2.098-6.903-3.418-6.717-1.092.155-2.084-.697-2.084-1.815zm-1 14.583h2.359l.566 3c.613-1.012 1.388-1.912 2.277-2.68l-2.342-3.335c-1.089.879-2.053 1.848-2.86 3.015zm24 0h-2.359l-.566 3c-.613-1.012-1.388-1.912-2.277-2.68l2.343-3.335c1.088.879 2.052 1.848 2.859 3.015zm-12-4.998c-2.845.009-5.491.825-7.757 2.211l2.334 3.322c1.603-.924 3.448-1.464 5.423-1.473 1.975.009 3.82.549 5.423 1.473l2.334-3.322c-2.266-1.386-4.912-2.202-7.757-2.211zm-3.022 3.498l-.65-.348-.651.348.131-.726-.531-.511.729-.101.321-.662.322.663.729.101-.53.511.13.725zm3.672-.5l-.65-.348-.65.348.131-.726-.531-.511.729-.101.321-.662.322.663.729.101-.53.511.129.725zm3.718.5l-.65-.348-.65.348.131-.726-.531-.511.729-.101.322-.663.322.663.729.101-.53.511.128.726z" />
+          </svg>
+          <p class="tooltiptext">Upgrade</p>
+        </div> &nbsp; &nbsp; &nbsp;
+        <svg fill="var(--grey_10)" id="sidebarOpen" @click="toggleSidebar" class="__po" clip-rule="evenodd"
           fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="45" height="45" viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg">
           <path
@@ -779,14 +794,6 @@
             <p class="tooltiptext">Account</p>
           </div>
           <div class="_flex tooltip cc">
-            <svg class="__po" @click="showUpgradeModal = !showUpgradeModal" xmlns="http://www.w3.org/2000/svg"
-              width="27" height="27" viewBox="0 0 24 24">
-              <path
-                d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-6 9c0-.552.448-1 1-1 .75 0 1.331.843.799 1.597-.268.38-.203.608-.022.875.382.563.936 1.028 1.723 1.028 1.261 0 1.927-1.042 2.065-1.924.048-.307.075-.537-.218-.822-.201-.195-.347-.452-.347-.754 0-.552.448-1 1-1s1 .448 1 1c0 .302-.146.559-.348.754-.293.285-.266.515-.218.822.139.882.805 1.924 2.065 1.924.787 0 1.341-.465 1.724-1.029.181-.266.245-.495-.022-.875-.532-.753.049-1.596.799-1.596.552 0 1 .448 1 1 0 .398-.232.747-.572.904-.412.19-.428.658-.428 1.085v3.011h-10v-3.011c0-.427-.016-.896-.428-1.085-.34-.157-.572-.506-.572-.904zm1 6v2h10v-2h-10z" />
-            </svg>
-            <p class="tooltiptext">Upgrade</p>
-          </div>
-          <div class="_flex tooltip cc">
             <svg class="__po" @click="logout" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
               fill-rule="evenodd" clip-rule="evenodd">
               <path d="M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z" />
@@ -1105,45 +1112,6 @@
       <p class="tooltiptext">Feedback</p>
     </div>
 
-    <!-- UPGRADE MODAL -->
-    <div v-if="showUpgradeModal"
-      style="max-height: 90vh; overflow-x: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
-      class="__custscroll __w _flex _fd-co _ai-ce __bg-grey-10 __bo-1 __bod __padsm">
-
-      <div class="__b _flex _fd-ro _jc-be">
-        <p class="__tle">Upgrade</p>
-        <div class="_flex _fd-ro _ai-ce">
-          <svg @click="showUpgradeModal = !showUpgradeModal" width=35 height=35 class="__po" clip-rule="evenodd"
-            fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z" />
-          </svg>
-        </div>
-      </div>
-      <hr class="__hr __b __bg-grey-1">
-      <br>
-
-      <div class="__b _flex _cc">
-        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 24 24">
-          <path
-            d="M5 19h14v3h-14v-3zm17-12c-1.326 0-2.294 1.272-1.924 2.54.611 2.091-6.357 4.068-7.386-1.604-.262-1.444.021-1.823.728-2.532.359-.36.582-.855.582-1.404 0-1.104-.896-2-2-2s-2 .896-2 2c0 .549.223 1.045.582 1.403.706.71.989 1.089.728 2.532-1.029 5.675-7.996 3.694-7.386 1.604.37-1.267-.598-2.539-1.924-2.539-1.104 0-2 .896-2 2 0 1.22 1.082 2.149 2.273 1.98 1.635-.23 2.727 4.372 2.727 6.02h14c0-1.65 1.092-6.25 2.727-6.019 1.191.168 2.273-.761 2.273-1.981 0-1.104-.896-2-2-2z" />
-        </svg>
-      </div>
-
-      <br>
-
-      <div class="__b _flex _c">
-        <p class="__b __tal __tmd">No ads. Unlimited videos. Unlimited playlists</p>
-        <br class="__brme __br">
-        <p class="__b __tal __tsx __txt-grey-3">For only a one-time payment of £2.99</p>
-        <br>
-        <div class="__b _flex _cc">
-          <p style="max-width: max-content" class="__po __tmd __hovun">Upgrade</p>
-        </div>
-      </div>
-    </div>
-
     <!-- FEEDBACK MODAL -->
     <div v-if="showFeedbackModal"
       style="max-height: 90vh; overflow-x: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
@@ -1335,7 +1303,6 @@ export default {
 
       // SHOW / HIDE
       showLyricsModal: false,
-      showUpgradeModal: false,
       showLyricsData: false,
       showShareModal: false,
       showAddModal: false,
@@ -1350,6 +1317,9 @@ export default {
 
       // IMPORT PLAYLIST URL
       importPlaylistUrl: '',
+
+      // USER MEMBERSHIP STATUS
+      userIsMember: false,
 
       // URL IN URL BAR
       tempUrl: '',
@@ -1488,6 +1458,9 @@ export default {
   mounted() {
     // REDIRECT IF USER IS UNAUTHENTICATED
     this.checkAuthToken();
+
+    // UPDATE USER MEMBERSHIP STATUS
+    this.userIsMember = localStorage.getItem("user_is_member")
   },
 
   created() {

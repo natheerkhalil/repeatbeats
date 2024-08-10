@@ -29,6 +29,9 @@ coverage
 
 *.tsbuildinfo
 
+# Stripe
+stripe.exe
+
 # Unused public assets
 public/unused/
 
