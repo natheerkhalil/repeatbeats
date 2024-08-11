@@ -1521,8 +1521,10 @@ export default {
         this.initialiseData();
 
         // UPDATE USER MEMBERSHIP STATUS
-        this.userIsMember = localStorage.getItem("user_is_member") || false;
+        this.userIsMember = localStorage.getItem("user_is_member") ? true : false;
         this.showMaxStorageAlertHidden = localStorage.getItem("hideMaxStorageAlert") || false;
+        
+        this.checkMaxStorage();
       });
 
       // CHECK IF USER'S EMAIL IS VERIFIED
@@ -1539,14 +1541,16 @@ export default {
     refreshMembershipStatus() {
       request({}, "/account/membership-status").then(res => {
         if (!res.failed) {
-          if (res.data.data === false) {
+          if (res.data.data === false || res.data.data === 0) {
+            console.log("User is not a member");
             localStorage.removeItem("user_is_member");
 
             this.userIsMember = false;
           } else {
+            console.log("User is a member");
             localStorage.setItem("user_is_member", 1);
 
-            this.userIsMember = false;
+            this.userIsMember = true;
           }
 
           this.checkMaxStorage();
@@ -1559,16 +1563,14 @@ export default {
     checkMaxStorage() {
       console.log("Checking max storage");
       if (this.userIsMember === false) {
-        console.log("User is not a member");
         let count = this.allVideos.length;
         let pl_count = this.playlists.length;
-
-        console.log("Video length: " + count);
-        console.log("Playlist length: " + pl_count);
 
         if (count > 90 || pl_count >= 9) {
           this.showMaxStorageAlert = true;
         }
+      } else {
+        this.showMaxStorageAlert = false;
       }
     },
     // HIDE MAX STORAGE ALERT
