@@ -2032,6 +2032,8 @@ export default {
           this.cacheFavs();
           this.cachePlaylists();
           this.cacheReceivedShares();
+        } else if (res.data.status == 403) {
+          useResponseStore().updateResponse('Storage limit reached or some other error occurred', 'warn');
         } else {
           useResponseStore().updateResponse('Failed to accept share', 'err');
         }
