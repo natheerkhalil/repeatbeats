@@ -2726,6 +2726,15 @@ export default {
               this.cacheFavs();
               this.cachePlaylists();
             } else {
+              if (this.showMaxStorageAlert) {
+                useResponseStore().updateResponse('Maximum storage limit reached or other error', 'warn');
+
+                this.cooldown = 0;
+                this.loading.save = false;
+
+                return false;
+              }
+              
               useResponseStore().updateResponse(`Failed to save video`, 'err');
 
               this.cooldown = 0;
