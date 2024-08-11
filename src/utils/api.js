@@ -61,7 +61,8 @@ export async function request(data, url, authenticated = true) {
 
         return {
             failed: 1,
-            data: Object.values(flattenObject(error.response.data))[0] || "There was an unexpected error"
+            msg: Object.values(flattenObject(error.response.data))[0] || "There was an unexpected error",
+            code: error.response.status
         };
 
     }
