@@ -41,13 +41,17 @@
                     <br>
                     <input type="password" v-model="formData.password" placeholder="Password">
                     <br>
+                    <vue-hcaptcha ref="hcaptcha" @error="onError" @expire="onExpire"
+                        @challenge-expired="onChallengeExpired" @verify="onVerify" :sitekey="hkey"></vue-hcaptcha>
+                    <br>
                     <router-link class="__b __tal __tsx __tri __po" to="/register">Don't have an account? Create
                         one</router-link>
                     <br>
                     <router-link class="__b __tal __tsx __tri __po" to="/forgot-password">Forgot password?</router-link>
                     <br>
                     <input v-if="!loading" type="submit" value="Login">
-                    <div v-if="loading" style="min-width: 50px; min-height: 50px; border-color: white; border-top-color: var(--succ_6); border-width: 5px;"
+                    <div v-if="loading"
+                        style="min-width: 50px; min-height: 50px; border-color: white; border-top-color: var(--succ_6); border-width: 5px;"
                         class="__loader-og"></div>
                 </form>
             </div>
@@ -112,6 +116,9 @@ import { useResponseStore } from "@/stores/response";
 
 import { uauth } from "@/utils/auth";
 
+import VueHcaptcha from '@hcaptcha/vue3-hcaptcha';
+import { HCAPTCHA_KEY } from '../../config';
+
 export default {
     data() {
         return {
@@ -119,8 +126,21 @@ export default {
                 username: '',
                 password: ''
             },
-            loading: false
+            loading: false,
+
+            hkey: '',
+
+            token: '',
+            eKey: ''
         }
+    },
+
+    components: {
+        VueHcaptcha
+    },
+
+    mounted() {
+        this.hkey = HCAPTCHA_KEY;
     },
 
     methods: {
@@ -128,11 +148,43 @@ export default {
             window.location.href = "/";
         },
 
+
+        // CAPTCHA HANDLING
+        onVerify(token, eKey) {
+            this.token = token;
+            this.eKey = eKey;
+        },
+        onExpire() {
+            useResponseStore().updateResponse("Captcha expired", "info");
+
+            this.token = "";
+            this.eKey = "";
+
+            this.$refs.hcaptcha.reset();
+        },
+        onChallengeExpired() {
+            useResponseStore().updateResponse("Challenge expired", "info");
+
+            this.token = "";
+            this.eKey = "";
+
+            this.$refs.hcaptcha.reset();
+        },
+        onError(err) {
+            useResponseStore().updateResponse("Failed to verify captcha", "err");
+
+            this.token = "";
+            this.eKey = "";
+
+            this.$refs.hcaptcha.reset();
+        },
+
+
         login() {
-            if (this.formData.username.trim() && this.formData.password) {
+            if (this.formData.username.trim() && this.formData.password && this.token && this.eKey) {
                 this.loading = true;
 
-                uauth.login(this.formData).then(res => {
+                uauth.login({ username: this.formData.username, password: this.formData.password, token: this.token }).then(res => {
                     if (localStorage.getItem("auth_token")) {
                         useResponseStore().updateResponse("Logged in successfully. Redirecting...", "succ");
                         setTimeout(() => {
@@ -143,9 +195,16 @@ export default {
 
                         if (status === 401) {
                             useResponseStore().updateResponse("Invalid credentials", "err");
-                        } else {
+                        } else if (status !== 422) {
                             useResponseStore().updateResponse("An error occurred", "err");
+                        } else {
+                            useResponseStore().updateResponse("Failed to verify captcha", "err");
                         }
+
+                        this.$refs.hcaptcha.reset();
+
+                        this.token = '';
+                        this.eKey = '';
 
                         this.loading = false;
                     }
