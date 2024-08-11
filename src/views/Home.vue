@@ -56,6 +56,31 @@
         </div>
       </div>
 
+      <div v-if="!this.showMaxStorageAlert"
+        class="__b __w __mauto _flex __bg-info-4 _sm-fd-co __bo-warn-8 __bod _ai-ce _jc-be __bdxs __padxs">
+        <div class="_flex _fd-co _cc">
+          <p class="__txt-grey-10 __b __tle">You are reaching the maximum storage limit with a free account. You can
+            only
+            add up to <strong>100</strong> videos and <strong>10</strong> playlists. Upgrade to unlock unlimited
+            storage.
+          </p>
+          <p style="margin-top: 5px; font-size: 13px;" class="__b __tle __txt-grey-8">Already upgraded on another
+            device? Press the <strong>refresh</strong> button.
+          </p>
+        </div>
+        <br class="m_hide _sm-show">
+        <div style="margin-left: 15px; " class="_flex _cc _fd-ro">
+          <button @click="goToUpgrade" style="min-width: max-content;"
+            class="__padxs __tsx __bg-none __po __bo-grey-10 __txt-grey-10 __bod">Upgrade Account</button> &nbsp; &nbsp;
+          <svg style="margin-left: 10px; " width=24 height=24 class="__po" fill=var(--grey_10) @click="refreshMembershipStatus" clip-rule="evenodd" fill-rule="evenodd"
+            stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path data-v-2dc54a20=""
+              d="m21.897 13.404.008-.057v.002c.024-.178.044-.357.058-.537.024-.302-.189-.811-.749-.811-.391 0-.715.3-.747.69-.018.221-.044.44-.078.656-.645 4.051-4.158 7.153-8.391 7.153-3.037 0-5.704-1.597-7.206-3.995l1.991-.005c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-4.033c-.414 0-.75.336-.75.75v4.049c0 .414.336.75.75.75s.75-.335.75-.75l.003-2.525c1.765 2.836 4.911 4.726 8.495 4.726 5.042 0 9.217-3.741 9.899-8.596zm-19.774-2.974-.009.056v-.002c-.035.233-.063.469-.082.708-.024.302.189.811.749.811.391 0 .715-.3.747-.69.022-.28.058-.556.107-.827.716-3.968 4.189-6.982 8.362-6.982 3.037 0 5.704 1.597 7.206 3.995l-1.991.005c-.414 0-.75.336-.75.75s.336.75.75.75h4.033c.414 0 .75-.336.75-.75v-4.049c0-.414-.336-.75-.75-.75s-.75.335-.75.75l-.003 2.525c-1.765-2.836-4.911-4.726-8.495-4.726-4.984 0-9.12 3.654-9.874 8.426z"
+              fill-rule="nonzero"></path>
+          </svg>
+        </div>
+      </div>
+
       <br class="__br __brme">
 
       <div class="__b __w _flex _fd-ro _jc-ce _ai-st _md-fd-co">
@@ -470,9 +495,9 @@
 
               <!-- received shares -->
               <div class="_flex tooltip">
-                <svg class="__po" @click="this.showSharesModal = !this.showSharesModal" :fill="this.receivedShares.length > 1 ? 'var(--err_1)' : 'var(--grey_1)'"
-                  viewBox="0 0 24 24" width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
-                  clip-rule="evenodd">
+                <svg class="__po" @click="this.showSharesModal = !this.showSharesModal"
+                  :fill="this.receivedShares.length > 1 ? 'var(--err_1)' : 'var(--grey_1)'" viewBox="0 0 24 24"
+                  width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                   <path
                     d="M24 22.917h-24v-13.275l2-1.456v-7.269h20v7.272l2 1.453v13.275zm-21-10.472v-10.528h18v10.526l-9 5.474-9-5.472zm6-8.916l1.305 2.41 2.695.496-1.888 1.986.36 2.717-2.472-1.183-2.472 1.183.36-2.717-1.888-1.986 2.695-.496 1.305-2.41zm8 6.471v1h-3v-1h3zm2-2v1h-5v-1h5zm0-2v1h-5v-1h5zm0-2v1h-5v-1h5z" />
                 </svg>
@@ -1325,6 +1350,7 @@ export default {
       showPlaylistCreate: false,
       showVidData: true,
       showFeedbackModal: false,
+      showMaxStorageAlert: false,
 
       // KEY
       apiKey: YT_API_KEY,
@@ -1476,7 +1502,16 @@ export default {
     this.checkAuthToken();
 
     // UPDATE USER MEMBERSHIP STATUS
-    this.userIsMember = localStorage.getItem("user_is_member")
+    this.userIsMember = localStorage.getItem("user_is_member");
+
+    // VERIFY IF USER HAS REACHED MAX STORAGE
+    if (!this.userIsMember) {
+      let count = this.allVideos.length;
+
+      if (count > 90) {
+        this.showMaxStorageAlert = true;
+      }
+    }
   },
 
   created() {
@@ -1502,6 +1537,19 @@ export default {
   },
 
   methods: {
+    // REFRESH MEMBERSHIP STATUS
+    refreshMembershipStatus() {
+      request({}, "/account/membership-status").then(res => {
+        if (!res.failed) {
+          this.userIsMember = res.data.data;
+
+          localStorage.setItem("user_is_member", this.userIsMember);
+        } else {
+          useResponseStore().updateResponse("Failed to refresh membership status", "err");
+        }
+      });
+    },
+
     // CHECK AUTHENTICATION STATE OF USER
     checkAuthToken() {
       setInterval(() => {
