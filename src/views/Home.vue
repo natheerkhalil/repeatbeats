@@ -12,8 +12,8 @@
       </div>
       <div class="_flex _cc">
         <div v-if="!userIsMember" class="tooltip">
-          <svg @click='goToUpgrade' class="__po" xmlns="http://www.w3.org/2000/svg" width="45"
-            height="45" viewBox="0 0 24 24">
+          <svg @click='goToUpgrade' class="__po" xmlns="http://www.w3.org/2000/svg" width="45" height="45"
+            viewBox="0 0 24 24">
             <defs>
               <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" style="stop-color:#b4b059;stop-opacity:1" />
@@ -469,7 +469,7 @@
               </div>
 
               <!-- received shares -->
-              <div v-if="receivedShares.length > 0" class="_flex tooltip">
+              <div class="_flex tooltip">
                 <svg class="__po" @click="this.showSharesModal = !this.showSharesModal" fill="var(--err_1)"
                   viewBox="0 0 24 24" width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
                   clip-rule="evenodd">
@@ -1206,6 +1206,20 @@
       </div>
       <hr class="__hr __b __bg-grey-1">
       <br>
+      <div v-if="receivedShares.length == 0" class="__b _flex _cc _fd-co">
+        <p class="__txt-grey-6">You haven't received any shares</p>
+        <br>
+        <svg @click="refreshReceivedShares" v-if="!loading.refreshShares" class="__po" width="55" height="55"
+          clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m21.897 13.404.008-.057v.002c.024-.178.044-.357.058-.537.024-.302-.189-.811-.749-.811-.391 0-.715.3-.747.69-.018.221-.044.44-.078.656-.645 4.051-4.158 7.153-8.391 7.153-3.037 0-5.704-1.597-7.206-3.995l1.991-.005c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-4.033c-.414 0-.75.336-.75.75v4.049c0 .414.336.75.75.75s.75-.335.75-.75l.003-2.525c1.765 2.836 4.911 4.726 8.495 4.726 5.042 0 9.217-3.741 9.899-8.596zm-19.774-2.974-.009.056v-.002c-.035.233-.063.469-.082.708-.024.302.189.811.749.811.391 0 .715-.3.747-.69.022-.28.058-.556.107-.827.716-3.968 4.189-6.982 8.362-6.982 3.037 0 5.704 1.597 7.206 3.995l-1.991.005c-.414 0-.75.336-.75.75s.336.75.75.75h4.033c.414 0 .75-.336.75-.75v-4.049c0-.414-.336-.75-.75-.75s-.75.335-.75.75l-.003 2.525c-1.765-2.836-4.911-4.726-8.495-4.726-4.984 0-9.12 3.654-9.874 8.426z"
+            fill-rule="nonzero" />
+        </svg>
+        <div
+          style="min-width: 55px; min-height: 55px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+          class="__loader-og" v-if="loading.refreshShares"></div>
+      </div>
       <div class="__b _flex _cc _fd-co">
         <div style="margin-bottom: 15px;" class="_flex __b __padxs __bo-grey-7 __bod __bdxs _jc-be _ai-ce"
           v-for="r in receivedShares">
@@ -1386,6 +1400,8 @@ export default {
         createPlaylist: false,
         deletePlaylist: false,
 
+        refreshShares: false,
+
         save: false,
         delete: false,
         share: false,
@@ -1471,16 +1487,14 @@ export default {
     }, 1000);
 
     if (this.isAuthenticated) {
-      // FETCH INITIAL DATA
-      this.initialiseData();
+      // LOAD ALL TABS
+      this.loadAllTabs().then(() => {
+        // FETCH INITIAL DATA
+        this.initialiseData();
+      });
 
       // CHECK IF USER'S EMAIL IS VERIFIED
       this.verifyEmail();
-
-      // LOAD MAIN TABS
-      this.loadFavs();
-      this.loadAllVideos();
-      this.loadPlaylists();
 
       // LOAD RECEIVED SHARES
       this.loadReceivedShares();
@@ -1519,7 +1533,7 @@ export default {
 
             localStorage.setItem("email_verified", JSON.stringify(this.emailVerified));
           } else {
-            console.log(`Failed to fetch email verification status - ${res.data}`, "err");
+            console.log(`Failed to fetch email verification status`, "err");
 
             this.emailVerified = true;
           }
@@ -1535,7 +1549,7 @@ export default {
             this.hideEmailAlert = true;
             this.verificationEmailSent = true;
           } else {
-            useResponseStore().updateResponse(`Failed to send verification email - ${res.data.data}`, "err");
+            useResponseStore().updateResponse(`Failed to send verification email`, "err");
             this.verificationEmailSent = false;
             console.log(res);
           }
@@ -1900,6 +1914,23 @@ export default {
         });
       }
     },
+    refreshReceivedShares() {
+      this.loading.refreshShares = true;
+
+      request({}, '/share/list').then(res => {
+        if (!res.failed) {
+          this.receivedShares = res.data.data;
+
+          this.loading.refreshShares = false;
+
+          this.cacheReceivedShares();
+        } else {
+          useResponseStore().updateResponse('Failed to load received shares. Please try again later', 'err');
+
+          this.loading.refreshShares = false;
+        }
+      });
+    },
     acceptShare(id) {
       request({ id: id, res: true }, '/share/respond').then(res => {
         if (!res.failed) {
@@ -2060,6 +2091,16 @@ export default {
 
 
     // LOAD MAIN TABS
+    async loadAllTabs() {
+      // Your existing code for loading all tabs
+      return new Promise((resolve, reject) => {
+        // After loading all tabs, resolve the promise
+        this.loadFavs();
+        this.loadPlaylists();
+        this.loadAllVideos();
+        resolve();
+      });
+    },
     loadFavs() {
       let cache = localStorage.getItem("cache_favs");
       let cache_order = localStorage.getItem("cache_fav_order");
@@ -2391,6 +2432,8 @@ export default {
             console.log(res);
           }
         });
+      } else {
+        this.loading.add = false;
       }
     },
     setCurrentPlaylist(id, name, thumbnail, videos) {
@@ -2635,7 +2678,7 @@ export default {
               this.cacheFavs();
               this.cachePlaylists();
             } else {
-              useResponseStore().updateResponse(`Failed to save video - ${res.data}`, 'err');
+              useResponseStore().updateResponse(`Failed to save video`, 'err');
 
               this.cooldown = 0;
               this.loading.save = false;
@@ -2649,7 +2692,7 @@ export default {
           this.cooldown = 0;
           this.loading.save = false;
 
-          useResponseStore().updateResponse(`Failed to save video - ${err}`, 'err');
+          useResponseStore().updateResponse(`Failed to save video`, 'err');
         }
       }
     },
