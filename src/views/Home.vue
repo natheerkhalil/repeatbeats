@@ -1524,8 +1524,10 @@ export default {
         this.userIsMember = localStorage.getItem("user_is_member") || false;
         this.showMaxStorageAlertHidden = localStorage.getItem("hideMaxStorageAlert") || false;
 
-        // VERIFY IF USER HAS REACHED MAX STORAGE
-        this.checkMaxStorage();
+        setTimeout(() => {
+          // VERIFY IF USER HAS REACHED MAX STORAGE
+          this.checkMaxStorage();
+        }, 1500);
       });
 
       // CHECK IF USER'S EMAIL IS VERIFIED
