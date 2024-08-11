@@ -1523,11 +1523,6 @@ export default {
         // UPDATE USER MEMBERSHIP STATUS
         this.userIsMember = localStorage.getItem("user_is_member") || false;
         this.showMaxStorageAlertHidden = localStorage.getItem("hideMaxStorageAlert") || false;
-
-        setTimeout(() => {
-          // VERIFY IF USER HAS REACHED MAX STORAGE
-          this.checkMaxStorage();
-        }, 1500);
       });
 
       // CHECK IF USER'S EMAIL IS VERIFIED
@@ -2221,6 +2216,8 @@ export default {
       if (cache) {
         this.allVideos = JSON.parse(cache);
         this.initialised.all = true;
+
+        this.checkMaxStorage();
       } else {
         request({}, '/video/all').then(res => {
           if (!res.failed) {
@@ -2233,6 +2230,8 @@ export default {
             this.cacheAll();
 
             localStorage.setItem("cache_all", JSON.stringify(this.allVideos));
+
+            this.checkMaxStorage();
           } else {
             useResponseStore().updateResponse('Failed to load all videos. Please try again later', 'err');
             console.log(res);
@@ -2318,6 +2317,8 @@ export default {
 
       if (cache) {
         this.playlists = JSON.parse(cache);
+
+        this.checkMaxStorage();
       } else {
         request({}, '/playlist/list').then(res => {
           if (!res.failed) {
@@ -2329,6 +2330,8 @@ export default {
             res.data.data.forEach(pl => {
               pl["isEditable"] = false;
             });
+
+            this.checkMaxStorage();
           } else {
             useResponseStore().updateResponse('Failed to load playlists', 'err');
           }
