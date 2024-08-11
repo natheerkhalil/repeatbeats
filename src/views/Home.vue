@@ -56,7 +56,7 @@
         </div>
       </div>
 
-      <div v-if="!this.showMaxStorageAlert"
+      <div v-if="this.showMaxStorageAlert && !this.showMaxStorageAlertHidden"
         class="__b __w __mauto _flex __bg-info-4 _sm-fd-co __bo-warn-8 __bod _ai-ce _jc-be __bdxs __padxs">
         <div class="_flex _fd-co _cc">
           <p class="__txt-grey-10 __b __tle">You are reaching the maximum storage limit with a free account. You can
@@ -72,11 +72,18 @@
         <div style="margin-left: 15px; " class="_flex _cc _fd-ro">
           <button @click="goToUpgrade" style="min-width: max-content;"
             class="__padxs __tsx __bg-none __po __bo-grey-10 __txt-grey-10 __bod">Upgrade Account</button> &nbsp; &nbsp;
-          <svg style="margin-left: 10px; " width=24 height=24 class="__po" fill=var(--grey_10) @click="refreshMembershipStatus" clip-rule="evenodd" fill-rule="evenodd"
-            stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg style="margin-left: 10px; " width=24 height=24 class="__po" fill=var(--grey_10)
+            @click="refreshMembershipStatus" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+            stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path data-v-2dc54a20=""
               d="m21.897 13.404.008-.057v.002c.024-.178.044-.357.058-.537.024-.302-.189-.811-.749-.811-.391 0-.715.3-.747.69-.018.221-.044.44-.078.656-.645 4.051-4.158 7.153-8.391 7.153-3.037 0-5.704-1.597-7.206-3.995l1.991-.005c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-4.033c-.414 0-.75.336-.75.75v4.049c0 .414.336.75.75.75s.75-.335.75-.75l.003-2.525c1.765 2.836 4.911 4.726 8.495 4.726 5.042 0 9.217-3.741 9.899-8.596zm-19.774-2.974-.009.056v-.002c-.035.233-.063.469-.082.708-.024.302.189.811.749.811.391 0 .715-.3.747-.69.022-.28.058-.556.107-.827.716-3.968 4.189-6.982 8.362-6.982 3.037 0 5.704 1.597 7.206 3.995l-1.991.005c-.414 0-.75.336-.75.75s.336.75.75.75h4.033c.414 0 .75-.336.75-.75v-4.049c0-.414-.336-.75-.75-.75s-.75.335-.75.75l-.003 2.525c-1.765-2.836-4.911-4.726-8.495-4.726-4.984 0-9.12 3.654-9.874 8.426z"
               fill-rule="nonzero"></path>
+          </svg>
+          <svg style="margin-left: 15px; " fill="var(--grey_10)" width=35 height=35 class="__po"
+            @click="hideStorageAlert" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+            stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z" />
           </svg>
         </div>
       </div>
@@ -1498,20 +1505,6 @@ export default {
   },
 
   mounted() {
-    // REDIRECT IF USER IS UNAUTHENTICATED
-    this.checkAuthToken();
-
-    // UPDATE USER MEMBERSHIP STATUS
-    this.userIsMember = localStorage.getItem("user_is_member");
-
-    // VERIFY IF USER HAS REACHED MAX STORAGE
-    if (!this.userIsMember) {
-      let count = this.allVideos.length;
-
-      if (count > 90) {
-        this.showMaxStorageAlert = true;
-      }
-    }
   },
 
   created() {
@@ -1526,6 +1519,13 @@ export default {
       this.loadAllTabs().then(() => {
         // FETCH INITIAL DATA
         this.initialiseData();
+
+        // UPDATE USER MEMBERSHIP STATUS
+        this.userIsMember = localStorage.getItem("user_is_member") || false;
+        this.showMaxStorageAlertHidden = localStorage.getItem("hideMaxStorageAlert") || false;
+
+        // VERIFY IF USER HAS REACHED MAX STORAGE
+        this.checkMaxStorage();
       });
 
       // CHECK IF USER'S EMAIL IS VERIFIED
@@ -1534,6 +1534,7 @@ export default {
       // LOAD RECEIVED SHARES
       this.loadReceivedShares();
     }
+
   },
 
   methods: {
@@ -1541,13 +1542,43 @@ export default {
     refreshMembershipStatus() {
       request({}, "/account/membership-status").then(res => {
         if (!res.failed) {
-          this.userIsMember = res.data.data;
+          if (res.data.data === false) {
+            localStorage.removeItem("user_is_member");
 
-          localStorage.setItem("user_is_member", this.userIsMember);
+            this.userIsMember = false;
+          } else {
+            localStorage.setItem("user_is_member", 1);
+
+            this.userIsMember = false;
+          }
+
+          this.checkMaxStorage();
         } else {
           useResponseStore().updateResponse("Failed to refresh membership status", "err");
         }
       });
+    },
+    // CHECK MAX STORAGE
+    checkMaxStorage() {
+      console.log("Checking max storage");
+      if (this.userIsMember === false) {
+        console.log("User is not a member");
+        let count = this.allVideos.length;
+        let pl_count = this.playlists.length;
+
+        console.log("Video length: " + count);
+        console.log("Playlist length: " + pl_count);
+
+        if (count > 90 || pl_count >= 9) {
+          this.showMaxStorageAlert = true;
+        }
+      }
+    },
+    // HIDE MAX STORAGE ALERT
+    hideStorageAlert() {
+      this.showMaxStorageAlertHidden = true;
+
+      localStorage.setItem("hideMaxStorageAlert", 1);
     },
 
     // CHECK AUTHENTICATION STATE OF USER
@@ -2324,10 +2355,18 @@ export default {
           this.cachePlaylists();
           this.cacheVideoPlaylist();
 
+          this.checkMaxStorage();
+
           this.loading.createPlaylist = false;
+        } else if (this.showMaxStorageAlert) {
+          useResponseStore().updateResponse('Storage limit reached or some other error occurred.', 'warn');
+
+          this.loading.createPlaylist = false
+
+          return false;
         } else {
+
           useResponseStore().updateResponse('Failed to create playlist', 'err');
-          console.log(res);
 
           this.loading.createPlaylist = false;
         }
@@ -2400,6 +2439,8 @@ export default {
 
             this.cachePlaylists();
             this.cacheVideoPlaylist();
+
+            this.checkMaxStorage();
 
           } else {
             useResponseStore().updateResponse('Failed to delete playlist', 'err');
@@ -2721,6 +2762,8 @@ export default {
                 }
               });
 
+              this.checkMaxStorage();
+
               this.cacheAll();
               this.cacheVideo();
               this.cacheFavs();
@@ -2734,7 +2777,7 @@ export default {
 
                 return false;
               }
-              
+
               useResponseStore().updateResponse(`Failed to save video`, 'err');
 
               this.cooldown = 0;
@@ -2805,6 +2848,8 @@ export default {
             this.cacheFavs();
             this.cachePlaylists();
             this.cacheVideoPlaylist();
+
+            this.checkMaxStorage();
 
             this.loading.delete = false;
           } else {
