@@ -45,6 +45,9 @@
                     <br>
                     <input @input="validateFormData" type="password" v-model="formData.password" placeholder="Password">
                     <br>
+                    <vue-hcaptcha ref="hcaptcha" @error="onError" @expire="onExpire"
+                        @challenge-expired="onChallengeExpired" @verify="onVerify" :sitekey="hkey"></vue-hcaptcha>
+                    <br>
                     <router-link class="__b __tal __tsx __tri __po" to="/login">Already have an account? Log
                         in</router-link>
                     <br>
@@ -115,11 +118,10 @@ input[type="submit"]:hover {
 <script>
 import { useResponseStore } from "@/stores/response";
 
-import axios from "axios";
-
 import { uauth } from "@/utils/auth";
 
-import { request } from "@/main";
+import VueHcaptcha from '@hcaptcha/vue3-hcaptcha';
+import { HCAPTCHA_KEY } from '../../config';
 
 export default {
     data() {
@@ -134,8 +136,21 @@ export default {
                 password: ''
             },
 
-            loading: false
+            loading: false,
+
+            hkey: '',
+
+            token: '',
+            eKey: '',
         }
+    },
+
+    components: {
+        VueHcaptcha
+    },
+
+    mounted() {
+        this.hkey = HCAPTCHA_KEY;
     },
 
     methods: {
@@ -143,33 +158,72 @@ export default {
             window.location.href = "/";
         },
 
+        // CAPTCHA HANDLING
+        onVerify(token, eKey) {
+            this.token = token;
+            this.eKey = eKey;
+        },
+        onExpire() {
+            useResponseStore().updateResponse("Captcha expired", "info");
+
+            this.token = "";
+            this.eKey = "";
+
+            this.$refs.hcaptcha.reset();
+        },
+        onChallengeExpired() {
+            useResponseStore().updateResponse("Challenge expired", "info");
+
+            this.token = "";
+            this.eKey = "";
+
+            this.$refs.hcaptcha.reset();
+        },
+        onError(err) {
+            useResponseStore().updateResponse("Failed to verify captcha", "err");
+
+            this.token = "";
+            this.eKey = "";
+
+            this.$refs.hcaptcha.reset();
+        },
+
+
         register() {
-            this.loading = true;
-            uauth.register(this.formData).then(res => {
-                if (localStorage.getItem("auth_token")) {
-                    useResponseStore().updateResponse("Registered successfully. Redirecting...", "succ");
-                    setTimeout(() => {
-                        window.location.href = "/";
-                    }, 2000);
-                } else {
-                    // get status code
-                    let code = res.msg.response.status;
-                    
-                    if (code === 409) {
-                        useResponseStore().updateResponse("Username or email already exists", "err");
+            if (this.token && this.eKey) {
+                this.loading = true;
+                uauth.register({ username: this.formData.username, email: this.formData.email, password: this.formData.password, token: this.token }).then(res => {
+                    if (localStorage.getItem("auth_token")) {
+                        useResponseStore().updateResponse("Registered successfully. Redirecting...", "succ");
+                        setTimeout(() => {
+                            window.location.href = "/";
+                        }, 2000);
+                    } else {
+                        // get status code
+                        let code = res.msg.response.status;
+
+                        if (code === 409) {
+                            useResponseStore().updateResponse("Username or email already exists", "err");
+
+                            this.loading = false;
+
+                            return false;
+                        } else if (code === 422) {
+                            useResponseStore().updateResponse("Failed to verify captcha", "err");
+
+                            this.loading = false;
+
+                            return false;
+                        }
+
+                        useResponseStore().updateResponse("Failed to register account. Please try again", "err");
 
                         this.loading = false;
-
-                        return false;
                     }
-
-                    useResponseStore().updateResponse("Failed to register account. Please try again", "err");
-
-                    this.loading = false;
-                }
-            });
+                });
+            }
         },
-        
+
         validateFormData(data) {
             data = this.formData;
 
