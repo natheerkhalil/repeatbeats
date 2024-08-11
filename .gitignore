@@ -32,6 +32,9 @@ coverage
 # Stripe
 stripe.exe
 
+# Testing page
+src/views/New.vue
+
 # Unused public assets
 public/unused/
 
