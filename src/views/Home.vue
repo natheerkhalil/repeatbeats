@@ -2422,6 +2422,8 @@ export default {
             console.log(res);
           }
         });
+      } else {
+        this.loading.add = false;
       }
     },
     setCurrentPlaylist(id, name, thumbnail, videos) {
