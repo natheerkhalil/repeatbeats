@@ -470,7 +470,7 @@
 
               <!-- received shares -->
               <div class="_flex tooltip">
-                <svg class="__po" @click="this.showSharesModal = !this.showSharesModal" fill="var(--err_1)"
+                <svg class="__po" @click="this.showSharesModal = !this.showSharesModal" :fill="this.receivedShares.length > 1 ? 'var(--err_1)' : 'var(--grey_1)'"
                   viewBox="0 0 24 24" width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
                   clip-rule="evenodd">
                   <path
