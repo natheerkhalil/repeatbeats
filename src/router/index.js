@@ -44,14 +44,6 @@ if (MAINTENANCE_MODE !== "true" && MAINTENANCE_MODE !== "1") {
     HomeRoute,
 
     {
-      path: '/new',
-      name: 'new',
-      component: function () {
-        return import("@/views/New.vue");
-      }
-    },
-
-    {
       path: '/account',
       name: 'account',
       component: function () {
