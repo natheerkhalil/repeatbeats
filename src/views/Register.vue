@@ -199,6 +199,13 @@ export default {
                             window.location.href = "/";
                         }, 2000);
                     } else {
+                        // reset captcha
+
+                        this.token = "";
+                        this.eKey = "";
+                        
+                        this.$refs.hcaptcha.reset();
+                        
                         // get status code
                         let code = res.msg.response.status;
 
