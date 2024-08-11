@@ -241,7 +241,7 @@ export default {
 
                         localStorage.setItem("email_verified", JSON.stringify(this.emailVerified));
                     } else {
-                        console.log(`Failed to fetch email verification status - ${res.data}`, "err");
+                        console.log(`Failed to fetch email verification status`, "err");
 
                         this.emailVerified = true;
                     }

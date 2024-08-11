@@ -1519,7 +1519,7 @@ export default {
 
             localStorage.setItem("email_verified", JSON.stringify(this.emailVerified));
           } else {
-            console.log(`Failed to fetch email verification status - ${res.data}`, "err");
+            console.log(`Failed to fetch email verification status`, "err");
 
             this.emailVerified = true;
           }
@@ -1535,7 +1535,7 @@ export default {
             this.hideEmailAlert = true;
             this.verificationEmailSent = true;
           } else {
-            useResponseStore().updateResponse(`Failed to send verification email - ${res.data.data}`, "err");
+            useResponseStore().updateResponse(`Failed to send verification email`, "err");
             this.verificationEmailSent = false;
             console.log(res);
           }
@@ -2635,7 +2635,7 @@ export default {
               this.cacheFavs();
               this.cachePlaylists();
             } else {
-              useResponseStore().updateResponse(`Failed to save video - ${res.data}`, 'err');
+              useResponseStore().updateResponse(`Failed to save video`, 'err');
 
               this.cooldown = 0;
               this.loading.save = false;
@@ -2649,7 +2649,7 @@ export default {
           this.cooldown = 0;
           this.loading.save = false;
 
-          useResponseStore().updateResponse(`Failed to save video - ${err}`, 'err');
+          useResponseStore().updateResponse(`Failed to save video`, 'err');
         }
       }
     },
