@@ -225,7 +225,7 @@ export default {
             window.open('https://github.com/nouralbeirouty/repeatbeats-frontend', '_blank').focus();
         },
         buyCoffee() {
-            //window.open('https://github.com/nouralbeirouty/repeatbeats-frontend', '_blank').focus();
+            window.open('https://ko-fi.com/natheer', '_blank').focus();
         },
     }
 }
@@ -240,6 +240,7 @@ export default {
     background-size: 100%;
     background-repeat: repeat;
 
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
@@ -254,6 +255,7 @@ export default {
     background-size: 100%;
     background-repeat: repeat;
 
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
@@ -268,6 +270,7 @@ export default {
     background-size: 100%;
     background-repeat: repeat;
 
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
