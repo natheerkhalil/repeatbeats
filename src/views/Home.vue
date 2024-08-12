@@ -1300,6 +1300,7 @@ import axios from 'axios';
 import draggable from 'vuedraggable/src/vuedraggable'
 
 import { YT_API_KEY } from "../../config";
+import { YT_DATA_KEY } from "../../config";
 
 export default {
 
@@ -2929,6 +2930,7 @@ export default {
     // IMPORT PLAYLIST
     async importPlaylist() {
       this.loading.importPlaylist = true;
+
       useResponseStore().updateResponse('Importing playlist, please wait...', 'info');
 
       const playlistId = this.extractPlaylistId(this.importPlaylistUrl);
@@ -2938,6 +2940,9 @@ export default {
       // If playlist ID is not valid, return
       if (!playlistId) {
         useResponseStore().updateResponse('Invalid playlist URL', 'err');
+
+        this.loading.importPlaylist = false;
+
         return;
       } else {
 
@@ -2962,12 +2967,17 @@ export default {
           } while (nextPageToken);
         } catch (err) {
           useResponseStore().updateResponse('Failed to fetch playlist videos', 'err');
+
+          this.loading.importPlaylist = false;
         }
 
         // Create a new playlist
         request({ name: "TEST PLAYLIST" }, "/playlist/create").then(res => {
           if (res.failed) {
             useResponseStore().updateResponse('Failed to create playlist', 'err');
+
+            this.loading.importPlaylist = false;
+            
             return;
           } else {
 
