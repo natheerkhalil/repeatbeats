@@ -1061,7 +1061,16 @@
       style="max-height: 90vh; overflow-x: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
       class="__custscroll __w _flex _fd-co _ai-ce __bg-grey-10 __bo-1 __bod __padsm">
       <div class="__b _flex _fd-ro _jc-be">
-        <p class="__tmd __tle">Import playlist</p>
+        <div class="_flex _fd-co">
+          <p class="__tmd __tle">Import playlist</p>
+          <p v-if="importProgress.state" class="__b __tle __txt-grey-4">The playlist is being imported. You can close
+            this
+            modal while you wait.</p>
+          <p v-if="importProgress.state" class="__b __tle __txt-info-3 __tsx">Videos: {{ importProgress.videos.now }} /
+            {{
+              importProgress.videos.max }} (---) Expected time: {{ importProgress.expected }}s</p>
+        </div>
+        <br>
         <div class="_flex _fd-ro _ai-ce">
           <svg @click="showImportModal = !showImportModal" width=35 height=35 class="__po" clip-rule="evenodd"
             fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
@@ -1364,8 +1373,16 @@ export default {
       apiKey: YT_API_KEY,
       dataKey: YT_DATA_KEY,
 
-      // IMPORT PLAYLIST URL
+      // IMPORT PLAYLIST DATA
       importPlaylistUrl: 'https://www.youtube.com/watch?v=btn7E8yYvaM&list=PLhAF4Vr5DtTs893br4wmfhXEsQYVURcMM',
+      importProgress: {
+        videos: {
+          max: 0,
+          now: 0
+        },
+        expected: 0,
+        state: 0
+      },
 
       // USER MEMBERSHIP STATUS
       userIsMember: false,
@@ -2941,8 +2958,8 @@ export default {
       // Extract playlist ID from the URL
       const playlistId = this.extractPlaylistId(this.importPlaylistUrl);
 
-      // Notify user about importing playlist
-      useResponseStore().updateResponse('Importing playlist, please wait...', 'info');
+      // Update import progress state
+      this.importProgress.state = 1;
 
       // If playlist ID is not valid, return
       if (!playlistId) {
@@ -2980,8 +2997,6 @@ export default {
         return false;
       }
 
-      useResponseStore().updateResponse('Creating playlist ...', 'info');
-
       // Create a new playlist
       request({ name: pl_name }, "/playlist/create").then(res => {
         // If failed to create playlist, return
@@ -3016,7 +3031,6 @@ export default {
         pl_id = res.data.data.id;
 
         if (videos.length > 0) {
-          useResponseStore().updateResponse('Creating & adding videos to playlist ...', 'info');
           this.createImportedVideos(videos);
         } else {
           useResponseStore().updateResponse("This playlist doesn't have any videos", 'info');
@@ -3034,6 +3048,16 @@ export default {
       let vids_existed = false;
       let vids_failed = false;
       let vids_failed_to_playlist = false;
+
+      this.importProgress.videos.max = videos.length;
+
+      this.importProgress.expected = (videos.length * 5.4).toFixed(0);
+
+      setInterval(() => {
+        if (this.importProgress.videos.current < videos.length) {
+          this.importProgress.expected = this.importProgress.expected - 1;
+        }
+      }, 1000);
 
       /*Promise.all(videos.map(async (v) => {
         // Get video ID from the playlist item
@@ -3108,6 +3132,9 @@ export default {
           created_at: new Date(),
           updated_at: new Date()
         };
+
+        // Update progress
+        this.importProgress.videos.current++;
 
         try {
           // Save video to database and await the result
