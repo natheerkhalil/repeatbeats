@@ -2987,6 +2987,17 @@ export default {
             },
           });
 
+          const response2 = await axios.get('https://www.googleapis.com/youtube/v3/playlists', {
+            params: {
+              part: 'snippet',
+              id: playlistId,
+              key: this.dataKey,
+            },
+          });
+
+          const playlistTitle = response2.data.items[0].snippet.title;
+          pl_name = playlistTitle;
+
           videos.push(...response.data.items);
           nextPageToken = response.data.nextPageToken;
 
