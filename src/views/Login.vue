@@ -116,6 +116,8 @@ import { useResponseStore } from "@/stores/response";
 import { uauth } from "@/utils/auth";
 
 import { TURNSTILE_SITE_KEY } from "../../config";
+import { PLACEHOLDER_CAPTCHA_TOKEN } from "../../config";
+
 import VueTurnstile from "vue-turnstile";
 
 export default {
@@ -139,6 +141,7 @@ export default {
 
     created() {
         this.sitekey = TURNSTILE_SITE_KEY;
+        this.token = PLACEHOLDER_CAPTCHA_TOKEN;
     },
 
     methods: {
