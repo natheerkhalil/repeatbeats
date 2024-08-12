@@ -1362,6 +1362,7 @@ export default {
 
       // KEY
       apiKey: YT_API_KEY,
+      dataKey: YT_DATA_KEY,
 
       // IMPORT PLAYLIST URL
       importPlaylistUrl: '',
@@ -2956,7 +2957,7 @@ export default {
                 maxResults: 50,
                 playlistId: playlistId,
                 pageToken: nextPageToken,
-                key: this.apiKey,
+                key: this.dataKey,
               },
             });
 
