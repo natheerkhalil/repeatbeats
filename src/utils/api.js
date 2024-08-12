@@ -59,10 +59,25 @@ export async function request(data, url, authenticated = true) {
 
         console.log("API request failed: ", error);
 
+        let msg;
+        let code;
+
+        if (error.response.data) {
+            msg = Object.values(flattenObject(error.response.data))[0];
+        } else {
+            msg = "An unexpected error occurred";
+        }
+
+        if (error.response.status) {
+            code = error.response.status;
+        } else {
+            code = 500; // Default to server error code
+        }
+
         return {
             failed: 1,
-            msg: Object.values(flattenObject(error.response.data))[0] || "There was an unexpected error",
-            code: error.response.status
+            msg: msg,
+            code: code
         };
 
     }

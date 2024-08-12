@@ -25,7 +25,7 @@ import axios from 'axios';
 import { API_URL } from '../config'
 import { MAINTENANCE_MODE } from '../config'
 
-axios.defaults.timeout = 15000; // 5 seconds
+axios.defaults.timeout = 999999;
 axios.defaults.baseURL = API_URL;
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 axios.defaults.headers.common['Accept'] = 'application/json';

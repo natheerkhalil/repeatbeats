@@ -1061,7 +1061,18 @@
       style="max-height: 90vh; overflow-x: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
       class="__custscroll __w _flex _fd-co _ai-ce __bg-grey-10 __bo-1 __bod __padsm">
       <div class="__b _flex _fd-ro _jc-be">
-        <p class="__tmd __tle">Import playlist</p>
+        <div class="_flex _fd-co">
+          <p class="__tmd __tle">Import playlist</p>
+          <p v-if="importProgress.state" class="__b __tle __txt-grey-4">The playlist is being imported. You can close
+            this
+            modal while you wait.</p>
+          <p v-if="importProgress.state" class="__b __tle __txt-warn-2">Closing or refreshing the page will cancel this
+            process</p>
+          <p v-if="importProgress.state" class="__b __tle __txt-info-3 __tsx">Videos: {{ importProgress.videos.now }} /
+            {{
+              importProgress.videos.max }} (---) Remaining time: {{ importProgress.expected }}s</p>
+        </div>
+        <br>
         <div class="_flex _fd-ro _ai-ce">
           <svg @click="showImportModal = !showImportModal" width=35 height=35 class="__po" clip-rule="evenodd"
             fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
@@ -1300,6 +1311,7 @@ import axios from 'axios';
 import draggable from 'vuedraggable/src/vuedraggable'
 
 import { YT_API_KEY } from "../../config";
+import { YT_DATA_KEY } from "../../config";
 
 export default {
 
@@ -1361,9 +1373,18 @@ export default {
 
       // KEY
       apiKey: YT_API_KEY,
+      dataKey: YT_DATA_KEY,
 
-      // IMPORT PLAYLIST URL
-      importPlaylistUrl: '',
+      // IMPORT PLAYLIST DATA
+      importPlaylistUrl: 'https://www.youtube.com/watch?v=btn7E8yYvaM&list=PLhAF4Vr5DtTs893br4wmfhXEsQYVURcMM',
+      importProgress: {
+        videos: {
+          max: 0,
+          now: 0
+        },
+        expected: 0,
+        state: 0
+      },
 
       // USER MEMBERSHIP STATUS
       userIsMember: false,
@@ -1502,6 +1523,14 @@ export default {
   beforeUnmount() {
     clearInterval(this.tabInterval);
     clearInterval(this.loopInterval);
+
+    // CANCEL PLAYLIST IMPORT
+    this.importPlaylistUrl = '',
+      this.importProgress.state = 0;
+    this.loading.importPlaylist = false;
+    this.importProgress.expected = 0;
+    this.importProgress.videos.max = 0;
+    this.importProgress.videos.now = 0;
   },
 
   mounted() {
@@ -1523,7 +1552,7 @@ export default {
         // UPDATE USER MEMBERSHIP STATUS
         this.userIsMember = localStorage.getItem("user_is_member") ? true : false;
         this.showMaxStorageAlertHidden = localStorage.getItem("hideMaxStorageAlert") || false;
-        
+
         this.checkMaxStorage();
       });
 
@@ -2928,227 +2957,251 @@ export default {
 
     // IMPORT PLAYLIST
     async importPlaylist() {
+      // Set loading state
       this.loading.importPlaylist = true;
-      useResponseStore().updateResponse('Importing playlist, please wait...', 'info');
 
+      // Define playlist variables
+      let videos = [];
+      let pl_name = Math.random().toString(36);
+      let pl_id = '';
+
+      // Extract playlist ID from the URL
       const playlistId = this.extractPlaylistId(this.importPlaylistUrl);
 
-      let videos = [];
+      // Update import progress state
+      this.importProgress.state = 1;
 
       // If playlist ID is not valid, return
       if (!playlistId) {
         useResponseStore().updateResponse('Invalid playlist URL', 'err');
-        return;
-      } else {
 
-        let nextPageToken = '';
+        this.loading.importPlaylist = false;
 
-        try {
-          do {
-            const response = await axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
-              params: {
-                part: 'snippet',
-                maxResults: 50,
-                playlistId: playlistId,
-                pageToken: nextPageToken,
-                key: this.apiKey,
-              },
-            });
-
-            // Get array of videos from the imported playlist
-            videos.push(...response.data.items);
-            nextPageToken = response.data.nextPageToken;
-
-          } while (nextPageToken);
-        } catch (err) {
-          useResponseStore().updateResponse('Failed to fetch playlist videos', 'err');
-        }
-
-        // Create a new playlist
-        request({ name: "TEST PLAYLIST" }, "/playlist/create").then(res => {
-          if (res.failed) {
-            useResponseStore().updateResponse('Failed to create playlist', 'err');
-            return;
-          } else {
-
-            let vids_to_add = [];
-
-            this.videoPlaylist = {
-              id: res.data.data.id,
-              name: res.data.data.name,
-              videos: [],
-              thumbnail: ''
-            };
-
-            this.cacheVideoPlaylist();
-
-            this.playlists.unshift({
-              id: res.data.data.id,
-              name: "TEST PLAYLIST",
-              isEditable: false,
-              videos: [],
-              thumbnail: 'https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg',
-              created_at: new Date(),
-              updated_at: new Date()
-            });
-
-            let pl_id = res.data.data.id;
-
-            if (videos.length > 0) {
-              let vids_existed = false;
-              let vids_failed = false;
-              let vids_failed_to_playlist = false;
-              let vids_finished_processing = false;
-
-              Promise.all(videos.map(async (v) => {
-                let id = v.snippet.resourceId.videoId;
-
-                try {
-                  const res = await request({ url: id }, '/video/load');
-                  if (res.failed) {
-                    // create a new video in the database if it doesn't exist yet
-                    const saveRes = await request({
-                      title: v.snippet.title,
-                      desc: "",
-                      skip: [],
-                      start: 0,
-                      end: 999,
-                      lyrics: "",
-                      fav: false,
-                      speed: 1.0,
-                      url: id,
-                      thumbnail: v.snippet.thumbnails.medium.url,
-                    }, "/video/save");
-
-                    if (saveRes.failed) {
-                      vids_failed = true;
-                    } else {
-                      // add the video to the playlist using the saved video's id
-                      const addRes = await request({ plid: pl_id, url: saveRes.data.data.url }, "/playlist/add");
-
-                      if (addRes.failed) {
-                        vids_failed_to_playlist = true;
-                      } else {
-                        // add the video to the videoPlaylist array
-                        this.videoPlaylist.videos.unshift({
-                          id: saveRes.data.data.id,
-                          title: v.snippet.title,
-                          url: saveRes.data.data.url,
-                          thumbnail: v.snippet.thumbnails.medium.url,
-                          start: 0,
-                          end: 999,
-                          speed: 1.0,
-                          fav: false,
-                          skip: [],
-                          created_at: new Date(),
-                          updated_at: new Date()
-                        });
-
-                        // add the video to the playlist in the playlists array
-                        this.playlists.find(pl => pl.id === pl_id).videos.unshift({
-                          title: v.snippet.title,
-                          desc: "",
-                          skip: [],
-                          start: 0,
-                          end: 999,
-                          lyrics: "",
-                          fav: false,
-                          speed: 1.0,
-                          url: v.snippet.resourceId.videoId,
-                          thumbnail: v.snippet.thumbnails.medium.url,
-                          created_at: new Date(),
-                          updated_at: new Date()
-                        });
-                      }
-                    }
-
-                    // add the video to the allVideos array
-                    this.allVideos.unshift(saveRes.data.data);
-                  } else {
-                    vids_existed = true;
-
-                    // add the video to the videoPlaylist array
-                    this.videoPlaylist.videos.unshift({
-                      title: res.data.data.title,
-                      desc: res.data.data.desc,
-                      skip: res.data.data.skip,
-                      start: res.data.data.start,
-                      end: res.data.data.end,
-                      lyrics: res.data.data.lyrics,
-                      fav: res.data.data.fav,
-                      speed: res.data.data.speed,
-                      url: v.snippet.resourceId.videoId,
-                      thumbnail: v.snippet.thumbnails.medium.url,
-                      created_at: res.data.data.created_at,
-                      updated_at: res.data.data.updated_at
-                    });
-
-                    // add the video to the playlist in the playlists array
-                    this.playlists.find(pl => pl.id === pl_id).videos.unshift({
-                      title: res.data.data.title,
-                      desc: res.data.data.desc,
-                      skip: res.data.data.skip,
-                      start: res.data.data.start,
-                      end: res.data.data.end,
-                      lyrics: res.data.data.lyrics,
-                      fav: res.data.data.fav,
-                      speed: res.data.data.speed,
-                      url: v.snippet.resourceId.videoId,
-                      thumbnail: v.snippet.thumbnails.medium.url,
-                      created_at: res.data.data.created_at,
-                      updated_at: res.data.data.updated_at
-                    });
-                  }
-                } catch (err) {
-                  vids_failed = true;
-                }
-              })).then(() => {
-
-                if (vids_failed) {
-                  useResponseStore().updateResponse("Playlist created, but we failed to save some videos", 'warn');
-                }
-
-                if (vids_failed_to_playlist) {
-                  useResponseStore().updateResponse("Playlist created, but we failed to add some videos to the playlist", 'warn');
-                }
-
-                if (vids_existed) {
-                  useResponseStore().updateResponse("One or more videos from this playlist already existed. They've been added to the playlist", 'info');
-                }
-
-                if (!vids_existed && !vids_failed && !vids_failed_to_playlist) {
-                  useResponseStore().updateResponse('Playlist & video(s) created successfully', 'succ');
-                }
-
-                if (this.videoPlaylist.videos.length == 0) {
-                  useResponseStore().updateResponse("There aren't any videos in the imported playlist", 'info');
-                } else {
-                  // play the first video in the playlist
-                  this.pressPlay(this.videoPlaylist.videos[0].url);
-                }
-
-                this.importPlaylistUrl = '';
-                this.showImportModal = false;
-                this.loading.importPlaylist = false;
-
-                this.cacheAll();
-                this.cacheFavs();
-                this.cachePlaylists();
-                this.cacheVideoPlaylist();
-              });
-            } else {
-              useResponseStore().updateResponse("This playlist doesn't have any videos", 'info');
-
-              this.cacheAll();
-              this.cacheFavs();
-              this.cachePlaylists();
-              this.cacheVideoPlaylist();
-            }
-          }
-        })
+        return false;
       }
 
+      // Get array of videos from the imported playlist
+      try {
+        let nextPageToken = '';
+
+        do {
+          const response = await axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
+            params: {
+              part: 'snippet',
+              maxResults: 50,
+              playlistId: playlistId,
+              pageToken: nextPageToken,
+              key: this.dataKey,
+            },
+          });
+
+          const response2 = await axios.get('https://www.googleapis.com/youtube/v3/playlists', {
+            params: {
+              part: 'snippet',
+              id: playlistId,
+              key: this.dataKey,
+            },
+          });
+
+          const playlistTitle = response2.data.items[0].snippet.title;
+          pl_name = playlistTitle;
+
+          videos.push(...response.data.items);
+          nextPageToken = response.data.nextPageToken;
+
+        } while (nextPageToken);
+      } catch (err) {
+        useResponseStore().updateResponse('Failed to fetch playlist videos', 'err');
+
+        this.loading.importPlaylist = false;
+
+        return false;
+      }
+
+      // Create a new playlist
+      request({ name: pl_name }, "/playlist/create").then(res => {
+        // If failed to create playlist, return
+        if (res.failed) {
+          useResponseStore().updateResponse('Failed to create playlist', 'err');
+
+          this.loading.importPlaylist = false;
+
+          return false;
+        }
+
+        // Set current playlist to imported playlist
+        this.videoPlaylist = {
+          id: res.data.data.id,
+          name: res.data.data.name,
+          videos: [],
+          thumbnail: ''
+        };
+
+        // Add playlist to playlists array
+        this.playlists.unshift({
+          id: res.data.data.id,
+          name: pl_name,
+          isEditable: false,
+          videos: [],
+          thumbnail: 'https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg',
+          created_at: new Date(),
+          updated_at: new Date()
+        });
+
+        this.cachePlaylists();
+        this.checkMaxStorage();
+
+        // Get playlist ID
+        pl_id = res.data.data.id;
+
+        if (videos.length > 0) {
+          this.createImportedVideos(videos);
+        } else {
+          useResponseStore().updateResponse("This playlist doesn't have any videos", 'info');
+
+          this.cacheAll();
+          this.cacheFavs();
+          this.cachePlaylists();
+          this.cacheVideoPlaylist();
+        }
+      })
+
     },
+
+    async createImportedVideos(videos, pl_id = this.videoPlaylist.id) {
+      let vids_existed = false;
+      let vids_failed = false;
+      let vids_failed_to_playlist = false;
+
+      this.importProgress.videos.max = videos.length;
+
+      this.importProgress.expected = (videos.length * 2.2).toFixed(0);
+
+      let count_expected;
+
+      count_expected = setInterval(() => {
+        if (this.importProgress.videos.now < videos.length) {
+          this.importProgress.expected = ((this.importProgress.videos.max - this.importProgress.videos.now) * 2.2).toFixed(0);
+        }
+      }, 1000);
+
+      for (const v of videos) {
+        if (!this.importProgress.state) {
+          return false;
+        }
+
+        // Get video ID from the playlist item
+        let id = v.snippet.resourceId.videoId;
+        // Check if video exists in allVideos array and fetch data from it, if not use default data
+        let v_data;
+
+        if (this.allVideos.find(v => v.url === id)) {
+          v_data = this.allVideos.find(v => v.url === id);
+          v_data.created_at = new Date();
+          v_data.updated_at = new Date();
+        } else {
+          v_data = {
+            title: v.snippet.title,
+            desc: "",
+            skip: [],
+            start: 0,
+            end: 999,
+            lyrics: "",
+            fav: false,
+            speed: 1.0,
+            url: id,
+            thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+            created_at: new Date(),
+            updated_at: new Date()
+          };
+        }
+
+        // Update progress
+        this.importProgress.videos.now = this.importProgress.videos.now + 1;
+
+        try {
+          // Save video to database and await the result
+          const saveRes = await request(v_data, "/video/save");
+
+          if (saveRes.failed) {
+            vids_failed = true;
+
+            useResponseStore().updateResponse(`Failed to save "${v.snippet.title}"`, 'warn');
+          } else {
+            // Add the video to the playlist and await the result
+            const addRes = await request({ plid: pl_id, url: id }, "/playlist/add");
+
+            if (addRes.failed) {
+              vids_failed_to_playlist = true;
+            } else {
+              // Add the video to the videoPlaylist array if it doesn't exist in videoPlaylist array
+              if (!this.videoPlaylist.videos.some(v => v.url === id)) {
+                this.videoPlaylist.videos.unshift(v_data);
+              }
+
+              // Add the video to the playlist in the playlists array
+              this.playlists.find(pl => pl.id === pl_id).videos.unshift(v_data);
+
+              // Add the video to the allVideos array if it doesn't exist in allVideos array
+              if (!this.allVideos.some(v => v.url === id)) {
+                this.allVideos.unshift(v_data);
+              }
+
+              useResponseStore().updateResponse(`"${v.snippet.title}" saved successfully`, 'succ');
+            }
+          }
+        } catch (err) {
+          vids_failed = true;
+        }
+
+        this.cacheAll();
+        this.cacheFavs();
+        this.cachePlaylists();
+        this.checkMaxStorage();
+
+        // Add a delay of 5 seconds before processing the next video
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+
+      if (vids_failed) {
+        useResponseStore().updateResponse("Playlist created, but we failed to save some videos", 'warn');
+      }
+
+      if (vids_failed_to_playlist) {
+        useResponseStore().updateResponse("Playlist created, but we failed to add some videos to the playlist", 'warn');
+      }
+
+      if (vids_existed) {
+        useResponseStore().updateResponse("One or more videos from this playlist already existed. They've been added to the playlist", 'info');
+      }
+
+      if (!vids_existed && !vids_failed && !vids_failed_to_playlist) {
+        useResponseStore().updateResponse('Playlist & video(s) created successfully', 'succ');
+      }
+
+      if (this.videoPlaylist.videos.length == 0) {
+        useResponseStore().updateResponse("There aren't any videos in the imported playlist", 'info');
+      } else {
+        // play the first video in the playlist
+        this.pressPlay(this.videoPlaylist.videos[0].url);
+      }
+
+      this.importPlaylistUrl = '';
+      this.showImportModal = false;
+      this.loading.importPlaylist = false;
+
+      this.importProgress.videos.now = 0;
+      this.importProgress.videos.max = 0;
+      this.importProgress.expected = 0;
+      this.importProgress.state = 0;
+      count_expected && clearInterval(count_expected);
+
+      this.cacheAll();
+      this.cacheFavs();
+      this.cachePlaylists();
+      this.cacheVideoPlaylist();
+    },
+
     extractPlaylistId(url) {
       const regex = /[?&]list=([^&]+)/;
       const match = url.match(regex);
