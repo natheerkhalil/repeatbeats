@@ -3054,7 +3054,7 @@ export default {
       this.importProgress.expected = (videos.length * 5.4).toFixed(0);
 
       setInterval(() => {
-        if (this.importProgress.videos.current < videos.length) {
+        if (this.importProgress.videos.now < videos.length) {
           this.importProgress.expected = this.importProgress.expected - 1;
         }
       }, 1000);
@@ -3134,7 +3134,7 @@ export default {
         };
 
         // Update progress
-        this.importProgress.videos.current++;
+        this.importProgress.videos.now = this.importProgress.videos.now + 1;
 
         try {
           // Save video to database and await the result
