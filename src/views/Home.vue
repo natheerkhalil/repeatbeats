@@ -3021,6 +3021,9 @@ export default {
           return false;
         }
 
+        this.cachePlaylists();
+        this.checkMaxStorage();
+
         // Set current playlist to imported playlist
         this.videoPlaylist = {
           id: res.data.data.id,
@@ -3138,6 +3141,11 @@ export default {
         } catch (err) {
           vids_failed = true;
         }
+
+        this.cacheAll();
+        this.cacheFavs();
+        this.cachePlaylists();
+        this.checkMaxStorage();
 
         // Add a delay of 5 seconds before processing the next video
         await new Promise(resolve => setTimeout(resolve, 2000));
