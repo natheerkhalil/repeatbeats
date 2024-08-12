@@ -3053,7 +3053,7 @@ export default {
 
       this.importProgress.videos.max = videos.length;
 
-      this.importProgress.expected = (videos.length * 5.4).toFixed(0);
+      this.importProgress.expected = (videos.length * 2.2).toFixed(0);
 
       let count_expected;
 
