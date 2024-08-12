@@ -181,9 +181,7 @@ export default {
 
 
         login() {
-            if (this.formData.username.trim() && this.formData.password && this.token && this.eKey) {
-                this.loading = true;
-
+            
                 uauth.login({ username: this.formData.username, password: this.formData.password, token: this.token }).then(res => {
                     if (localStorage.getItem("auth_token")) {
                         useResponseStore().updateResponse("Logged in successfully. Redirecting...", "succ");
@@ -209,7 +207,7 @@ export default {
                         this.loading = false;
                     }
                 });
-            }
+            
         }
     }
 }
