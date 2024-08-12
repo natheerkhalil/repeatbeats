@@ -41,7 +41,7 @@
                     <br>
                     <input type="password" v-model="formData.password" placeholder="Password">
                     <br>
-                    <vue-turnstile :siteKey="sitekey" v-model="token" />
+                    <vue-turnstile ref="captcha" :siteKey="sitekey" v-model="token" />
                     <br>
                     <router-link class="__b __tal __tsx __tri __po" to="/register">Don't have an account? Create
                         one</router-link>
@@ -130,9 +130,6 @@ export default {
             // TURNSTILE CAPTCHA
             sitekey: '',
             token: '',
-            eKey: '',
-
-            captchaVerified: false
         }
     },
 
@@ -149,45 +146,8 @@ export default {
             window.location.href = "/";
         },
 
-
-        // CAPTCHA HANDLING
-        onVerify(token, eKey) {
-            this.token = token;
-            this.eKey = eKey;
-
-            this.captchaVerified = true;
-        },
-        onExpire() {
-            useResponseStore().updateResponse("Captcha expired", "info");
-
-            this.token = "";
-            this.eKey = "";
-            this.captchaVerified = false;
-
-            this.$refs.hcaptcha.reset();
-        },
-        onChallengeExpired() {
-            useResponseStore().updateResponse("Challenge expired", "info");
-
-            this.token = "";
-            this.eKey = "";
-            this.captchaVerified = false;
-
-            this.$refs.hcaptcha.reset();
-        },
-        onError(err) {
-            useResponseStore().updateResponse("Failed to verify captcha", "err");
-
-            this.token = "";
-            this.eKey = "";
-            this.captchaVerified = false;
-
-            this.$refs.hcaptcha.reset();
-        },
-
-
         login() {
-            if (this.formData.username.trim() && this.formData.password && this.captchaVerified) {
+            if (this.formData.username.trim() && this.formData.password && this.token) {
                 this.loading = true;
 
                 uauth.login({ username: this.formData.username, password: this.formData.password, token: this.token }).then(res => {
@@ -207,17 +167,14 @@ export default {
                             useResponseStore().updateResponse("An error occurred", "err");
                         }
 
-                        this.$refs.hcaptcha.reset();
+                        this.$refs.captcha.reset();
 
                         this.token = '';
-                        this.eKey = '';
-
-                        this.captchaVerified = false;
 
                         this.loading = false;
                     }
                 });
-            } else if (!this.captchaVerified) {
+            } else if (!this.token) {
                 useResponseStore().updateResponse("Please verify the captcha", "warn");
             } else if (!this.formData.username.trim()) {
                 useResponseStore().updateResponse("Please enter a username", "warn");
