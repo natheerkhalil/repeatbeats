@@ -1523,6 +1523,14 @@ export default {
   beforeUnmount() {
     clearInterval(this.tabInterval);
     clearInterval(this.loopInterval);
+
+    // CANCEL PLAYLIST IMPORT
+    this.importPlaylistUrl = '',
+      this.importProgress.state = 0;
+    this.loading.importPlaylist = false;
+    this.importProgress.expected = 0;
+    this.importProgress.videos.max = 0;
+    this.importProgress.videos.now = 0;
   },
 
   mounted() {
@@ -3021,9 +3029,6 @@ export default {
           return false;
         }
 
-        this.cachePlaylists();
-        this.checkMaxStorage();
-
         // Set current playlist to imported playlist
         this.videoPlaylist = {
           id: res.data.data.id,
@@ -3042,6 +3047,9 @@ export default {
           created_at: new Date(),
           updated_at: new Date()
         });
+
+        this.cachePlaylists();
+        this.checkMaxStorage();
 
         // Get playlist ID
         pl_id = res.data.data.id;
@@ -3078,6 +3086,10 @@ export default {
       }, 1000);
 
       for (const v of videos) {
+        if (!this.importProgress.state) {
+          return false;
+        }
+
         // Get video ID from the playlist item
         let id = v.snippet.resourceId.videoId;
         // Check if video exists in allVideos array and fetch data from it, if not use default data
@@ -3088,7 +3100,7 @@ export default {
           v_data.created_at = new Date();
           v_data.updated_at = new Date();
         } else {
-          let v_data = {
+          v_data = {
             title: v.snippet.title,
             desc: "",
             skip: [],
