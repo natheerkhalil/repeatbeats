@@ -129,8 +129,8 @@
                             <p class="__txt-grey-10 __tme">Get a video URL from YouTube</p>
                         </div>
                         <br class="_hide _sm-show">
-                        <img style="height: 200px; object-fit: cover; width: 400px;" src="../../public/landing-1.webp"
-                            alt="">
+                        <img style="height: 200px; object-fit: cover; width: 400px; max-width: 100%; " src="../../public/landing-1.webp"
+                            alt="Get video URL from YouTube">
                     </div>
                     <br>
                     <div class="__b __bo-grey-7 __bod __padxs _flex _fd-ro _sm-fd-co _jc-ar _ai-ce">
@@ -143,8 +143,8 @@
                             <p class="__txt-grey-10 __tme">Paste the URL into RepeatBeats' player</p>
                         </div>
                         <br class="_hide _sm-show">
-                        <img style="height: 200px; object-fit: cover; width: 400px;" src="../../public/landing-2.webp"
-                            alt="">
+                        <img style="height: 200px; object-fit: cover; width: 400px; max-width: 100%; " src="../../public/landing-2.webp"
+                            alt="Paste the URL into RepeatBeats' player">
                     </div>
                     <br>
                     <div class="__b __bo-grey-7 __bod __padxs _flex _fd-ro _sm-fd-co _jc-ar _ai-ce">
@@ -157,8 +157,8 @@
                             <p class="__txt-grey-10 __tme">Customise the video to your liking!</p>
                         </div>
                         <br class="_hide _sm-show">
-                        <img style="height: 200px; object-fit: cover; width: 400px;" src="../../public/landing-3.webp"
-                            alt="">
+                        <img style="height: 200px; object-fit: cover; width: 400px; max-width: 100%; " src="../../public/landing-3.webp"
+                            alt="Customise the video to your liking!">
                     </div>
                 </div>
             </div>
@@ -225,7 +225,7 @@ export default {
             window.open('https://github.com/nouralbeirouty/repeatbeats-frontend', '_blank').focus();
         },
         buyCoffee() {
-            //window.open('https://github.com/nouralbeirouty/repeatbeats-frontend', '_blank').focus();
+            window.open('https://ko-fi.com/natheer', '_blank').focus();
         },
     }
 }
@@ -240,6 +240,7 @@ export default {
     background-size: 100%;
     background-repeat: repeat;
 
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
@@ -254,6 +255,7 @@ export default {
     background-size: 100%;
     background-repeat: repeat;
 
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
@@ -268,6 +270,7 @@ export default {
     background-size: 100%;
     background-repeat: repeat;
 
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
