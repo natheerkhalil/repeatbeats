@@ -172,7 +172,7 @@ export default {
 
                         this.$refs.captcha.reset();
 
-                        this.token = '';
+                        this.token = PLACEHOLDER_CAPTCHA_TOKEN;
 
                         this.loading = false;
                     }
