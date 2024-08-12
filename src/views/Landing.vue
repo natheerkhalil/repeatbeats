@@ -130,7 +130,7 @@
                         </div>
                         <br class="_hide _sm-show">
                         <img style="height: 200px; object-fit: cover; width: 400px; max-width: 100%; " src="../../public/landing-1.webp"
-                            alt="">
+                            alt="Get video URL from YouTube">
                     </div>
                     <br>
                     <div class="__b __bo-grey-7 __bod __padxs _flex _fd-ro _sm-fd-co _jc-ar _ai-ce">
@@ -144,7 +144,7 @@
                         </div>
                         <br class="_hide _sm-show">
                         <img style="height: 200px; object-fit: cover; width: 400px; max-width: 100%; " src="../../public/landing-2.webp"
-                            alt="">
+                            alt="Paste the URL into RepeatBeats' player">
                     </div>
                     <br>
                     <div class="__b __bo-grey-7 __bod __padxs _flex _fd-ro _sm-fd-co _jc-ar _ai-ce">
@@ -158,7 +158,7 @@
                         </div>
                         <br class="_hide _sm-show">
                         <img style="height: 200px; object-fit: cover; width: 400px; max-width: 100%; " src="../../public/landing-3.webp"
-                            alt="">
+                            alt="Customise the video to your liking!">
                     </div>
                 </div>
             </div>
