@@ -3059,7 +3059,7 @@ export default {
 
       count_expected = setInterval(() => {
         if (this.importProgress.videos.now < videos.length) {
-          this.importProgress.expected = this.importProgress.expected - 1;
+          this.importProgress.expected = ((this.importProgress.videos.max - this.importProgress.videos.now) * 2.2).toFixed(0);
         }
       }, 1000);
 
