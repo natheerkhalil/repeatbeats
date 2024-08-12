@@ -131,7 +131,9 @@ export default {
             hkey: '',
 
             token: '',
-            eKey: ''
+            eKey: '',
+
+            captchaVerified: false
         }
     },
 
@@ -153,12 +155,15 @@ export default {
         onVerify(token, eKey) {
             this.token = token;
             this.eKey = eKey;
+
+            this.captchaVerified = true;
         },
         onExpire() {
             useResponseStore().updateResponse("Captcha expired", "info");
 
             this.token = "";
             this.eKey = "";
+            this.captchaVerified = false;
 
             this.$refs.hcaptcha.reset();
         },
@@ -167,6 +172,7 @@ export default {
 
             this.token = "";
             this.eKey = "";
+            this.captchaVerified = false;
 
             this.$refs.hcaptcha.reset();
         },
@@ -175,13 +181,14 @@ export default {
 
             this.token = "";
             this.eKey = "";
+            this.captchaVerified = false;
 
             this.$refs.hcaptcha.reset();
         },
 
 
         login() {
-            if (this.formData.username.trim() && this.formData.password && this.token && this.eKey) {
+            if (this.formData.username.trim() && this.formData.password && this.captchaVerified) {
                 this.loading = true;
 
                 uauth.login({ username: this.formData.username, password: this.formData.password, token: this.token }).then(res => {
@@ -195,10 +202,10 @@ export default {
 
                         if (status === 401) {
                             useResponseStore().updateResponse("Invalid credentials", "err");
-                        } else if (status !== 422) {
-                            useResponseStore().updateResponse("An error occurred", "err");
-                        } else {
+                        } else if (status == 422) {
                             useResponseStore().updateResponse("Failed to verify captcha", "err");
+                        } else {
+                            useResponseStore().updateResponse("An error occurred", "err");
                         }
 
                         this.$refs.hcaptcha.reset();
@@ -206,9 +213,17 @@ export default {
                         this.token = '';
                         this.eKey = '';
 
+                        this.captchaVerified = false;
+
                         this.loading = false;
                     }
                 });
+            } else if (!this.captchaVerified) {
+                useResponseStore().updateResponse("Please verify the captcha", "warn");
+            } else if (!this.formData.username.trim()) {
+                useResponseStore().updateResponse("Please enter a username", "warn");
+            } else if (!this.formData.password) {
+                useResponseStore().updateResponse("Please enter a password", "warn");
             }
         }
     }
