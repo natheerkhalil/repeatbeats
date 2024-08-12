@@ -1376,7 +1376,7 @@ export default {
       dataKey: YT_DATA_KEY,
 
       // IMPORT PLAYLIST DATA
-      importPlaylistUrl: 'https://www.youtube.com/watch?v=btn7E8yYvaM&list=PLhAF4Vr5DtTs893br4wmfhXEsQYVURcMM',
+      importPlaylistUrl: '',
       importProgress: {
         videos: {
           max: 0,
