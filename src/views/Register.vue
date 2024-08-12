@@ -45,8 +45,7 @@
                     <br>
                     <input @input="validateFormData" type="password" v-model="formData.password" placeholder="Password">
                     <br>
-                    <vue-hcaptcha ref="hcaptcha" @error="onError" @expire="onExpire"
-                        @challenge-expired="onChallengeExpired" @verify="onVerify" :sitekey="hkey"></vue-hcaptcha>
+                    <vue-turnstile ref="captcha" :siteKey="sitekey" v-model="token" />
                     <br>
                     <router-link class="__b __tal __tsx __tri __po" to="/login">Already have an account? Log
                         in</router-link>
@@ -116,12 +115,13 @@ input[type="submit"]:hover {
 </style>
 
 <script>
+
 import { useResponseStore } from "@/stores/response";
 
 import { uauth } from "@/utils/auth";
 
-import VueHcaptcha from '@hcaptcha/vue3-hcaptcha';
-import { HCAPTCHA_KEY } from '../../config';
+import { TURNSTILE_SITE_KEY } from "../../config";
+import VueTurnstile from "vue-turnstile";
 
 export default {
     data() {
@@ -135,22 +135,20 @@ export default {
                 email: '',
                 password: ''
             },
-
             loading: false,
 
-            hkey: '',
-
+            // TURNSTILE CAPTCHA
+            sitekey: '',
             token: '',
-            eKey: '',
         }
     },
 
     components: {
-        VueHcaptcha
+        VueTurnstile
     },
 
-    mounted() {
-        this.hkey = HCAPTCHA_KEY;
+    created() {
+        this.sitekey = TURNSTILE_SITE_KEY;
     },
 
     methods: {
@@ -158,39 +156,9 @@ export default {
             window.location.href = "/";
         },
 
-        // CAPTCHA HANDLING
-        onVerify(token, eKey) {
-            this.token = token;
-            this.eKey = eKey;
-        },
-        onExpire() {
-            useResponseStore().updateResponse("Captcha expired", "info");
-
-            this.token = "";
-            this.eKey = "";
-
-            this.$refs.hcaptcha.reset();
-        },
-        onChallengeExpired() {
-            useResponseStore().updateResponse("Challenge expired", "info");
-
-            this.token = "";
-            this.eKey = "";
-
-            this.$refs.hcaptcha.reset();
-        },
-        onError(err) {
-            useResponseStore().updateResponse("Failed to verify captcha", "err");
-
-            this.token = "";
-            this.eKey = "";
-
-            this.$refs.hcaptcha.reset();
-        },
-
 
         register() {
-            if (this.token && this.eKey) {
+            if (this.token) {
                 this.loading = true;
                 uauth.register({ username: this.formData.username, email: this.formData.email, password: this.formData.password, token: this.token }).then(res => {
                     if (localStorage.getItem("auth_token")) {
@@ -203,9 +171,9 @@ export default {
 
                         this.token = "";
                         this.eKey = "";
-                        
+
                         this.$refs.hcaptcha.reset();
-                        
+
                         // get status code
                         let code = res.msg.response.status;
 
@@ -228,6 +196,8 @@ export default {
                         this.loading = false;
                     }
                 });
+            } else {
+                useResponseStore().updateResponse("Please complete the captcha", "err");
             }
         },
 
