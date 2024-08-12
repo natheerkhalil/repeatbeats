@@ -3069,9 +3069,11 @@ export default {
         // Check if video exists in allVideos array and fetch data from it, if not use default data
         let v_data;
 
-        v_data = this.allVideos.find(v => v.url === id);
-
-        if (!v_data) {
+        if (this.allVideos.find(v => v.url === id)) {
+          v_data = this.allVideos.find(v => v.url === id);
+          v_data.created_at = new Date();
+          v_data.updated_at = new Date();
+        } else {
           let v_data = {
             title: v.snippet.title,
             desc: "",
@@ -3082,12 +3084,11 @@ export default {
             fav: false,
             speed: 1.0,
             url: id,
-            thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+            thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+            created_at: new Date(),
+            updated_at: new Date()
           };
         }
-
-        v_data.created_at = new Date();
-        v_data.updated_at = new Date();
 
         // Update progress
         this.importProgress.videos.now = this.importProgress.videos.now + 1;
