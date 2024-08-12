@@ -1070,7 +1070,7 @@
             process</p>
           <p v-if="importProgress.state" class="__b __tle __txt-info-3 __tsx">Videos: {{ importProgress.videos.now }} /
             {{
-              importProgress.videos.max }} (---) Expected time: {{ importProgress.expected }}s</p>
+              importProgress.videos.max }} (---) Remaining time: {{ importProgress.expected }}s</p>
         </div>
         <br>
         <div class="_flex _fd-ro _ai-ce">
