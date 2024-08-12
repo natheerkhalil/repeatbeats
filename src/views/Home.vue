@@ -1066,6 +1066,8 @@
           <p v-if="importProgress.state" class="__b __tle __txt-grey-4">The playlist is being imported. You can close
             this
             modal while you wait.</p>
+          <p v-if="importProgress.state" class="__b __tle __txt-warn-2">Closing or refreshing the page will cancel this
+            process</p>
           <p v-if="importProgress.state" class="__b __tle __txt-info-3 __tsx">Videos: {{ importProgress.videos.now }} /
             {{
               importProgress.videos.max }} (---) Expected time: {{ importProgress.expected }}s</p>
@@ -3053,85 +3055,39 @@ export default {
 
       this.importProgress.expected = (videos.length * 5.4).toFixed(0);
 
-      setInterval(() => {
+      let count_expected;
+
+      count_expected = setInterval(() => {
         if (this.importProgress.videos.now < videos.length) {
           this.importProgress.expected = this.importProgress.expected - 1;
         }
       }, 1000);
 
-      /*Promise.all(videos.map(async (v) => {
-        // Get video ID from the playlist item
-        let id = v.snippet.resourceId.videoId;
-        let v_data = {
-          title: v.snippet.title,
-          desc: "",
-          skip: [],
-          start: 0,
-          end: 999,
-          lyrics: "",
-          fav: false,
-          speed: 1.0,
-          url: id,
-          thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
-          created_at: new Date(),
-          updated_at: new Date()
-        };
-
-        try {
-          // Save video to database and await the result
-          const saveRes = await request(v_data, "/video/save");
-
-          if (saveRes.failed) {
-            vids_failed = true;
-          } else {
-            useResponseStore().updateResponse(`Video with title "${v.snippet.title}" saved successfully`, 'succ');
-
-            // Add the video to the playlist and await the result
-            const addRes = await request({ plid: pl_id, url: id }, "/playlist/add");
-
-            if (addRes.failed) {
-              vids_failed_to_playlist = true;
-            } else {
-              // Add the video to the videoPlaylist array
-              this.videoPlaylist.videos.unshift(v_data);
-
-              // Add the video to the playlist in the playlists array
-              this.playlists.find(pl => pl.id === pl_id).videos.unshift(v_data);;
-
-              // Add the video to the allVideos array if it doesn't exist in allVideos array
-              if (!this.allVideos.some(v => v.url === id)) {
-                this.allVideos.unshift(v_data);
-              }
-
-              useResponseStore().updateResponse(`Video with title "${v.snippet.title}" added to playlist`, 'info');
-            }
-          }
-        } catch (err) {
-
-          vids_failed = true;
-
-        }
-
-        // Add a delay of 5 seconds before processing the next video
-        await new Promise(resolve => setTimeout(resolve, 5000));
-      }))*/
       for (const v of videos) {
         // Get video ID from the playlist item
         let id = v.snippet.resourceId.videoId;
-        let v_data = {
-          title: v.snippet.title,
-          desc: "",
-          skip: [],
-          start: 0,
-          end: 999,
-          lyrics: "",
-          fav: false,
-          speed: 1.0,
-          url: id,
-          thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
-          created_at: new Date(),
-          updated_at: new Date()
-        };
+        // Check if video exists in allVideos array and fetch data from it, if not use default data
+        let v_data;
+
+        v_data = this.allVideos.find(v => v.url === id);
+
+        if (!v_data) {
+          let v_data = {
+            title: v.snippet.title,
+            desc: "",
+            skip: [],
+            start: 0,
+            end: 999,
+            lyrics: "",
+            fav: false,
+            speed: 1.0,
+            url: id,
+            thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+          };
+        }
+
+        v_data.created_at = new Date();
+        v_data.updated_at = new Date();
 
         // Update progress
         this.importProgress.videos.now = this.importProgress.videos.now + 1;
@@ -3142,17 +3098,19 @@ export default {
 
           if (saveRes.failed) {
             vids_failed = true;
-          } else {
-            useResponseStore().updateResponse(`Video with title "${v.snippet.title}" saved successfully`, 'succ');
 
+            useResponseStore().updateResponse(`Failed to save "${v.snippet.title}"`, 'warn');
+          } else {
             // Add the video to the playlist and await the result
             const addRes = await request({ plid: pl_id, url: id }, "/playlist/add");
 
             if (addRes.failed) {
               vids_failed_to_playlist = true;
             } else {
-              // Add the video to the videoPlaylist array
-              this.videoPlaylist.videos.unshift(v_data);
+              // Add the video to the videoPlaylist array if it doesn't exist in videoPlaylist array
+              if (!this.videoPlaylist.videos.some(v => v.url === id)) {
+                this.videoPlaylist.videos.unshift(v_data);
+              }
 
               // Add the video to the playlist in the playlists array
               this.playlists.find(pl => pl.id === pl_id).videos.unshift(v_data);
@@ -3162,7 +3120,7 @@ export default {
                 this.allVideos.unshift(v_data);
               }
 
-              useResponseStore().updateResponse(`Video with title "${v.snippet.title}" added to playlist`, 'info');
+              useResponseStore().updateResponse(`"${v.snippet.title}" saved successfully`, 'succ');
             }
           }
         } catch (err) {
@@ -3170,7 +3128,7 @@ export default {
         }
 
         // Add a delay of 5 seconds before processing the next video
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        await new Promise(resolve => setTimeout(resolve, 2000));
       }
 
       if (vids_failed) {
@@ -3199,6 +3157,12 @@ export default {
       this.importPlaylistUrl = '';
       this.showImportModal = false;
       this.loading.importPlaylist = false;
+
+      this.importProgress.videos.now = 0;
+      this.importProgress.videos.max = 0;
+      this.importProgress.expected = 0;
+      this.importProgress.state = 0;
+      count_expected && clearInterval(count_expected);
 
       this.cacheAll();
       this.cacheFavs();
