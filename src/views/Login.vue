@@ -41,8 +41,7 @@
                     <br>
                     <input type="password" v-model="formData.password" placeholder="Password">
                     <br>
-                    <vue-hcaptcha ref="hcaptcha" @error="onError" @expire="onExpire"
-                        @challenge-expired="onChallengeExpired" @verify="onVerify" :sitekey="hkey"></vue-hcaptcha>
+                    <vue-turnstile :siteKey="sitekey" v-model="token" />
                     <br>
                     <router-link class="__b __tal __tsx __tri __po" to="/register">Don't have an account? Create
                         one</router-link>
@@ -116,8 +115,8 @@ import { useResponseStore } from "@/stores/response";
 
 import { uauth } from "@/utils/auth";
 
-import VueHcaptcha from '@hcaptcha/vue3-hcaptcha';
-import { HCAPTCHA_KEY } from '../../config';
+import { TURNSTILE_SITE_KEY } from "../../config";
+import VueTurnstile from "vue-turnstile";
 
 export default {
     data() {
@@ -128,8 +127,8 @@ export default {
             },
             loading: false,
 
-            hkey: '',
-
+            // TURNSTILE CAPTCHA
+            sitekey: '',
             token: '',
             eKey: '',
 
@@ -138,11 +137,11 @@ export default {
     },
 
     components: {
-        VueHcaptcha
+        VueTurnstile
     },
 
-    mounted() {
-        this.hkey = HCAPTCHA_KEY;
+    created() {
+        this.sitekey = TURNSTILE_SITE_KEY;
     },
 
     methods: {
