@@ -3652,7 +3652,7 @@ export default {
 
       try {
         const id = this.parseUrl(url) ? this.parseUrl(url)[1] : url;
-        const key = "AIzaSyDV9INVJodSVheJQohxNRdj-1PJezpTFc8";
+        const key = this.apiKey;
 
         const api_url = "https://www.googleapis.com/youtube/v3/videos?id=" + id + "&key=" + key + "&part=snippet,contentDetails";
 
