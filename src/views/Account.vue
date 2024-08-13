@@ -66,7 +66,7 @@
 
                     <div v-if="!loading.password" style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
                         @click="sendPasswordResetEmail"
-                        class="_sm-b _sm-tal _cc __b __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Password
+                        class="_sm-b __hv __hv-warn-2 __ht-grey-10 _sm-tal _cc __b __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Password
                     </div>
 
                     <div v-if="loading.password" style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
@@ -77,9 +77,9 @@
 
                     <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
                         @click="showEmailModal = !showEmailModal"
-                        class="_sm-b _sm-tal _cc __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Email</div>
+                        class="_sm-b __hv __hv-warn-2 __ht-grey-10 _sm-tal _cc __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Email</div>
                     <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; " @click="deleteAccount"
-                        class="_sm-b _sm-tal _cc __padxs _flex __bo-err-2 __txt-err-2 __bod __po">Delete Account</div>
+                        class="_sm-b __hv __hv-err-2 __ht-grey-10 _sm-tal _cc __padxs _flex __bo-err-2 __txt-err-2 __bod __po">Delete Account</div>
                 </div>
             </div>
         </div>
@@ -316,7 +316,7 @@ export default {
 
                         this.loading.email = false;
                     } else {
-                        useResponseStore().updateResponse("Failed to send email - " + res.data, "err");
+                        useResponseStore().updateResponse("Failed to send email", "err");
 
                         this.loading.email = false;
                     }
