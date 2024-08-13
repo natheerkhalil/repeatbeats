@@ -591,12 +591,12 @@
               </div>
               <hr class="__hr __b __bg-grey-1">
               <br>
+              <div v-if="!this.initialised.favs" class="__b _flex _cc">
+                <div class="__loader"></div>
+              </div>
               <div ref="favContainer" id="fav" @scroll="handleScroll" class="__b _flex _fd-ro __custscroll"
                 style="max-width: 100%; overflow-x: auto; overflow-y: hidden">
 
-                <div v-if="!this.initialised.favs" class="__b _flex _cc">
-                  <div class="__loader"></div>
-                </div>
 
                 <draggable class="__b _flex _fd-ro" v-model="favs" group="favs" @start="drag = true;"
                   @end="drag = false; updateFavOrder();" item-key="url">
@@ -1872,7 +1872,7 @@ export default {
       let vid;
 
       index = list.findIndex(obj => obj.url === this.videoData.url);
-      list = list.filter(obj => obj.url!== this.videoData.url);
+      list = list.filter(obj => obj.url !== this.videoData.url);
 
       if (!this.shuffle) {
         if (index !== -1 && index < list.length - 1) {
@@ -1906,7 +1906,7 @@ export default {
       let vid;
 
       index = list.findIndex(obj => obj.url === this.videoData.url);
-      list = list.filter(obj => obj.url!== this.videoData.url);
+      list = list.filter(obj => obj.url !== this.videoData.url);
 
       if (!this.shuffle) {
         if (index > 0) {
@@ -2870,7 +2870,7 @@ export default {
             this.allVideos = this.allVideos.filter(video => video.url !== this.videoData.url);
 
             // remove from current playlist
-            this.videoPlaylist.videos = this.videoPlaylist.videos.filter(video => video.url!== this.videoData.url);
+            this.videoPlaylist.videos = this.videoPlaylist.videos.filter(video => video.url !== this.videoData.url);
 
             if (this.videoPlaylist.videos.length == 0) {
               this.videoPlaylist = {
