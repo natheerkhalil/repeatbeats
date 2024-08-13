@@ -66,7 +66,8 @@
 
                     <div v-if="!loading.password" style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
                         @click="sendPasswordResetEmail"
-                        class="_sm-b __hv __hv-warn-2 __ht-grey-10 _sm-tal _cc __b __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Password
+                        class="_sm-b __hv __hv-warn-2 __ht-grey-10 _sm-tal _cc __b __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">
+                        Change Password
                     </div>
 
                     <div v-if="loading.password" style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
@@ -77,10 +78,20 @@
 
                     <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
                         @click="showEmailModal = !showEmailModal"
-                        class="_sm-b __hv __hv-warn-2 __ht-grey-10 _sm-tal _cc __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Email</div>
+                        class="_sm-b __hv __hv-warn-2 __ht-grey-10 _sm-tal _cc __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">
+                        Change Email</div>
                     <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; " @click="deleteAccount"
-                        class="_sm-b __hv __hv-err-2 __ht-grey-10 _sm-tal _cc __padxs _flex __bo-err-2 __txt-err-2 __bod __po">Delete Account</div>
+                        class="_sm-b __hv __hv-err-2 __ht-grey-10 _sm-tal _cc __padxs _flex __bo-err-2 __txt-err-2 __bod __po">
+                        Delete Account</div>
                 </div>
+            </div>
+            <br>
+            <div class="__mlauto tooltip">
+                <svg viewBox="0 0 24 24" class="__po" @click="logout" width="24" height="24"
+                    xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                    <path d="M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z" />
+                </svg>
+                <p class="tooltiptext">Logout</p>
             </div>
         </div>
     </div>
@@ -106,9 +117,9 @@
                     class="__b __padxs __bg-none __bo-none __txt-grey-1">
                 &nbsp; &nbsp;
 
-                <svg v-if="!loading.email" class="__po" @click="sendEmailChangeEmail" width="24" height="24" clip-rule="evenodd"
-                    fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
+                <svg v-if="!loading.email" class="__po" @click="sendEmailChangeEmail" width="24" height="24"
+                    clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="m2.009 12.002c0-5.517 4.48-9.997 9.998-9.997s9.998 4.48 9.998 9.997c0 5.518-4.48 9.998-9.998 9.998s-9.998-4.48-9.998-9.998zm1.5 0c0 4.69 3.808 8.498 8.498 8.498s8.498-3.808 8.498-8.498-3.808-8.497-8.498-8.497-8.498 3.807-8.498 8.497zm6.711-4.845c-.141-.108-.3-.157-.456-.157-.389 0-.755.306-.755.749v8.501c0 .445.367.75.755.75.157 0 .316-.05.457-.159 1.554-1.203 4.199-3.252 5.498-4.258.184-.142.29-.36.29-.592 0-.23-.107-.449-.291-.591zm.289 7.564v-5.446l3.523 2.718z"
                         fill-rule="nonzero" />
