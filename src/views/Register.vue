@@ -174,13 +174,13 @@ export default {
 
                         this.token = PLACEHOLDER_CAPTCHA_TOKEN;
 
-                        this.$refs.hcaptcha.reset();
+                        this.$refs.captcha.reset();
 
                         // get status code
                         let code = res.msg.response.status;
 
                         if (code === 409) {
-                            useResponseStore().updateResponse("Username or email already exists", "err");
+                            useResponseStore().updateResponse("Username or email already exists", "warn");
 
                             this.loading = false;
 

@@ -152,7 +152,7 @@ export default {
 
             request({ token: this.formData.token, new_password: this.formData.password }, "/account/change-password", false).then(res => {
                 if (!res.failed) {
-                    useResponseStore().updateResponse("Password reset successfully. Redirecting to login...", "succ");
+                    useResponseStore().updateResponse("Password reset successfully. Redirecting...", "succ");
                     window.location.href = "/login";
                 } else {
                     useResponseStore().updateResponse("Couldn't change password - " + res.data.data, "err");

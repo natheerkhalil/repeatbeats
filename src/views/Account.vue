@@ -1,7 +1,7 @@
 <template>
     <div style="border-bottom: 1px solid var(--grey-3); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
-        class="__b __po __bg-grey-2 _flex _ai-ce _fd-ro _jc-be __padsm">
-        <div @click="goHome" class="_flex _cc _fd-ro">
+        class="__b __bg-grey-2 _flex _ai-ce _fd-ro _jc-be __padsm">
+        <div @click="goHome" class="__po _flex _cc _fd-ro">
             <img style="width: 35px;" src="/icon.png" alt="Logo"> &nbsp;
             &nbsp;
             <p class="logo-text _sm-hide __tmd __txt-grey-10">RepeatBeats</p> &nbsp;
@@ -19,14 +19,23 @@
             <br>
             <div v-if="!emailVerified && !verificationEmailSent"
                 class="__b __w __mauto _flex __bg-warn-5 _sm-fd-co __bo-warn-8 __bod _ai-ce _jc-be __bdxs __padxs">
-                <p class="__txt-grey-1 __b __tle">Your email is not verified yet. You can only add a maximum
-                    of&nbsp;<strong>10</strong>&nbsp;videos and&nbsp;<strong>1</strong>&nbsp;playlist with an unverified
-                    account.
-                </p>
+                <div style="margin-right: 5px;" class="_flex _fd-co">
+                    <p class="__txt-grey-1 __b __tle">Your email is not verified yet. You can only add a maximum
+                        of&nbsp;<strong>10</strong>&nbsp;videos and&nbsp;<strong>1</strong>&nbsp;playlist with an
+                        unverified
+                        account.
+                    </p>
+                    <p style="margin-top: 5px; font-size: 13px;" class="__b __tle __txt-grey-2">Already verified email
+                        on another
+                        device? Press the <strong>send verification email</strong> button to refresh status.
+                    </p>
+                </div>
                 <br class="m_hide _sm-show">
                 <div class="_flex _cc _fd-ro">
                     <button v-if="!loading.verify" @click="sendVerificationEmail" style="min-width: max-content;"
-                        class="__padxs __tsx __bg-none __po __bo-grey-1 __bod">Send Verification Email</button>
+                        class="__padxs __tsx __bg-none __po __bo-grey-1 __bod">Send Verification Email</button> &nbsp;
+                    &nbsp;
+
                     <div v-if="loading.verify"
                         style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
                         class="__loader-og"></div>
@@ -66,7 +75,8 @@
 
                     <div v-if="!loading.password" style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
                         @click="sendPasswordResetEmail"
-                        class="_sm-b _sm-tal _cc __b __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Password
+                        class="_sm-b __hv __hv-warn-2 __ht-grey-10 _sm-tal _cc __b __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">
+                        Change Password
                     </div>
 
                     <div v-if="loading.password" style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
@@ -77,10 +87,20 @@
 
                     <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
                         @click="showEmailModal = !showEmailModal"
-                        class="_sm-b _sm-tal _cc __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">Change Email</div>
+                        class="_sm-b __hv __hv-warn-2 __ht-grey-10 _sm-tal _cc __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">
+                        Change Email</div>
                     <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; " @click="deleteAccount"
-                        class="_sm-b _sm-tal _cc __padxs _flex __bo-err-2 __txt-err-2 __bod __po">Delete Account</div>
+                        class="_sm-b __hv __hv-err-2 __ht-grey-10 _sm-tal _cc __padxs _flex __bo-err-2 __txt-err-2 __bod __po">
+                        Delete Account</div>
                 </div>
+            </div>
+            <br>
+            <div class="__mlauto tooltip">
+                <svg viewBox="0 0 24 24" class="__po" @click="logout" width="24" height="24"
+                    xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                    <path d="M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z" />
+                </svg>
+                <p class="tooltiptext">Logout</p>
             </div>
         </div>
     </div>
@@ -106,9 +126,9 @@
                     class="__b __padxs __bg-none __bo-none __txt-grey-1">
                 &nbsp; &nbsp;
 
-                <svg v-if="!loading.email" class="__po" @click="sendEmailChangeEmail" width="24" height="24" clip-rule="evenodd"
-                    fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
+                <svg v-if="!loading.email" class="__po" @click="sendEmailChangeEmail" width="24" height="24"
+                    clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="m2.009 12.002c0-5.517 4.48-9.997 9.998-9.997s9.998 4.48 9.998 9.997c0 5.518-4.48 9.998-9.998 9.998s-9.998-4.48-9.998-9.998zm1.5 0c0 4.69 3.808 8.498 8.498 8.498s8.498-3.808 8.498-8.498-3.808-8.497-8.498-8.497-8.498 3.807-8.498 8.497zm6.711-4.845c-.141-.108-.3-.157-.456-.157-.389 0-.755.306-.755.749v8.501c0 .445.367.75.755.75.157 0 .316-.05.457-.159 1.554-1.203 4.199-3.252 5.498-4.258.184-.142.29-.36.29-.592 0-.23-.107-.449-.291-.591zm.289 7.564v-5.446l3.523 2.718z"
                         fill-rule="nonzero" />
@@ -126,6 +146,8 @@ import { useResponseStore } from '@/stores/response';
 import { useAuthStore } from '@/stores/auth';
 
 import { request } from "@/utils/api";
+
+import { uauth } from "@/utils/auth";
 
 export default {
     data() {
@@ -157,12 +179,10 @@ export default {
         }
     },
 
-    mounted() {
+    created() {
         // CHECK IF USER IS AUTHENTICATED
         this.checkAuthToken();
-    },
 
-    created() {
         let cache_all = localStorage.getItem("cache_all");
 
         if (cache_all) {
@@ -181,11 +201,15 @@ export default {
 
         this.email = localStorage.getItem("auth_email");
 
-        this.verifyEmail();
+        this.verifyEmail(false);
     },
 
     methods: {
         useAuthStore: useAuthStore,
+
+        logout() {
+            uauth.logout();
+        },
 
         goHome() {
             this.$router.push('/')
@@ -227,10 +251,10 @@ export default {
             }
         },
 
-        verifyEmail() {
+        verifyEmail(refresh = false) {
             let cache = localStorage.getItem("email_verified");
 
-            if (cache) {
+            if (cache && !refresh) {
 
                 this.emailVerified = JSON.parse(cache);
 
@@ -262,13 +286,34 @@ export default {
 
                         this.loading.verify = false;
                     } else {
-                        useResponseStore().updateResponse(`Failed to send verification email`, "err");
 
-                        this.verificationEmailSent = false;
+                        request({}, "/account/is-verified").then(res => {
+                            if (!res.failed) {
+                                if (res.data.data == true) {
+                                    this.emailVerified = res.data.data;
 
-                        this.loading.verify = false;
+                                    localStorage.setItem("email_verified", JSON.stringify(this.emailVerified));
 
-                        console.log(res);
+                                    useResponseStore().updateResponse("Email verification status updated successfully", "succ");
+
+                                    return false;
+                                }
+                            } else {
+                                console.log(`Failed to fetch email verification status`, "err");
+
+                                this.emailVerified = true;
+
+                                return false;
+                            }
+
+                            useResponseStore().updateResponse(`Failed to send verification email`, "err");
+
+                            this.verificationEmailSent = false;
+
+                            this.loading.verify = false;
+
+                            console.log(res);
+                        });
                     }
                 });
             }
@@ -316,7 +361,7 @@ export default {
 
                         this.loading.email = false;
                     } else {
-                        useResponseStore().updateResponse("Failed to send email - " + res.data, "err");
+                        useResponseStore().updateResponse("Failed to send email", "err");
 
                         this.loading.email = false;
                     }

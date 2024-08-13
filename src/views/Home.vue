@@ -41,13 +41,17 @@
 
       <div v-if="!this.emailVerified && this.showUnverifiedEmailAlert"
         class="__b __w __mauto _flex __bg-warn-5 _sm-fd-co __bo-warn-8 __bod _ai-ce _jc-be __bdxs __padxs">
-        <p class="__txt-grey-1 __b __tle">Your email is not verified yet. You can only add a maximum
-          of&nbsp;<strong>10</strong>&nbsp;videos and&nbsp;<strong>1</strong>&nbsp;playlist with an unverified account.
-        </p>
+        <div style="margin-right: 5px;" class="_flex _fd-co">
+          <p class="__txt-grey-1 __b __tle">Your email is not verified yet. You can only add a maximum
+            of&nbsp;<strong>10</strong>&nbsp;videos and&nbsp;<strong>1</strong>&nbsp;playlist with an
+            unverified
+            account.
+          </p>
+        </div>
         <br class="m_hide _sm-show">
         <div class="_flex _cc _fd-ro">
-          <button @click="sendVerificationEmail" style="min-width: max-content;"
-            class="__padxs __tsx __bg-none __po __bo-grey-1 __bod">Send Verification Email</button> &nbsp; &nbsp;
+          <button @click="goToAccount" style="min-width: max-content;"
+            class="__padxs __tsx __bg-none __po __bo-grey-1 __bod">Go to Account</button> &nbsp; &nbsp;
           <svg width=24 height=24 class="__po" @click="hideEmailAlert" clip-rule="evenodd" fill-rule="evenodd"
             stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -96,6 +100,31 @@
         <div class="_flex __b _fd-co _cc">
 
           <div class="__b _flex _cc _fd-ro">
+
+            &nbsp; &nbsp; &nbsp;
+            <div v-if="!userIsMember" class="tooltip">
+              <svg class="__po" @click="goToUpgrade" width="27" height="27" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <defs>
+                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#b4b059;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#af4261;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#768a86;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <path fill="url(#grad1)"
+                  d="M23 24v-20h-8v2h6v16h-18v-16h6v-2h-8v20h22zm-12-13h-4l5 6 5-6h-4v-11h-2v11z" />
+              </svg>
+              <p class="tooltiptext">Import Playlist (premium)</p>
+            </div>
+            &nbsp; &nbsp; &nbsp;
+            <div v-if="userIsMember" class="tooltip">
+              <svg class="__po" @click="showImportModal = !showImportModal" width="27" height="27" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <path d="M23 24v-20h-8v2h6v16h-18v-16h6v-2h-8v20h22zm-12-13h-4l5 6 5-6h-4v-11h-2v11z" />
+              </svg>
+              <p class="tooltiptext">Import Playlist</p>
+            </div>
             <div class="__b _flex _cc _fd-ro">
 
               <input v-model="tempUrl"
@@ -197,15 +226,7 @@
                   d="M15.408 21h-9.908c-3.037 0-5.5-2.463-5.5-5.5 0-2.702 1.951-4.945 4.521-5.408.212-3.951 3.473-7.092 7.479-7.092 3.267 0 6.037 2.089 7.063 5.003l-.063-.003c-.681 0-1.336.102-1.958.283-.878-2.025-2.73-3.283-5.042-3.283-3.359 0-5.734 2.562-5.567 6.78-1.954-.113-4.433.923-4.433 3.72 0 1.93 1.57 3.5 3.5 3.5h7.76c.566.81 1.3 1.49 2.148 2zm2.257-8.669c.402-.206.852-.331 1.335-.331 1.455 0 2.67 1.042 2.941 2.418l1.96-.398c-.456-2.291-2.475-4.02-4.901-4.02-.957 0-1.845.278-2.604.745l-1.396-1.745-1 5h5l-1.335-1.669zm5.335 8.669l-1.396-1.745c-.759.467-1.647.745-2.604.745-2.426 0-4.445-1.729-4.901-4.02l1.96-.398c.271 1.376 1.486 2.418 2.941 2.418.483 0 .933-.125 1.335-.331l-1.335-1.669h5l-1 5z" />
               </svg>
               <p class="tooltiptext">Sync Data</p>
-            </div>
-            &nbsp; &nbsp; &nbsp;
-            <div class="tooltip">
-              <svg class="__po" @click="showImportModal = !showImportModal" width="27" height="27" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                <path d="M23 24v-20h-8v2h6v16h-18v-16h6v-2h-8v20h22zm-12-13h-4l5 6 5-6h-4v-11h-2v11z" />
-              </svg>
-              <p class="tooltiptext">Import Playlist</p>
-            </div> &nbsp; &nbsp; &nbsp;
+            </div>&nbsp; &nbsp; &nbsp;
             <svg class="__po" @click="showVidData = !showVidData" v-if="showVidData" xmlns="http://www.w3.org/2000/svg"
               width="29" height="29" viewBox="0 0 24 24">
               <path
@@ -492,7 +513,7 @@
               </div>
 
               <!-- share -->
-              <div @click="this.showShareModal = !this.showShareModal" class="_flex tooltip">
+              <div v-if="emailVerified" @click="this.showShareModal = !this.showShareModal" class="_flex tooltip">
                 <svg class="opt-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                   <path
                     d="M5 9c1.654 0 3 1.346 3 3s-1.346 3-3 3-3-1.346-3-3 1.346-3 3-3zm0-2c-2.762 0-5 2.239-5 5s2.238 5 5 5 5-2.239 5-5-2.238-5-5-5zm15 9c-1.165 0-2.204.506-2.935 1.301l-5.488-2.927c-.23.636-.549 1.229-.944 1.764l5.488 2.927c-.072.301-.121.611-.121.935 0 2.209 1.791 4 4 4s4-1.791 4-4-1.791-4-4-4zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2zm0-22c-2.209 0-4 1.791-4 4 0 .324.049.634.121.935l-5.488 2.927c.395.536.713 1.128.944 1.764l5.488-2.927c.731.795 1.77 1.301 2.935 1.301 2.209 0 4-1.791 4-4s-1.791-4-4-4zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2z" />
@@ -503,7 +524,7 @@
               <!-- received shares -->
               <div class="_flex tooltip">
                 <svg class="__po" @click="this.showSharesModal = !this.showSharesModal"
-                  :fill="this.receivedShares.length > 1 ? 'var(--err_1)' : 'var(--grey_1)'" viewBox="0 0 24 24"
+                  :fill="this.receivedShares.length > 0 ? 'var(--err_1)' : 'var(--info_1)'" viewBox="0 0 24 24"
                   width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                   <path
                     d="M24 22.917h-24v-13.275l2-1.456v-7.269h20v7.272l2 1.453v13.275zm-21-10.472v-10.528h18v10.526l-9 5.474-9-5.472zm6-8.916l1.305 2.41 2.695.496-1.888 1.986.36 2.717-2.472-1.183-2.472 1.183.36-2.717-1.888-1.986 2.695-.496 1.305-2.41zm8 6.471v1h-3v-1h3zm2-2v1h-5v-1h5zm0-2v1h-5v-1h5zm0-2v1h-5v-1h5z" />
@@ -560,7 +581,7 @@
                   </svg> &nbsp; &nbsp;
                 </div>
 
-                <div v-if="this.favs.length > 0" class="_flex _fd-ro">
+                <div v-if="this.favs.length > 1" class="_flex _fd-ro">
                   <svg @click="toggleShuffle('fav')" :fill="(this.shuffle && this.loop == 'fav') ? 'green' : 'black'"
                     :class="this.loop == 'fav' ? '__po' : ''" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24">
@@ -586,8 +607,6 @@
                 <div v-if="!this.initialised.favs" class="__b _flex _cc">
                   <div class="__loader"></div>
                 </div>
-
-                <p v-if="favs.length == 0 && initialised.favs == true">You haven't favourited any videos</p>
 
                 <draggable class="__b _flex _fd-ro" v-model="favs" group="favs" @start="drag = true;"
                   @end="drag = false; updateFavOrder();" item-key="url">
@@ -650,7 +669,7 @@
                   </span>
                 </p> &nbsp; &nbsp;
 
-                <div v-if="this.videoPlaylist.videos.length > 0" class="_flex _fd-ro">
+                <div v-if="this.videoPlaylist.videos.length > 1" class="_flex _fd-ro">
                   <svg @click="toggleShuffle('playlist')"
                     :fill="(this.shuffle && this.loop == 'playlist') ? 'green' : 'black'"
                     :class="this.loop == 'playlist' ? '__po' : ''" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -722,7 +741,7 @@
 
               &nbsp;
 
-              <div class="_ai-ce _flex _fd-ro">
+              <div v-if="allVideos.length > 1" class="_ai-ce _flex _fd-ro">
                 <svg @click="toggleShuffle('all')" :fill="(this.shuffle && this.loop == 'all') ? 'green' : 'black'"
                   :class="this.loop == 'all' ? '__po' : ''" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                   viewBox="0 0 24 24">
@@ -862,13 +881,17 @@
         <!-- PLAYLISTS -->
         <div v-if="searchPls.length == 0" v-for="(pl, index) in playlists.slice(0, loadLimit.allPlaylists)"
           :id="`pl_${pl.id}`" class="playlist __b _flex _fd-co">
-          <div class="__b _flex _fd-ro _jc-be _ai-ce">
+          <div class="__b _flex _fd-co _jc-be _ai-ce">
             <p :contenteditable="pl.isEditable" :style="pl.isEditable ? 'text-decoration: underline' : ''"
-              :id="`pl_${pl.id}_title`" class="sidebar-title __padxs __b __tle __tmd">{{ pl.name }}</p>
+              :id="`pl_${pl.id}_title`" class="sidebar-title __padxs __b __tal __tmd">{{ pl.name }}</p>
             <div class="_flex _fd-ro _cc">
               <svg v-if="pl.id != this.videoPlaylist.id && pl.videos.length > 0" class="__po"
                 @click="setCurrentPlaylist(pl.id, pl.name, pl.thumbnail, pl.videos)" width="24" height="24"
                 xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
+              </svg>
+              <svg v-if="pl.id == this.videoPlaylist.id && pl.videos.length > 0" fill="lightgreen" width="24"
+                height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                 <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
               </svg>
               &nbsp; &nbsp;
@@ -878,7 +901,7 @@
                 <path
                   d="m4.481 15.659c-1.334 3.916-1.48 4.232-1.48 4.587 0 .528.46.749.749.749.352 0 .668-.137 4.574-1.492zm1.06-1.061 3.846 3.846 11.321-11.311c.195-.195.293-.45.293-.707 0-.255-.098-.51-.293-.706-.692-.691-1.742-1.74-2.435-2.432-.195-.195-.451-.293-.707-.293-.254 0-.51.098-.706.293z"
                   fill-rule="nonzero" />
-              </svg>
+              </svg> <span v-if="pl.isEditable"> &nbsp; &nbsp; </span>
 
               <!-- SAVE & CANCEL EDIT -->
               <svg @click="updatePlaylist(pl.id)" style="margin-right: 7px" class="__po" v-if="pl.isEditable"
@@ -904,6 +927,8 @@
               </svg>
             </div>
           </div>
+
+          <br class="__br __brsm">
 
           <hr class="__hr __b __bg-grey-10">
 
@@ -1057,7 +1082,7 @@
     </div>
 
     <!-- IMPORT PLAYLIST -->
-    <div v-if="showImportModal"
+    <div v-if="showImportModal && userIsMember"
       style="max-height: 90vh; overflow-x: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
       class="__custscroll __w _flex _fd-co _ai-ce __bg-grey-10 __bo-1 __bod __padsm">
       <div class="__b _flex _fd-ro _jc-be">
@@ -1264,7 +1289,7 @@
           class="__loader-og" v-if="loading.refreshShares"></div>
       </div>
       <div class="__b _flex _cc _fd-co">
-        <div style="margin-bottom: 15px;" class="_flex __b __padxs __bo-grey-7 __bod __bdxs _jc-be _ai-ce"
+        <div style="margin-bottom: 15px;" class="_flex _sm-fd-co __b __padxs __bo-grey-7 __bod __bdxs _jc-be _ai-ce"
           v-for="r in receivedShares">
           <div class="_flex _cc _fd-ro">{{ r.sender }} shared a video with you:</div>
           <div class="image-container">
@@ -1571,12 +1596,10 @@ export default {
       request({}, "/account/membership-status").then(res => {
         if (!res.failed) {
           if (res.data.data === false || res.data.data === 0) {
-            console.log("User is not a member");
             localStorage.removeItem("user_is_member");
 
             this.userIsMember = false;
           } else {
-            console.log("User is a member");
             localStorage.setItem("user_is_member", 1);
 
             this.userIsMember = true;
@@ -1623,7 +1646,6 @@ export default {
       let cache = localStorage.getItem("email_verified");
       let cache_2 = localStorage.getItem("showUnverifiedEmailAlert");
 
-
       if (JSON.parse(cache_2) === false) {
         this.showUnverifiedEmailAlert = false;
       } else {
@@ -1643,22 +1665,6 @@ export default {
             console.log(`Failed to fetch email verification status`, "err");
 
             this.emailVerified = true;
-          }
-        });
-      }
-    },
-    sendVerificationEmail() {
-      if (!this.emailVerified) {
-        request({}, "/account/send-verification-email").then(res => {
-          if (!res.failed) {
-            useResponseStore().updateResponse("Verification email sent. Check your inbox", "succ");
-
-            this.hideEmailAlert = true;
-            this.verificationEmailSent = true;
-          } else {
-            useResponseStore().updateResponse(`Failed to send verification email`, "err");
-            this.verificationEmailSent = false;
-            console.log(res);
           }
         });
       }
@@ -2175,7 +2181,7 @@ export default {
           break;
       }
 
-      if (list.length === 0) {
+      if (list.length < 2) {
         return;
       }
 
@@ -2374,6 +2380,13 @@ export default {
     createPlaylist() {
       this.loading.createPlaylist = true;
 
+      if (!this.emailVerified && this.playlists.length > 0) {
+        useResponseStore().updateResponse('Please verify your email address to create more playlists', 'warn');
+        this.loading.createPlaylist = false;
+
+        return false;
+      }
+
       request(this.playlistData, '/playlist/create').then(res => {
         if (!res.failed) {
           useResponseStore().updateResponse('Playlist created successfully!', 'succ');
@@ -2414,6 +2427,26 @@ export default {
       let el = document.getElementById('pl_' + id + '_title');
       let name = el.textContent;
 
+      if (name.trim() === '') {
+        useResponseStore().updateResponse('Playlist name cannot be empty', 'warn');
+
+        return false;
+      }
+
+      if (name.length > 50) {
+        useResponseStore().updateResponse('Playlist name cannot exceed 50 characters', 'warn');
+
+        return false;
+      }
+
+      setTimeout(() => {
+        // get playlist element from playlists array
+        let pl = this.playlists.find(p => p.id === id);
+
+        // set isEditable to false
+        pl["isEditable"] = false;
+      }, 200);
+
       request({ id: id, name: name }, '/playlist/update').then(res => {
         if (!res.failed) {
           useResponseStore().updateResponse('Playlist updated successfully', 'succ');
@@ -2434,6 +2467,8 @@ export default {
 
         } else {
           useResponseStore().updateResponse('Failed to update playlist', 'err');
+
+          this.cancelUpdate(id);
           console.log(res);
         }
       })
@@ -2441,16 +2476,14 @@ export default {
     cancelUpdate(id) {
       let el = document.getElementById('pl_' + id + '_title');
 
-      this.playlists.forEach(pl => {
-        if (pl.id === id) {
-          el.textContent = pl.name;
-          setTimeout(() => {
-            pl["isEditable"] = false;
-          }, 100);
+      // get playlist element from playlists array
+      let pl = this.playlists.find(p => p.id === id);
 
-          return;
-        }
-      });
+      // set isEditable to false & revert name to previous value
+      setTimeout(() => {
+        pl["isEditable"] = false;
+        el.textContent = pl.name;
+      }, 100);
     },
     deletePlaylist(id) {
       if (window.confirm('Delete this playlist?')) {
@@ -2681,6 +2714,13 @@ export default {
     save() {
       this.loading.save = true;
 
+      if (this.allVideos.length > 9 && !this.emailVerified && !this.allVideos.find(obj => obj.url === this.videoData.url)) {
+        useResponseStore().updateResponse('You can only save up to 10 videos with an unverified email', 'warn');
+        this.loading.save = false;
+
+        return false;
+      }
+
       this.cooldown = new Date().getTime() + 1000 * 60 * 5;
 
       let valid = true;
@@ -2877,10 +2917,8 @@ export default {
 
             let new_video;
             this.favs[0] ? new_video = this.favs[0] : new_video = this.allVideos[0];
-            this.videoData = new_video;
 
-            this.ytplayer.loadVideoById(new_video.url);
-            this.ytplayer.setPlaybackRate(new_video.speed);
+            this.pressPlay(new_video.url);
 
             this.cacheAll();
             this.cacheFavs();
@@ -2903,8 +2941,8 @@ export default {
 
     // PLAY RANDOM VIDEO
     random() {
-      // get a random video from the 'allVideos' array
-      const randomVideo = this.allVideos[Math.floor(Math.random() * this.allVideos.length)];
+      // get a random video from the allVideos array that isn't the current video
+      const randomVideo = this.allVideos.find(video => video.url !== this.videoData.url);
       this.pressPlay(randomVideo.url);
     },
 
@@ -2957,19 +2995,20 @@ export default {
 
     // IMPORT PLAYLIST
     async importPlaylist() {
+      if (!this.userIsMember) {
+        return false;
+      }
+
       // Set loading state
       this.loading.importPlaylist = true;
 
       // Define playlist variables
       let videos = [];
-      let pl_name = Math.random().toString(36);
+      let pl_name = '';
       let pl_id = '';
 
       // Extract playlist ID from the URL
       const playlistId = this.extractPlaylistId(this.importPlaylistUrl);
-
-      // Update import progress state
-      this.importProgress.state = 1;
 
       // If playlist ID is not valid, return
       if (!playlistId) {
@@ -3004,7 +3043,7 @@ export default {
           });
 
           const playlistTitle = response2.data.items[0].snippet.title;
-          pl_name = playlistTitle;
+          pl_name = playlistTitle.substr(0, 35);
 
           videos.push(...response.data.items);
           nextPageToken = response.data.nextPageToken;
@@ -3018,6 +3057,9 @@ export default {
         return false;
       }
 
+      // Update import progress state
+      this.importProgress.state = 1;
+
       // Create a new playlist
       request({ name: pl_name }, "/playlist/create").then(res => {
         // If failed to create playlist, return
@@ -3025,6 +3067,7 @@ export default {
           useResponseStore().updateResponse('Failed to create playlist', 'err');
 
           this.loading.importPlaylist = false;
+          this.importProgress.state = 0;
 
           return false;
         }
@@ -3069,6 +3112,10 @@ export default {
     },
 
     async createImportedVideos(videos, pl_id = this.videoPlaylist.id) {
+      if (!this.userIsMember) {
+        return false;
+      }
+
       let vids_existed = false;
       let vids_failed = false;
       let vids_failed_to_playlist = false;
@@ -3105,7 +3152,7 @@ export default {
             desc: "",
             skip: [],
             start: 0,
-            end: 999,
+            end: v.snippet.duration.seconds,
             lyrics: "",
             fav: false,
             speed: 1.0,
@@ -3224,7 +3271,7 @@ export default {
 
             this.loading.share = false;
           } else {
-            useResponseStore().updateResponse('Failed to share video - ' + res.data, 'err');
+            useResponseStore().updateResponse('Failed to share video', 'err');
 
             this.loading.share = false;
 
@@ -3526,12 +3573,14 @@ export default {
           return;
         }
 
-        // set video playlist
-        let new_playlist = this.playlists.find(pl => pl.videos.some(v => v.url === url));
+        // set video playlist if current playlist doesn't contain the video
+        if (!this.videoPlaylist.videos.some(v => v.url === url)) {
+          let new_playlist = this.playlists.find(pl => pl.videos.some(v => v.url === url));
 
-        this.videoPlaylist = new_playlist ? new_playlist : { id: "", name: "", videos: [], thumbnail: "" };
+          this.videoPlaylist = new_playlist ? new_playlist : { id: "", name: "", videos: [], thumbnail: "" };
 
-        this.cacheVideoPlaylist();
+          this.cacheVideoPlaylist();
+        }
 
         let cache = localStorage.getItem(`cache_vid_${url}`);
 
@@ -3614,7 +3663,7 @@ export default {
 
       try {
         const id = this.parseUrl(url) ? this.parseUrl(url)[1] : url;
-        const key = "AIzaSyDV9INVJodSVheJQohxNRdj-1PJezpTFc8";
+        const key = this.apiKey;
 
         const api_url = "https://www.googleapis.com/youtube/v3/videos?id=" + id + "&key=" + key + "&part=snippet,contentDetails";
 
@@ -3629,29 +3678,31 @@ export default {
           videoInfo.thumbnail = videoData.snippet.thumbnails.high.url;
 
           // updating video data with fetched data
-          this.videoData.title = videoInfo.title;
-          this.videoData.thumbnail = videoInfo.thumbnail;
-          this.videoData.desc = "";
-
-          this.videoData.start = 0;
-          this.videoData.end = videoInfo.duration;
-
-          this.duration = videoInfo.duration;
-
-          this.videoData.url = id;
-
-          this.videoData.skip = [];
-
-          this.videoData.fav = false;
-
-          this.videoData.created_at = new Date();
-
-          this.videoData.lyrics = '';
-
-          this.videoData.speed = 1;
+          this.videoData = {
+            title: videoInfo.title,
+            thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+            desc: "",
+            start: 0,
+            end: videoInfo.duration,
+            url: id,
+            skip: [],
+            fav: false,
+            created_at: new Date(),
+            updated_at: new Date(),
+            lyrics: '',
+            speed: 1,
+          };
 
           // update lyrics
           this.lyricData.title = this.videoData.title;
+
+          // update current playlist
+          this.videoPlaylist = {
+            id: "",
+            name: "",
+            videos: [],
+            thumbnail: "",
+          };
 
           // updating video player
           this.ytplayer.loadVideoById(id);
@@ -3919,14 +3970,12 @@ export default {
 @import url('../assets/css/styles.css');
 
 #sidebar {
-  /*background: #1A2B7A;
+  background: #1A2B7A;
   background: #A083BE;
-  background: #D5B5A4;*/
+  background: #D5B5A4;
   background-repeat: no-repeat;
   background-size: cover;
-  /*background-image: linear-gradient(#1A2B7A, #A083BE);*/
-  background: var(--grey_5);
-  background: var(--theme3);
+  background-image: linear-gradient(#1A2B7A, #A083BE, #D5B5A4);
   border-left: 1px solid var(--grey_1);
   padding: 20px;
   position: fixed;
