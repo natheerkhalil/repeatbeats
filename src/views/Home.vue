@@ -2415,7 +2415,7 @@ export default {
       setTimeout(() => {
         // get playlist element from playlists array
         let pl = this.playlists.find(p => p.id === id);
-        
+
         // set isEditable to false
         pl["isEditable"] = false;
       }, 200);
@@ -2447,16 +2447,14 @@ export default {
     cancelUpdate(id) {
       let el = document.getElementById('pl_' + id + '_title');
 
-      this.playlists.forEach(pl => {
-        if (pl.id === id) {
-          el.textContent = pl.name;
-          setTimeout(() => {
-            pl["isEditable"] = false;
-          }, 100);
+      // get playlist element from playlists array
+      let pl = this.playlists.find(p => p.id === id);
 
-          return;
-        }
-      });
+      // set isEditable to false & revert name to previous value
+      setTimeout(() => {
+        pl["isEditable"] = false;
+        el.textContent = pl.name;
+      }, 100);
     },
     deletePlaylist(id) {
       if (window.confirm('Delete this playlist?')) {
@@ -2910,7 +2908,7 @@ export default {
     // PLAY RANDOM VIDEO
     random() {
       // get a random video from the allVideos array that isn't the current video
-      const randomVideo = this.allVideos.find(video => video.url!== this.videoData.url);
+      const randomVideo = this.allVideos.find(video => video.url !== this.videoData.url);
       this.pressPlay(randomVideo.url);
     },
 
