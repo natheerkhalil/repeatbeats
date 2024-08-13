@@ -3519,13 +3519,13 @@ export default {
 
       if (cached_all.find(v => v.url === parsed_url)) {
         this.videoData = cached_all.find(v => v.url === parsed_url);
+        this.pressPlay(url);
       } else {
 
         request({ url: parsed_url }, '/video/load').then(res => {
           if (!res.failed) {
-            this.videoData = res.data.data;
-
-            this.reloadVideo(parsed_url);
+            this.videoData = res.data;
+            this.pressPlay(url);
           } else {
             this.getVidData(parsed_url);
           }
