@@ -2901,10 +2901,8 @@ export default {
 
             let new_video;
             this.favs[0] ? new_video = this.favs[0] : new_video = this.allVideos[0];
-            this.videoData = new_video;
-
-            this.ytplayer.loadVideoById(new_video.url);
-            this.ytplayer.setPlaybackRate(new_video.speed);
+            
+            this.pressPlay(new_video.url);
 
             this.cacheAll();
             this.cacheFavs();
