@@ -2378,6 +2378,13 @@ export default {
     createPlaylist() {
       this.loading.createPlaylist = true;
 
+      if (!this.emailVerified && this.playlists.length > 0) {
+        useResponseStore().updateResponse('Please verify your email address to create more playlists', 'warn');
+        this.loading.createPlaylist = false;
+
+        return false;
+      }
+
       request(this.playlistData, '/playlist/create').then(res => {
         if (!res.failed) {
           useResponseStore().updateResponse('Playlist created successfully!', 'succ');
@@ -2704,6 +2711,13 @@ export default {
     // SAVE VIDEO DATA
     save() {
       this.loading.save = true;
+
+      if (this.allVideos.length > 9 && !this.emailVerified && !this.allVideos.find(obj => obj.url === this.videoData.url)) {
+        useResponseStore().updateResponse('You can only save up to 10 videos with an unverified email', 'warn');
+        this.loading.save = false;
+
+        return false;
+      }
 
       this.cooldown = new Date().getTime() + 1000 * 60 * 5;
 
