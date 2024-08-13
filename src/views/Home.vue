@@ -3127,7 +3127,7 @@ export default {
             desc: "",
             skip: [],
             start: 0,
-            end: duration,
+            end: duration - 2,
             lyrics: "",
             fav: false,
             speed: 1.0,
