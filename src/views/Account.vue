@@ -168,12 +168,10 @@ export default {
         }
     },
 
-    mounted() {
+    created() {
         // CHECK IF USER IS AUTHENTICATED
         this.checkAuthToken();
-    },
 
-    created() {
         let cache_all = localStorage.getItem("cache_all");
 
         if (cache_all) {
@@ -192,7 +190,7 @@ export default {
 
         this.email = localStorage.getItem("auth_email");
 
-        this.verifyEmail();
+        this.verifyEmail(false);
     },
 
     methods: {
@@ -238,10 +236,10 @@ export default {
             }
         },
 
-        verifyEmail() {
+        verifyEmail(refresh = false) {
             let cache = localStorage.getItem("email_verified");
 
-            if (cache) {
+            if (cache && !refresh) {
 
                 this.emailVerified = JSON.parse(cache);
 

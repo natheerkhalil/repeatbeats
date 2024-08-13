@@ -41,13 +41,26 @@
 
       <div v-if="!this.emailVerified && this.showUnverifiedEmailAlert"
         class="__b __w __mauto _flex __bg-warn-5 _sm-fd-co __bo-warn-8 __bod _ai-ce _jc-be __bdxs __padxs">
-        <p class="__txt-grey-1 __b __tle">Your email is not verified yet. You can only add a maximum
-          of&nbsp;<strong>10</strong>&nbsp;videos and&nbsp;<strong>1</strong>&nbsp;playlist with an unverified account.
-        </p>
+        <div style="margin-right: 5px;" class="_flex _fd-co">
+          <p class="__txt-grey-1 __b __tle">Your email is not verified yet. You can only add a maximum
+            of&nbsp;<strong>10</strong>&nbsp;videos and&nbsp;<strong>1</strong>&nbsp;playlist with an unverified
+            account.
+          </p>
+          <p style="margin-top: 5px; font-size: 13px;" class="__b __tle __txt-grey-2">Already upgraded on another
+            device? Press the <strong>refresh</strong> button.
+          </p>
+        </div>
         <br class="m_hide _sm-show">
         <div class="_flex _cc _fd-ro">
           <button @click="sendVerificationEmail" style="min-width: max-content;"
             class="__padxs __tsx __bg-none __po __bo-grey-1 __bod">Send Verification Email</button> &nbsp; &nbsp;
+          <svg width=35 height=35 class="__po" fill=var(--grey_3) @click="verifyEmail(true);" clip-rule="evenodd"
+            fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path data-v-2dc54a20=""
+              d="m21.897 13.404.008-.057v.002c.024-.178.044-.357.058-.537.024-.302-.189-.811-.749-.811-.391 0-.715.3-.747.69-.018.221-.044.44-.078.656-.645 4.051-4.158 7.153-8.391 7.153-3.037 0-5.704-1.597-7.206-3.995l1.991-.005c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-4.033c-.414 0-.75.336-.75.75v4.049c0 .414.336.75.75.75s.75-.335.75-.75l.003-2.525c1.765 2.836 4.911 4.726 8.495 4.726 5.042 0 9.217-3.741 9.899-8.596zm-19.774-2.974-.009.056v-.002c-.035.233-.063.469-.082.708-.024.302.189.811.749.811.391 0 .715-.3.747-.69.022-.28.058-.556.107-.827.716-3.968 4.189-6.982 8.362-6.982 3.037 0 5.704 1.597 7.206 3.995l-1.991.005c-.414 0-.75.336-.75.75s.336.75.75.75h4.033c.414 0 .75-.336.75-.75v-4.049c0-.414-.336-.75-.75-.75s-.75.335-.75.75l-.003 2.525c-1.765-2.836-4.911-4.726-8.495-4.726-4.984 0-9.12 3.654-9.874 8.426z"
+              fill-rule="nonzero"></path>
+          </svg> &nbsp; &nbsp;
           <svg width=24 height=24 class="__po" @click="hideEmailAlert" clip-rule="evenodd" fill-rule="evenodd"
             stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -1638,10 +1651,13 @@ export default {
     },
 
     // VERIFY USER'S EMAIL
-    verifyEmail() {
+    verifyEmail(refresh = false) {
+      if (refresh == true) {
+        useResponseStore().updateResponse('Verifying...', 'info');
+      }
+
       let cache = localStorage.getItem("email_verified");
       let cache_2 = localStorage.getItem("showUnverifiedEmailAlert");
-
 
       if (JSON.parse(cache_2) === false) {
         this.showUnverifiedEmailAlert = false;
@@ -1649,7 +1665,7 @@ export default {
         this.showUnverifiedEmailAlert = true;
       }
 
-      if (cache) {
+      if (cache && !refresh) {
         this.emailVerified = JSON.parse(cache);
         console.log(JSON.parse(cache));
       } else {
@@ -1664,6 +1680,10 @@ export default {
             this.emailVerified = true;
           }
         });
+      }
+
+      if (refresh == true) {
+        useResponseStore().updateResponse("Verified", "info");
       }
     },
     sendVerificationEmail() {
@@ -3165,7 +3185,7 @@ export default {
             desc: "",
             skip: [],
             start: 0,
-            end: 999,
+            end: v.snippet.duration.seconds,
             lyrics: "",
             fav: false,
             speed: 1.0,
