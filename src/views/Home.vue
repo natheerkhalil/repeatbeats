@@ -860,12 +860,17 @@
         <!-- PLAYLISTS -->
         <div v-if="searchPls.length == 0" v-for="(pl, index) in playlists.slice(0, loadLimit.allPlaylists)"
           :id="`pl_${pl.id}`" class="playlist __b _flex _fd-co">
-          <div class="__b _flex _fd-ro _jc-be _ai-ce">
+          <div class="__b _flex _fd-co _jc-be _ai-ce">
             <p :contenteditable="pl.isEditable" :style="pl.isEditable ? 'text-decoration: underline' : ''"
-              :id="`pl_${pl.id}_title`" class="sidebar-title __padxs __b __tle __tmd">{{ pl.name }}</p>
+              :id="`pl_${pl.id}_title`" class="sidebar-title __padxs __b __tal __tmd">{{ pl.name }}</p>
             <div class="_flex _fd-ro _cc">
               <svg v-if="pl.id != this.videoPlaylist.id && pl.videos.length > 0" class="__po"
                 @click="setCurrentPlaylist(pl.id, pl.name, pl.thumbnail, pl.videos)" width="24" height="24"
+                xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
+              </svg>
+              <svg v-if="pl.id == this.videoPlaylist.id && pl.videos.length > 0" fill="green"
+                width="24" height="24"
                 xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                 <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
               </svg>
@@ -902,6 +907,8 @@
               </svg>
             </div>
           </div>
+
+          <br class="__br __brsm">
 
           <hr class="__hr __b __bg-grey-10">
 
