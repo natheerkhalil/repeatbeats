@@ -869,9 +869,8 @@
                 xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                 <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
               </svg>
-              <svg v-if="pl.id == this.videoPlaylist.id && pl.videos.length > 0" fill="lightgreen"
-                width="24" height="24"
-                xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+              <svg v-if="pl.id == this.videoPlaylist.id && pl.videos.length > 0" fill="lightgreen" width="24"
+                height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                 <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
               </svg>
               &nbsp; &nbsp;
@@ -3551,12 +3550,14 @@ export default {
           return;
         }
 
-        // set video playlist
-        let new_playlist = this.playlists.find(pl => pl.videos.some(v => v.url === url));
+        // set video playlist if current playlist doesn't contain the video
+        if (!this.videoPlaylist.videos.some(v => v.url === url)) {
+          let new_playlist = this.playlists.find(pl => pl.videos.some(v => v.url === url));
 
-        this.videoPlaylist = new_playlist ? new_playlist : { id: "", name: "", videos: [], thumbnail: "" };
+          this.videoPlaylist = new_playlist ? new_playlist : { id: "", name: "", videos: [], thumbnail: "" };
 
-        this.cacheVideoPlaylist();
+          this.cacheVideoPlaylist();
+        }
 
         let cache = localStorage.getItem(`cache_vid_${url}`);
 
