@@ -155,7 +155,7 @@ export default {
                     useResponseStore().updateResponse("Password reset successfully. Redirecting...", "succ");
                     window.location.href = "/login";
                 } else {
-                    useResponseStore().updateResponse("Couldn't change password - " + res.data.data, "err");
+                    useResponseStore().updateResponse("Couldn't change password", "err");
                 }
                 this.loading = false;
             });
