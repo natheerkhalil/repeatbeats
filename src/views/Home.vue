@@ -869,7 +869,7 @@
                 xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                 <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
               </svg>
-              <svg v-if="pl.id == this.videoPlaylist.id && pl.videos.length > 0" fill="green"
+              <svg v-if="pl.id == this.videoPlaylist.id && pl.videos.length > 0" fill="lightgreen"
                 width="24" height="24"
                 xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                 <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
@@ -3952,14 +3952,12 @@ export default {
 @import url('../assets/css/styles.css');
 
 #sidebar {
-  /*background: #1A2B7A;
+  background: #1A2B7A;
   background: #A083BE;
-  background: #D5B5A4;*/
+  background: #D5B5A4;
   background-repeat: no-repeat;
   background-size: cover;
-  /*background-image: linear-gradient(#1A2B7A, #A083BE);*/
-  background: var(--grey_5);
-  background: var(--theme3);
+  background-image: linear-gradient(#1A2B7A, #A083BE, #D5B5A4);
   border-left: 1px solid var(--grey_1);
   padding: 20px;
   position: fixed;
