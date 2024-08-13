@@ -174,7 +174,7 @@ export default {
 
                         this.token = PLACEHOLDER_CAPTCHA_TOKEN;
 
-                        this.$refs.hcaptcha.reset();
+                        this.$refs.captcha.reset();
 
                         // get status code
                         let code = res.msg.response.status;
