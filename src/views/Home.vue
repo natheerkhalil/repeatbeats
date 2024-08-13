@@ -3271,7 +3271,7 @@ export default {
 
             this.loading.share = false;
           } else {
-            useResponseStore().updateResponse('Failed to share video - ' + res.data, 'err');
+            useResponseStore().updateResponse('Failed to share video', 'err');
 
             this.loading.share = false;
 
