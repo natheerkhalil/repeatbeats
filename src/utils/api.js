@@ -1,6 +1,9 @@
 import axios from 'axios';
 
 import { API_URL } from '../../config';
+
+import { useResponseStore } from '@/stores/response';
+
 export function extractFirstString(nestedArray) {
     for (let i = 0; i < nestedArray.length; i++) {
         if (Array.isArray(nestedArray[i])) {
@@ -72,6 +75,10 @@ export async function request(data, url, authenticated = true) {
             code = error.response.status;
         } else {
             code = 500; // Default to server error code
+        }
+
+        if (code == 429) {
+            useResponseStore().updateResponse("Rate limit exceeded, take a breather 🍃", "warn");
         }
 
         return {
