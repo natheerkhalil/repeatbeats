@@ -37,9 +37,9 @@
                 <hr class="__hr __b __bg-grey-8">
                 <br>
                 <form class="__b _flex __padsm _fd-co _cc" @submit.prevent="login">
-                    <input type="text" v-model="formData.username" placeholder="Username">
+                    <input autocomplete="on" type="text" v-model="formData.username" placeholder="Username">
                     <br>
-                    <input type="password" v-model="formData.password" placeholder="Password">
+                    <input autocomplete="on" type="password" v-model="formData.password" placeholder="Password">
                     <br>
                     <vue-turnstile ref="captcha" :siteKey="sitekey" v-model="token" />
                     <br>

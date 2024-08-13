@@ -39,11 +39,11 @@
                     class="__b _flex __padxs _cc __bg-err-7 __bod __bdxs __bo-err-2 __txt-err-2"></div>
                 <br v-if="errors.length > 0">
                 <form class="__b _flex __padsm _fd-co _cc" @submit.prevent="register">
-                    <input @input="validateFormData" type="text" v-model="formData.username" placeholder="Username">
+                    <input autocomplete="on" @input="validateFormData" type="text" v-model="formData.username" placeholder="Username">
                     <br>
-                    <input @input="validateFormData" type="email" v-model="formData.email" placeholder="Email">
+                    <input autocomplete="on" @input="validateFormData" type="email" v-model="formData.email" placeholder="Email">
                     <br>
-                    <input @input="validateFormData" type="password" v-model="formData.password" placeholder="Password">
+                    <input autocomplete="on" @input="validateFormData" type="password" v-model="formData.password" placeholder="Password">
                     <br>
                     <vue-turnstile ref="captcha" :siteKey="sitekey" v-model="token" />
                     <br>
