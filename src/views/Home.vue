@@ -587,8 +587,6 @@
                   <div class="__loader"></div>
                 </div>
 
-                <p v-if="favs.length == 0 && initialised.favs == true">You haven't favourited any videos</p>
-
                 <draggable class="__b _flex _fd-ro" v-model="favs" group="favs" @start="drag = true;"
                   @end="drag = false; updateFavOrder();" item-key="url">
 
