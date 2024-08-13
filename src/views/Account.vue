@@ -147,7 +147,7 @@ import { useAuthStore } from '@/stores/auth';
 
 import { request } from "@/utils/api";
 
-import {uauth } from "@/utils/auth";
+import { uauth } from "@/utils/auth";
 
 export default {
     data() {

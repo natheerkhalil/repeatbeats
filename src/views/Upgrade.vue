@@ -41,37 +41,52 @@
 
             <br><br>
 
-            <div style="max-width: 100%; overflow-x: auto" class="_flex __mauto">
-                <form style="min-width: 500px; max-width: 100%;" class="_flex _fd-co" @submit.prevent="handleSubmit">
-                    <div id="card-element"></div>
+            <div v-if="emailVerified" class="__b _flex _fd-co _cc">
+                <div style="max-width: 100%; overflow-x: auto" class="_flex __mauto">
+                    <form style="min-width: 500px; max-width: 100%;" class="_flex _fd-co"
+                        @submit.prevent="handleSubmit">
+                        <div id="card-element"></div>
 
-                    <br>
+                        <br>
 
-                    <button v-if="!loading"
-                        class="__bo-none __bg-grey-9 __hv __hv-grey-4 __ht-grey-10 __padxs __bdxs __txt-grey-1 __po"
-                        type="submit" :disabled="loading">Upgrade 🎶</button>
+                        <button v-if="!loading"
+                            class="__bo-none __bg-grey-9 __hv __hv-grey-4 __ht-grey-10 __padxs __bdxs __txt-grey-1 __po"
+                            type="submit" :disabled="loading">Upgrade 🎶</button>
 
 
-                    <div v-if="loading" class="__b _flex _cc">
-                        <div style="width: 35px; height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
-                            class="__loader-og"></div>
-                    </div>
-                </form>
+                        <div v-if="loading" class="__b _flex _cc">
+                            <div style="width: 35px; height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+                                class="__loader-og"></div>
+                        </div>
+                    </form>
+                </div>
+
+                <br><br><br>
+
+                <div class="_flex __mauto" style="min-width: 500px">
+                    <p class="__b __w __tri __txt-grey-5" style="font-size: 12px">By paying, you agree to the
+                        <router-link to="/privacy">Privacy Policy</router-link> and <router-link to="/terms">Terms and
+                            Conditions</router-link>. <br> This payment is a one-time fee of £4.99 and cannot be
+                        refunded. <br> We do not store your credit card data.
+                    </p>
+                </div>
+
+                <br>
+
+                <div class="_flex __mauto __padxs" style="min-width: 500px">
+                    <p class="__mlauto __tsx __po" @click="refreshMembershipStatus">Already upgraded? Press here</p>
+                </div>
             </div>
 
-            <br><br><br>
-
-            <div class="_flex __mauto" style="min-width: 500px">
-                <p class="__b __w __tri __txt-grey-5" style="font-size: 12px">By paying, you agree to the <router-link
-                        to="/privacy">Privacy Policy</router-link> and <router-link to="/terms">Terms and
-                        Conditions</router-link>. <br> This payment is a one-time fee of £4.99 and cannot be
-                    refunded. <br> We do not store your credit card data. </p>
-            </div>
-
-            <br>
-
-            <div class="_flex __mauto __padxs" style="min-width: 500px">
-                <p class="__mlauto __tsx __po" @click="refreshMembershipStatus">Already upgraded? Press here</p>
+            <div style="width: 750px" v-if="!emailVerified"
+                class="__w __mauto _flex __bg-warn-5 _sm-fd-co __bo-warn-8 __bod _ai-ce _jc-be __bdxs __padmd">
+                <div style="margin-right: 5px;" class="_flex _fd-co">
+                    <p class="__txt-grey-1 __b __tle">Your email is not verified yet. You need to verify your email
+                        address to be able to upgrade.
+                    </p>
+                </div> &nbsp; &nbsp;
+                <button @click="goToAccount" style="min-width: max-content;"
+                    class="__padxs __tsx __bg-none __po __bo-grey-1 __bod">Go To Account</button>
             </div>
 
         </div>
@@ -114,35 +129,62 @@ export default {
             clientSecret: '',
             loading: false,
             error: '',
+
+            emailVerified: false,
         };
     },
 
 
-    async mounted() {
-        this.stripe = await loadStripe(STRIPE_KEY);
+    async created() {
+        // VERIFY IF USER IS EMAIL VERIFIED
+        let cache = localStorage.getItem("email_verified");
 
-        const elements = this.stripe.elements();
-        const style = {
-            base: {
-                color: '#32325D',
-                fontFamily: 'Arial, sans-serif',
-                fontSmoothing: 'antialiased',
-                fontSize: '16px',
-                '::placeholder': {
-                    color: '#aab7c4',
-                },
-            }
-        };
-        this.cardElement = elements.create('card', { style });
-        this.cardElement.mount('#card-element');
+        if (cache) {
+            this.emailVerified = JSON.parse(cache);
+        } else {
+            request({}, "/account/is-verified").then(res => {
+                if (!res.failed) {
+                    this.emailVerified = res.data.data;
 
-        this.createPaymentIntent();
+                    localStorage.setItem("email_verified", JSON.stringify(this.emailVerified));
+                } else {
+                    console.log(`Failed to fetch email verification status`, "err");
+
+                    this.emailVerified = true;
+                }
+            });
+        }
+
+        if (this.emailVerified) {
+            this.stripe = await loadStripe(STRIPE_KEY);
+
+            const elements = this.stripe.elements();
+            const style = {
+                base: {
+                    color: '#32325D',
+                    fontFamily: 'Arial, sans-serif',
+                    fontSmoothing: 'antialiased',
+                    fontSize: '16px',
+                    '::placeholder': {
+                        color: '#aab7c4',
+                    },
+                }
+            };
+            this.cardElement = elements.create('card', { style });
+            this.cardElement.mount('#card-element');
+
+            this.createPaymentIntent();
+        }
     },
 
 
     methods: {
         goHome() {
             this.$router.push('/');
+        },
+
+        goToAccount() {
+            this.$router.push('/account');
         },
 
         refreshMembershipStatus() {
