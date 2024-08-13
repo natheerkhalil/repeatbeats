@@ -96,6 +96,30 @@
         <div class="_flex __b _fd-co _cc">
 
           <div class="__b _flex _cc _fd-ro">
+
+            &nbsp; &nbsp; &nbsp;
+            <div v-if="!userIsMember" class="tooltip">
+              <svg class="__po" @click="goToUpgrade" width="27" height="27" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <defs>
+                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#b4b059;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#af4261;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#768a86;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <path fill="url(#grad1)" d="M23 24v-20h-8v2h6v16h-18v-16h6v-2h-8v20h22zm-12-13h-4l5 6 5-6h-4v-11h-2v11z" />
+              </svg>
+              <p class="tooltiptext">Import Playlist (premium)</p>
+            </div>
+            &nbsp; &nbsp; &nbsp;
+            <div v-if="userIsMember" class="tooltip">
+              <svg class="__po" @click="showImportModal = !showImportModal" width="27" height="27" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <path d="M23 24v-20h-8v2h6v16h-18v-16h6v-2h-8v20h22zm-12-13h-4l5 6 5-6h-4v-11h-2v11z" />
+              </svg>
+              <p class="tooltiptext">Import Playlist</p>
+            </div> 
             <div class="__b _flex _cc _fd-ro">
 
               <input v-model="tempUrl"
@@ -197,15 +221,7 @@
                   d="M15.408 21h-9.908c-3.037 0-5.5-2.463-5.5-5.5 0-2.702 1.951-4.945 4.521-5.408.212-3.951 3.473-7.092 7.479-7.092 3.267 0 6.037 2.089 7.063 5.003l-.063-.003c-.681 0-1.336.102-1.958.283-.878-2.025-2.73-3.283-5.042-3.283-3.359 0-5.734 2.562-5.567 6.78-1.954-.113-4.433.923-4.433 3.72 0 1.93 1.57 3.5 3.5 3.5h7.76c.566.81 1.3 1.49 2.148 2zm2.257-8.669c.402-.206.852-.331 1.335-.331 1.455 0 2.67 1.042 2.941 2.418l1.96-.398c-.456-2.291-2.475-4.02-4.901-4.02-.957 0-1.845.278-2.604.745l-1.396-1.745-1 5h5l-1.335-1.669zm5.335 8.669l-1.396-1.745c-.759.467-1.647.745-2.604.745-2.426 0-4.445-1.729-4.901-4.02l1.96-.398c.271 1.376 1.486 2.418 2.941 2.418.483 0 .933-.125 1.335-.331l-1.335-1.669h5l-1 5z" />
               </svg>
               <p class="tooltiptext">Sync Data</p>
-            </div>
-            &nbsp; &nbsp; &nbsp;
-            <div class="tooltip">
-              <svg class="__po" @click="showImportModal = !showImportModal" width="27" height="27" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                <path d="M23 24v-20h-8v2h6v16h-18v-16h6v-2h-8v20h22zm-12-13h-4l5 6 5-6h-4v-11h-2v11z" />
-              </svg>
-              <p class="tooltiptext">Import Playlist</p>
-            </div> &nbsp; &nbsp; &nbsp;
+            </div>&nbsp; &nbsp; &nbsp;
             <svg class="__po" @click="showVidData = !showVidData" v-if="showVidData" xmlns="http://www.w3.org/2000/svg"
               width="29" height="29" viewBox="0 0 24 24">
               <path
@@ -1061,7 +1077,7 @@
     </div>
 
     <!-- IMPORT PLAYLIST -->
-    <div v-if="showImportModal"
+    <div v-if="showImportModal && userIsMember"
       style="max-height: 90vh; overflow-x: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
       class="__custscroll __w _flex _fd-co _ai-ce __bg-grey-10 __bo-1 __bod __padsm">
       <div class="__b _flex _fd-ro _jc-be">
@@ -2993,6 +3009,10 @@ export default {
 
     // IMPORT PLAYLIST
     async importPlaylist() {
+      if (!userIsMember) {
+        return false;
+      }
+
       // Set loading state
       this.loading.importPlaylist = true;
 
@@ -3105,6 +3125,10 @@ export default {
     },
 
     async createImportedVideos(videos, pl_id = this.videoPlaylist.id) {
+      if (!userIsMember) {
+        return false;
+      }
+
       let vids_existed = false;
       let vids_failed = false;
       let vids_failed_to_playlist = false;
