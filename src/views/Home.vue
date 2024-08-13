@@ -3651,6 +3651,14 @@ export default {
           // update lyrics
           this.lyricData.title = this.videoData.title;
 
+          // update current playlist
+          this.videoPlaylist = {
+            id: "",
+            name: "",
+            videos: [],
+            thumbnail: "",
+          };
+
           // updating video player
           this.ytplayer.loadVideoById(id);
           this.ytplayer.setPlaybackRate(1);
