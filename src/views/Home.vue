@@ -2966,7 +2966,7 @@ export default {
 
       // Define playlist variables
       let videos = [];
-      let pl_name = Math.random().toString(36);
+      let pl_name = '';
       let pl_id = '';
 
       // Extract playlist ID from the URL
@@ -3008,7 +3008,7 @@ export default {
           });
 
           const playlistTitle = response2.data.items[0].snippet.title;
-          pl_name = playlistTitle;
+          pl_name = playlistTitle.substr(0, 35);
 
           videos.push(...response.data.items);
           nextPageToken = response.data.nextPageToken;
