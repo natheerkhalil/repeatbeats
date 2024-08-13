@@ -1872,6 +1872,7 @@ export default {
       let vid;
 
       index = list.findIndex(obj => obj.url === this.videoData.url);
+      list = list.filter(obj => obj.url!== this.videoData.url);
 
       if (!this.shuffle) {
         if (index !== -1 && index < list.length - 1) {
@@ -1905,6 +1906,7 @@ export default {
       let vid;
 
       index = list.findIndex(obj => obj.url === this.videoData.url);
+      list = list.filter(obj => obj.url!== this.videoData.url);
 
       if (!this.shuffle) {
         if (index > 0) {
