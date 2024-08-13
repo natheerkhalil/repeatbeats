@@ -2412,6 +2412,18 @@ export default {
       let el = document.getElementById('pl_' + id + '_title');
       let name = el.textContent;
 
+      if (name.trim() === '') {
+        useResponseStore().updateResponse('Playlist name cannot be empty', 'warn');
+
+        return false;
+      }
+
+      if (name.length > 50) {
+        useResponseStore().updateResponse('Playlist name cannot exceed 50 characters', 'warn');
+
+        return false;
+      }
+
       setTimeout(() => {
         // get playlist element from playlists array
         let pl = this.playlists.find(p => p.id === id);
@@ -2440,6 +2452,8 @@ export default {
 
         } else {
           useResponseStore().updateResponse('Failed to update playlist', 'err');
+
+          this.cancelUpdate(id);
           console.log(res);
         }
       })
