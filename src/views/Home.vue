@@ -2915,7 +2915,7 @@ export default {
 
             let new_video;
             this.favs[0] ? new_video = this.favs[0] : new_video = this.allVideos[0];
-            
+
             this.pressPlay(new_video.url);
 
             this.cacheAll();
@@ -3667,26 +3667,20 @@ export default {
           videoInfo.thumbnail = videoData.snippet.thumbnails.high.url;
 
           // updating video data with fetched data
-          this.videoData.title = videoInfo.title;
-          this.videoData.thumbnail = videoInfo.thumbnail;
-          this.videoData.desc = "";
-
-          this.videoData.start = 0;
-          this.videoData.end = videoInfo.duration;
-
-          this.duration = videoInfo.duration;
-
-          this.videoData.url = id;
-
-          this.videoData.skip = [];
-
-          this.videoData.fav = false;
-
-          this.videoData.created_at = new Date();
-
-          this.videoData.lyrics = '';
-
-          this.videoData.speed = 1;
+          this.videoData = {
+            title: videoInfo.title,
+            thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+            desc: "",
+            start: 0,
+            end: videoInfo.duration,
+            url: id,
+            skip: [],
+            fav: false,
+            created_at: new Date(),
+            updated_at: new Date(),
+            lyrics: '',
+            speed: 1,
+          };
 
           // update lyrics
           this.lyricData.title = this.videoData.title;
