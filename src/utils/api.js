@@ -80,6 +80,9 @@ export async function request(data, url, authenticated = true) {
         if (code == 429) {
             useResponseStore().updateResponse("Rate limit exceeded, take a breather 🍃", "warn");
         }
+        if (code == 423) {
+            useResponseStore().updateResponse("Your account has been blocked from doing this", "warn");
+        }
 
         return {
             failed: 1,
