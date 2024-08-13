@@ -1268,7 +1268,7 @@
           class="__loader-og" v-if="loading.refreshShares"></div>
       </div>
       <div class="__b _flex _cc _fd-co">
-        <div style="margin-bottom: 15px;" class="_flex __b __padxs __bo-grey-7 __bod __bdxs _jc-be _ai-ce"
+        <div style="margin-bottom: 15px;" class="_flex _sm-fd-co __b __padxs __bo-grey-7 __bod __bdxs _jc-be _ai-ce"
           v-for="r in receivedShares">
           <div class="_flex _cc _fd-ro">{{ r.sender }} shared a video with you:</div>
           <div class="image-container">
