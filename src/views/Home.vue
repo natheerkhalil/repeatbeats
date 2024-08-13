@@ -2856,7 +2856,7 @@ export default {
         request({ url: this.videoData.url }, '/video/delete').then(res => {
           if (!res.failed) {
             useResponseStore().updateResponse('Video deleted successfully', 'succ');
-            // remove from main playlist
+            // remove from all playlists
             this.playlists.forEach(p => {
               p.videos = p.videos.filter(video => video.url !== this.videoData.url);
             });
@@ -2867,15 +2867,8 @@ export default {
             // remove from all videos
             this.allVideos = this.allVideos.filter(video => video.url !== this.videoData.url);
 
-            // remove from other playlists
-            this.playlists.forEach(p => {
-              p.videos.forEach(video => {
-                if (video.url === this.videoData.url) {
-                  this.videoPlaylist = p;
-                  return;
-                }
-              });
-            });
+            // remove from current playlist
+            this.videoPlaylist.videos = this.videoPlaylist.videos.filter(video => video.url!== this.videoData.url);
 
             if (this.videoPlaylist.videos.length == 0) {
               this.videoPlaylist = {
