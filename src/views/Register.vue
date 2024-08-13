@@ -180,7 +180,7 @@ export default {
                         let code = res.msg.response.status;
 
                         if (code === 409) {
-                            useResponseStore().updateResponse("Username or email already exists", "err");
+                            useResponseStore().updateResponse("Username or email already exists", "warn");
 
                             this.loading = false;
 
