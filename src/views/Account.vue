@@ -19,14 +19,23 @@
             <br>
             <div v-if="!emailVerified && !verificationEmailSent"
                 class="__b __w __mauto _flex __bg-warn-5 _sm-fd-co __bo-warn-8 __bod _ai-ce _jc-be __bdxs __padxs">
-                <p class="__txt-grey-1 __b __tle">Your email is not verified yet. You can only add a maximum
-                    of&nbsp;<strong>10</strong>&nbsp;videos and&nbsp;<strong>1</strong>&nbsp;playlist with an unverified
-                    account.
-                </p>
+                <div style="margin-right: 5px;" class="_flex _fd-co">
+                    <p class="__txt-grey-1 __b __tle">Your email is not verified yet. You can only add a maximum
+                        of&nbsp;<strong>10</strong>&nbsp;videos and&nbsp;<strong>1</strong>&nbsp;playlist with an
+                        unverified
+                        account.
+                    </p>
+                    <p style="margin-top: 5px; font-size: 13px;" class="__b __tle __txt-grey-2">Already verified email
+                        on another
+                        device? Press the <strong>send verification email</strong> button to refresh status.
+                    </p>
+                </div>
                 <br class="m_hide _sm-show">
                 <div class="_flex _cc _fd-ro">
                     <button v-if="!loading.verify" @click="sendVerificationEmail" style="min-width: max-content;"
-                        class="__padxs __tsx __bg-none __po __bo-grey-1 __bod">Send Verification Email</button>
+                        class="__padxs __tsx __bg-none __po __bo-grey-1 __bod">Send Verification Email</button> &nbsp;
+                    &nbsp;
+
                     <div v-if="loading.verify"
                         style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
                         class="__loader-og"></div>
@@ -138,6 +147,8 @@ import { useAuthStore } from '@/stores/auth';
 
 import { request } from "@/utils/api";
 
+import {uauth } from "@/utils/auth";
+
 export default {
     data() {
         return {
@@ -195,6 +206,10 @@ export default {
 
     methods: {
         useAuthStore: useAuthStore,
+
+        logout() {
+            uauth.logout();
+        },
 
         goHome() {
             this.$router.push('/')
@@ -271,13 +286,34 @@ export default {
 
                         this.loading.verify = false;
                     } else {
-                        useResponseStore().updateResponse(`Failed to send verification email`, "err");
 
-                        this.verificationEmailSent = false;
+                        request({}, "/account/is-verified").then(res => {
+                            if (!res.failed) {
+                                if (res.data.data == true) {
+                                    this.emailVerified = res.data.data;
 
-                        this.loading.verify = false;
+                                    localStorage.setItem("email_verified", JSON.stringify(this.emailVerified));
 
-                        console.log(res);
+                                    useResponseStore().updateResponse("Email verification status updated successfully", "succ");
+
+                                    return false;
+                                }
+                            } else {
+                                console.log(`Failed to fetch email verification status`, "err");
+
+                                this.emailVerified = true;
+
+                                return false;
+                            }
+
+                            useResponseStore().updateResponse(`Failed to send verification email`, "err");
+
+                            this.verificationEmailSent = false;
+
+                            this.loading.verify = false;
+
+                            console.log(res);
+                        });
                     }
                 });
             }
