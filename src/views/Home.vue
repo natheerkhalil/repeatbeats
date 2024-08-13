@@ -1591,12 +1591,10 @@ export default {
       request({}, "/account/membership-status").then(res => {
         if (!res.failed) {
           if (res.data.data === false || res.data.data === 0) {
-            console.log("User is not a member");
             localStorage.removeItem("user_is_member");
 
             this.userIsMember = false;
           } else {
-            console.log("User is a member");
             localStorage.setItem("user_is_member", 1);
 
             this.userIsMember = true;

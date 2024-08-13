@@ -68,6 +68,12 @@
                     refunded. <br> We do not store your credit card data. </p>
             </div>
 
+            <br>
+
+            <div class="_flex __mauto __padxs" style="min-width: 500px">
+                <p class="__mlauto __tsx __po" @click="refreshMembershipStatus">Already upgraded? Press here</p>
+            </div>
+
         </div>
 
     </div>
@@ -137,6 +143,32 @@ export default {
     methods: {
         goHome() {
             this.$router.push('/');
+        },
+
+        refreshMembershipStatus() {
+            request({}, "/account/membership-status").then(res => {
+                if (!res.failed) {
+                    if (res.data.data === false || res.data.data === 0) {
+                        localStorage.removeItem("user_is_member");
+
+                        this.userIsMember = false;
+
+                        useResponseStore().updateResponse("Looks like you haven't upgraded yet", "info");
+                    } else {
+                        localStorage.setItem("user_is_member", 1);
+
+                        this.userIsMember = true;
+
+                        this.$router.push('/');
+
+                        useResponseStore().updateResponse("Successfully upgraded!", "succ");
+                    }
+
+                    this.checkMaxStorage();
+                } else {
+                    useResponseStore().updateResponse("Failed to refresh membership status", "err");
+                }
+            });
         },
 
         async createPaymentIntent() {
