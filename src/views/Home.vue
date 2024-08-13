@@ -108,7 +108,8 @@
                     <stop offset="100%" style="stop-color:#768a86;stop-opacity:1" />
                   </linearGradient>
                 </defs>
-                <path fill="url(#grad1)" d="M23 24v-20h-8v2h6v16h-18v-16h6v-2h-8v20h22zm-12-13h-4l5 6 5-6h-4v-11h-2v11z" />
+                <path fill="url(#grad1)"
+                  d="M23 24v-20h-8v2h6v16h-18v-16h6v-2h-8v20h22zm-12-13h-4l5 6 5-6h-4v-11h-2v11z" />
               </svg>
               <p class="tooltiptext">Import Playlist (premium)</p>
             </div>
@@ -119,7 +120,7 @@
                 <path d="M23 24v-20h-8v2h6v16h-18v-16h6v-2h-8v20h22zm-12-13h-4l5 6 5-6h-4v-11h-2v11z" />
               </svg>
               <p class="tooltiptext">Import Playlist</p>
-            </div> 
+            </div>
             <div class="__b _flex _cc _fd-ro">
 
               <input v-model="tempUrl"
@@ -3007,7 +3008,7 @@ export default {
 
     // IMPORT PLAYLIST
     async importPlaylist() {
-      if (!userIsMember) {
+      if (!this.userIsMember) {
         return false;
       }
 
@@ -3021,9 +3022,6 @@ export default {
 
       // Extract playlist ID from the URL
       const playlistId = this.extractPlaylistId(this.importPlaylistUrl);
-
-      // Update import progress state
-      this.importProgress.state = 1;
 
       // If playlist ID is not valid, return
       if (!playlistId) {
@@ -3072,6 +3070,9 @@ export default {
         return false;
       }
 
+      // Update import progress state
+      this.importProgress.state = 1;
+
       // Create a new playlist
       request({ name: pl_name }, "/playlist/create").then(res => {
         // If failed to create playlist, return
@@ -3079,6 +3080,7 @@ export default {
           useResponseStore().updateResponse('Failed to create playlist', 'err');
 
           this.loading.importPlaylist = false;
+          this.importProgress.state = 0;
 
           return false;
         }
@@ -3123,7 +3125,7 @@ export default {
     },
 
     async createImportedVideos(videos, pl_id = this.videoPlaylist.id) {
-      if (!userIsMember) {
+      if (!this.userIsMember) {
         return false;
       }
 
