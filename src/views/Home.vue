@@ -560,7 +560,7 @@
                   </svg> &nbsp; &nbsp;
                 </div>
 
-                <div v-if="this.favs.length > 0" class="_flex _fd-ro">
+                <div v-if="this.favs.length > 1" class="_flex _fd-ro">
                   <svg @click="toggleShuffle('fav')" :fill="(this.shuffle && this.loop == 'fav') ? 'green' : 'black'"
                     :class="this.loop == 'fav' ? '__po' : ''" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24">
@@ -648,7 +648,7 @@
                   </span>
                 </p> &nbsp; &nbsp;
 
-                <div v-if="this.videoPlaylist.videos.length > 0" class="_flex _fd-ro">
+                <div v-if="this.videoPlaylist.videos.length > 1" class="_flex _fd-ro">
                   <svg @click="toggleShuffle('playlist')"
                     :fill="(this.shuffle && this.loop == 'playlist') ? 'green' : 'black'"
                     :class="this.loop == 'playlist' ? '__po' : ''" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -720,7 +720,7 @@
 
               &nbsp;
 
-              <div class="_ai-ce _flex _fd-ro">
+              <div v-if="allVideos.length > 1" class="_ai-ce _flex _fd-ro">
                 <svg @click="toggleShuffle('all')" :fill="(this.shuffle && this.loop == 'all') ? 'green' : 'black'"
                   :class="this.loop == 'all' ? '__po' : ''" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                   viewBox="0 0 24 24">
@@ -2173,7 +2173,7 @@ export default {
           break;
       }
 
-      if (list.length === 0) {
+      if (list.length < 2) {
         return;
       }
 
