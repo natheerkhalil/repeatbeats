@@ -2901,8 +2901,8 @@ export default {
 
     // PLAY RANDOM VIDEO
     random() {
-      // get a random video from the 'allVideos' array
-      const randomVideo = this.allVideos[Math.floor(Math.random() * this.allVideos.length)];
+      // get a random video from the allVideos array that isn't the current video
+      const randomVideo = this.allVideos.find(video => video.url!== this.videoData.url);
       this.pressPlay(randomVideo.url);
     },
 
