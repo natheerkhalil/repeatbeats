@@ -560,7 +560,7 @@
                   </svg> &nbsp; &nbsp;
                 </div>
 
-                <div v-if="this.favs.length > 0" class="_flex _fd-ro">
+                <div v-if="this.favs.length > 1" class="_flex _fd-ro">
                   <svg @click="toggleShuffle('fav')" :fill="(this.shuffle && this.loop == 'fav') ? 'green' : 'black'"
                     :class="this.loop == 'fav' ? '__po' : ''" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24">
@@ -586,8 +586,6 @@
                 <div v-if="!this.initialised.favs" class="__b _flex _cc">
                   <div class="__loader"></div>
                 </div>
-
-                <p v-if="favs.length == 0 && initialised.favs == true">You haven't favourited any videos</p>
 
                 <draggable class="__b _flex _fd-ro" v-model="favs" group="favs" @start="drag = true;"
                   @end="drag = false; updateFavOrder();" item-key="url">
@@ -650,7 +648,7 @@
                   </span>
                 </p> &nbsp; &nbsp;
 
-                <div v-if="this.videoPlaylist.videos.length > 0" class="_flex _fd-ro">
+                <div v-if="this.videoPlaylist.videos.length > 1" class="_flex _fd-ro">
                   <svg @click="toggleShuffle('playlist')"
                     :fill="(this.shuffle && this.loop == 'playlist') ? 'green' : 'black'"
                     :class="this.loop == 'playlist' ? '__po' : ''" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -722,7 +720,7 @@
 
               &nbsp;
 
-              <div class="_ai-ce _flex _fd-ro">
+              <div v-if="allVideos.length > 1" class="_ai-ce _flex _fd-ro">
                 <svg @click="toggleShuffle('all')" :fill="(this.shuffle && this.loop == 'all') ? 'green' : 'black'"
                   :class="this.loop == 'all' ? '__po' : ''" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                   viewBox="0 0 24 24">
@@ -862,13 +860,17 @@
         <!-- PLAYLISTS -->
         <div v-if="searchPls.length == 0" v-for="(pl, index) in playlists.slice(0, loadLimit.allPlaylists)"
           :id="`pl_${pl.id}`" class="playlist __b _flex _fd-co">
-          <div class="__b _flex _fd-ro _jc-be _ai-ce">
+          <div class="__b _flex _fd-co _jc-be _ai-ce">
             <p :contenteditable="pl.isEditable" :style="pl.isEditable ? 'text-decoration: underline' : ''"
-              :id="`pl_${pl.id}_title`" class="sidebar-title __padxs __b __tle __tmd">{{ pl.name }}</p>
+              :id="`pl_${pl.id}_title`" class="sidebar-title __padxs __b __tal __tmd">{{ pl.name }}</p>
             <div class="_flex _fd-ro _cc">
               <svg v-if="pl.id != this.videoPlaylist.id && pl.videos.length > 0" class="__po"
                 @click="setCurrentPlaylist(pl.id, pl.name, pl.thumbnail, pl.videos)" width="24" height="24"
                 xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
+              </svg>
+              <svg v-if="pl.id == this.videoPlaylist.id && pl.videos.length > 0" fill="lightgreen" width="24"
+                height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                 <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
               </svg>
               &nbsp; &nbsp;
@@ -878,7 +880,7 @@
                 <path
                   d="m4.481 15.659c-1.334 3.916-1.48 4.232-1.48 4.587 0 .528.46.749.749.749.352 0 .668-.137 4.574-1.492zm1.06-1.061 3.846 3.846 11.321-11.311c.195-.195.293-.45.293-.707 0-.255-.098-.51-.293-.706-.692-.691-1.742-1.74-2.435-2.432-.195-.195-.451-.293-.707-.293-.254 0-.51.098-.706.293z"
                   fill-rule="nonzero" />
-              </svg>
+              </svg> <span v-if="pl.isEditable"> &nbsp; &nbsp; </span>
 
               <!-- SAVE & CANCEL EDIT -->
               <svg @click="updatePlaylist(pl.id)" style="margin-right: 7px" class="__po" v-if="pl.isEditable"
@@ -904,6 +906,8 @@
               </svg>
             </div>
           </div>
+
+          <br class="__br __brsm">
 
           <hr class="__hr __b __bg-grey-10">
 
@@ -2175,7 +2179,7 @@ export default {
           break;
       }
 
-      if (list.length === 0) {
+      if (list.length < 2) {
         return;
       }
 
@@ -2414,6 +2418,26 @@ export default {
       let el = document.getElementById('pl_' + id + '_title');
       let name = el.textContent;
 
+      if (name.trim() === '') {
+        useResponseStore().updateResponse('Playlist name cannot be empty', 'warn');
+
+        return false;
+      }
+
+      if (name.length > 50) {
+        useResponseStore().updateResponse('Playlist name cannot exceed 50 characters', 'warn');
+
+        return false;
+      }
+
+      setTimeout(() => {
+        // get playlist element from playlists array
+        let pl = this.playlists.find(p => p.id === id);
+
+        // set isEditable to false
+        pl["isEditable"] = false;
+      }, 200);
+
       request({ id: id, name: name }, '/playlist/update').then(res => {
         if (!res.failed) {
           useResponseStore().updateResponse('Playlist updated successfully', 'succ');
@@ -2434,6 +2458,8 @@ export default {
 
         } else {
           useResponseStore().updateResponse('Failed to update playlist', 'err');
+
+          this.cancelUpdate(id);
           console.log(res);
         }
       })
@@ -2441,16 +2467,14 @@ export default {
     cancelUpdate(id) {
       let el = document.getElementById('pl_' + id + '_title');
 
-      this.playlists.forEach(pl => {
-        if (pl.id === id) {
-          el.textContent = pl.name;
-          setTimeout(() => {
-            pl["isEditable"] = false;
-          }, 100);
+      // get playlist element from playlists array
+      let pl = this.playlists.find(p => p.id === id);
 
-          return;
-        }
-      });
+      // set isEditable to false & revert name to previous value
+      setTimeout(() => {
+        pl["isEditable"] = false;
+        el.textContent = pl.name;
+      }, 100);
     },
     deletePlaylist(id) {
       if (window.confirm('Delete this playlist?')) {
@@ -2877,10 +2901,8 @@ export default {
 
             let new_video;
             this.favs[0] ? new_video = this.favs[0] : new_video = this.allVideos[0];
-            this.videoData = new_video;
-
-            this.ytplayer.loadVideoById(new_video.url);
-            this.ytplayer.setPlaybackRate(new_video.speed);
+            
+            this.pressPlay(new_video.url);
 
             this.cacheAll();
             this.cacheFavs();
@@ -2903,8 +2925,8 @@ export default {
 
     // PLAY RANDOM VIDEO
     random() {
-      // get a random video from the 'allVideos' array
-      const randomVideo = this.allVideos[Math.floor(Math.random() * this.allVideos.length)];
+      // get a random video from the allVideos array that isn't the current video
+      const randomVideo = this.allVideos.find(video => video.url !== this.videoData.url);
       this.pressPlay(randomVideo.url);
     },
 
@@ -2962,7 +2984,7 @@ export default {
 
       // Define playlist variables
       let videos = [];
-      let pl_name = Math.random().toString(36);
+      let pl_name = '';
       let pl_id = '';
 
       // Extract playlist ID from the URL
@@ -3004,7 +3026,7 @@ export default {
           });
 
           const playlistTitle = response2.data.items[0].snippet.title;
-          pl_name = playlistTitle;
+          pl_name = playlistTitle.substr(0, 35);
 
           videos.push(...response.data.items);
           nextPageToken = response.data.nextPageToken;
@@ -3526,12 +3548,14 @@ export default {
           return;
         }
 
-        // set video playlist
-        let new_playlist = this.playlists.find(pl => pl.videos.some(v => v.url === url));
+        // set video playlist if current playlist doesn't contain the video
+        if (!this.videoPlaylist.videos.some(v => v.url === url)) {
+          let new_playlist = this.playlists.find(pl => pl.videos.some(v => v.url === url));
 
-        this.videoPlaylist = new_playlist ? new_playlist : { id: "", name: "", videos: [], thumbnail: "" };
+          this.videoPlaylist = new_playlist ? new_playlist : { id: "", name: "", videos: [], thumbnail: "" };
 
-        this.cacheVideoPlaylist();
+          this.cacheVideoPlaylist();
+        }
 
         let cache = localStorage.getItem(`cache_vid_${url}`);
 
@@ -3652,6 +3676,14 @@ export default {
 
           // update lyrics
           this.lyricData.title = this.videoData.title;
+
+          // update current playlist
+          this.videoPlaylist = {
+            id: "",
+            name: "",
+            videos: [],
+            thumbnail: "",
+          };
 
           // updating video player
           this.ytplayer.loadVideoById(id);
@@ -3919,14 +3951,12 @@ export default {
 @import url('../assets/css/styles.css');
 
 #sidebar {
-  /*background: #1A2B7A;
+  background: #1A2B7A;
   background: #A083BE;
-  background: #D5B5A4;*/
+  background: #D5B5A4;
   background-repeat: no-repeat;
   background-size: cover;
-  /*background-image: linear-gradient(#1A2B7A, #A083BE);*/
-  background: var(--grey_5);
-  background: var(--theme3);
+  background-image: linear-gradient(#1A2B7A, #A083BE, #D5B5A4);
   border-left: 1px solid var(--grey_1);
   padding: 20px;
   position: fixed;
