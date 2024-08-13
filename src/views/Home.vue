@@ -1385,6 +1385,7 @@ export default {
       showVidData: true,
       showFeedbackModal: false,
       showMaxStorageAlert: false,
+      showMaxStorageAlertHidden: false,
 
       // KEY
       apiKey: YT_API_KEY,
@@ -3112,6 +3113,15 @@ export default {
         // Check if video exists in allVideos array and fetch data from it, if not use default data
         let v_data;
 
+        const key = this.apiKey;
+
+        const api_url = "https://www.googleapis.com/youtube/v3/videos?id=" + id + "&key=" + key + "&part=snippet,contentDetails";
+
+        const response = await axios.get(api_url);
+        const videoData = response.data.items[0];
+
+        let duration = this.convertISO8601Duration(videoData.contentDetails.duration) - 1;
+
         if (this.allVideos.find(v => v.url === id)) {
           v_data = this.allVideos.find(v => v.url === id);
           v_data.created_at = new Date();
@@ -3122,7 +3132,7 @@ export default {
             desc: "",
             skip: [],
             start: 0,
-            end: v.snippet.duration.seconds,
+            end: duration,
             lyrics: "",
             fav: false,
             speed: 1.0,
