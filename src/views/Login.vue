@@ -37,7 +37,7 @@
                 <hr class="__hr __b __bg-grey-8">
                 <br>
                 <form class="__b _flex __padsm _fd-co _cc" @submit.prevent="login">
-                    <input autocomplete="on" type="text" v-model="formData.username" placeholder="Username">
+                    <input autocomplete="on" type="text" v-model="formData.username" placeholder="Username or Email">
                     <br>
                     <input autocomplete="on" type="password" v-model="formData.password" placeholder="Password">
                     <br>
@@ -164,7 +164,7 @@ export default {
 
                         if (status === 401) {
                             useResponseStore().updateResponse("Invalid credentials", "err");
-                        } else if (status == 422) {
+                        } else if (status == 498) {
                             useResponseStore().updateResponse("Failed to verify captcha", "err");
                         } else {
                             useResponseStore().updateResponse("An error occurred", "err");

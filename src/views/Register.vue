@@ -39,11 +39,14 @@
                     class="__b _flex __padxs _cc __bg-err-7 __bod __bdxs __bo-err-2 __txt-err-2"></div>
                 <br v-if="errors.length > 0">
                 <form class="__b _flex __padsm _fd-co _cc" @submit.prevent="register">
-                    <input autocomplete="on" @input="validateFormData" type="text" v-model="formData.username" placeholder="Username">
+                    <input maxlength="18" autocomplete="on" @input="validateFormData" type="text"
+                        v-model="formData.username" placeholder="Username">
                     <br>
-                    <input autocomplete="on" @input="validateFormData" type="email" v-model="formData.email" placeholder="Email">
+                    <input autocomplete="on" @input="validateFormData" type="email" v-model="formData.email"
+                        placeholder="Email">
                     <br>
-                    <input autocomplete="on" @input="validateFormData" type="password" v-model="formData.password" placeholder="Password">
+                    <input autocomplete="on" @input="validateFormData" type="password" v-model="formData.password"
+                        placeholder="Password">
                     <br>
                     <vue-turnstile ref="captcha" :siteKey="sitekey" v-model="token" />
                     <br>
@@ -172,9 +175,9 @@ export default {
                     } else {
                         // reset captcha
 
-                        this.token = PLACEHOLDER_CAPTCHA_TOKEN;
-
                         this.$refs.captcha.reset();
+
+                        this.token = PLACEHOLDER_CAPTCHA_TOKEN;
 
                         // get status code
                         let code = res.msg.response.status;
@@ -185,7 +188,7 @@ export default {
                             this.loading = false;
 
                             return false;
-                        } else if (code === 422) {
+                        } else if (code === 498) {
                             useResponseStore().updateResponse("Failed to verify captcha", "err");
 
                             this.loading = false;
@@ -210,6 +213,8 @@ export default {
 
             const errors = [];
 
+            const alphanumericPattern = /^[a-zA-Z0-9]+$/;
+
             // Validate username
             if (!data.username) {
                 errors.push('Username is required.');
@@ -219,6 +224,8 @@ export default {
                 errors.push('Username must be at least 3 characters long.');
             } else if (data.username.length > 18) {
                 errors.push('Username must not exceed 18 characters.');
+            } else if (!alphanumericPattern.test(data.username)) {
+                errors.push('Username must only contain letters and numbers.');
             }
 
             // Validate email
