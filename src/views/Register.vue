@@ -206,6 +206,8 @@ export default {
         validateFormData(data) {
             data = this.formData;
 
+            data.username = data.username.replace(/\s+/g, '');
+
             const errors = [];
 
             // Validate username
