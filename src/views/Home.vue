@@ -1665,6 +1665,9 @@ export default {
             this.loading.feedback = false;
           } else {
             useResponseStore().updateResponse(`Something went wrong`, "err");
+            
+            this.showFeedbackModal = false;
+            this.showFeedbackModal = false;
           }
         });
       }
