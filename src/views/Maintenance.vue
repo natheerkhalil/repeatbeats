@@ -16,6 +16,7 @@
         <h1 class="__tlg __b __tal">We're sorry, but RepeatBeats is down right now</h1>
         <br>
         <p class="__b __tal __tme __txt-grey-3">We are undergoing some maintenance, or there's a problem with the system. You will be automatically redirected once this has been resolved.</p>
+        <p class="__b __tal __tme __txt-grey-3">Estimated time: <strong>{{ eta }}</strong></p>
         <br>
         <div class="__12 __w _flex _cc">
             <svg fill="var(--warn_6)" width="250" height="250" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
@@ -30,16 +31,19 @@
 
 <script>
 import { useAuthStore } from '@/stores/auth';
+import { MAINTENANCE_MODE_ETA } from "../../config";
 
 export default {
     data() {
         return {
             isAuthenticated: false,
+            eta: 'unknown'
         }
     },
 
     created() {
         this.isAuthenticated = this.useAuthStore().isAuthenticated;
+        this.eta = MAINTENANCE_MODE_ETA;
     },
 
     methods: {
