@@ -130,8 +130,9 @@
 
             </div>
 
-            <svg class="_md-hide __po" @click="showVidData = true; preferences.hideVidData = false" v-if="!showVidData || preferences.hideVidData"
-              xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24">
+            <svg class="_md-hide __po" @click="showVidData = true; preferences.hideVidData = false"
+              v-if="!showVidData || preferences.hideVidData" xmlns="http://www.w3.org/2000/svg" width="35" height="35"
+              viewBox="0 0 24 24">
               <path
                 d="m11.998 5c-4.078 0-7.742 3.093-9.853 6.483-.096.159-.145.338-.145.517s.048.358.144.517c2.112 3.39 5.776 6.483 9.854 6.483 4.143 0 7.796-3.09 9.864-6.493.092-.156.138-.332.138-.507s-.046-.351-.138-.507c-2.068-3.403-5.721-6.493-9.864-6.493zm.002 3c2.208 0 4 1.792 4 4s-1.792 4-4 4-4-1.792-4-4 1.792-4 4-4zm0 1.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z"
                 fill-rule="nonzero" />
@@ -405,8 +406,25 @@
 
             <br>
 
+            <div v-if="hideIcons" class="__b _flex _fd-ro _jc-ar _ai-ce">
+              <!-- save -->
+              <div class="_flex tooltip">
+                <svg v-if="!this.loading.save" @click="save()" class="opt-svg" xmlns="http://www.w3.org/2000/svg"
+                  width="24" height="24" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z" />
+                </svg>
+
+                <div
+                  style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+                  class="__loader-og" v-if="loading.save"></div>
+
+                <p class="tooltiptext">Save</p>
+              </div>
+            </div>
+
             <!-- SVG BUTTONS -->
-            <div class="__b _flex _fd-ro _jc-ar _ai-ce">
+            <div v-if="!hideIcons" class="__b _flex _fd-ro _jc-ar _ai-ce">
               <!-- delete -->
               <div v-if="allVideos.length > 1" class="_flex tooltip">
                 <svg v-if="!loading.delete" @click="destroy()" class="opt-svg" width="24" height="24"
@@ -1407,6 +1425,7 @@ export default {
       showFeedbackModal: false,
       showMaxStorageAlert: false,
       showMaxStorageAlertHidden: false,
+      hideIcons: false,
 
       // KEY
       apiKey: YT_API_KEY,
@@ -2817,6 +2836,8 @@ export default {
             if (!res.failed) {
               useResponseStore().updateResponse('Video saved successfully', 'succ');
 
+              this.hideIcons = false;
+
               this.ignoreLimit = false;
               this.ignoreSkip = false;
 
@@ -3791,6 +3812,8 @@ export default {
           // updating video player
           this.ytplayer.loadVideoById(id);
           this.ytplayer.setPlaybackRate(1);
+
+          this.hideIcons = true;
         } catch (error) {
           useResponseStore().updateResponse('Failed to get video.', 'err');
           console.error('Error fetching video info:', error);
