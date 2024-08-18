@@ -3438,14 +3438,14 @@ export default {
       if (this.fade_vol && this.preferences.fadeOutAudio && !this.ignoreLimit) {
         let vl = this.ytplayer.getVolume();
 
-        this.ytplayer.setVolume(vl - 5);
+        this.ytplayer.setVolume(vl - (vl/20));
       }
     },
     fadeVolumeSkip() {
       if (this.fade_vol_skip && this.preferences.fadeOutAudioSkip && !this.ignoreSkip) {
         let vl = this.ytplayer.getVolume();
 
-        this.ytplayer.setVolume(vl - 5);
+        this.ytplayer.setVolume(vl - (vl/20));
       }
     },
     updateSpeed() {
