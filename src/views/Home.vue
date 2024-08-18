@@ -1870,8 +1870,6 @@ export default {
 
       this.favs = arr;
 
-      alert("Fav order updated!");
-
       this.cacheFavs();
     },
     updatePlOrder() {
@@ -1890,8 +1888,6 @@ export default {
 
       this.videoPlaylist.videos = arr;
       this.playlists.find(obj => obj.id === this.videoPlaylist.id).videos = arr;
-
-      alert("Playlist order updated!");
 
       this.cachePlaylists();
     },
