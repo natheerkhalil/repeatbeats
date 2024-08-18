@@ -1418,8 +1418,8 @@ export default {
 
       // PREFERENCES
       preferences: {
-        fadeOutAudio: true,
-        fadeOutAudioSkip: true,
+        fadeOutAudio: false,
+        fadeOutAudioSkip: false,
       },
 
       // DESIRED VOLUME
