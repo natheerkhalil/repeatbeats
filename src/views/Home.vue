@@ -1118,8 +1118,8 @@
 
     <!-- VIDEO LYRICS -->
     <div v-if="showLyricsModal"
-      style="max-height: 90vh; overflow-x: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
-      class="__custscroll __w _flex _fd-co _ai-ce __bg-grey-10 __bo-1 __bod __padsm">
+      style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
+      class="__w _flex _fd-co _ai-ce __bg-grey-10 __bo-1 __bod __padsm">
       <div class="__b _flex _fd-ro _jc-be">
         <p class="__tmd __tle">Lyrics for {{ this.videoData.title }}</p>
         <div class="_flex _fd-ro _ai-ce">
