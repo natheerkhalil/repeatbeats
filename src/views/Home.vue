@@ -1420,6 +1420,8 @@ export default {
       preferences: {
         fadeOutAudio: false,
         fadeOutAudioSkip: false,
+        orderFav: false,
+        orderPl: false
       },
 
       // DESIRED VOLUME

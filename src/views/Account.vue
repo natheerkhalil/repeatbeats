@@ -114,6 +114,24 @@
                         <input type="checkbox" class="custcheck" v-model="preferences.fadeOutAudioSkip">
                     </div>
 
+                    <br class="__br __brsm">
+                    <hr class="__b __bg-grey-7 __hr">
+                    <br class="__br __brsm">
+
+                    <div class="__b _flex _fd-ro _jc-be _ai-ce">
+                        <p class="__txt-grey-2 __tsx">Drag & drop favourite videos to order them</p>
+                        <input type="checkbox" class="custcheck" v-model="preferences.orderFav">
+                    </div>
+
+                    <br class="__br __brsm">
+                    <hr class="__b __bg-grey-7 __hr">
+                    <br class="__br __brsm">
+
+                    <div class="__b _flex _fd-ro _jc-be _ai-ce">
+                        <p class="__txt-grey-2 __tsx">Drag & drop videos in the current playlist to order them</p>
+                        <input type="checkbox" class="custcheck" v-model="preferences.orderPl">
+                    </div>
+
 
                 </div>
             </div>
@@ -203,6 +221,8 @@ export default {
             preferences: {
                 fadeOutAudio: false,
                 fadeOutAudioSkip: false,
+                orderFav: false,
+                orderPl: false
             }
         }
     },
