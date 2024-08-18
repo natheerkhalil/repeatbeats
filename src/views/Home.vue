@@ -608,8 +608,8 @@
                 style="max-width: 100%; overflow-x: auto; overflow-y: hidden">
 
 
-                <draggable v-if="preferences.orderFav" class="__b _flex _fd-ro" v-model="favs" group="favs" @start="drag = true;"
-                  @end="drag = false; updateFavOrder();" item-key="url">
+                <draggable v-if="preferences.orderFav" class="__b _flex _fd-ro" v-model="favs" group="favs"
+                  @start="drag = true;" @end="drag = false; updateFavOrder();" item-key="url">
 
                   <template #item="{ element }">
 
@@ -651,22 +651,6 @@
                     <span class="__txt-grey-8 __txs">added {{ timeAgo(v.created_at) }}</span>
                   </div>
                 </div>
-
-                <!--<div :id="`fav_${v.url}`" @click="pressPlay(v.url)" v-for="(v, i) in favs.slice(0, loadLimit.fav)"
-                  :class="[(v.url == this.videoData.url) ? 'image-container playing_tab' : 'image-container', `${v.url}`]">
-                  <img :src="v.thumbnail" alt="Image" class="image">
-                  <div class="overlay">
-
-                    <div class="overlay-text-wrap">
-                      <p class="overlay-text">{{ v.title }}
-                      </p>
-                    </div>
-
-                    <br>
-                    <span v-if="v.url == this.videoData.url" class="__txt-succ-3 __txs">currently playing</span>
-                    <span class="__txt-grey-8 __txs">added {{ timeAgo(v.created_at) }}</span>
-                  </div>
-                </div>-->
 
               </div>
             </div>
@@ -715,7 +699,7 @@
                   <div class="__loader"></div>
                 </div>
 
-                <div :id="`playlist_${v.url}`" @click="pressPlay(v.url)"
+                <div v-if="!preferences.orderPl" :id="`playlist_${v.url}`" @click="pressPlay(v.url)"
                   v-for="(v, i) in videoPlaylist.videos.slice(0, loadLimit.playlist)"
                   :class="[(v.url == this.videoData.url) ? 'image-container playing_tab' : 'image-container', `${v.url}`]">
                   <img :src="v.thumbnail" alt="Image" class="image">
@@ -731,6 +715,32 @@
                     <span class="__txt-grey-8 __txs">added {{ timeAgo(v.created_at) }}</span>
                   </div>
                 </div>
+
+                <draggable v-if="preferences.orderPl" class="__b _flex _fd-ro" v-model="videoPlaylist.videos"
+                  group="videos" @start="dragPl = true;" @end="dragPl = false; updatePlOrder();" item-key="url">
+
+                  <template #item="{ element }">
+
+                    <div :id="`playlist_${element.url}`" @click="pressPlay(element.url)"
+                      :class="[(element.url == this.videoData.url) ? 'image-container playing_tab' : 'image-container', `${element.url}`, 'pl-el']">
+                      <img :src="element.thumbnail" :alt="element.title" class="image">
+                      <div class="overlay">
+
+                        <div class="overlay-text-wrap">
+                          <p class="overlay-text">{{ element.title }}
+                          </p>
+                        </div>
+
+                        <br>
+                        <span v-if="element.url == this.videoData.url" class="__txt-succ-3 __txs">currently
+                          playing</span>
+                        <span class="__txt-grey-8 __txs">added {{ timeAgo(element.created_at) }}</span>
+                      </div>
+                    </div>
+
+                  </template>
+
+                </draggable>
 
               </div>
             </div>
@@ -1362,27 +1372,6 @@ export default {
     draggable
   },
 
-  computed: {
-    sortedFavs() {
-      let favs = this.favs;
-      let orders = this.favOrder;
-
-      // for each fav item, set its order from the favOrder array
-      this.favs.forEach(f => {
-        let order = orders.find(o => o.url === f.url);
-        if (order) {
-          f.order = order.order;
-        } else {
-          f.order = 0;
-        }
-      });
-
-      this.favs.sort((a, b) => a.order - b.order);
-
-      return this.favs;
-    }
-  },
-
   data() {
     return {
       // FADE VOLUME
@@ -1394,7 +1383,7 @@ export default {
 
       // DRAG
       drag: false,
-      favOrder: [],
+      dragPl: false,
 
       // MUSIC MODE
       musicMode: false,
@@ -1868,24 +1857,45 @@ export default {
     updateFavOrder() {
       let els = document.getElementsByClassName("fav-el");
 
+      let arr = [];
+
       for (let i = 0; i < els.length; i++) {
         let el = els[i];
         let url = el.id.replace("fav_", "");
 
-        // update favOrder based on url
-        let oel;
+        let vdata = this.allVideos.find(obj => obj.url === url);
 
-        if (!this.favOrder.find(obj => obj.url === url)) {
-          this.favOrder.push({ url: url, order: i });
-        }
-
-        oel = this.favOrder.find(obj => obj.url === url);
-
-        oel.order = i;
+        arr.push(vdata);
       }
+
+      this.favs = arr;
+
+      alert("Fav order updated!");
 
       this.cacheFavs();
     },
+    updatePlOrder() {
+      let els = document.getElementsByClassName("pl-el");
+
+      let arr = [];
+
+      for (let i = 0; i < els.length; i++) {
+        let el = els[i];
+        let url = el.id.replace("playlist_", "");
+
+        let vdata = this.allVideos.find(obj => obj.url === url);
+
+        arr.push(vdata);
+      }
+
+      this.videoPlaylist.videos = arr;
+      this.playlists.find(obj => obj.id === this.videoPlaylist.id).videos = arr;
+
+      alert("Playlist order updated!");
+
+      this.cachePlaylists();
+    },
+
 
     // LOGOUT
     logout() {
@@ -2244,15 +2254,6 @@ export default {
 
       if (cache) {
         this.favs = JSON.parse(cache);
-
-        if (cache_order) {
-          cache_order = JSON.parse(cache_order);
-          this.favOrder = cache_order;
-        } else {
-          this.favs.forEach(v => {
-            this.favOrder.push({ url: v.url, order: this.favOrder.length });
-          });
-        }
 
         this.initialised.favs = true;
       } else {
@@ -3316,7 +3317,6 @@ export default {
     },
     cacheFavs() {
       localStorage.setItem("cache_favs", JSON.stringify(this.favs));
-      localStorage.setItem("cache_fav_order", JSON.stringify(this.favOrder));
     },
     cachePlaylists() {
       localStorage.setItem("cache_playlists", JSON.stringify(this.playlists));
@@ -3355,17 +3355,9 @@ export default {
         } else {
           if (og_state) {
             this.favs = this.favs.filter(fav => fav.url !== this.videoData.url);
-            this.favOrder = this.favOrder.filter(o => o.url !== this.videoData.url);
-
             this.cacheFavs();
           } else {
             this.favs.unshift(this.videoData);
-
-            if (!this.favOrder.find(o => o.url === this.videoData.url)) {
-              this.favOrder.push({ url: this.videoData.url, order: 0 });
-            } else {
-              this.favOrder.find(o => o.url === this.videoData.url).order = 0
-            }
 
             this.cacheFavs();
           }
@@ -3458,14 +3450,14 @@ export default {
       if (this.fade_vol && this.preferences.fadeOutAudio && !this.ignoreLimit) {
         let vl = this.ytplayer.getVolume();
 
-        this.ytplayer.setVolume(vl - (vl/20));
+        this.ytplayer.setVolume(vl - (vl / 20));
       }
     },
     fadeVolumeSkip() {
       if (this.fade_vol_skip && this.preferences.fadeOutAudioSkip && !this.ignoreSkip) {
         let vl = this.ytplayer.getVolume();
 
-        this.ytplayer.setVolume(vl - (vl/20));
+        this.ytplayer.setVolume(vl - (vl / 20));
       }
     },
     updateSpeed() {
@@ -3826,27 +3818,6 @@ export default {
 
 
   watch: {
-    // FAV ORDER
-    favOrder: {
-      handler(newVal, oldVal) {
-        let favs = this.favs;
-        let orders = newVal;
-
-        // for each fav item, set its order from the favOrder array
-        this.favs.forEach(f => {
-          let order = orders.find(o => o.url === f.url);
-          if (order) {
-            f.order = order.order;
-          } else {
-            f.order = 0;
-          }
-
-        });
-
-        this.favs.sort((a, b) => a.order - b.order);
-      },
-      deep: true
-    },
     // PLAY SIDEBAR ANIMATION
     showSidebar(val) {
 
