@@ -540,6 +540,15 @@
                       min="0.25">
                   </div>
                 </div>
+              </div>              <div class="_flex">
+                <div class="__b _flex _fd-ro">
+                  <div class="_flex _fd-ro _cc">
+                    <p class="__tsx __txt-grey-1">volume</p> &nbsp; &nbsp;
+                    <input @input="updateVolume()" step="1" type="number" v-model="desiredVolume"
+                      style="border-bottom: 1px solid black" class="__bo-none __bg-none" placeholder="1" max="100"
+                      min="0">
+                  </div>
+                </div>
               </div>
               <!-- END SPEED CONTROL -->
 
@@ -1359,6 +1368,7 @@ export default {
     return {
       // FADE VOLUME
       fade_vol: false,
+      fade_vol_skip: false,
 
       // FEEDBACK
       feedback: '',
@@ -3370,6 +3380,13 @@ export default {
         height: '350',
         width: '100%',
         videoId: this.videoData.url,
+        playerVars: {
+          controls: 2,
+          loop: 1,
+          modestbranding: 1,
+          rel: 0,
+          iv_load_policy: 3
+        },
         events: {
           'onReady': this.onPlayerReady,
           'onStateChange': (event) => this.onPlayerStateChange(event)
@@ -3388,6 +3405,7 @@ export default {
       this.loopInterval = setInterval(() => this.loopVideo(), 1);
       this.tabInterval = setInterval(() => this.playingTabProgress(), 1);
       this.fadeVol = setInterval(() => this.fadeVolume(), 100);
+      this.fadeVolSkip = setInterval(() => this.fadeVolumeSkip(), 100);
       this.incrementPlayTime = setInterval(() => { this.playTime = this.ytplayer.getCurrentTime() }, 1);
     },
     onPlayerStateChange(event) {
@@ -3397,8 +3415,13 @@ export default {
         let vl = this.ytplayer.getVolume();
 
         this.ytplayer.setVolume(vl - 5);
-      } else if (this.preferences.fadeOutAudio) {
-        this.ytplayer.setVolume(this.desiredVolume);
+      }
+    },
+    fadeVolumeSkip() {
+      if (this.fade_vol_skip && this.preferences.fadeOutAudioSkip && !this.ignoreSkip) {
+        let vl = this.ytplayer.getVolume();
+
+        this.ytplayer.setVolume(vl - 5);
       }
     },
     updateSpeed() {
@@ -3409,6 +3432,9 @@ export default {
       } else {
         return;
       }
+    },
+    updateVolume() {
+      this.ytplayer.setVolume(this.desiredVolume);
     },
     loopVideo() {
       var pt = this.ytplayer.playerInfo.currentTime;
@@ -3424,12 +3450,11 @@ export default {
       }
 
       if (!this.ignoreLimit) {
+        // IF VIDEO IS 2 SECONDS AWAY FROM END, FADE OUT AUDIO
         if (parseFloat(pt).toFixed(0) >= (end.toFixed(0) - 2)) {
           this.fade_vol = true;
         } else {
           this.fade_vol = false;
-
-          this.desiredVolume = this.ytplayer.getVolume();
         }
 
         // if ct is less than start, reset to start time
@@ -3443,7 +3468,7 @@ export default {
         if (ct >= end) {
           if (!this.loop) {
             // reset to start if no loop set
-          this.ytplayer.setVolume(this.desiredVolume);
+            this.ytplayer.setVolume(this.desiredVolume);
             this.ytplayer.seekTo(this.videoData.start);
             this.ytplayer.playVideo(); // Ensure the video is playing
           } else {
@@ -3494,10 +3519,19 @@ export default {
 
           if (ct > start) {
             if (ct < end) {
-              this.ytplayer.setVolume(this.desiredVolume);
               this.ytplayer.seekTo(end);
               this.ytplayer.playVideo(); // Ensure the video is playing
+
+              this.ytplayer.setVolume(parseFloat(this.desiredVolume));
+
+              setTimeout(() => {
+                this.fade_vol_skip = false;
+              }, 100);
+
             }
+          } else if (pt.toFixed(0) >= (start.toFixed(0) - 2)) {
+            // IF VIDEO IS 2 SECONDS AWAY FROM SKIPPING, FADE OUT AUDIO
+            this.fade_vol_skip = true;
           }
         });
       }
