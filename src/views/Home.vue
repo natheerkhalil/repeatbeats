@@ -3390,7 +3390,7 @@ export default {
     onPlayerStateChange(event) {
     },
     fadeVolume() {
-      if (this.fade_vol) {
+      if (this.fade_vol && this.preferences.fadeOutAudio) {
         let vl = this.ytplayer.getVolume();
 
         this.ytplayer.setVolume(vl - 5);
