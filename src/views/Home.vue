@@ -1411,6 +1411,9 @@ export default {
         fadeOutAudioSkip: true,
       },
 
+      // DESIRED VOLUME
+      desiredVolume: 100,
+
       // USER MEMBERSHIP STATUS
       userIsMember: false,
 
@@ -3390,12 +3393,12 @@ export default {
     onPlayerStateChange(event) {
     },
     fadeVolume() {
-      if (this.fade_vol && this.preferences.fadeOutAudio) {
+      if (this.fade_vol && this.preferences.fadeOutAudio && !this.ignoreLimit) {
         let vl = this.ytplayer.getVolume();
 
         this.ytplayer.setVolume(vl - 5);
-      } else {
-        this.ytplayer.setVolume(100);
+      } else if (this.preferences.fadeOutAudio) {
+        this.ytplayer.setVolume(this.desiredVolume);
       }
     },
     updateSpeed() {
@@ -3425,10 +3428,13 @@ export default {
           this.fade_vol = true;
         } else {
           this.fade_vol = false;
+
+          this.desiredVolume = this.ytplayer.getVolume();
         }
 
         // if ct is less than start, reset to start time
         if (ct < start) {
+          this.ytplayer.setVolume(this.desiredVolume);
           this.ytplayer.seekTo(this.videoData.start);
           this.ytplayer.playVideo(); // Ensure the video is playing
         }
@@ -3437,6 +3443,7 @@ export default {
         if (ct >= end) {
           if (!this.loop) {
             // reset to start if no loop set
+          this.ytplayer.setVolume(this.desiredVolume);
             this.ytplayer.seekTo(this.videoData.start);
             this.ytplayer.playVideo(); // Ensure the video is playing
           } else {
@@ -3471,6 +3478,7 @@ export default {
               vid = list[index];
             }
 
+            this.ytplayer.setVolume(this.desiredVolume);
             this.pressPlay(vid.url);
           }
         }
@@ -3486,6 +3494,7 @@ export default {
 
           if (ct > start) {
             if (ct < end) {
+              this.ytplayer.setVolume(this.desiredVolume);
               this.ytplayer.seekTo(end);
               this.ytplayer.playVideo(); // Ensure the video is playing
             }
