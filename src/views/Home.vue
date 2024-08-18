@@ -3398,7 +3398,7 @@ export default {
 
       window.addEventListener("message", (event) => {
 
-        if (event.source === iframeWindow) {
+        if (event.source === iframeWindow && !this.fade_vol && !this.fade_vol_skip) {
           var data = JSON.parse(event.data);
 
           if (
