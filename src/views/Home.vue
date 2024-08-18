@@ -608,14 +608,14 @@
                 style="max-width: 100%; overflow-x: auto; overflow-y: hidden">
 
 
-                <draggable class="__b _flex _fd-ro" v-model="favs" group="favs" @start="drag = true;"
+                <draggable v-if="preferences.orderFav" class="__b _flex _fd-ro" v-model="favs" group="favs" @start="drag = true;"
                   @end="drag = false; updateFavOrder();" item-key="url">
 
                   <template #item="{ element }">
 
                     <div :id="`fav_${element.url}`" @click="pressPlay(element.url)"
                       :class="[(element.url == this.videoData.url) ? 'image-container playing_tab' : 'image-container', `${element.url}`, 'fav-el']">
-                      <img :src="element.thumbnail" alt="Image" class="image">
+                      <img :src="element.thumbnail" :alt="element.title" class="image">
                       <div class="overlay">
 
                         <div class="overlay-text-wrap">
@@ -633,6 +633,24 @@
                   </template>
 
                 </draggable>
+
+                <div v-if="!preferences.orderFav" :id="`fav_${v.url}`" @click="pressPlay(v.url)"
+                  v-for="(v, i) in favs.slice(0, loadLimit.fav)"
+                  :class="[(v.url == this.videoData.url) ? 'image-container playing_tab' : 'image-container', `${v.url}`]">
+                  <img :src="v.thumbnail" :alt="v.title" class="image">
+                  <div class="overlay">
+
+                    <div class="overlay-text-wrap">
+                      <p class="overlay-text">{{ v.title }}
+                      </p>
+                    </div>
+
+                    <br>
+
+                    <span v-if="v.url == this.videoData.url" class="__txt-succ-3 __txs">currently playing</span>
+                    <span class="__txt-grey-8 __txs">added {{ timeAgo(v.created_at) }}</span>
+                  </div>
+                </div>
 
                 <!--<div :id="`fav_${v.url}`" @click="pressPlay(v.url)" v-for="(v, i) in favs.slice(0, loadLimit.fav)"
                   :class="[(v.url == this.videoData.url) ? 'image-container playing_tab' : 'image-container', `${v.url}`]">
