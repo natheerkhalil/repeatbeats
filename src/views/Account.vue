@@ -69,33 +69,6 @@
             </div>
             <br>
             <div class="__b _flex __padxs _fd-co">
-                <p class="__b __tmd __tle">Actions: </p>
-                <br>
-                <div class="_sm-fd-co _sm-cc __b __padsm __bod _fd-ro _jc-be _fw-wr _flex __bo-grey-8">
-
-                    <div v-if="!loading.password" style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
-                        @click="sendPasswordResetEmail"
-                        class="_sm-b __hv __hv-warn-2 __ht-grey-10 _sm-tal _cc __b __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">
-                        Change Password
-                    </div>
-
-                    <div v-if="loading.password" style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
-                        class="_sm-b _sm-tal _cc __padxs _flex __txt-grey-10">Change
-                        <div style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
-                            class="__loader-og"></div>Password
-                    </div>
-
-                    <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
-                        @click="showEmailModal = !showEmailModal"
-                        class="_sm-b __hv __hv-warn-2 __ht-grey-10 _sm-tal _cc __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">
-                        Change Email</div>
-                    <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; " @click="deleteAccount"
-                        class="_sm-b __hv __hv-err-2 __ht-grey-10 _sm-tal _cc __padxs _flex __bo-err-2 __txt-err-2 __bod __po">
-                        Delete Account</div>
-                </div>
-            </div>
-            <br>
-            <div class="__b _flex __padxs _fd-co">
                 <p class="__b __tmd __tle">Preferences: </p>
                 <br>
                 <div class="_fd-co _cc __b __padsm __bod _fw-wr _flex __bo-grey-8">
@@ -136,6 +109,33 @@
                 </div>
             </div>
             <br>
+            <div class="__b _flex __padxs _fd-co">
+                <p class="__b __tmd __tle">Actions: </p>
+                <br>
+                <div class="_sm-fd-co _sm-cc __b __padsm __bod _fd-ro _jc-be _fw-wr _flex __bo-grey-8">
+
+                    <div v-if="!loading.password" style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
+                        @click="sendPasswordResetEmail"
+                        class="_sm-b __hv __hv-warn-2 __ht-grey-10 _sm-tal _cc __b __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">
+                        Change Password
+                    </div>
+
+                    <div v-if="loading.password" style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
+                        class="_sm-b _sm-tal _cc __padxs _flex __txt-grey-10">Change
+                        <div style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+                            class="__loader-og"></div>Password
+                    </div>
+
+                    <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; "
+                        @click="showEmailModal = !showEmailModal"
+                        class="_sm-b __hv __hv-warn-2 __ht-grey-10 _sm-tal _cc __padxs _flex __bo-warn-2 __txt-warn-2 __bod __po">
+                        Change Email</div>
+                    <div style="margin-bottom: 15px; margin-top: 15px; width: max-content; " @click="deleteAccount"
+                        class="_sm-b __hv __hv-err-2 __ht-grey-10 _sm-tal _cc __padxs _flex __bo-err-2 __txt-err-2 __bod __po">
+                        Delete Account</div>
+                </div>
+            </div>
+            <br>
             <div class="__mlauto tooltip">
                 <svg viewBox="0 0 24 24" class="__po" @click="logout" width="24" height="24"
                     xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
@@ -143,6 +143,7 @@
                 </svg>
                 <p class="tooltiptext">Logout</p>
             </div>
+            <br>
         </div>
     </div>
 
