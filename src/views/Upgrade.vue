@@ -73,8 +73,16 @@
 
                 <br>
 
-                <div class="_flex __mauto __padxs" style="min-width: 500px">
-                    <p class="__mlauto __tsx __po" @click="refreshMembershipStatus">Already upgraded? Press here</p>
+                <div class="_flex __mauto" style="min-width: 500px">
+                    <p class="__b __w __tri __txt-grey-5" style="font-size: 12px"><span v-if="!loadingVerify"
+                            @click="refreshMembershipStatus"
+                            class="__bo-1 __padxs __bo-info-3 __bdxs __po __hv __ht-grey-9 __hv-info-3">Already
+                            upgraded? Press
+                            here</span>
+
+                    <div style="width: 35px; height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+                        class="__loader-og __mlauto" v-if="loadingVerify"></div>
+                    </p>
                 </div>
             </div>
 
@@ -129,6 +137,8 @@ export default {
             clientSecret: '',
             loading: false,
             error: '',
+
+            loadingVerify: false,
 
             emailVerified: false,
         };
@@ -188,6 +198,8 @@ export default {
         },
 
         refreshMembershipStatus() {
+            this.loadingVerify = true;
+
             request({}, "/account/membership-status").then(res => {
                 if (!res.failed) {
                     if (res.data.data === false || res.data.data === 0) {
@@ -195,8 +207,12 @@ export default {
 
                         this.userIsMember = false;
 
+                        this.loadingVerify = false;
+
                         useResponseStore().updateResponse("Looks like you haven't upgraded yet", "info");
                     } else {
+                        this.loadingVerify = false;
+
                         localStorage.setItem("user_is_member", 1);
 
                         this.userIsMember = true;
@@ -208,6 +224,8 @@ export default {
 
                     this.checkMaxStorage();
                 } else {
+                    this.loadingVerify = false;
+
                     useResponseStore().updateResponse("Failed to refresh membership status", "err");
                 }
             });
