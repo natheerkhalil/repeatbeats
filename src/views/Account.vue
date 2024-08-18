@@ -98,10 +98,23 @@
             <div class="__b _flex __padxs _fd-co">
                 <p class="__b __tmd __tle">Preferences: </p>
                 <br>
-                <div class="_sm-fd-co _sm-cc __b __padsm __bod _fd-ro _jc-be _fw-wr _flex __bo-grey-8">
+                <div class="_fd-co _cc __b __padsm __bod _fw-wr _flex __bo-grey-8">
 
-                    <p class="__txt-grey-2 __tsx">Fade out audio when video reaches end</p>
-                    <input type="checkbox" class="custcheck" v-model="preferences.fadeOutAudio">
+                    <div class="__b _flex _fd-ro _jc-be _ai-ce">
+                        <p class="__txt-grey-2 __tsx">Fade out audio when video reaches end</p>
+                        <input type="checkbox" class="custcheck" v-model="preferences.fadeOutAudio">
+                    </div>
+
+                    <br class="__br __brsm">
+                    <hr class="__b __bg-grey-7 __hr">
+                    <br class="__br __brsm">
+
+                    <div class="__b _flex _fd-ro _jc-be _ai-ce">
+                        <p class="__txt-grey-2 __tsx">Fade out audio when video reaches skip</p>
+                        <input type="checkbox" class="custcheck" v-model="preferences.fadeOutAudioSkip">
+                    </div>
+
+
                 </div>
             </div>
             <br>
@@ -188,7 +201,8 @@ export default {
             },
 
             preferences: {
-                fadeOutAudio: true
+                fadeOutAudio: true,
+                fadeOutAudioSkip: true,
             }
         }
     },
@@ -403,36 +417,34 @@ export default {
 </script>
 
 <style scoped>
-
 .custcheck {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  min-width: 24px;
-  min-height: 24px;
-  border: 2px solid var(--info_5);
-  border-radius: 50%;
-  /* Make it circular */
-  padding: 4px;
-  cursor: pointer;
-  position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    min-width: 24px;
+    min-height: 24px;
+    border: 2px solid var(--info_5);
+    border-radius: 50%;
+    /* Make it circular */
+    padding: 4px;
+    cursor: pointer;
+    position: relative;
 }
 
 .custcheck:checked {
-  background-color: var(--info_5);
+    background-color: var(--info_5);
 }
 
 .custcheck:checked::before {
-  content: '';
-  display: block;
-  width: 12px;
-  height: 12px;
-  background-color: var(--info_7);
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: var(--info_7);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-
 </style>

@@ -1405,6 +1405,12 @@ export default {
         state: 0
       },
 
+      // PREFERENCES
+      preferences: {
+        fadeOutAudio: true,
+        fadeOutAudioSkip: true,
+      },
+
       // USER MEMBERSHIP STATUS
       userIsMember: false,
 
@@ -1580,6 +1586,9 @@ export default {
 
       // LOAD RECEIVED SHARES
       this.loadReceivedShares();
+
+      // UPDATE PREFERENCES
+      this.preferences = JSON.parse(localStorage.getItem("preferences")) || this.preferences;
     }
 
   },
