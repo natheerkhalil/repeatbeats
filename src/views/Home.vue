@@ -1357,6 +1357,9 @@ export default {
 
   data() {
     return {
+      // FADE VOLUME
+      fade_vol: false,
+
       // FEEDBACK
       feedback: '',
 
@@ -1665,7 +1668,7 @@ export default {
             this.loading.feedback = false;
           } else {
             useResponseStore().updateResponse(`Something went wrong`, "err");
-            
+
             this.showFeedbackModal = false;
             this.showFeedbackModal = false;
           }
@@ -2911,7 +2914,7 @@ export default {
     // PLAY RANDOM VIDEO
     random() {
       // get a random video from the allVideos array that isn't the current video
-      const randomVideoArray = this.allVideos.filter(video => video.url!== this.videoData.url);
+      const randomVideoArray = this.allVideos.filter(video => video.url !== this.videoData.url);
       const randomVideo = randomVideoArray[Math.floor(Math.random() * randomVideoArray.length)];
       this.pressPlay(randomVideo.url);
     },
@@ -3372,9 +3375,19 @@ export default {
 
       this.loopInterval = setInterval(() => this.loopVideo(), 1);
       this.tabInterval = setInterval(() => this.playingTabProgress(), 1);
+      this.fadeVol = setInterval(() => this.fadeVolume(), 100);
       this.incrementPlayTime = setInterval(() => { this.playTime = this.ytplayer.getCurrentTime() }, 1);
     },
     onPlayerStateChange(event) {
+    },
+    fadeVolume() {
+      if (this.fade_vol) {
+        let vl = this.ytplayer.getVolume();
+
+        this.ytplayer.setVolume(vl - 5);
+      } else {
+        this.ytplayer.setVolume(100);
+      }
     },
     updateSpeed() {
       let speed = this.videoData.speed;
@@ -3386,6 +3399,7 @@ export default {
       }
     },
     loopVideo() {
+      var pt = this.ytplayer.playerInfo.currentTime;
       var ct = this.ytplayer.playerInfo.currentTime;
       ct = parseFloat(ct).toFixed(1);
 
@@ -3398,6 +3412,12 @@ export default {
       }
 
       if (!this.ignoreLimit) {
+        if (parseFloat(pt).toFixed(0) >= (end.toFixed(0) - 2)) {
+          this.fade_vol = true;
+        } else {
+          this.fade_vol = false;
+        }
+
         // if ct is less than start, reset to start time
         if (ct < start) {
           this.ytplayer.seekTo(this.videoData.start);

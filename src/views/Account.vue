@@ -95,6 +95,16 @@
                 </div>
             </div>
             <br>
+            <div class="__b _flex __padxs _fd-co">
+                <p class="__b __tmd __tle">Preferences: </p>
+                <br>
+                <div class="_sm-fd-co _sm-cc __b __padsm __bod _fd-ro _jc-be _fw-wr _flex __bo-grey-8">
+
+                    <p class="__txt-grey-2 __tsx">Fade out audio when video reaches end</p>
+                    <input type="checkbox" class="custcheck" v-model="preferences.fadeOutAudio">
+                </div>
+            </div>
+            <br>
             <div class="__mlauto tooltip">
                 <svg viewBox="0 0 24 24" class="__po" @click="logout" width="24" height="24"
                     xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
@@ -176,6 +186,10 @@ export default {
                 verify: false,
                 deleteAccount: false,
             },
+
+            preferences: {
+                fadeOutAudio: true
+            }
         }
     },
 
@@ -202,6 +216,9 @@ export default {
         this.email = localStorage.getItem("auth_email");
 
         this.verifyEmail(false);
+
+        // UPDATE PREFERENCES
+        this.preferences = JSON.parse(localStorage.getItem("preferences")) || this.preferences;
     },
 
     methods: {
@@ -373,5 +390,49 @@ export default {
             }
         }
     },
+
+    watch: {
+        preferences: {
+            handler(newVal, oldVal) {
+                localStorage.setItem("preferences", JSON.stringify(newVal));
+            },
+            deep: true
+        }
+    }
 }
 </script>
+
+<style scoped>
+
+.custcheck {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  min-width: 24px;
+  min-height: 24px;
+  border: 2px solid var(--info_5);
+  border-radius: 50%;
+  /* Make it circular */
+  padding: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.custcheck:checked {
+  background-color: var(--info_5);
+}
+
+.custcheck:checked::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: var(--info_7);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+</style>
