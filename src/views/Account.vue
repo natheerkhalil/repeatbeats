@@ -105,6 +105,15 @@
                         <input type="checkbox" class="custcheck" v-model="preferences.orderPl">
                     </div>
 
+                    <br class="__br __brsm">
+                    <hr class="__b __bg-grey-7 __hr">
+                    <br class="__br __brsm">
+
+                    <div class="__b _flex _fd-ro _jc-be _ai-ce">
+                        <p class="__txt-grey-2 __tsx">Hide video data info by default</p>
+                        <input type="checkbox" class="custcheck" v-model="preferences.hideVidData">
+                    </div>
+
 
                 </div>
             </div>
@@ -223,7 +232,8 @@ export default {
                 fadeOutAudio: false,
                 fadeOutAudioSkip: false,
                 orderFav: false,
-                orderPl: false
+                orderPl: false,
+                hideVidData: false,
             }
         }
     },
