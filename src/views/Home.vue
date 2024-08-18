@@ -540,7 +540,8 @@
                       min="0.25">
                   </div>
                 </div>
-              </div>              <div class="_flex">
+              </div>
+              <div class="_flex">
                 <div class="__b _flex _fd-ro">
                   <div class="_flex _fd-ro _cc">
                     <p class="__tsx __txt-grey-1">volume</p> &nbsp; &nbsp;
@@ -3390,6 +3391,29 @@ export default {
         events: {
           'onReady': this.onPlayerReady,
           'onStateChange': (event) => this.onPlayerStateChange(event)
+        }
+      });
+
+      var iframeWindow = this.ytplayer.getIframe().contentWindow;
+
+      window.addEventListener("message", (event) => {
+
+        if (event.source === iframeWindow) {
+          var data = JSON.parse(event.data);
+
+          if (
+            data.event === "infoDelivery" &&
+            data.info &&
+            data.info.volume
+          ) {
+            if (data.info.muted) {
+              this.desiredVolume = 0;
+              return;
+            }
+
+            let vol = data.info.volume;
+            this.desiredVolume = parseFloat(vol);
+          }
         }
       });
     },
