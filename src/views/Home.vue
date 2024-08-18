@@ -3458,8 +3458,8 @@ export default {
 
       this.loopInterval = setInterval(() => this.loopVideo(), 1);
       this.tabInterval = setInterval(() => this.playingTabProgress(), 1);
-      this.fadeVol = setInterval(() => this.fadeVolume(), 100);
-      this.fadeVolSkip = setInterval(() => this.fadeVolumeSkip(), 100);
+      this.fadeVol = setInterval(() => this.fadeVolume(), 50);
+      this.fadeVolSkip = setInterval(() => this.fadeVolumeSkip(), 50);
       this.incrementPlayTime = setInterval(() => { this.playTime = this.ytplayer.getCurrentTime() }, 1);
     },
     onPlayerStateChange(event) {
