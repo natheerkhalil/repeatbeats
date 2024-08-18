@@ -1118,7 +1118,7 @@
 
     <!-- VIDEO LYRICS -->
     <div v-if="showLyricsModal"
-      style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
+      style="height: 80vh; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 750px;"
       class="__w _flex _fd-co _ai-ce __bg-grey-10 __bo-1 __bod __padsm">
       <div class="__b _flex _fd-ro _jc-be">
         <p class="__tmd __tle">Lyrics for {{ this.videoData.title }}</p>
@@ -1152,9 +1152,9 @@
           class="__loader-og" v-if="this.lyricData.loading == 1"></div>
       </div>
       <br v-if="showLyricsData">
-      <div class="__custscroll __b _flex _fd-co">
+      <div style="flex-grow: 1;" class="__custscroll __b _flex _fd-co">
         <textarea spellcheck="false" v-model="videoData.lyrics" class="__custscroll __b __bd-1 __bod __padxs __bg-none"
-          style="outline: none; resize: vertical; min-height: 700px;"></textarea>
+          style="outline: none; resize: vertical; height: 100%; "></textarea>
       </div>
     </div>
 
