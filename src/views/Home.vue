@@ -1589,8 +1589,16 @@ export default {
   },
 
   beforeUnmount() {
+    // CLEAR ALL INTERVALS
     clearInterval(this.tabInterval);
     clearInterval(this.loopInterval);
+    clearInterval(this.loopInterval);
+    clearInterval(this.tabInterval);
+    clearInterval(this.fadeVol);
+    clearInterval(this.fadeVolSkip);
+    clearInterval(this.setVol);
+    clearInterval(this.speedSet);
+    clearInterval(this.incrementPlayTime);
 
     // CANCEL PLAYLIST IMPORT
     this.importPlaylistUrl = '',
