@@ -3690,6 +3690,8 @@ export default {
         this.fade_vol = false;
         this.fade_vol_skip = false;
 
+        this.ytplayer.setVolume(this.desiredVolume);
+
         let cache = localStorage.getItem(`cache_vid_${url}`);
 
         if (cache) {
