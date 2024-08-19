@@ -3687,6 +3687,9 @@ export default {
           this.cacheVideoPlaylist();
         }
 
+        this.fade_vol = false;
+        this.fade_vol_skip = false;
+
         let cache = localStorage.getItem(`cache_vid_${url}`);
 
         if (cache) {
