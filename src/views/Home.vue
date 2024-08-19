@@ -3460,6 +3460,8 @@ export default {
       this.tabInterval = setInterval(() => this.playingTabProgress(), 1);
       this.fadeVol = setInterval(() => this.fadeVolume(), 50);
       this.fadeVolSkip = setInterval(() => this.fadeVolumeSkip(), 50);
+      this.setVol = setInterval(() => {this.setVolume()}, 50);
+      this.speedSet = setInterval(() => {this.setSpeed()}, 50);
       this.incrementPlayTime = setInterval(() => { this.playTime = this.ytplayer.getCurrentTime() }, 1);
     },
     onPlayerStateChange(event) {
@@ -3477,6 +3479,15 @@ export default {
 
         this.ytplayer.setVolume(vl - (vl / 20));
       }
+    },
+    setVolume() {
+      if (!this.fade_vol && !this.fade_vol_skip) {
+        this.ytplayer.setVolume(this.desiredVolume);
+      }
+    },
+    setSpeed() {
+      this.ytplayer.setPlaybackRate(parseFloat(this.videoData.speed));
+      console.log("Video speed set to " + this.videoData.speed);
     },
     updateSpeed() {
       let speed = this.videoData.speed;
@@ -3577,10 +3588,6 @@ export default {
               this.ytplayer.playVideo(); // Ensure the video is playing
 
               this.ytplayer.setVolume(parseFloat(this.desiredVolume));
-
-              setTimeout(() => {
-                this.fade_vol_skip = false;
-              }, 100);
 
             }
           } else if (pt.toFixed(0) >= (start.toFixed(0) - 2)) {
