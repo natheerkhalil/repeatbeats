@@ -1395,6 +1395,7 @@ export default {
       // FADE VOLUME
       fade_vol: false,
       fade_vol_skip: false,
+      fade_vol_num: 100,
 
       // FEEDBACK
       feedback: '',
@@ -3470,7 +3471,7 @@ export default {
       this.setVol = setInterval(() => { this.setVolume() }, 50);
 
       this.fadeAudioIntval = setInterval(() => { this.fadeAudioCheck(); }, 50);
-      this.fadeAudioFunct = setInterval(() => { this.fadeAudio(); }, 50);
+      this.fadeAudioFunct = setInterval(() => { this.fadeAudio(); }, 25);
 
       this.speedSet = setInterval(() => { this.setSpeed() }, 50);
 
@@ -3481,6 +3482,7 @@ export default {
     setVolume() {
       if ((!this.fade_vol || this.ignoreLimit) && (!this.fade_vol_skip || this.ignoreSkip)) {
         this.ytplayer.setVolume(this.desiredVolume);
+        this.fade_vol_num = Number(this.desiredVolume);
       }
     },
     fadeAudioCheck() {
@@ -3524,9 +3526,6 @@ export default {
           // if video is 2 seconds away from closest skip start, then fade out audio
           if (pt >= (start - 2) && pt < end) {
             ic.push(id);
-            console.log(`Video is nearing skip ${id}, fading out audio...`);
-          } else {
-            console.log(`Skip ${id} completed, moving on...`)
           }
         });
 
@@ -3539,15 +3538,19 @@ export default {
     },
     fadeAudio() {
       if (this.fade_vol_skip && this.preferences.fadeOutAudioSkip && !this.ignoreSkip) {
-        let vl = this.ytplayer.getVolume();
+        let vl = this.desiredVolume;
 
-        this.ytplayer.setVolume(vl - (vl / 20));
+        this.fade_vol_num = Number(this.fade_vol_num - (vl/100));
+
+        this.ytplayer.setVolume(this.fade_vol_num);
       }
 
       if (this.fade_vol && this.preferences.fadeOutAudio && !this.ignoreLimit) {
-        let vl = this.ytplayer.getVolume();
+        let vl = this.desiredVolume;
 
-        this.ytplayer.setVolume(vl - (vl / 20));
+        this.fade_vol_num = Number(this.fade_vol_num - (vl/100));
+
+        this.ytplayer.setVolume(this.fade_vol_num);
       }
     },
     setSpeed() {
