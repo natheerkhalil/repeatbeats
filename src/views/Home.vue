@@ -3668,8 +3668,8 @@ export default {
       }
 
       if (this.allVideos.find(v => v.url === parsed_url)) {
-        
-        this.videoData = cached_all.find(v => v.url === parsed_url);
+
+        this.videoData = this.allVideos.find(v => v.url === parsed_url);
         this.pressPlay(url);
 
       } else {
