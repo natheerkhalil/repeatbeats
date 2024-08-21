@@ -1648,7 +1648,6 @@ export default {
   methods: {
     // CHECK MAX STORAGE
     checkMaxStorage() {
-      console.log("Checking max storage");
       if (this.userIsMember === false) {
         let count = this.allVideos.length;
         let pl_count = this.playlists.length;
@@ -1689,7 +1688,6 @@ export default {
 
       if (cache) {
         this.emailVerified = JSON.parse(cache);
-        console.log(JSON.parse(cache));
       } else {
         request({}, "/account/is-verified").then(res => {
           if (!res.failed) {
@@ -2038,8 +2036,6 @@ export default {
             }
           } else {
             useResponseStore().updateResponse('Failed to fetch lyrics', 'err');
-
-            console.log("!!!");
 
             this.lyricData.loading = 0;
           }
@@ -2714,48 +2710,6 @@ export default {
         this.videoData.skip = [];
       }
     },
-
-
-    // INITIALISE PLAYER & FECTH DATA
-    async initialise() {
-      await new Promise((resolve, reject) => {
-        let cached_favs = JSON.parse(localStorage.getItem("cache_favs"));
-        let cached_all = JSON.parse(localStorage.getItem("cache_all"));
-
-        let fetched_vid = (cached_favs && cached_favs.length > 0) ? cached_favs[0] : (cached_all && cached_all.length > 1 ? cached_all[0] : null);
-
-        console.log(fetched_vid);
-
-        if (fetched_vid !== null) {
-
-          this.videoData = fetched_vid;
-          this.videoData.start = parseFloat(fetched_vid.start);
-          this.videoData.end = parseFloat(fetched_vid.end);
-          this.tempUrl = "https://www.youtube.com/watch?v=" + this.videoData.url;
-
-          resolve();
-        } else {
-          request({}, '/video/fetch').then(res => {
-            try {
-              this.videoData = res.data.data;
-              this.videoData.start = parseFloat(res.data.data.start);
-              this.videoData.end = parseFloat(res.data.data.end);
-              this.tempUrl = "https://www.youtube.com/watch?v=" + this.videoData.url;
-              resolve();
-            } catch (err) {
-              this.videoData = [];
-              useResponseStore().updateResponse('Failed to fetch video data', 'err');
-              reject(err);
-            }
-          }).catch(err_1 => {
-            useResponseStore().updateResponse('Failed to fetch video data', 'err');
-            console.log(err_1);
-            reject(err_1); // Ensure reject is called here
-          });
-        }
-      });
-    },
-
 
 
     // SAVE VIDEO DATA
