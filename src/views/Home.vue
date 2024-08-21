@@ -3466,15 +3466,21 @@ export default {
 
       this.loopInterval = setInterval(() => this.loopVideo(), 1);
       this.tabInterval = setInterval(() => this.playingTabProgress(), 1);
-      this.fadeVol = setInterval(() => this.fadeVolume(), 50);
-      this.fadeVolSkip = setInterval(() => this.fadeVolumeSkip(), 50);
-      this.setVol = setInterval(() => {this.setVolume()}, 50);
-      this.speedSet = setInterval(() => {this.setSpeed()}, 50);
+
+      this.setVol = setInterval(() => { this.setVolume() }, 50);
+
+      this.fadeAudioIntval = setInterval(() => { this.fadeAudioCheck(); }, 50);
+      this.fadeAudioFunct = setInterval(() => { this.fadeAudio(); }, 50);
+
+      this.speedSet = setInterval(() => { this.setSpeed() }, 50);
+
       this.incrementPlayTime = setInterval(() => { this.playTime = this.ytplayer.getCurrentTime() }, 1);
+
+      this.logging = setInterval(() => { this.logg() }, 1000);
     },
     onPlayerStateChange(event) {
     },
-    fadeVolume() {
+    /*fadeVolume() {
       if (this.fade_vol && this.preferences.fadeOutAudio && !this.ignoreLimit) {
         let vl = this.ytplayer.getVolume();
 
@@ -3487,21 +3493,114 @@ export default {
 
         this.ytplayer.setVolume(vl - (vl / 20));
       }
-    },
+    },*/
     setVolume() {
-      if (!this.fade_vol && !this.fade_vol_skip) {
+      if ((!this.fade_vol || this.ignoreLimit) && (!this.fade_vol_skip || this.ignoreSkip)) {
         this.ytplayer.setVolume(this.desiredVolume);
+      }
+    },
+    logg() {
+      let pt = parseFloat(this.ytplayer.getCurrentTime()).toFixed(0);
+      let skips = this.videoData.skip.map(s => s["start"]);
+      let ends = this.videoData.skip.map(s => s["end"]);
+
+      // get closest start to current time
+      let closestSkipStart = skips.reduce((prev, curr) => Math.abs(curr - pt) < Math.abs(prev - pt) ? curr : prev, skips[0]);
+      //  let closestSkipEnd = ends.reduce((prev, curr) => (curr > pt && (prev <= pt || Math.abs(curr - pt) < Math.abs(prev - pt))) ? curr : prev, ends[0]) || 0;
+      let closestSkipEnd = ends.reduce((prev, curr) => Math.abs(curr - pt) < Math.abs(prev - pt) ? curr : prev, ends[0]);
+
+      //console.log(closestSkipStart, closestSkipEnd);
+
+      if (this.fade_vol) {
+        console.log("Video is nearing end, fading out audio...");
+      }
+
+      if (this.fade_vol_skip) {
+        console.log("Video is nearing closest skip, fading out audio...");
+      }
+    },
+    fadeAudioCheck() {
+      let pt = parseFloat(this.ytplayer.getCurrentTime()).toFixed(0);
+
+      pt = Number(pt);
+
+      let start = parseFloat(this.videoData.start).toFixed(0);
+      let end = parseFloat(this.videoData.end).toFixed(0);
+
+      start = Number(start);
+      end = Number(end);
+
+      if (this.preferences.fadeOutAudio) {
+        // IF VIDEO IS 2 SECONDS AWAY FROM END, FADE OUT AUDIO
+        if (pt >= (end - 2)) {
+          this.fade_vol = true;
+        } else {
+          this.fade_vol = false;
+        }
+      }
+
+      if (this.preferences.fadeOutAudioSkip) {
+        // IF VIDEO IS 2 SECONDS AWAY FROM SKIP START, FADE OUT AUDIO
+
+        let ic = [];
+
+        // get all skip starts & ends
+        let skips = this.videoData.skip.map(s => s["start"]);
+        let ends = this.videoData.skip.map(s => s["end"]);
+        console.log("--------------------------")
+
+        this.videoData.skip.forEach((s, i) => {
+          let start = parseFloat(s["start"]).toFixed(0);
+          let end = parseFloat(s["end"]).toFixed(0);
+
+          start = Number(start);
+          end = Number(end);
+
+          let id = (start + end).toString();
+
+          // if video is 2 seconds away from closest skip start, then fade out audio
+          if (pt >= (start - 2) && pt < end) {
+            ic.push(id);
+            console.log(`Video is nearing skip ${id}, fading out audio...`);
+          } else {
+            console.log(`Skip ${id} completed, moving on...`)
+          }
+
+          //console.log((pt >= (start - 2) && pt <= end))
+          /*console.log("--------------------------");
+          console.log(`${pt} less than ${end}:` + (pt <= end));
+          console.log(`${pt} greater than ${start} - 2: ` + (pt >= (start-2)));
+          console.log("--------------------------");*/
+        });
+
+        if (ic.length > 0) {
+          this.fade_vol_skip = true;
+        } else {
+          this.fade_vol_skip = false;
+        }
+      }
+    },
+    fadeAudio() {
+      if (this.fade_vol_skip && this.preferences.fadeOutAudioSkip && !this.ignoreSkip) {
+        let vl = this.ytplayer.getVolume();
+
+        this.ytplayer.setVolume(vl - (vl / 20));
+      }
+
+      if (this.fade_vol && this.preferences.fadeOutAudio && !this.ignoreLimit) {
+        let vl = this.ytplayer.getVolume();
+
+        this.ytplayer.setVolume(vl - (vl / 20));
       }
     },
     setSpeed() {
       this.ytplayer.setPlaybackRate(parseFloat(this.videoData.speed));
-      console.log("Video speed set to " + this.videoData.speed);
     },
     updateSpeed() {
       let speed = this.videoData.speed;
 
       if (speed >= 0.25 && speed <= 2) {
-        this.ytplayer.setPlaybackRate(speed);
+        this.videoData.speed = parseFloat(speed).toFixed(1);
       } else {
         return;
       }
@@ -3523,16 +3622,9 @@ export default {
       }
 
       if (!this.ignoreLimit) {
-        // IF VIDEO IS 2 SECONDS AWAY FROM END, FADE OUT AUDIO
-        if (parseFloat(pt).toFixed(0) >= (end.toFixed(0) - 2)) {
-          this.fade_vol = true;
-        } else {
-          this.fade_vol = false;
-        }
 
         // if ct is less than start, reset to start time
         if (ct < start) {
-          this.ytplayer.setVolume(this.desiredVolume);
           this.ytplayer.seekTo(this.videoData.start);
           this.ytplayer.playVideo(); // Ensure the video is playing
         }
@@ -3541,7 +3633,6 @@ export default {
         if (ct >= end) {
           if (!this.loop) {
             // reset to start if no loop set
-            this.ytplayer.setVolume(this.desiredVolume);
             this.ytplayer.seekTo(this.videoData.start);
             this.ytplayer.playVideo(); // Ensure the video is playing
           } else {
@@ -3576,7 +3667,6 @@ export default {
               vid = list[index];
             }
 
-            this.ytplayer.setVolume(this.desiredVolume);
             this.pressPlay(vid.url);
           }
         }
@@ -3598,9 +3688,6 @@ export default {
               this.ytplayer.setVolume(parseFloat(this.desiredVolume));
 
             }
-          } else if (pt.toFixed(0) >= (start.toFixed(0) - 2)) {
-            // IF VIDEO IS 2 SECONDS AWAY FROM SKIPPING, FADE OUT AUDIO
-            this.fade_vol_skip = true;
           }
         });
       }
