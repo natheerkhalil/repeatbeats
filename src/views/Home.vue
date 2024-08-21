@@ -2608,6 +2608,15 @@ export default {
             // remove video from playlist array
             pl.videos = pl_videos.filter(obj => obj.url !== this.videoData.url);
 
+            // find playlist in playlists array and remove video from it
+            let _arr = [];
+            this.playlists.find(pl => pl.id === pl_id).videos.forEach(v => {
+              if (v.url !== this.videoData.url) {
+                _arr.push(v);
+              }
+            })
+            this.playlists.find(pl => pl.id === pl_id).videos = _arr;
+
             // change thumbnail of playlist
             if (pl.videos.length == 0) {
               pl.thumbnail = 'https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg';
