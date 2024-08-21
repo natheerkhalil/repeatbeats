@@ -3738,6 +3738,8 @@ export default {
             }
           }
 
+          this.hideIcons = false;
+
           this.reloadVideo(url);
         } else {
           request({ url: url }, '/video/load').then(res => {
@@ -3772,12 +3774,14 @@ export default {
               }
               //
 
+              this.hideIcons = false;
               this.cacheVideo();
 
               this.reloadVideo(url);
 
             } catch (err) {
 
+              this.hideIcons = false;
               this.getVidData(url);
             }
 
