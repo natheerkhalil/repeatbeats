@@ -2623,6 +2623,8 @@ export default {
             } else {
               pl.thumbnail = pl_videos[0].thumbnail;
             }
+            this.playlists.find(pl => pl.id === pl_id).updated_at = new Date();
+            this.playlists.find(pl => pl.id === pl_id).thumbnail = pl.thumbnail;
 
             // if current video playlist is the one being removed, clear loop & shuffle
             if (pl.id === this.videoPlaylist.id && this.loop == 'playlist') {
