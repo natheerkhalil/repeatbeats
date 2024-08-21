@@ -3475,48 +3475,12 @@ export default {
       this.speedSet = setInterval(() => { this.setSpeed() }, 50);
 
       this.incrementPlayTime = setInterval(() => { this.playTime = this.ytplayer.getCurrentTime() }, 1);
-
-      this.logging = setInterval(() => { this.logg() }, 1000);
     },
     onPlayerStateChange(event) {
     },
-    /*fadeVolume() {
-      if (this.fade_vol && this.preferences.fadeOutAudio && !this.ignoreLimit) {
-        let vl = this.ytplayer.getVolume();
-
-        this.ytplayer.setVolume(vl - (vl / 20));
-      }
-    },
-    fadeVolumeSkip() {
-      if (this.fade_vol_skip && this.preferences.fadeOutAudioSkip && !this.ignoreSkip) {
-        let vl = this.ytplayer.getVolume();
-
-        this.ytplayer.setVolume(vl - (vl / 20));
-      }
-    },*/
     setVolume() {
       if ((!this.fade_vol || this.ignoreLimit) && (!this.fade_vol_skip || this.ignoreSkip)) {
         this.ytplayer.setVolume(this.desiredVolume);
-      }
-    },
-    logg() {
-      let pt = parseFloat(this.ytplayer.getCurrentTime()).toFixed(0);
-      let skips = this.videoData.skip.map(s => s["start"]);
-      let ends = this.videoData.skip.map(s => s["end"]);
-
-      // get closest start to current time
-      let closestSkipStart = skips.reduce((prev, curr) => Math.abs(curr - pt) < Math.abs(prev - pt) ? curr : prev, skips[0]);
-      //  let closestSkipEnd = ends.reduce((prev, curr) => (curr > pt && (prev <= pt || Math.abs(curr - pt) < Math.abs(prev - pt))) ? curr : prev, ends[0]) || 0;
-      let closestSkipEnd = ends.reduce((prev, curr) => Math.abs(curr - pt) < Math.abs(prev - pt) ? curr : prev, ends[0]);
-
-      //console.log(closestSkipStart, closestSkipEnd);
-
-      if (this.fade_vol) {
-        console.log("Video is nearing end, fading out audio...");
-      }
-
-      if (this.fade_vol_skip) {
-        console.log("Video is nearing closest skip, fading out audio...");
       }
     },
     fadeAudioCheck() {
@@ -3547,7 +3511,6 @@ export default {
         // get all skip starts & ends
         let skips = this.videoData.skip.map(s => s["start"]);
         let ends = this.videoData.skip.map(s => s["end"]);
-        console.log("--------------------------")
 
         this.videoData.skip.forEach((s, i) => {
           let start = parseFloat(s["start"]).toFixed(0);
@@ -3565,12 +3528,6 @@ export default {
           } else {
             console.log(`Skip ${id} completed, moving on...`)
           }
-
-          //console.log((pt >= (start - 2) && pt <= end))
-          /*console.log("--------------------------");
-          console.log(`${pt} less than ${end}:` + (pt <= end));
-          console.log(`${pt} greater than ${start} - 2: ` + (pt >= (start-2)));
-          console.log("--------------------------");*/
         });
 
         if (ic.length > 0) {
