@@ -3399,11 +3399,6 @@ export default {
             data.info &&
             data.info.volume
           ) {
-            if (data.info.muted) {
-              this.desiredVolume = 0;
-              return;
-            }
-
             let vol = data.info.volume;
             this.desiredVolume = parseFloat(vol);
           }
