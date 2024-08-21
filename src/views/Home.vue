@@ -3667,11 +3667,11 @@ export default {
         return;
       }
 
-      let cached_all = JSON.parse(localStorage.getItem("cache_all"));
-
-      if (cached_all.find(v => v.url === parsed_url)) {
+      if (this.allVideos.find(v => v.url === parsed_url)) {
+        
         this.videoData = cached_all.find(v => v.url === parsed_url);
         this.pressPlay(url);
+
       } else {
 
         request({ url: parsed_url }, '/video/load').then(res => {
