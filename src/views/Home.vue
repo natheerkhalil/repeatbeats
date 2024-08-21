@@ -555,7 +555,7 @@
                     <p class="__tsx __txt-grey-1">speed</p> &nbsp; &nbsp;
                     <input @input="updateSpeed()" step="0.1" type="number" v-model="videoData.speed"
                       style="border-bottom: 1px solid black" class="__bo-none __bg-none" placeholder="1.00" max="2"
-                      min="0.25">
+                      min="0.2">
                   </div>
                 </div>
               </div>
