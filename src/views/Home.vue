@@ -3349,7 +3349,9 @@ export default {
             this.favs = this.favs.filter(fav => fav.url !== this.videoData.url);
             this.cacheFavs();
           } else {
-            this.favs.unshift(this.videoData);
+            if (!this.favs.some(fav => fav.url === this.videoData.url)) {
+              this.favs.unshift(this.videoData);
+            }
 
             this.cacheFavs();
           }
@@ -3500,7 +3502,7 @@ export default {
       if (this.fade_vol_skip && this.preferences.fadeOutAudioSkip && !this.ignoreSkip) {
         let vl = this.desiredVolume;
 
-        this.fade_vol_num = Number(this.fade_vol_num - (vl/100));
+        this.fade_vol_num = Number(this.fade_vol_num - (vl / 100));
 
         this.ytplayer.setVolume(this.fade_vol_num);
       }
@@ -3508,7 +3510,7 @@ export default {
       if (this.fade_vol && this.preferences.fadeOutAudio && !this.ignoreLimit) {
         let vl = this.desiredVolume;
 
-        this.fade_vol_num = Number(this.fade_vol_num - (vl/100));
+        this.fade_vol_num = Number(this.fade_vol_num - (vl / 100));
 
         this.ytplayer.setVolume(this.fade_vol_num);
       }
