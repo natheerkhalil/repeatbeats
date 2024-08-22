@@ -2108,7 +2108,9 @@ export default {
           share.video.created_at = new Date();
 
           // add video to all
-          this.allVideos.unshift(share.video);
+          if (!this.allVideos.find(v => v.url === share.video.url)) {
+            this.allVideos.unshift(share.video);
+          }
 
           // remove share from received shares
           this.receivedShares = this.receivedShares.filter(r => r.id !== id);
