@@ -142,12 +142,12 @@
 
           <div class="__bd-3 __bo-3" style="height: 350px; width: 100%" id="player"></div>
 
-          <div class="__b _flex _jc-be _ai-ce __padxs">
+          <div style="margin-top: 5px;" class="__b _flex _jc-be _ai-ce __padxs">
             <svg v-if="allVideos.length > 2 && this.loop" @click="previousVideo()" class="__po" width=29 height=29
               style="transform: rotate(180deg)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M12 12l-12 8v-16l12 8zm0-8v16l12-8-12-8z" />
             </svg>
-            <div class="_flex _jc-en _ai-ce">
+            <div class="_flex __mauto _jc-en _ai-ce">
               <div class="tooltip">
               <svg fill="var(--grey_3)" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                 <path
