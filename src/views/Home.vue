@@ -874,7 +874,7 @@
 
     <!-- SIDEBAR -->
     <div id="sidebar" class="sidebar _flex _fd-co">
-      <div @scroll="handleVerticalScroll" id="sidebar-inner" class="__b _flex _fd-co">
+      <div style="overflow-x: hidden" @scroll="handleVerticalScroll" id="sidebar-inner" class="__b _flex _fd-co">
         <div class="__b _flex _fd-ro _ai-ce _jc-be">
           <svg class="__po" @click="toggleSidebar" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
             fill-rule="evenodd" clip-rule="evenodd">
