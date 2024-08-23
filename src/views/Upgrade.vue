@@ -86,6 +86,8 @@
                 </div>
             </div>
 
+            <br>
+
             <div style="width: 750px" v-if="!emailVerified"
                 class="__w __mauto _flex __bg-warn-5 _sm-fd-co __bo-warn-8 __bod _ai-ce _jc-be __bdxs __padmd">
                 <div style="margin-right: 5px;" class="_flex _fd-co">
