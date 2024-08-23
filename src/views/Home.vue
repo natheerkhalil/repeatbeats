@@ -1543,11 +1543,7 @@ export default {
       cooldown: new Date().getTime(),
 
       // VIDEO PLAYLIST DATA
-      videoPlaylist: {
-        id: '',
-        name: '',
-        videos: []
-      },
+      videoPlaylistId: null,
 
       // LOOP & SHUFFLE PLAYLIST
       loop: '',
@@ -1610,6 +1606,17 @@ export default {
     this.importProgress.videos.now = 0;
   },
 
+  computed: {
+    videoPlaylist() {
+      return this.playlists.find(p => p.id === this.videoPlaylistId) || {
+        id: null,
+        name: null,
+        videos: [],
+        thumbnail: null,
+      };
+    }
+  },
+
   mounted() {
   },
 
@@ -1618,6 +1625,8 @@ export default {
       if (!uauth.isAuthenticated()) {
         window.location.href = '/';
       }
+
+      console.log(this.videoPlaylist);
     }, 1000);
 
     if (this.isAuthenticated) {
@@ -1913,8 +1922,7 @@ export default {
         arr.push(vdata);
       }
 
-      this.videoPlaylist.videos = arr;
-      this.playlists.find(obj => obj.id === this.videoPlaylist.id).videos = arr;
+      this.playlists.find(obj => obj.id === this.videoPlaylistId).videos = arr;
 
       this.cachePlaylists();
     },
@@ -2388,7 +2396,7 @@ export default {
 
       if (video_playlist) {
 
-        this.videoPlaylist = video_playlist;
+        this.videoPlaylistId = video_playlist.id;
         this.initialised.playlist = true;
 
       } else {
@@ -2504,10 +2512,6 @@ export default {
             }
           });
 
-          if (id == this.videoPlaylist.id) {
-            this.videoPlaylist.name = name;
-          }
-
           this.cachePlaylists();
           this.cacheVideoPlaylist();
 
@@ -2539,15 +2543,7 @@ export default {
             this.playlists = this.playlists.filter(pl => pl.id !== id);
 
             if (this.videoPlaylist.id === id) {
-
-              this.videoPlaylist = {
-                id: '',
-                name: '',
-                videos: [],
-                thumbnail: ''
-              };
-
-              this.loop = '';
+              this.videoPlaylistId = null;
             }
 
             this.cacheVideoPlaylist();
@@ -2585,7 +2581,7 @@ export default {
               pl.thumbnail = this.videoData.thumbnail;
             }
 
-            this.videoPlaylist = pl;
+            this.videoPlaylistId = pl_id;
 
             this.showAddModal = false;
 
@@ -2668,10 +2664,7 @@ export default {
 
       this.pressPlay(videos[0].url);
 
-      this.videoPlaylist.id = id;
-      this.videoPlaylist.name = name;
-      this.videoPlaylist.thumbnail = thumbnail;
-      this.videoPlaylist.videos = videos;
+      this.videoPlaylistId = id;
     },
 
 
@@ -2914,15 +2907,10 @@ export default {
             this.allVideos = this.allVideos.filter(video => video.url !== this.videoData.url);
 
             // remove from current playlist
-            this.videoPlaylist.videos = this.videoPlaylist.videos.filter(video => video.url !== this.videoData.url);
+            this.playlists.find(p => p.id === this.videoPlaylistId).videos = this.videoPlaylist.videos.filter(video => video.url !== this.videoData.url);
 
             if (this.videoPlaylist.videos.length == 0) {
-              this.videoPlaylist = {
-                id: '',
-                name: '',
-                videos: [],
-                thumbnail: ''
-              };
+              this.videoPlaylistId = null;
             }
 
             let new_video;
@@ -3083,14 +3071,6 @@ export default {
           return false;
         }
 
-        // Set current playlist to imported playlist
-        this.videoPlaylist = {
-          id: res.data.data.id,
-          name: res.data.data.name,
-          videos: [],
-          thumbnail: ''
-        };
-
         // Add playlist to playlists array
         this.playlists.unshift({
           id: res.data.data.id,
@@ -3101,6 +3081,9 @@ export default {
           created_at: new Date(),
           updated_at: new Date()
         });
+
+        // Set current playlist to imported playlist
+        this.videoPlaylistId = res.data.data.id;
 
         this.cachePlaylists();
         this.checkMaxStorage();
@@ -3122,7 +3105,7 @@ export default {
 
     },
 
-    async createImportedVideos(videos, pl_id = this.videoPlaylist.id) {
+    async createImportedVideos(videos, pl_id = this.videoPlaylistId) {
       if (!this.userIsMember) {
         return false;
       }
@@ -3203,7 +3186,7 @@ export default {
             } else {
               // Add the video to the videoPlaylist array if it doesn't exist in videoPlaylist array
               if (!this.videoPlaylist.videos.some(v => v.url === id)) {
-                this.videoPlaylist.videos.unshift(v_data);
+                this.playlists.find(pl => pl.id === pl_id).videos.unshift(v_data);
               }
 
               // Add the video to the playlist in the playlists array
@@ -3707,7 +3690,7 @@ export default {
         if (!this.videoPlaylist.videos.some(v => v.url === url)) {
           let new_playlist = this.playlists.find(pl => pl.videos.some(v => v.url === url));
 
-          this.videoPlaylist = new_playlist ? new_playlist : { id: "", name: "", videos: [], thumbnail: "" };
+          this.videoPlaylistId = new_playlist.id ? new_playlist.id : null;
 
           this.cacheVideoPlaylist();
         }
@@ -3836,12 +3819,7 @@ export default {
           this.lyricData.title = this.videoData.title;
 
           // update current playlist
-          this.videoPlaylist = {
-            id: "",
-            name: "",
-            videos: [],
-            thumbnail: "",
-          };
+          this.videoPlaylistId = null;
 
           // updating video player
           this.ytplayer.loadVideoById(id);
