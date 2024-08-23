@@ -3673,8 +3673,7 @@ export default {
 
       if (this.allVideos.find(v => v.url === parsed_url)) {
 
-        this.videoData = this.allVideos.find(v => v.url === parsed_url);
-        this.pressPlay(url);
+        this.pressPlay(parsed_url);
 
       } else {
 
