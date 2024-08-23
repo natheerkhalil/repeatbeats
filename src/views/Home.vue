@@ -1459,7 +1459,8 @@ export default {
         fadeOutAudioSkip: false,
         orderFav: false,
         orderPl: false,
-        hideVidData: false
+        hideVidData: false,
+        hideTooltips: false,
       },
 
       // DESIRED VOLUME
@@ -1655,6 +1656,10 @@ export default {
       // CHECK IF USER'S EMAIL IS VERIFIED
       this.verifyEmail();
 
+      if (this.emailVerified) {
+        this.preferences.hideTooltips = true;
+      }
+
       // LOAD RECEIVED SHARES
       this.loadReceivedShares();
 
@@ -1662,6 +1667,22 @@ export default {
       this.preferences = JSON.parse(localStorage.getItem("preferences")) || this.preferences;
     }
 
+  },
+
+  mounted() {
+    if (this.preferences.hideTooltips) {
+        console.log("Hiding tooltips");
+        let tooltips = document.querySelectorAll('.tooltip');
+        let texts = document.querySelectorAll('.tooltiptext');
+
+        tooltips.forEach(t => {
+          t.classList.remove('tooltip');
+        });
+
+        texts.forEach(t => {
+          t.remove();
+        });
+      }
   },
 
   methods: {

@@ -114,6 +114,15 @@
                         <input type="checkbox" class="custcheck" v-model="preferences.hideVidData">
                     </div>
 
+                    <br class="__br __brsm">
+                    <hr class="__b __bg-grey-7 __hr">
+                    <br class="__br __brsm">
+
+                    <div class="__b _flex _fd-ro _jc-be _ai-ce">
+                        <p class="__txt-grey-2 __tsx">Hide tooltips</p>
+                        <input type="checkbox" class="custcheck" v-model="preferences.hideTooltips">
+                    </div>
+
 
                 </div>
             </div>
@@ -234,6 +243,7 @@ export default {
                 orderFav: false,
                 orderPl: false,
                 hideVidData: false,
+                hideTooltips: false,
             }
         }
     },
@@ -262,6 +272,12 @@ export default {
 
         this.verifyEmail(false);
 
+        if (this.emailVerified) {
+            this.preferences.hideTooltips = true;
+
+            this.cachePreferences();
+        }
+
         // UPDATE PREFERENCES
         this.preferences = JSON.parse(localStorage.getItem("preferences")) || this.preferences;
     },
@@ -284,6 +300,13 @@ export default {
                     window.location.href = "/login?msg=You have been logged out&type=info";
                 }
             }, 1000);
+        },
+
+        cachePreferences(prefs) {
+            if (!prefs) {
+                prefs = this.preferences;
+            }
+            localStorage.setItem("preferences", JSON.stringify(prefs));
         },
 
 
@@ -439,7 +462,7 @@ export default {
     watch: {
         preferences: {
             handler(newVal, oldVal) {
-                localStorage.setItem("preferences", JSON.stringify(newVal));
+                this.cachePreferences(newVal);
             },
             deep: true
         }
