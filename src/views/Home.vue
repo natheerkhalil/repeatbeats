@@ -1225,7 +1225,7 @@
     </div>
 
     <!-- OPEN FEEDBACK MODAL -->
-    <div class="__po tooltip" @click="this.showFeedbackModal = !this.showFeedbackModal"
+    <div class="__po _hide tooltip" @click="this.showFeedbackModal = !this.showFeedbackModal"
       style="width: 30px; height: 30px; position: fixed; top: 90%; right: 15px;"><svg clip-rule="evenodd"
         fill="var(--grey_5)" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
