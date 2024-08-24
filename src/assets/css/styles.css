@@ -128,21 +128,21 @@ body {
 
 /* background hover */
 
-.__hv-1 {background-color: var(--theme1);}
-.__hv-2 {background-color: var(--theme2);}
-.__hv-3 {background-color: var(--theme3);}
-.__hv-4 {background-color: var(--theme4);}
-.__hv-5 {background-color: var(--theme5);}
-.__hv-6 {background-color: var(--theme6);}
+.__hv-1:hover {background-color: var(--theme1);}
+.__hv-2:hover {background-color: var(--theme2);}
+.__hv-3:hover {background-color: var(--theme3);}
+.__hv-4:hover {background-color: var(--theme4);}
+.__hv-5:hover {background-color: var(--theme5);}
+.__hv-6:hover {background-color: var(--theme6);}
 
 /* text color on hover */
 
-.__hv-1 {color: var(--theme1);}
-.__hv-2 {color: var(--theme2);}
-.__hv-3 {color: var(--theme3);}
-.__hv-4 {color: var(--theme4);}
-.__hv-5 {color: var(--theme5);}
-.__hv-6 {color: var(--theme6);}
+.__hv-1:hover {color: var(--theme1);}
+.__hv-2:hover {color: var(--theme2);}
+.__hv-3:hover {color: var(--theme3);}
+.__hv-4:hover {color: var(--theme4);}
+.__hv-5:hover {color: var(--theme5);}
+.__hv-6:hover {color: var(--theme6);}
 
 
 /* Info Background Classes */

@@ -121,41 +121,38 @@
                     </p>
                     <br>
                     <div class="__b _flex __bo-grey-7 __bod __padxs _fd-ro _sm-fd-co _jc-ar _ai-ce">
-                        <div class="_flex _cc _fd-co">
-                            <div style="width: 50px; height: 50px;"
-                                class="_flex _cc __bo-grey-10 __bdro __padlg __bo-3">
-                                <p class="__txt-grey-10 __tmd">1</p>
+                        <div style="width: 500px;" class="_flex _cc _fd-co">
+                            <div style="width: 50px; height: 50px;" class="_flex _cc __bo-grey-1 __bdro __padlg __bo-3">
+                                <p class="__txt-grey-1 __tmd">1</p>
                             </div>
                             <br>
-                            <p class="__txt-grey-10 __tme">Get a video URL from YouTube</p>
+                            <p class="__txt-grey-1 __tme">Get a video URL from YouTube</p>
                         </div>
-                        <br class="_hide _sm-show">
+                        <br>
                         <img style="height: 200px; object-fit: cover; width: 400px; max-width: 100%; "
                             src="../../public/landing-1.webp" alt="Get video URL from YouTube">
                     </div>
                     <br>
-                    <div class="__b __bo-grey-7 __bod __padxs _flex _fd-ro _sm-fd-co _jc-ar _ai-ce">
-                        <div class="_flex _cc _fd-co">
-                            <div style="width: 50px; height: 50px;"
-                                class="_flex _cc __bo-grey-10 __bdro __padlg __bo-3">
-                                <p class="__txt-grey-10 __tmd">2</p>
+                    <div class="__b __bo-grey-7 __bod __padxs _flex _fd-ro _md-fd-co _jc-ar _ai-ce">
+                        <div style="width: 500px;" class="_flex _cc _fd-co">
+                            <div style="width: 50px; height: 50px;" class="_flex _cc __bo-grey-1 __bdro __padlg __bo-3">
+                                <p class="__txt-grey-1 __tmd">2</p>
                             </div>
                             <br>
-                            <p class="__txt-grey-10 __tme">Paste the URL into RepeatBeats' player</p>
+                            <p class="__txt-grey-1 __tme">Paste the URL into RepeatBeats' player</p>
                         </div>
-                        <br class="_hide _sm-show">
+                        <br>
                         <img style="height: 200px; object-fit: cover; width: 400px; max-width: 100%; "
                             src="../../public/landing-2.webp" alt="Paste the URL into RepeatBeats' player">
                     </div>
                     <br>
                     <div class="__b __bo-grey-7 __bod __padxs _flex _fd-ro _sm-fd-co _jc-ar _ai-ce">
-                        <div class="_flex _cc _fd-co">
-                            <div style="width: 50px; height: 50px;"
-                                class="_flex _cc __bo-grey-10 __bdro __padlg __bo-3">
-                                <p class="__txt-grey-10 __tmd">3</p>
+                        <div style="width: 500px;" class="_flex _cc _fd-co">
+                            <div style="width: 50px; height: 50px;" class="_flex _cc __bo-grey-1 __bdro __padlg __bo-3">
+                                <p class="__txt-grey-1 __tmd">3</p>
                             </div>
                             <br>
-                            <p class="__txt-grey-10 __tme">Customise the video to your liking!</p>
+                            <p class="__txt-grey-1 __tme">Customise the video to your liking!</p>
                         </div>
                         <br class="_hide _sm-show">
                         <img style="height: 200px; object-fit: cover; width: 400px; max-width: 100%; "
@@ -167,11 +164,17 @@
             <br>
             <br>
             <br>
+        </div>
+    </div>
+    <div class="__b _flex _cc">
 
-            <div class="__mauto _flex __13 __w _fd-co _cc">
-                <p class="__b __tal __tlg gradient-text">Take control of your videos & music. Get RepeatBeats</p>
-                <br>
-            </div>
+
+        <br>
+
+        <div class="bg-gradient __mauto _flex __b _cc _fd-co __padmd">
+            <p class="__b __tal __tlg __txt-grey-9">Take control of your videos & music</p>
+            <br>
+            <button class="__padxs __txt-grey-10 __bg-3 __hv-3 __ht-grey-10 __po __bdxs __hv __bd-3 __bod">Get started for free</button>
         </div>
     </div>
 
@@ -194,9 +197,34 @@ export default {
 <style>
 .gradient-text {
     background-color: red;
-
-    /*background-image: linear-gradient(45deg, #f3ec78, #af4261);*/
     background-image: linear-gradient(45deg, #f3a578, #f3a578, #af4261, #af4261, var(--theme3), var(--theme3));
+    background-size: 100%;
+    background-repeat: repeat;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    color: black;
+}
+
+.gradient-hr {
+    background: linear-gradient(to left, #f3a578, var(--theme3), #af4261, #af4261, var(--theme3), var(--theme3));
+    height: 2px;
+    width: 1300px;
+    max-width: 90vw;
+    margin: auto;
+}
+
+.bg-gradient {
+    background-image: linear-gradient(to right, #f3a578,#af4261);
+}
+
+.ht-gradient:hover {
+    background-color: red;
+
+    background-image: linear-gradient(45deg, #f3a578, #af4261);
     background-size: 100%;
     background-repeat: repeat;
 
