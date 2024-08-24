@@ -161,17 +161,17 @@
         <!-- TOGGLE VIDEO DATA -->
 
         <div class="__b _flex _jc-en _hide _md-show">
-          
-            <!-- received shares -->
-            <div class="_flex tooltip">
-              <svg class="__po" @click="this.showSharesModal = !this.showSharesModal"
-                :fill="this.receivedShares.length > 0 ? 'var(--err_1)' : 'var(--info_1)'" viewBox="0 0 24 24" width="28"
-                height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                <path
-                  d="M24 22.917h-24v-13.275l2-1.456v-7.269h20v7.272l2 1.453v13.275zm-21-10.472v-10.528h18v10.526l-9 5.474-9-5.472zm6-8.916l1.305 2.41 2.695.496-1.888 1.986.36 2.717-2.472-1.183-2.472 1.183.36-2.717-1.888-1.986 2.695-.496 1.305-2.41zm8 6.471v1h-3v-1h3zm2-2v1h-5v-1h5zm0-2v1h-5v-1h5zm0-2v1h-5v-1h5z" />
-              </svg>
-              <p class="tooltiptext">Received shares</p>
-            </div> &nbsp;
+
+          <!-- received shares -->
+          <div class="_flex tooltip">
+            <svg class="__po" @click="this.showSharesModal = !this.showSharesModal"
+              :fill="this.receivedShares.length > 0 ? 'var(--err_1)' : 'var(--info_1)'" viewBox="0 0 24 24" width="28"
+              height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+              <path
+                d="M24 22.917h-24v-13.275l2-1.456v-7.269h20v7.272l2 1.453v13.275zm-21-10.472v-10.528h18v10.526l-9 5.474-9-5.472zm6-8.916l1.305 2.41 2.695.496-1.888 1.986.36 2.717-2.472-1.183-2.472 1.183.36-2.717-1.888-1.986 2.695-.496 1.305-2.41zm8 6.471v1h-3v-1h3zm2-2v1h-5v-1h5zm0-2v1h-5v-1h5zm0-2v1h-5v-1h5z" />
+            </svg>
+            <p class="tooltiptext">Received shares</p>
+          </div> &nbsp;
 
           <div v-if="!playerLoaded" class="tooltip">
             <svg class="__po" @click="refreshPlayer();" xmlns="http://www.w3.org/2000/svg" width="31" height="31"
@@ -1354,7 +1354,7 @@
     </div>
 
     <!-- OPEN FEEDBACK MODAL -->
-    <div v-if="1==2" class="__po tooltip" @click="this.showFeedbackModal = !this.showFeedbackModal"
+    <div v-if="1 == 2" class="__po tooltip" @click="this.showFeedbackModal = !this.showFeedbackModal"
       style="width: 30px; height: 30px; position: fixed; top: 90%; right: 15px;"><svg clip-rule="evenodd"
         fill="var(--grey_5)" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
@@ -3839,12 +3839,12 @@ export default {
 
       if (new Date().getTime() - this.cooldown > 750) {
 
-        this.cooldown = new Date().getTime();
-
         if (url == this.videoData.url) {
           //useResponseStore().updateResponse('This video is already playing', 'warn');
           return;
         }
+
+        this.cooldown = new Date().getTime();
 
         // set video playlist if current playlist doesn't contain the video
         if (!this.videoPlaylist.videos.some(v => v.url === url)) {
