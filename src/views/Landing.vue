@@ -190,8 +190,8 @@
             <div style="background: rgba(0,0,0,0.2);" class="__mauto _flex __b _cc _fd-co __padmd">
                 <p class="__b __tal __tlg __txt-grey-10">Listen the right way with RepeatBeats</p>
                 <br>
-                <button style="background: rgba(0,0,0,0.6); border: 1px solid rgba(0,0,0,0.5);"
-                    class="__padxs __po __bdxs"><span class="gradient-text">Get started for free</span>
+                <button @click="goToRegister"
+                    class="__padxs __po __bo-none __shd __bg-err-5 __hv-err-4 __hv __bdxs"><span class="__txt-grey-10">Get started for free</span>
                 </button>
             </div>
         </div>
@@ -205,6 +205,9 @@ export default {
     methods: {
         goToGithub() {
             window.open('https://github.com/nouralbeirouty/repeatbeats-frontend', '_blank').focus();
+        },
+        goToRegister() {
+            this.$router.push('/register');
         },
         buyCoffee() {
             window.open('https://ko-fi.com/natheer', '_blank').focus();
