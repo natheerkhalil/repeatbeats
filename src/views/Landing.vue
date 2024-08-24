@@ -26,27 +26,30 @@
             <div class="__b _flex _cc">
                 <div class="__13 __w _flex _cc _fd-co">
                     <div class="__b _flex _cc _fd-co">
-                        <div class="__b _flex _fd-ro _jc-be _ai-ce">
-                            <span class="__tlg"></span>
-                            <p class="_md-hide gradient-text __tal __txl">All of your videos & music, organised, in
+                        <div class="__b _flex _fd-ro _cc">
+                            <p class="_md-hide gradient-text __tal __txl __bo">All of your videos & music in
                                 one
                                 place
                             </p>
-                            <p class="__tmd _hide _md-show gradient-text __tal">All of your videos & music,
-                                organised, in one
+                            <p class="__tlg _hide _md-show gradient-text __tal __bo">All of your videos & music in one
                                 place
                             </p>
                         </div>
                     </div>
                     <br>
                     <div class="__b _flex _cc">
-                        <img class="__bd-3 __bod"
+                        <img class="__bd-3 __bod _md-hide"
                             style="max-width: 100%; min-width: 100%; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);"
                             src="/landing.webp" alt="Landing Page Image">
+                        <img class="__bo-grey-7 _md-show _hide __bod"
+                            style="min-width: 100%; min-height: 100%; object-fit: contain; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);"
+                            src="/landing-mb.webp" alt="Mobile Landing Page Image">
                     </div>
 
-                    <br>
-                    <br>
+                    <div class="_flex _fd-ro _md-hide">
+                        <br>
+                        <br>
+                    </div>
 
                     <div class="__b _flex _fd-co _sm-hide">
                         <div class="_fw-wr __custscroll __b _flex _fd-ro _ai-ce _jc-ce">
@@ -116,8 +119,10 @@
                     <br>
                     <br>
 
-                    <p class="__b gradient-text __txl">
-                        Take a look at how it works
+                    <p class="__b gradient-text _md-hide __txl">
+                        How does it work?
+                    </p>
+                    <p class="__tlg _hide _md-show gradient-text __tal __bo">How does it work?
                     </p>
                     <br>
                     <div class="__b _flex __bo-grey-7 __bod __padxs _fd-ro _sm-fd-co _jc-ar _ai-ce">
@@ -133,7 +138,7 @@
                             src="../../public/landing-1.webp" alt="Get video URL from YouTube">
                     </div>
                     <br>
-                    <div class="__b __bo-grey-7 __bod __padxs _flex _fd-ro _md-fd-co _jc-ar _ai-ce">
+                    <div class="__b __bo-grey-7 __bod __padxs _flex _fd-ro _sm-fd-co _jc-ar _ai-ce">
                         <div style="width: 500px;" class="_flex _cc _fd-co">
                             <div style="width: 50px; height: 50px;" class="_flex _cc __bo-grey-1 __bdro __padlg __bo-3">
                                 <p class="__txt-grey-1 __tmd">2</p>
@@ -152,11 +157,24 @@
                                 <p class="__txt-grey-1 __tmd">3</p>
                             </div>
                             <br>
-                            <p class="__txt-grey-1 __tme">Customise the video to your liking!</p>
+                            <p class="__txt-grey-1 __tme">Customise the video to your liking</p>
                         </div>
                         <br class="_hide _sm-show">
                         <img style="height: 200px; object-fit: cover; width: 400px; max-width: 100%; "
                             src="../../public/landing-3.webp" alt="Customise the video to your liking!">
+                    </div>
+                    <br>
+                    <div class="__b __bo-grey-7 __bod __padxs _flex _fd-ro _sm-fd-co _jc-ar _ai-ce">
+                        <div style="width: 500px;" class="_flex _cc _fd-co">
+                            <div style="width: 50px; height: 50px;" class="_flex _cc __bo-grey-1 __bdro __padlg __bo-3">
+                                <p class="__txt-grey-1 __tmd">4</p>
+                            </div>
+                            <br>
+                            <p class="__txt-grey-1 __tme">Organise videos using playlists</p>
+                        </div>
+                        <br class="_hide _sm-show">
+                        <img style="height: 200px; object-fit: cover; width: 400px; max-width: 100%; "
+                            src="../../public/landing-4.webp" alt="Customise the video to your liking!">
                     </div>
                 </div>
             </div>
@@ -166,15 +184,16 @@
             <br>
         </div>
     </div>
+
     <div class="__b _flex _cc">
-
-
-        <br>
-
-        <div class="bg-gradient __mauto _flex __b _cc _fd-co __padmd">
-            <p class="__b __tal __tlg __txt-grey-9">Take control of your videos & music</p>
-            <br>
-            <button class="__padxs __txt-grey-10 __bg-3 __hv-3 __ht-grey-10 __po __bdxs __hv __bd-3 __bod">Get started for free</button>
+        <div class="__b _flex bg-gradient _cc">
+            <div style="background: rgba(0,0,0,0.2);" class="__mauto _flex __b _cc _fd-co __padmd">
+                <p class="__b __tal __tlg __txt-grey-10">Listen the right way with RepeatBeats</p>
+                <br>
+                <button style="background: rgba(0,0,0,0.6); border: 1px solid rgba(0,0,0,0.5);"
+                    class="__padxs __po __bdxs"><span class="gradient-text">Get started for free</span>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -218,7 +237,7 @@ export default {
 }
 
 .bg-gradient {
-    background-image: linear-gradient(to right, #f3a578,#af4261);
+    background-image: linear-gradient(to right, #f3a578, #af4261);
 }
 
 .ht-gradient:hover {
