@@ -161,6 +161,17 @@
         <!-- TOGGLE VIDEO DATA -->
 
         <div class="__b _flex _jc-en _hide _md-show">
+          
+            <!-- received shares -->
+            <div class="_flex tooltip">
+              <svg class="__po" @click="this.showSharesModal = !this.showSharesModal"
+                :fill="this.receivedShares.length > 0 ? 'var(--err_1)' : 'var(--info_1)'" viewBox="0 0 24 24" width="28"
+                height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <path
+                  d="M24 22.917h-24v-13.275l2-1.456v-7.269h20v7.272l2 1.453v13.275zm-21-10.472v-10.528h18v10.526l-9 5.474-9-5.472zm6-8.916l1.305 2.41 2.695.496-1.888 1.986.36 2.717-2.472-1.183-2.472 1.183.36-2.717-1.888-1.986 2.695-.496 1.305-2.41zm8 6.471v1h-3v-1h3zm2-2v1h-5v-1h5zm0-2v1h-5v-1h5zm0-2v1h-5v-1h5z" />
+              </svg>
+              <p class="tooltiptext">Received shares</p>
+            </div> &nbsp;
 
           <div v-if="!playerLoaded" class="tooltip">
             <svg class="__po" @click="refreshPlayer();" xmlns="http://www.w3.org/2000/svg" width="31" height="31"
@@ -197,6 +208,16 @@
         <div v-if="showVidData && !preferences.hideVidData" class="__b _flex _cc _fd-co">
 
           <div class="__b _md-hide _flex _jc-en">
+            <!-- received shares -->
+            <div class="_flex tooltip">
+              <svg class="__po" @click="this.showSharesModal = !this.showSharesModal"
+                :fill="this.receivedShares.length > 0 ? 'var(--err_1)' : 'var(--info_1)'" viewBox="0 0 24 24" width="28"
+                height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <path
+                  d="M24 22.917h-24v-13.275l2-1.456v-7.269h20v7.272l2 1.453v13.275zm-21-10.472v-10.528h18v10.526l-9 5.474-9-5.472zm6-8.916l1.305 2.41 2.695.496-1.888 1.986.36 2.717-2.472-1.183-2.472 1.183.36-2.717-1.888-1.986 2.695-.496 1.305-2.41zm8 6.471v1h-3v-1h3zm2-2v1h-5v-1h5zm0-2v1h-5v-1h5zm0-2v1h-5v-1h5z" />
+              </svg>
+              <p class="tooltiptext">Received shares</p>
+            </div> &nbsp;
             <div v-if="!playerLoaded" class="tooltip">
               <svg class="__po" @click="refreshPlayer();" xmlns="http://www.w3.org/2000/svg" width="31" height="31"
                 viewBox="0 0 24 24">
@@ -434,7 +455,7 @@
             </div>
 
             <!-- SVG BUTTONS -->
-            <div v-if="!hideIcons" class="__b _flex _fd-ro _jc-ar _ai-ce">
+            <div v-if="!hideIcons" class="_sm-hide __b _flex _fd-ro _jc-ar _ai-ce">
               <!-- delete -->
               <div v-if="allVideos.length > 1" class="_flex tooltip">
                 <svg v-if="!loading.delete" @click="destroy()" class="opt-svg" width="24" height="24"
@@ -539,15 +560,123 @@
                 <p class="tooltiptext">Share</p>
               </div>
 
-              <!-- received shares -->
-              <div class="_flex tooltip">
-                <svg class="__po" @click="this.showSharesModal = !this.showSharesModal"
-                  :fill="this.receivedShares.length > 0 ? 'var(--err_1)' : 'var(--info_1)'" viewBox="0 0 24 24"
-                  width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                  <path
-                    d="M24 22.917h-24v-13.275l2-1.456v-7.269h20v7.272l2 1.453v13.275zm-21-10.472v-10.528h18v10.526l-9 5.474-9-5.472zm6-8.916l1.305 2.41 2.695.496-1.888 1.986.36 2.717-2.472-1.183-2.472 1.183.36-2.717-1.888-1.986 2.695-.496 1.305-2.41zm8 6.471v1h-3v-1h3zm2-2v1h-5v-1h5zm0-2v1h-5v-1h5zm0-2v1h-5v-1h5z" />
-                </svg>
-                <p class="tooltiptext">Received shares</p>
+            </div>
+
+            <div class="_hide _sm-show _flex _fd-co _cc __b">
+              <div v-if="!hideIcons" class="__b _flex _fd-ro _jc-ar _ai-ce">
+                <!-- delete -->
+                <div v-if="allVideos.length > 1" class="_flex tooltip">
+                  <svg v-if="!loading.delete" @click="destroy()" class="opt-svg" width="24" height="24"
+                    clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                      fill-rule="nonzero" />
+                  </svg>
+
+                  <div
+                    style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+                    class="__loader-og" v-if="loading.delete"></div>
+                  <p class="tooltiptext">Delete</p>
+                </div>
+
+                <!-- random -->
+                <div v-if="allVideos.length > 1" class="_flex tooltip">
+                  <svg @click="random()" class="opt-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24">
+                    <path
+                      d="M14 19h-4c-.276 0-.5.224-.5.5s.224.5.5.5h4c.276 0 .5-.224.5-.5s-.224-.5-.5-.5zm0 2h-4c-.276 0-.5.224-.5.5s.224.5.5.5h4c.276 0 .5-.224.5-.5s-.224-.5-.5-.5zm.25 2h-4.5l1.188.782c.154.138.38.218.615.218h.895c.234 0 .461-.08.615-.218l1.187-.782zm3.75-13.799c0 3.569-3.214 5.983-3.214 8.799h-1.989c-.003-1.858.87-3.389 1.721-4.867.761-1.325 1.482-2.577 1.482-3.932 0-2.592-2.075-3.772-4.003-3.772-1.925 0-3.997 1.18-3.997 3.772 0 1.355.721 2.607 1.482 3.932.851 1.478 1.725 3.009 1.72 4.867h-1.988c0-2.816-3.214-5.23-3.214-8.799 0-3.723 2.998-5.772 5.997-5.772 3.001 0 6.003 2.051 6.003 5.772zm4-.691v1.372h-2.538c.02-.223.038-.448.038-.681 0-.237-.017-.464-.035-.69h2.535zm-10.648-6.553v-1.957h1.371v1.964c-.242-.022-.484-.035-.726-.035-.215 0-.43.01-.645.028zm-3.743 1.294l-1.04-1.94 1.208-.648 1.037 1.933c-.418.181-.822.401-1.205.655zm10.586 1.735l1.942-1.394.799 1.115-2.054 1.473c-.191-.43-.423-.827-.687-1.194zm-3.01-2.389l1.038-1.934 1.208.648-1.041 1.941c-.382-.254-.786-.473-1.205-.655zm-10.068 3.583l-2.054-1.472.799-1.115 1.942 1.393c-.264.366-.495.763-.687 1.194zm13.707 6.223l2.354.954-.514 1.271-2.425-.982c.21-.397.408-.812.585-1.243zm-13.108 1.155l-2.356 1.06-.562-1.251 2.34-1.052c.173.433.371.845.578 1.243zm-1.178-3.676h-2.538v-1.372h2.535c-.018.226-.035.454-.035.691 0 .233.018.458.038.681z" />
+                  </svg>
+                  <p class="tooltiptext">Random</p>
+                </div>
+
+                <!-- save -->
+                <div class="_flex tooltip">
+                  <svg v-if="!this.loading.save" @click="save()" class="opt-svg" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z" />
+                  </svg>
+
+                  <div
+                    style="min-width: 35px; min-height: 35px; border-color: var(--grey_9); border-top-color: var(--theme3); border-width: 5px;"
+                    class="__loader-og" v-if="loading.save"></div>
+
+                  <p class="tooltiptext">Save</p>
+                </div>
+
+
+                <!-- copy current time -->
+                <div class="_flex tooltip">
+                  <svg @click="copyCurrentTime()" class="opt-svg" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24">
+                    <path
+                      d="M18.513 7.119c.958-1.143 1.487-2.577 1.487-4.036v-3.083h-16v3.083c0 1.459.528 2.892 1.487 4.035l3.087 3.68c.566.677.57 1.625.009 2.306l-3.13 3.794c-.937 1.136-1.453 2.555-1.453 3.995v3.107h16v-3.107c0-1.44-.517-2.858-1.453-3.994l-3.13-3.794c-.562-.681-.558-1.629.009-2.306l3.087-3.68zm-.513-4.12c0 1.101-.363 2.05-1.02 2.834l-.978 1.167h-8.004l-.978-1.167c-.66-.785-1.02-1.736-1.02-2.834h12zm-.996 15.172c.652.791.996 1.725.996 2.829h-1.061c-1.939-2-4.939-2-4.939-2s-3 0-4.939 2h-1.061c0-1.104.344-2.039.996-2.829l3.129-3.793c.342-.415.571-.886.711-1.377h.164v1h2v-1h.163c.141.491.369.962.711 1.376l3.13 3.794zm-6.004-1.171h2v1h-2v-1zm0-2h2v1h-2v-1z" />
+                  </svg>
+                  <p class="tooltiptext">Copy video time</p>
+                </div>
+
+              </div>
+
+              <br class="__brsm">
+
+              <div v-if="!hideIcons" class="__b _flex _fd-ro _jc-ar _ai-ce">
+
+                <!-- add to playlist -->
+                <div v-if="playlists.length > 0" class="_flex tooltip">
+                  <svg @click="showAddModal = !showAddModal" height="35" width=35 class="__po" clip-rule="evenodd"
+                    fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="m17.5 11c2.484 0 4.5 2.016 4.5 4.5s-2.016 4.5-4.5 4.5-4.5-2.016-4.5-4.5 2.016-4.5 4.5-4.5zm.5 4v-1.5c0-.265-.235-.5-.5-.5s-.5.235-.5.5v1.5h-1.5c-.265 0-.5.235-.5.5s.235.5.5.5h1.5v1.5c0 .265.235.5.5.5s.5-.235.5-.5c0-.592 0-1.5 0-1.5h1.5c.265 0 .5-.235.5-.5s-.235-.5-.5-.5c-.592 0-1.5 0-1.5 0zm-6.479 1c.043.522.153 1.025.321 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm1.106-4c-.328.456-.594.96-.785 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm7.373-3.25c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75zm0-4c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75z"
+                      fill-rule="nonzero" />
+                  </svg>
+                  <p class="tooltiptext">Add to playlist</p>
+                </div>
+
+                <!-- fav (unfilled) -->
+                <div v-if="!videoData.fav" class="_flex tooltip">
+                  <svg @click="fav();" width="33" height="33" class="__po" clip-rule="evenodd" fill-rule="evenodd"
+                    stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="m11.322 2.923c.126-.259.39-.423.678-.423.289 0 .552.164.678.423.974 1.998 2.65 5.44 2.65 5.44s3.811.524 6.022.829c.403.055.65.396.65.747 0 .19-.072.383-.231.536-1.61 1.538-4.382 4.191-4.382 4.191s.677 3.767 1.069 5.952c.083.462-.275.882-.742.882-.122 0-.244-.029-.355-.089-1.968-1.048-5.359-2.851-5.359-2.851s-3.391 1.803-5.359 2.851c-.111.06-.234.089-.356.089-.465 0-.825-.421-.741-.882.393-2.185 1.07-5.952 1.07-5.952s-2.773-2.653-4.382-4.191c-.16-.153-.232-.346-.232-.535 0-.352.249-.694.651-.748 2.211-.305 6.021-.829 6.021-.829s1.677-3.442 2.65-5.44zm.678 2.033-2.361 4.792-5.246.719 3.848 3.643-.948 5.255 4.707-2.505 4.707 2.505-.951-5.236 3.851-3.662-5.314-.756z"
+                      fill-rule="nonzero" />
+                  </svg>
+                  <p class="tooltiptext">Favorite</p>
+                </div>
+
+                <!-- fav (filled) -->
+                <div v-if="videoData.fav" class="_flex tooltip">
+                  <svg @click="fav();" width="33" height="33" class="__po" clip-rule="evenodd" fill-rule="evenodd"
+                    stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="m11.322 2.923c.126-.259.39-.423.678-.423.289 0 .552.164.678.423.974 1.998 2.65 5.44 2.65 5.44s3.811.524 6.022.829c.403.055.65.396.65.747 0 .19-.072.383-.231.536-1.61 1.538-4.382 4.191-4.382 4.191s.677 3.767 1.069 5.952c.083.462-.275.882-.742.882-.122 0-.244-.029-.355-.089-1.968-1.048-5.359-2.851-5.359-2.851s-3.391 1.803-5.359 2.851c-.111.06-.234.089-.356.089-.465 0-.825-.421-.741-.882.393-2.185 1.07-5.952 1.07-5.952s-2.773-2.653-4.382-4.191c-.16-.153-.232-.346-.232-.535 0-.352.249-.694.651-.748 2.211-.305 6.021-.829 6.021-.829s1.677-3.442 2.65-5.44z"
+                      fill-rule="nonzero" />
+                  </svg>
+                  <p class="tooltiptext">Unfavourite</p>
+                </div>
+
+                <!-- lyrics -->
+                <div class="_flex tooltip">
+                  <svg @click="this.showLyricsModal = !this.showLyricsModal" class="__po" width="28" height="28"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                    <path
+                      d="M2.5 19.245l.816 1.506 1.684.31-1.18 1.241.225 1.698-1.545-.739-1.545.739.225-1.698-1.18-1.241 1.684-.31.816-1.506zm19.293-3.851l-.917-.326-1.946 5.471c-1.44-.856-3.521-.263-3.98 1.028-.386 1.085.276 1.953 1.211 2.286 1.11.395 2.609.035 3.183-1.574l1.471-4.135c1.42 1.766 1.881 1.979 1.617 3.305.684-.622 1.002-1.098 1.204-1.664.615-1.729-2.338-3-1.843-4.391zm-7.61-12.343l-8.13 5.493 2.849 7.266c-1.789.323-2.981 2.243-2.438 3.627.467 1.191 1.635 1.43 2.646 1.033 1.201-.47 2.18-1.837 1.502-3.571l-2.381-6.074 6.149-3.992 1.885 4.806c-1.786.323-2.98 2.238-2.439 3.618.468 1.195 1.662 1.427 2.668 1.032 1.192-.467 2.16-1.828 1.483-3.562l-3.794-9.676zm-11.683 8.005l-2.5 2.5 2.5 2.5 2.5-2.5-2.5-2.5zm18.346-8.056l1.029 1.9 2.125.392-1.489 1.566.284 2.142-1.949-.932-1.95.932.284-2.142-1.489-1.566 2.125-.392 1.03-1.9zm-12.193-2.381l-.863-.619-3.284 4.575c-1.059-1.622-3.104-2.051-4.158-.582-.651.907-.341 2.187.538 2.818 1.046.751 2.666.91 3.634-.435l4.133-5.757z" />
+                  </svg>
+                  <p class="tooltiptext">Lyrics</p>
+                </div>
+
+                <!-- share -->
+                <div v-if="emailVerified" @click="this.showShareModal = !this.showShareModal" class="_flex tooltip">
+                  <svg class="opt-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                      d="M5 9c1.654 0 3 1.346 3 3s-1.346 3-3 3-3-1.346-3-3 1.346-3 3-3zm0-2c-2.762 0-5 2.239-5 5s2.238 5 5 5 5-2.239 5-5-2.238-5-5-5zm15 9c-1.165 0-2.204.506-2.935 1.301l-5.488-2.927c-.23.636-.549 1.229-.944 1.764l5.488 2.927c-.072.301-.121.611-.121.935 0 2.209 1.791 4 4 4s4-1.791 4-4-1.791-4-4-4zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2zm0-22c-2.209 0-4 1.791-4 4 0 .324.049.634.121.935l-5.488 2.927c.395.536.713 1.128.944 1.764l5.488-2.927c.731.795 1.77 1.301 2.935 1.301 2.209 0 4-1.791 4-4s-1.791-4-4-4zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2z" />
+                  </svg>
+                  <p class="tooltiptext">Share</p>
+                </div>
+
               </div>
 
             </div>
@@ -1671,18 +1800,18 @@ export default {
 
   mounted() {
     if (this.preferences.hideTooltips) {
-        console.log("Hiding tooltips");
-        let tooltips = document.querySelectorAll('.tooltip');
-        let texts = document.querySelectorAll('.tooltiptext');
+      console.log("Hiding tooltips");
+      let tooltips = document.querySelectorAll('.tooltip');
+      let texts = document.querySelectorAll('.tooltiptext');
 
-        tooltips.forEach(t => {
-          t.classList.remove('tooltip');
-        });
+      tooltips.forEach(t => {
+        t.classList.remove('tooltip');
+      });
 
-        texts.forEach(t => {
-          t.remove();
-        });
-      }
+      texts.forEach(t => {
+        t.remove();
+      });
+    }
   },
 
   methods: {

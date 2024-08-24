@@ -32,7 +32,7 @@ if (isAuthenticated) {
     component: function () {
       return import("@/views/Landing.vue");
     },
-    meta: { requiresGuest: true, bg: "dark" }
+    meta: { requiresGuest: true, }
   };
 }
 
