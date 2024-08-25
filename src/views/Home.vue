@@ -60,6 +60,26 @@
         </div>
       </div>
 
+      <div v-if="showTutorial"
+        class="__b __w __mauto _flex __bg-info-5 _sm-fd-co __bo-warn-8 __bod _ai-ce _jc-be __bdxs __padxs">
+        <div style="margin-right: 5px;" class="_flex _fd-co">
+          <p class="__txt-grey-10 __b __tle">Welcome to your new RepeatBeats account! New to how this works? Press the button to view our <strong>tutorial</strong>
+          </p>
+        </div>
+        <br class="m_hide _sm-show">
+        <div class="_flex _cc _fd-ro">
+          <button @click="goToTutorial" style="min-width: max-content;"
+            class="__padxs __tsx __bg-none __po __bo-grey-10 __txt-grey-10 __bod">View Tutorial</button> &nbsp; &nbsp;
+          <svg fill="var(--grey_10)" width=24 height=24 class="__po" @click="hideTutorial" clip-rule="evenodd" fill-rule="evenodd"
+            stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z" />
+          </svg>
+        </div>
+      </div>
+
+      <br>
+
       <div v-if="this.showMaxStorageAlert && !this.showMaxStorageAlertHidden"
         class="__b __w __mauto _flex __bg-info-4 _sm-fd-co __bo-warn-8 __bod _ai-ce _jc-be __bdxs __padxs">
         <div class="_flex _fd-co _cc">
@@ -1684,6 +1704,9 @@ export default {
       loop: '',
       shuffle: false,
 
+      // SHOW TUTORIAL
+      showTutorial: false,
+
       // CREATING PLAYLIST
       playlistData: {
         name: '',
@@ -1787,6 +1810,11 @@ export default {
 
       // UPDATE PREFERENCES
       this.preferences = JSON.parse(localStorage.getItem("preferences")) || this.preferences;
+
+      // SHOW TUTORIAL
+      if (localStorage.getItem("show_tutorial")) {
+        this.showTutorial = true;
+      }
     }
 
   },
@@ -1808,6 +1836,15 @@ export default {
   },
 
   methods: {
+    // TUTORIAL
+    hideTutorial() {
+      this.showTutorial = false;
+      localStorage.removeItem("show_tutorial");
+    },
+    goToTutorial() {
+      this.$router.push("/tutorial");
+    },
+
     // CHECK MAX STORAGE
     checkMaxStorage() {
       if (this.userIsMember === false) {

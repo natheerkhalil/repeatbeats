@@ -44,6 +44,15 @@ if (MAINTENANCE_MODE !== "true" && MAINTENANCE_MODE !== "1") {
     HomeRoute,
 
     {
+      path: "/tutorial",
+      name: 'tutorial',
+      component: function () {
+        return import("@/views/Tutorial.vue");
+      },
+      meta: { requiresAuth: true }
+    },
+
+    {
       path: '/account',
       name: 'account',
       component: function () {

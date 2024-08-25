@@ -94,6 +94,7 @@ export const uauth = {
             if (user_is_member) {
                 localStorage.setItem("user_is_member", user_is_member);
             }
+            localStorage.setItem("show_tutorial", true);
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
