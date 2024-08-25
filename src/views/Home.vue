@@ -1765,8 +1765,6 @@ export default {
       if (!uauth.isAuthenticated()) {
         window.location.href = '/';
       }
-
-      console.log(this.videoPlaylist);
     }, 1000);
 
     if (this.isAuthenticated) {
