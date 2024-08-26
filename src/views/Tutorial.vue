@@ -67,7 +67,7 @@
         <br><br>
         <p class="__b __tal __tlg gradient-text">Tabs</p>
         <br>
-        <img class="__shd __bo-grey-9 __bod" src="../../public/tabs.PNG" style="width: 900px; max-width: 100%;" alt="Tabs">
+        <img class="__shd __bo-grey-9 __bod" src="../../public/tabs.webp" style="width: 900px; max-width: 100%;" alt="Tabs">
         <br>
         <p class="__b __tal" style="font-size: 20px; ">You have <strong>3</strong> main tabs to play your videos -
             <strong>favourites</strong>, <strong>current playlist</strong>, and <strong>all videos</strong>. You can
