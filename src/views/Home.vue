@@ -1157,15 +1157,19 @@
         <!-- END PLAYLISTS -->
 
         <!-- SEARCH PLAYLISTS -->
-        <div v-if="searchPls.length > 0" v-for="(pl, index) in searchPls.slice(0, 10)" :id="`pl_${pl.id}`"
+        <div v-if="searchPls.length > 0" v-for="(pl, index) in searchPls" :id="`pl_${pl.id}`"
           class="playlist __b _flex _fd-co">
-          <div class="__b _flex _fd-ro _jc-be _ai-ce">
+          <div class="__b _flex _fd-co _jc-be _ai-ce">
             <p :contenteditable="pl.isEditable" :style="pl.isEditable ? 'text-decoration: underline' : ''"
-              :id="`pl_${pl.id}_title`" class="sidebar-title __padxs __b __tle __tmd">{{ pl.name }}</p>
+              :id="`pl_${pl.id}_title`" class="sidebar-title __padxs __b __tal __tmd">{{ pl.name }}</p>
             <div class="_flex _fd-ro _cc">
               <svg v-if="pl.id != this.videoPlaylist.id && pl.videos.length > 0" class="__po"
                 @click="setCurrentPlaylist(pl.id, pl.name, pl.thumbnail, pl.videos)" width="24" height="24"
                 xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
+              </svg>
+              <svg v-if="pl.id == this.videoPlaylist.id && pl.videos.length > 0" fill="lightgreen" width="24"
+                height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                 <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
               </svg>
               &nbsp; &nbsp;
@@ -1175,7 +1179,7 @@
                 <path
                   d="m4.481 15.659c-1.334 3.916-1.48 4.232-1.48 4.587 0 .528.46.749.749.749.352 0 .668-.137 4.574-1.492zm1.06-1.061 3.846 3.846 11.321-11.311c.195-.195.293-.45.293-.707 0-.255-.098-.51-.293-.706-.692-.691-1.742-1.74-2.435-2.432-.195-.195-.451-.293-.707-.293-.254 0-.51.098-.706.293z"
                   fill-rule="nonzero" />
-              </svg>
+              </svg> <span v-if="pl.isEditable"> &nbsp; &nbsp; </span>
 
               <!-- SAVE & CANCEL EDIT -->
               <svg @click="updatePlaylist(pl.id)" style="margin-right: 7px" class="__po" v-if="pl.isEditable"
@@ -1202,12 +1206,15 @@
             </div>
           </div>
 
+          <br class="__br __brsm">
+
           <hr class="__hr __b __bg-grey-10">
 
           <br class="__br __brsm">
 
+          <!-- PLAYLIST VIDEOS -->
           <div class="__b playlist-scroll __flow _flex _fd-ro _jc-ar">
-            <div :id="`pl_vid_2_${v.url}`" @click="pressPlay(v.url)" v-for="v in pl.videos"
+            <div :id="`pl_vid_${v.url}`" @click="pressPlay(v.url)" v-for="v in pl.videos"
               :class="[(v.url == this.videoData.url) ? 'image-container playing_tab' : 'image-container', `${v.url}`]">
               <img :src="v.thumbnail" alt="Image" class="image">
               <div class="overlay">
@@ -1223,8 +1230,6 @@
               </div>
             </div>
           </div>
-
-          <!-- END SEARCH PLAYLISTS -->
 
         </div>
       </div>
