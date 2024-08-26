@@ -24,7 +24,7 @@
         <br>
         <p class="__tal __tlg gradient-text">The video player</p>
         <br>
-        <img src="../../player.webp" class="__shd __bo-grey-9 __bod" style="width: 900px; max-width: 100%;" alt="The video player">
+        <img src="/player.webp" class="__shd __bo-grey-9 __bod" style="width: 900px; max-width: 100%;" alt="The video player">
         <br>
         <p class="__tal __b" style="font-size: 20px; ">The player can play any public video on YouTube. Whenever you
             want to add a video, just paste the URL into the bar in any format! Make the customisations you would like
@@ -32,7 +32,7 @@
         <br><br>
         <p class="__b __tal __tlg gradient-text">Customising the video</p>
         <br>
-        <img src="../../videodata.webp" class="__shd __bo-grey-9 __bod" style="width: 900px; max-width: 100%;" alt="Customising the video">
+        <img src="/videodata.webp" class="__shd __bo-grey-9 __bod" style="width: 900px; max-width: 100%;" alt="Customising the video">
         <br>
         <p class="__b __tal" style="font-size: 20px; ">On the side of (or beneath, if on mobile) the video, you can customise it. Videos usually loop infinitely, so here you can choose when the video should start and when you want it to end.
             <br><br>Also, if there are any parts of the video you don't want to watch or listen to, you can create a "skip". Whenever the video reaches the beginning of a "skip", it will automatically skip to the end time that you set.
@@ -43,7 +43,7 @@
         <br><br>
         <p class="__b __tal __tlg gradient-text">The icons</p>
         <br>
-        <img src="../../icons.webp" class="__shd __bo-grey-9 __bod" style="width: 900px; max-width: 100%;" alt="Icons">
+        <img src="/icons.webp" class="__shd __bo-grey-9 __bod" style="width: 900px; max-width: 100%;" alt="Icons">
         <br>
         <p class="__b __tal" style="font-size: 20px; ">We have tooltips to help you understand what each icon does
             (which can be disabled in your preferences), but here's a runthrough to give you a better understanding:</p>
@@ -61,7 +61,7 @@
         <br><br>
         <p class="__b __tal __tlg gradient-text">Playlists</p>
         <br>
-        <img src="../../playlists.webp" class="__shd __bo-grey-9 __bod" style="width: 900px; max-width: 100%;" alt="Playlists">
+        <img src="/playlists.webp" class="__shd __bo-grey-9 __bod" style="width: 900px; max-width: 100%;" alt="Playlists">
         <br>
         <p class="__b __tal" style="font-size: 20px; ">Playlists are a great way to keep track of your favourite videos.
             Open the Sidebar to view all of your playlists, and press &nbsp; <svg fill="var(--grey_4)" class="__po"
