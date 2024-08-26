@@ -15,6 +15,9 @@
         <div class="__13 __w _flex _cc _fd-co">
             <p class="__b __tlg __tle">My Account</p>
             <br>
+            <div class="__b _flex _jc-en">
+                <p class="__txt-grey-5 __po __un" @click="viewTutorial">View Tutorial</p>
+            </div>
             <hr class="__b __hr __bg-grey-7">
             <br>
             <div v-if="!emailVerified && !verificationEmailSent"
@@ -456,7 +459,11 @@ export default {
 
                 this.loading.email = false;
             }
-        }
+        },
+
+        viewTutorial() {
+            this.$router.push('/tutorial');
+        },
     },
 
     watch: {
