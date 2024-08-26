@@ -1350,6 +1350,8 @@
       </div>
       <hr class="__hr __b __bg-grey-1">
       <br>
+      <div v-if="showLyricsData && !lyricData.disabled" class="__b _flex __padxs __txt-grey-10 __bg-info-5 __bo-info-5 __bod __bdxs">Remember to remove keywords like "official audio" or "lyric video" from the title ✍</div>
+      <br class="__brsm">
       <div v-if="showLyricsData && !lyricData.disabled"
         class="__b _flex __bo-grey-6 __bdxs __padsm __bod _fd-ro _md-fd-co _jc-ar _ai-ce">
         <input style="border-bottom: 1px solid var(--grey_7);" type="text" v-model="lyricData.title" placeholder="Title"
