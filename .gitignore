@@ -32,6 +32,9 @@ coverage
 # Stripe
 stripe.exe
 
+# Monetag
+sw.js
+
 # Testing page
 src/views/New.vue
 
