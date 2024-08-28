@@ -3246,7 +3246,7 @@ export default {
 
         } while (nextPageToken);
       } catch (err) {
-        useResponseStore().updateResponse('Failed to fetch playlist videos' + this.dataKey, 'err');
+        useResponseStore().updateResponse('Failed to fetch playlist videos', 'err');
 
         this.loading.importPlaylist = false;
 
