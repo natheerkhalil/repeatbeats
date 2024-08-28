@@ -2184,7 +2184,7 @@ export default {
         return false;
       }
 
-      this.pressPlay(vid);
+      this.pressPlay(vid.url);
     },
     previousVideo() {
       let list;
@@ -4037,7 +4037,7 @@ export default {
         }
 
       } catch (error) {
-        useResponseStore().updateResponse('Failed to get video data' + JSON.stringify((error)), 'err');
+        useResponseStore().updateResponse('Failed to get video data', 'err');
 
         this.tempUrl = "https://www.youtube.com/watch?v=" + this.videoData.url;
       }
