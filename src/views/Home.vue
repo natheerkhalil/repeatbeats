@@ -63,15 +63,17 @@
       <div v-if="showTutorial"
         class="__b __w __mauto _flex __bg-info-5 _sm-fd-co __bo-warn-8 __bod _ai-ce _jc-be __bdxs __padxs">
         <div style="margin-right: 5px;" class="_flex _fd-co">
-          <p class="__txt-grey-10 __b __tle">Welcome to your new RepeatBeats account! New to how this works? Press the button to view our <strong>tutorial</strong>
+          <p class="__txt-grey-10 __b __tle">Welcome to your new RepeatBeats account! New to how this works? Press the
+            button to view our <strong>tutorial</strong>
           </p>
         </div>
         <br class="m_hide _sm-show">
         <div class="_flex _cc _fd-ro">
           <button @click="goToTutorial" style="min-width: max-content;"
             class="__padxs __tsx __bg-none __po __bo-grey-10 __txt-grey-10 __bod">View Tutorial</button> &nbsp; &nbsp;
-          <svg fill="var(--grey_10)" width=24 height=24 class="__po" @click="hideTutorial" clip-rule="evenodd" fill-rule="evenodd"
-            stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg fill="var(--grey_10)" width=24 height=24 class="__po" @click="hideTutorial" clip-rule="evenodd"
+            fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
             <path
               d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z" />
           </svg>
@@ -1350,7 +1352,9 @@
       </div>
       <hr class="__hr __b __bg-grey-1">
       <br>
-      <div v-if="showLyricsData && !lyricData.disabled" class="__b _flex __padxs __txt-grey-10 __bg-info-5 __bo-info-5 __bod __bdxs">Remember to remove keywords like "official audio" or "lyric video" from the title ✍</div>
+      <div v-if="showLyricsData && !lyricData.disabled"
+        class="__b _flex __padxs __txt-grey-10 __bg-info-5 __bo-info-5 __bod __bdxs">Remember to remove keywords like
+        "official audio" or "lyric video" from the title ✍</div>
       <br class="__brsm">
       <div v-if="showLyricsData && !lyricData.disabled"
         class="__b _flex __bo-grey-6 __bdxs __padsm __bod _fd-ro _md-fd-co _jc-ar _ai-ce">
@@ -3104,7 +3108,9 @@ export default {
             this.allVideos = this.allVideos.filter(video => video.url !== this.videoData.url);
 
             // remove from current playlist
-            this.playlists.find(p => p.id === this.videoPlaylistId).videos = this.videoPlaylist.videos.filter(video => video.url !== this.videoData.url);
+            if (this.playlists.find(p => p.id === this.videoPlaylistId)) {
+              this.playlists.find(p => p.id === this.videoPlaylistId).videos = this.playlists.find(p => p.id === this.videoPlaylistId).videos;
+            }
 
             if (this.videoPlaylist.videos.length == 0) {
               this.videoPlaylistId = null;
