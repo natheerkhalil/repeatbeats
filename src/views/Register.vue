@@ -210,6 +210,9 @@ export default {
             data = this.formData;
 
             data.username = data.username.replace(/\s+/g, '');
+            data.username = data.username.toLowerCase();
+
+            data.email = data.email.toLowerCase();
 
             const errors = [];
 
