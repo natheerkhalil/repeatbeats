@@ -3527,20 +3527,17 @@ export default {
 
     // ADD OR REMOVE VIDEO FROM FAVOURITES
     fav() {
-      const og_state = this.videoData.fav;
-      this.videoData.fav = !this.videoData.fav;
 
       request({ url: this.videoData.url }, '/video/fav').then(res => {
         if (res.failed) {
-          this.videoData.fav = !this.videoData.fav;
-
           useResponseStore().updateResponse('Failed to toggle favorite status', 'err');
         } else {
-          if (og_state) {
+          if (favs.find(v => v.url === videoData.url)) {
             this.favs = this.favs.filter(fav => fav.url !== this.videoData.url);
+
             this.cacheFavs();
           } else {
-            if (!this.favs.some(fav => fav.url === this.videoData.url)) {
+            if (!favs.find(v => v.url === videoData.url)) {
               this.favs.unshift(this.videoData);
             }
 
