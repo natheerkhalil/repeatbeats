@@ -3532,12 +3532,12 @@ export default {
         if (res.failed) {
           useResponseStore().updateResponse('Failed to toggle favorite status', 'err');
         } else {
-          if (favs.find(v => v.url === videoData.url)) {
+          if (this.favs.find(v => v.url === videoData.url)) {
             this.favs = this.favs.filter(fav => fav.url !== this.videoData.url);
 
             this.cacheFavs();
           } else {
-            if (!favs.find(v => v.url === videoData.url)) {
+            if (!this.favs.find(v => v.url === videoData.url)) {
               this.favs.unshift(this.videoData);
             }
 
