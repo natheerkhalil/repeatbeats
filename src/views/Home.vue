@@ -537,7 +537,7 @@
               </div>
 
               <!-- fav (unfilled) -->
-              <div v-if="!videoData.fav" class="_flex tooltip">
+              <div v-if="!favs.find(v => v.url === videoData.url)" class="_flex tooltip">
                 <svg @click="fav();" width="33" height="33" class="__po" clip-rule="evenodd" fill-rule="evenodd"
                   stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -548,7 +548,7 @@
               </div>
 
               <!-- fav (filled) -->
-              <div v-if="videoData.fav" class="_flex tooltip">
+              <div v-if="favs.find(v => v.url === videoData.url)" class="_flex tooltip">
                 <svg @click="fav();" width="33" height="33" class="__po" clip-rule="evenodd" fill-rule="evenodd"
                   stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -652,7 +652,7 @@
                 </div>
 
                 <!-- fav (unfilled) -->
-                <div v-if="!videoData.fav" class="_flex tooltip">
+                <div v-if="!favs.find(v => v.url === videoData.url)" class="_flex tooltip">
                   <svg @click="fav();" width="33" height="33" class="__po" clip-rule="evenodd" fill-rule="evenodd"
                     stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
@@ -664,7 +664,7 @@
                 </div>
 
                 <!-- fav (filled) -->
-                <div v-if="videoData.fav" class="_flex tooltip">
+                <div v-if="favs.find(v => v.url === videoData.url)" class="_flex tooltip">
                   <svg @click="fav();" width="33" height="33" class="__po" clip-rule="evenodd" fill-rule="evenodd"
                     stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
