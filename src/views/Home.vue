@@ -2147,10 +2147,16 @@ export default {
     nextVideo() {
       let list;
 
+      let index;
+      let vid;
+
       switch (this.loop) {
         case "fav":
           list = this.favs;
           break;
+        case "fav":
+          list = this.favs;
+          return;
         case "playlist":
           list = this.videoPlaylist.videos;
           break;
@@ -2159,24 +2165,26 @@ export default {
           break;
       }
 
-      let index;
-      let vid;
+      if (this.shuffle) {
+        list = list.filter(obj => obj.url !== this.videoData.url);
 
-      index = list.findIndex(obj => obj.url === this.videoData.url);
-      list = list.filter(obj => obj.url !== this.videoData.url);
+        vid = vid = list[Math.floor(Math.random() * list.length)];
 
-      if (!this.shuffle) {
-        if (index !== -1 && index < list.length - 1) {
-          vid = list[index + 1];
-        } else {
-          vid = list[0];
-        }
-      } else {
-        index = Math.floor(Math.random() * list.length);
-        vid = list[index];
+        this.pressPlay(vid.url);
+
+        return;
       }
 
-      this.pressPlay(vid.url);
+      index = list.findIndex(obj => obj.url === this.videoData.url);
+
+      vid = list[((index + 2) > list.length) ? 0 : index + 1];
+
+      if (!vid) {
+        console.log("No next video in playlist", vid);
+        return false;
+      }
+
+      this.pressPlay(vid);
     },
     previousVideo() {
       let list;
