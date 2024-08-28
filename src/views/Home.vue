@@ -3381,11 +3381,6 @@ export default {
             if (addRes.failed) {
               vids_failed_to_playlist = true;
             } else {
-              // Add the video to the videoPlaylist array if it doesn't exist in videoPlaylist array
-              if (!this.videoPlaylist.videos.some(v => v.url === id)) {
-                this.playlists.find(pl => pl.id === pl_id).videos.unshift(v_data);
-              }
-
               // Add the video to the playlist in the playlists array
               this.playlists.find(pl => pl.id === pl_id).videos.unshift(v_data);
 
