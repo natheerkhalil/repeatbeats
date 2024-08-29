@@ -39,7 +39,7 @@ function flattenObject(ob) {
 }
 
 export async function request(data, url, authenticated = true) {
-    console.log(`API request to: ${API_URL}${url} with data ${data}`);
+    //console.log(`API request to: ${API_URL}${url} with data ${data}`);
     var res = null;
 
     var headers = {};
@@ -60,7 +60,7 @@ export async function request(data, url, authenticated = true) {
         return res;
     } catch (error) {
 
-        console.log("API request failed: ", error);
+        //console.log("API request failed: ", error);
 
         let msg;
         let code;
