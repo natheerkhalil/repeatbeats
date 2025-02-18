@@ -83,11 +83,6 @@ export async function request(data, url, authenticated = true) {
         if (code == 423) {
             useResponseStore().updateResponse("Your account has been blocked from doing this", "warn");
         }
-        // log out user if forbidden
-        if (code == 403) {
-            localStorage.removeItem('auth_token');
-            window.location.href = "/login";
-        }
 
         return {
             failed: 1,

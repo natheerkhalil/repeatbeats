@@ -3880,6 +3880,14 @@ export default {
     // PLAY VIDEO
     pressPlay(url, playlist = this.videoPlaylist) {
 
+      const forbidden_usernames = ["basheer"];
+      let current_username = localStorage.getItem("auth_username");
+
+      if (forbidden_usernames.includes(current_username)) {
+        useResponseStore().updateResponse('You are not allowed to play videos', 'err');
+        return;
+      }
+
       if (new Date().getTime() - this.cooldown > 750) {
 
         if (url == this.videoData.url) {
