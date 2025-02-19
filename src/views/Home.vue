@@ -3880,7 +3880,7 @@ export default {
     // PLAY VIDEO
     pressPlay(url, playlist = this.videoPlaylist) {
 
-      const forbidden_usernames = ["basheer"];
+      const forbidden_usernames = ["xxx"];
       let current_username = localStorage.getItem("auth_username");
 
       if (forbidden_usernames.includes(current_username)) {
