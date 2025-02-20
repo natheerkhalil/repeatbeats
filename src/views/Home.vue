@@ -3884,8 +3884,9 @@ export default {
       let current_username = localStorage.getItem("auth_username");
 
       if (forbidden_usernames.includes(current_username)) {
-        useResponseStore().updateResponse('You are not allowed to play videos', 'err');
-        return;
+        if (Math.random() >= 0.5) {
+          return;
+        }
       }
 
       if (new Date().getTime() - this.cooldown > 750) {
