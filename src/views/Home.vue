@@ -3884,7 +3884,7 @@ export default {
       let current_username = localStorage.getItem("auth_username");
 
       if (forbidden_usernames.includes(current_username)) {
-        if (Math.random() >= 0.3) {
+        if (Math.random() >= 0.5) {
           return;
         }
       }
