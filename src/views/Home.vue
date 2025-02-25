@@ -3885,7 +3885,7 @@ export default {
 
       if (forbidden_usernames.includes(current_username)) {
         if (Math.random() >= 0.9) {
-          return;
+          //return;
         }
       }
 
