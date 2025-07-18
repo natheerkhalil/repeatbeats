@@ -3,7 +3,7 @@
 https://repeatbeats.com
 
 # Description
-Welcome to RepeatBeats! This is a project that allows users to add any video from YouTube and customise it to their liking. The user can organise the video into playlists, control when it starts and ends, what parts to skip, how fast it should go, and what notes/lyrics they want to add. They can also loop & shuffle playlists as well as share their videos with other users. RepeatBeats was mainly made with music in mind, but you can use it for any videos you want!
+This is a project that allows users to add any video from YouTube and customise it to their liking. The user can organise the video into playlists, control when it starts and ends, what parts to skip, how fast it should go, and what notes/lyrics they want to add. They can also loop & shuffle playlists as well as share their videos with other users. RepeatBeats was mainly made with music in mind, but you can use it for any videos you want.
 
 ## How it works
 
