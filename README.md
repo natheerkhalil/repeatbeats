@@ -21,28 +21,9 @@ Star - add video to favourite
 Music notes - lyrics (can also be used for notes)  
 Share - share video  
 
-## Structure
-
-Most of the important parts of the project are on the Home.vue file - this is the only place the users' videos & playlists are accessible and can be edited, added, shared, or deleted. You're probably not interested in the other pages, which are more account/legal related. However, if you feel a page could benefit from a visual change, feel free to contribute.
-
 ## Languages
 
 The frontend (this repository) uses a Vue SPA. The backend uses Laravel.
-
-## Contributions
-
-Contributions are welcome! If you've been using the app and feel it could be improved in some way, feel free to either:
-- Report any bugs you find (you can also use the 'feedback' feature on the website itself)
-- Suggest any ideas you think would be cool to implement
-- Contribute any code you want to see
-
-## How to contribute
-
-1. Fork this repository
-2. Clone that repository
-3. Add your contributions
-4. Commit & push your code
-5. I will review the pull request & merge it 
 
 ## Support
 
