@@ -24,7 +24,3 @@ Share - share video
 ## Languages
 
 The frontend (this repository) uses a Vue SPA. The backend uses Laravel.
-
-## Support
-
-This is a web project made & hosted solely by a solo web dev, and as such all the costs for keeping it online are coming out of my pocket. If you feel that this project has benefited you in some way, feel free to help out by donating (you don't have to, but it helps!): https://ko-fi.com/natheer. You can also star this repository.
